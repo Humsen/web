@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+.cmt-text {
+	font-size: 14px;
+}
+
+.meessage-input {
+	/* display: block; */
+	background-image: none;
+	margin: 10px 0px 10px 5px;
+	height: 100px;
+	width: 100%;
+	resize: none;
+	/* float:left; */
+}
+
+.comment-input {
+	background: transparent;
+	background-image: none;
+	margin: 10px 0px -10px 50px;
+	height: 60px;
+	width: 500px;
+	resize: none;
+	-moz-appearance: none;
+	box-shadow: none;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	font-weight: 300;
+	border-radius: 7px;
+}
+
+/* #fh5co-main {
+	width: 60%;
+	float: left;
+	margin-left: 20%;
+} */
+
+.u-button {
+	margin: 0px 0px 0px 10px;
+	/* float:left; */
+}
+
+.f-clear {
+	position: relative;
+}
+
+.f-float-right {
+	float: right;
+	margin-bottom: 20px;
+}
+
+.user-head {
+	float: left;
+}
+
+.user-float-left {
+	float: left;
+	margin-left: 20px;
+}
+
+.parent-content {
+	display: inline-block;
+	width: 100%;
+	margin-left: 60px;
+	margin-bottom: 10px;
+}
+
+li {
+	list-style: none;
+}
+
+.f-show {
+	position: absolute;
+	top: 0px;
+	right: 30px;
+}

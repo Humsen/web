@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.form-label {
+	text-align: left !important;
+	padding-left: 0;
+	width: 20%;
+	padding-right: 5px;
+}
+
+.modify-email {
+	text-align: left !important;
+	font-size: 16px;
+}
+
+.form-group-div {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.email-show {
+	font-size: 16px;
+}
+
+.form-input-div {
+	padding-left: 0;
+}
+
+.validate-code-input {
+	padding-right: 0 !important;
+}
