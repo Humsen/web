@@ -102,7 +102,7 @@ function getBlogDetailsClick(){
 				success : function(response){
 					$('#list_blog').html('<div class="fh5co-entry" id="content">'
 							+ '<div>'
-							+ '<h2 style="text-align: center;"><input type="hidden" value='+ response.blogId + ' /><a href=#>' + response.blogTitle + '</a></h2>'
+							+ '<h2 class="text-align-center"><input type="hidden" value='+ response.blogId + ' /><a href=#>' + response.blogTitle + '</a></h2>'
 							+ '<span class="fh5co-post-date">' + new Date(response.blogDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
 							+ '<span class="fh5co-post-date">作者:' + response.blogAuthor + '</span>'
 							+ '<span class="fh5co-post-date">浏览' + response.blogRead + '次</span>'
@@ -171,7 +171,7 @@ function showMarkdown() {
  */
 function showPagination(currPageNum, paginationMaxLength, totalPages){
 	$('#list_blog').append('<hr />'
-		+	'<div id="pagination" style="text-align: center;" pagination="pagination_new" '
+		+	'<div id="pagination" class="text-align-center" pagination="pagination_new" '
 		+	' currpagenum=' + currPageNum + ' paginationmaxlength=' + paginationMaxLength + ' totalpages=' + totalPages
 		+   ' onlyonepageshow="true"> '
 		+ 	'</div>'

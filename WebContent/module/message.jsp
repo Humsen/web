@@ -29,8 +29,8 @@
 </head>
 <body>
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <a
-			id="menuBarNo" style="display: none;">3</a>
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> 
+		<input id="menuBarNo" type="hidden" value="3"/>
 		<%@include file="/login/login.jsp"%>
 
 		<div id="fh5co-main">

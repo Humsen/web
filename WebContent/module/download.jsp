@@ -26,8 +26,8 @@
 </head>
 <body>
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <a
-			id="menuBarNo" style="display: none;">4</a>
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<input id="menuBarNo" type="hidden" value="4"/>
 		<%@include file="/login/login.jsp"%>
 
 		<div id="fh5co-main">
@@ -35,7 +35,7 @@
 
 			<div class="fh5co-narrow-content download-div">
 				<h2 class="fh5co-heading" data-animate-effect="fadeInLeft">下载分享区</h2>
-				<input style="display: none" id="num_downloadPageSize" value="10">
+				<input type="hidden" id="num_downloadPageSize" value="10">
 				<div id="list_file" class="row"></div>
 			</div>
 		</div>

@@ -3,7 +3,7 @@
 
 <!-- 上部导航栏 -->
 <link rel="stylesheet" href="/css/navigation/topbar.css">
-<script type="text/javascript" src="/js/navigation/topbar.js"></script>
+<script src="/js/navigation/topbar.js"></script>
 
 <nav id="topBar" class="navbar navbar-default topbar-nav">
 	<div class="container-fluid">

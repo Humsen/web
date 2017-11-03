@@ -33,8 +33,10 @@ $(function(){
 		//留言是动态加载的，需等待一会儿
 		setTimeout(function(){
 			if($('#message_box').length>0){
+				//留言框
 				$('#message_box').find('textarea').css('width','42%');
-				$('#message_box').children().children().find('button').css('margin-left','20%');
+				//回复留言
+				$('#message_box').children().children().find('button').css({'cssText' : 'margin-left: 20% !important'});
 			}
 		},300); 
 	}

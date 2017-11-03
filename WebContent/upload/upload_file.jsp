@@ -7,10 +7,9 @@
 <!-- 网站图标 -->
 <link rel="shortcut icon" href="/images/favicon.ico">
 
-<script type="text/javascript" src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
+<script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
 <!-- JQuery cookie -->
-<script type="text/javascript" src="/plugins/jquery/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/js/download/upload.js"></script>
+<script src="/plugins/jquery/js/jquery.cookie.js"></script>
 
 </head>
 <body>

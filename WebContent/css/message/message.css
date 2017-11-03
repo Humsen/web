@@ -5,13 +5,11 @@
 }
 
 .meessage-input {
-	/* display: block; */
 	background-image: none;
 	margin: 10px 0px 10px 5px;
 	height: 100px;
 	width: 100%;
 	resize: none;
-	/* float:left; */
 }
 
 .comment-input {
@@ -28,15 +26,8 @@
 	border-radius: 7px;
 }
 
-/* #fh5co-main {
-	width: 60%;
-	float: left;
-	margin-left: 20%;
-} */
-
 .u-button {
 	margin: 0px 0px 0px 10px;
-	/* float:left; */
 }
 
 .f-clear {
@@ -72,4 +63,46 @@ li {
 	position: absolute;
 	top: 0px;
 	right: 30px;
+}
+
+.btn-submit-commit {
+	margin-top: 5px !important;
+	margin-left: 600px !important;
+}
+
+.cmt-form {
+	width: 805px;
+}
+
+.commit-hr {
+	border: 1px dotted #036;
+	height: 1px;
+	width: 100%;
+}
+
+.commit-hr1 {
+	margin-right: 80px;
+}
+
+.message-head-img {
+	width: 40px;
+	height: 40px;
+}
+
+.mobile-reply {
+	margin: 10px 0px 10px -35px;
+	width: 30%;
+}
+
+.reply-div-mobile {
+	margin: -70px 0px 0px 200px;
+}
+
+.reply-div-pc {
+	margin: -50px 0px 0px 550px;
+}
+
+.cancel-reply {
+	display: block;
+	margin: 1px 0px 0px 18px;
 }

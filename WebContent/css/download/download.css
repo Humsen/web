@@ -3,3 +3,11 @@
 .download-div {
 	padding: 0em 1em !important;
 }
+
+.text-align-center {
+	text-align: center !important;
+}
+
+.h3-letter-space {
+	letter-spacing: 0.05em !important;
+}

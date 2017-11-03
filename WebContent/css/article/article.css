@@ -75,3 +75,7 @@ img {
 	word-wrap: break-word;
 	margin-top: 10px;
 }
+
+.text-align-center {
+	text-align: center !important;
+}

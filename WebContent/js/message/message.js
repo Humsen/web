@@ -79,10 +79,10 @@ fn.initNode = function(options) {
 	// init content
 	this.body = (function() {
 		var strHtml = '<div class="m-comment">'
-				+ '<div class="cmt-form" style="width: 805px">'
+				+ '<div class="cmt-form" >'
 				+ '<textarea class="cmt-text form-control meessage-input" placeholder="请输入留言..."></textarea>'
-				+ '<button class="btn btn-success btn-sm u-button" style="margin-top: 5px;margin-left: 600px;">提交评论</button>'
-				+ '<hr style="border:1px dotted #036; height:1px; width=100%">'
+				+ '<button class="btn btn-success btn-sm u-button btn-submit-commit">提交评论</button>'
+				+ '<hr class="commit-hr">'
 				+ '</div>' + '<div class="cmt-content">'
 				+ '<div class="u-loading1"></div>'
 				+ '<div class="no-cmt">暂时没有评论</div>'
@@ -259,9 +259,9 @@ fn.showList = (function() {
 		_obj.messageContent = _obj.messageContent.replace(/\<\;/g, '<');
 		_obj.messageContent = _obj.messageContent.replace(/\>\;/g, '>');
 		var str2 = '<li class="f-clear">' 
-				+ '<hr style="border:1px dashed #0000fff"/>'
+				+ '<hr class="commit-hr1"/>'
 				+ '<div class="user-head">'
-				+ '<img src="/images/message/' + headImg + '" width="40px" height="40px"/>'
+				+ '<img src="/images/message/' + headImg + '"	 class="message-head-img"/>'
 				+ '</div>'
 				+ '<div class="content c-float-left">'
 				+ '<div class="f-clear">'
@@ -506,16 +506,15 @@ fn.doClickResponse = function(_event){
 		 var replyHtml = '';
 		 //判断是否是手机
 		 if($.isMobile()){
-			 replyHtml += '<textarea class="cmt-text comment-input" style="margin: 10px 0px 10px -30px;width: 65%;" placeholder="请输入回复评论..."></textarea>';
-			 replyHtml += '<div style="margin: -70px 0px 0px 180px;">';
+			 replyHtml += '<textarea class="cmt-text comment-input mobile-reply" placeholder="请输入回复评论..."></textarea>';
+			 replyHtml += '<div class="reply-div-mobile">';
 		 }else{
 			 replyHtml += '<textarea class="cmt-text comment-input" placeholder="请输入回复评论..."></textarea>';
-			 replyHtml += '<div style="margin: -50px 0px 0px 550px;">';
+			 replyHtml += '<div class="reply-div-pc">';
 		 }
 		 oDiv.innerHTML = replyHtml +
-			
 			 '<button class="u-button resBtn" data-id="' + id + '">提交评论</button>' +
-			 '<a href="javascript:void(0);" class="cancel" style="display: block;margin: 1px 0px 0px 18px;">[取消回复]</a>'+
+			 '<a href="javascript:void(0);" class="cancel cancel-reply">[取消回复]</a>'+
 			 '</div>';
 		 target.parent().parent().append(oDiv);
 		 oDiv = null;

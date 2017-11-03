@@ -96,7 +96,7 @@ function getSimpleFile(file_data){
 		+ '<i class="glyphicon glyphicon-download-alt"></i>'
 		+ '</div>'
 		+ '<div class="fh5co-text">'
-		+ '<h3 style="letter-spacing: .05em;">' + file_data.fileName + '</h3>'
+		+ '<h3 class="h3-letter-space">' + file_data.fileName + '</h3>'
 		+ '<p><span>下载' + file_data.fileDownloadCount + '次</span>&nbsp;/&nbsp;'
 		+ '<span>' + new Date(file_data.fileUploadDate.time).format('yyyy-MM-dd hh:mm:ss') +'上传</span></p>'
 		+ '<a href="' + '/fileDownload?filename=' + file_data.fileUrl +'">点击下载</a>'
@@ -112,9 +112,9 @@ function getSimpleFile(file_data){
  */
 function showPagination(currpagenum, paginationmaxlength, totalpages){
 	$('#list_file').append('<hr />'
-		+	'<div id=\'pagination\' style=\'text-align: center;\' pagination=\'pagination_new\' '
+		+	'<div id="pagination" class="text-align-center" pagination="pagination_new" '
 		+	' currpagenum=' + currpagenum + ' paginationmaxlength=' + paginationmaxlength + ' totalpages=' + totalpages
-		+   ' onlyonepageshow=\'false\'> '
+		+   ' onlyonepageshow="true"> '
 		+ 	'</div>'
 		+ 	'<hr />');
 	

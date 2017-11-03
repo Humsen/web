@@ -35,15 +35,14 @@
 </head>
 <body>
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <a
-			id="menuBarNo" style="display: none;">2</a>
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <input
+			id="menuBarNo" type="hidden" value="2" />
 		<%@include file="/login/login.jsp"%>
 
 		<div id="fh5co-main">
 			<%@include file="/navigation/topbar.jsp"%>
 			<!-- 选择每页显示的条数 -->
-			<div class="collapse navbar-collapse" id="choose_page_size"
-				style="min-height: 10px">
+			<div class="collapse navbar-collapse" id="choose_page_size">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle choose-page-size" data-toggle="dropdown"

@@ -7,7 +7,7 @@
  */
 
 $(function(){
-	var menuBarNo = $('#menuBarNo').text();
+	var menuBarNo = Number($('#menuBarNo').val());
 	
 	menuBarInit(menuBarNo);
 });

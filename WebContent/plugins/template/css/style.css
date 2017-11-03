@@ -720,7 +720,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 	}
 }
 
-.fh5co-cards .fh5co-flex-wrap .fh5co-card p:last-child {
+.fh5co-cards .fh5co-flex-wrap .fh5co-card p:last-child, send-again{
 	margin-bottom: 0;
 }
 

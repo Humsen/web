@@ -115,7 +115,7 @@ $.extend({
  */
 $.extend({
 	'codeCountDown' : function ($btnSendCode) {
-		$btnSendCode.html('重发(<label id="txt_secondsCount" style="margin-bottom: 0;">60</label>s)');
+		$btnSendCode.html('重发(<label id="txt_secondsCount">60</label>s)');
 		$btnSendCode.attr({'disabled':'disabled'});
 		
 		/**
@@ -138,12 +138,12 @@ $.extend({
 			}
 
 			setTimeout(function(){
-				codeCountDownHelper($btnSendCode);
+				codeCountDownHelper();
 			}, 1000);
 		}
 		
 		//开始倒计时
-		codeCountDownHelper($btnSendCode);
+		codeCountDownHelper();
 	}
 });
 
