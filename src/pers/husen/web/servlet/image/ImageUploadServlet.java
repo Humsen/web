@@ -48,10 +48,14 @@ public class ImageUploadServlet extends HttpServlet {
 		if (fileName != null) {
 			//上传成功为1
 			iPo.setSuccess(1);
+			//图片带网址完整链接
+			StringBuffer resquestUrl = request.getRequestURL();
+			int serverPathStart = resquestUrl.lastIndexOf("/");
+			String imageFullLink =  resquestUrl.substring(0, serverPathStart) + "/imageDownload?imageUrl=" + imageDatePath + "/" + fileName;
 			
 			ImageUploadVo iVo = new ImageUploadVo();
-			iVo.setImageName(fileName);
-			iVo.setImageUrl(imageDatePath + "/" + fileName);
+			iVo.setImageName(imageDatePath + fileName);
+			iVo.setImageUrl(imageFullLink);
 			iVo.setImageUploadDate(new Date());
 			iVo.setImageType(1);
 			iVo.setImageDownloadCount(0);
@@ -59,7 +63,7 @@ public class ImageUploadServlet extends HttpServlet {
 			ImageUploadSvc iSvc = new ImageUploadSvc();
 			iSvc.insertImageUpload(iVo);
 			
-			iPo.setUrl("/imageDownload?imageUrl=" + imageDatePath + "/" + fileName);
+			iPo.setUrl(imageFullLink);
 			iPo.setMessage("上传成功");
 		}else {
 			iPo.setSuccess(0);
