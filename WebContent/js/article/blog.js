@@ -16,7 +16,6 @@ $(function(){
 
 /**
  * 查询博客数量
- * 
  * @returns
  */
 function queryBlogNum(){
