@@ -49,7 +49,7 @@ $.extend({
 			}
 		}
 		
-		return -1;
+		return false;
 	}
 });
 

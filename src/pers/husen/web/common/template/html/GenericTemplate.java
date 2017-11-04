@@ -13,18 +13,21 @@ public class GenericTemplate {
 	 * @param title
 	 * @return
 	 */
-	public static String htmlHeader(String title) {
+	public static String htmlHeader(String title, String description, String keyWords) {
+		//空格变为英文逗号
+		if(keyWords != null && keyWords != "") {
+			keyWords = keyWords.replace(" ", ",");
+		}
+		
 		String header = "<html class=\"no-js\"> \r\n" + 
 				"	<head>\r\n" + 
 				"	<meta charset=\"utf-8\">\r\n" + 
 				"	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + 
 				"	<title> " + title + "</title>\r\n" + 
-				"	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
-				"\r\n" + 
-				"	<meta name=\"description\" content=\"何明胜，个人网站，何明胜的个人网站，何明胜的博客，一格的程序人生\" />\r\n" + 
-				"	<meta name=\"keywords\" content=\"何明胜，个人网站，何明胜的个人网站，何明胜的博客，一格的程序人生\" />\r\n" + 
-				"	<meta name=\"author\" content=\"何明胜，一格\">\r\n" + 
-				"	\r\n" + 
+				"	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
+				"	<meta name=\"description\" content=\"" + description + "\"/>\r\n" + 
+				"	<meta name=\"keywords\" content=\"" + keyWords + "\" />\r\n" + 
+				"	<meta name=\"author\" content=\"何明胜,一格\">\r\n\r\n" + 
 				"	<!-- 网站图标 -->\r\n" + 
 				"	<link rel=\"shortcut icon\" href=\"/images/favicon.ico\">";
 		
@@ -36,8 +39,7 @@ public class GenericTemplate {
 	 * @return
 	 */
 	public static String jsAndCssPlugins() {
-		String plugins = "<!-- 插件统一放  -->\r\n" + 
-				"\r\n" + 
+		String plugins = "<!-- 插件统一放  -->\r\n\r\n" + 
 				"<!-- Animate.css -->\r\n" + 
 				"<link rel=\"stylesheet\" href=\"/plugins/template/css/animate.css\">\r\n" + 
 				"<!-- Icomoon Icon Fonts-->\r\n" + 
@@ -228,9 +230,11 @@ public class GenericTemplate {
 				"</div>"+
 				" <!-- 右侧固定栏  -->"
 				+ rightBar() + 
-				"<nav class=\"navbar-fixed-bottom navbar-bottom\">\r\n" + 
-				"	&copy;2017&nbsp; 何明胜 &nbsp; All Rights Reserved&nbsp; 渝ICP备16013250号"+
-				"</nav>";
+				"<!-- 底部版权信息 -->"
+				+ "<nav class=\"navbar-fixed-bottom navbar-bottom\">\r\n" + 
+				"	<span class=\"glyphicon glyphicon-copyright-mark\"></span>"
+				+ " 2017&nbsp; 何明胜&nbsp;All Rights Reserved&nbsp;渝ICP备16013250号"
+				+ "</nav>";
 		
 		return login;
 	}
@@ -246,7 +250,9 @@ public class GenericTemplate {
 				"		<div class=\"sidebar-module\">\r\n" + 
 				"			<h4>关于本站</h4>\r\n" + 
 				"			<p>&emsp;&emsp;欢迎来到何明胜的个人网站。本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及分享软件等资源。</p>\r\n" + 
-				"			<p>&emsp;&emsp;本站目前处于测试运行阶段，希望各位访客多提宝贵意见。</p>\r\n" + 
+				"			<p>本站源码已托管github。欢迎访问：<br/>\r\n" + 
+				"				<a href=\"https://github.com/HelloHusen/web\" target=\"_blank\">https://github.com/HelloHusen/web</a>\r\n" + 
+				"			</p>\r\n" + 
 				"		</div>\r\n" + 
 				"		<div class=\"sidebar-module\">\r\n" + 
 				"			<h4>我的其他主页</h4>\r\n" + 

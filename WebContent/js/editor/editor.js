@@ -6,7 +6,6 @@
  * 2017年9月28日
  */
 
-var testEditor;
 var article_id = -1;// 文章id,新文章默认为-1,编辑文章为相应的id
 
 $(document).ready(function() {
@@ -15,7 +14,10 @@ $(document).ready(function() {
 		window.location.replace('/error/error.jsp');
 		return;
 	}
-
+	
+	//初始化Markdown编辑区
+	initMarkdownEditor();
+	
 	/** 判断是编辑还是新建文章，如果是编辑，加载内容 */
 	initInputBox();
 	
@@ -35,16 +37,15 @@ function initInputBox() {
 	var url;
 	var jsonData;
 
-	if ((article_id = $.getUrlParam('blogId')) != -1) {
+	if (article_id = $.getUrlParam('blogId')) {
 		url = '/blogPerById';
 		jsonData = 'blogId=' + article_id + '&type=json';
-	} else if ((article_id = $.getUrlParam('codeId')) != -1) {
+	} else if ((article_id = $.getUrlParam('codeId'))) {
 		url = '/codePerById';
 		jsonData = 'codeId=' + article_id + '&type=json';
 	}
 
-	if (article_id != -1) {
-		// 获取文章以供编辑
+	if (article_id) {// 获取文章以供编辑
 		$.ajax({
 			type : 'POST',
 			async : false,
@@ -52,22 +53,21 @@ function initInputBox() {
 			dataType : 'json',
 			data : jsonData,
 			success : function(response) {
-				// var response = JSON.parse(response);
 				// 填充编辑界面
 				if ($.getUrlParam('blogId')) {
-					$('#title').val(response.blogTitle);
-					$('#author').val(response.blogAuthor);
-					$('#summary').val(response.blogSummary);
-					$('#in_editorMdContent').val(response.blogMdContent);
-					$('input:radio[name="article"]:eq(0)').attr('checked',
-							'checked');
+					$('#txt_title').val(response.blogTitle);
+					$('#txt_author').val(response.blogAuthor);
+					$('#txt_summary').val(response.blogSummary);
+					$('#txt_editorMdContent').val(response.blogMdContent);
+					$('#txt_articleLabel').val(response.blogLabel);
+					$('input:radio[name="article"]:eq(0)').prop('checked',true);
 				} else {
-					$('#title').val(response.codeTitle);
-					$('#author').val(response.codeAuthor);
-					$('#summary').val(response.codeSummary);
-					$('#in_editorMdContent').val(response.codeMdContent);
-					$('input:radio[name="article"]:eq(1)').attr('checked',
-							'checked');
+					$('#txt_title').val(response.codeTitle);
+					$('#txt_author').val(response.codeAuthor);
+					$('#txt_summary').val(response.codeSummary);
+					$('#txt_editorMdContent').val(response.codeMdContent);
+					$('#txt_articleLabel').val(response.codeLabel);
+					$('input:radio[name="article"]:eq(1)').prop('checked',true);
 				}
 			},
 			error : function(XMLHttpRequest, textStatus) {
@@ -75,7 +75,7 @@ function initInputBox() {
 					title : '查询出错',
 					content : textStatus + ' : ' + XMLHttpRequest.status,
 					autoClose : 'ok|2000',
-					type : 'green',
+					type : 'red',
 					buttons : {
 						ok : {
 							text : '确认',
@@ -88,15 +88,18 @@ function initInputBox() {
 	}
 }
 
-testEditor = $(function() {
+/**
+ * 初始化markdown编辑区
+ * @returns
+ */
+function initMarkdownEditor() {
 	editormd('div_editorMd', {
 		width : '100%',
 		height : 640,
 		// markdown : md,
 		codeFold : true,
 		syncScrolling : 'single',
-		// 你的lib目录的路径
-		path : '/plugins/editormd/lib/',
+		path : '/plugins/editormd/lib/',// lib目录的路径
 		/*
 		 * theme: 'dark',//工具栏主题 previewTheme: 'dark',//预览主题 editorTheme:
 		 * 'pastel-on-dark',//编辑主题
@@ -107,14 +110,12 @@ testEditor = $(function() {
 		tex : true, // 开启科学公式TeX语言支持，默认关闭
 		flowChart : true, // 开启流程图支持，默认关闭
 		sequenceDiagram : true, // 开启时序/序列图支持，默认关闭,
-		// 这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
-		saveHTMLToTextarea : true,
-		// 启动本地图片上传功能
-		imageUpload : true,
+		saveHTMLToTextarea : true,//构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单
+		imageUpload : true,// 启动本地图片上传功能
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
 		imageUploadURL : '/imageUpload'
 	});
-});
+}
 
 /**
  * 发布按钮点击事件
@@ -132,7 +133,7 @@ function btnPublishClick() {
 		url : (isBlogOrCode() == 'blog') ? '/newBlogUpload' : '/newCodeUpload',
 		data : {
 			newArticle : articleData,
-			type : (article_id != -1) ? 'modify' : 'create',
+			type : article_id ? 'modify' : 'create',
 			articleId : article_id
 		},
 		success : function(response) {
@@ -198,28 +199,28 @@ function articleDetail() {
 	var newArticle = {};
 
 	// 获取第二个textarea的值，即生成的HTML代码 实际开发中此值存入后台数据库
-	var editorHtml = $('#in_editorHtml').val();
-	// alert('html文本'+editorHtml);
+	var editorHtml = $('#txt_editorHtml').val();
 	// 获取第一个textarea的值，即md值 实际开发中此值存入后台数据库
-	var editormarkdown = $('#in_editorMdContent').val();
-	// alert('编辑器' +editormarkdown);
-
+	var editormarkdown = $('#txt_editorMdContent').val();
+	
 	if (type == 'blog') {
-		newArticle.blogTitle = $('#title').val();
-		newArticle.blogAuthor = $('#author').val();
-		newArticle.blogSummary = $('#summary').val();
+		newArticle.blogTitle = $('#txt_title').val();
+		newArticle.blogAuthor = $('#txt_author').val();
+		newArticle.blogSummary = $('#txt_summary').val();
 		newArticle.blogRead = 0;
 		newArticle.blogDate = $.nowDateHMS();
 		newArticle.blogHtmlContent = editorHtml;
 		newArticle.blogMdContent = editormarkdown;
+		newArticle.blogLabel = $('#txt_articleLabel').val();
 	} else if (type == 'code') {
-		newArticle.codeTitle = $('#title').val();
-		newArticle.codeAuthor = $('#author').val();
-		newArticle.codeSummary = $('#summary').val();
+		newArticle.codeTitle = $('#txt_title').val();
+		newArticle.codeAuthor = $('#txt_author').val();
+		newArticle.codeSummary = $('#txt_summary').val();
 		newArticle.codeRead = 0;
 		newArticle.codeDate = $.nowDateHMS();
 		newArticle.codeHtmlContent = editorHtml;
 		newArticle.codeMdContent = editormarkdown;
+		newArticle.codeLabel = $('#txt_articleLabel').val();
 	} else {
 		$.confirm({
 			title : '获取文章出错',
@@ -242,8 +243,11 @@ function articleDetail() {
  * @returns
  */
 function btnClearClick(){
-	$('#title').val('');
-	$('#author').val('');
-	$('#summary').val('');
+	$('#txt_title').val('');
+	$('#txt_author').val('');
+	$('#txt_summary').val('');
+	$('#txt_articleLabel').val('');
+	$('input:radio[name="article"]:eq(0)').prop('checked',true);
+	//清空内容
 	$('.editormd-menu li a i[name="clear"]').click();
 }

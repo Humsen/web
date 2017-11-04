@@ -1,5 +1,6 @@
 package pers.husen.web.bean.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,9 @@ import java.util.Date;
  *
  * 2017年9月28日
  */
-public class CodeLibraryVo {
+public class CodeLibraryVo implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private int codeId;
 	private String codeTitle;
 	private String codeAuthor;
@@ -16,6 +19,27 @@ public class CodeLibraryVo {
 	private String codeSummary;
 	private String codeHtmlContent;
 	private String codeMdContent;
+	private String codeLabel;
+	
+	@Override
+	public String toString() {
+		return "CodeLibraryVo [codeId=" + codeId + ", codeTitle=" + codeTitle + ", codeAuthor=" + codeAuthor
+				+ ", codeDate=" + codeDate + ", codeRead=" + codeRead + ", codeSummary=" + codeSummary
+				+ ", codeHtmlContent=" + codeHtmlContent + ", codeMdContent=" + codeMdContent + ", codeLabel="
+				+ codeLabel + "]";
+	}
+	/**
+	 * @return the codeLabel
+	 */
+	public String getCodeLabel() {
+		return codeLabel;
+	}
+	/**
+	 * @param codeLabel the codeLabel to set
+	 */
+	public void setCodeLabel(String codeLabel) {
+		this.codeLabel = codeLabel;
+	}
 	/**
 	 * @return the codeId
 	 */

@@ -53,6 +53,9 @@ public class TypeTransformUtils {
 		if(AssistUtils.isExistColumn(rs, BlogDetailsMapping.BLOG_MD_CONTENT)) {
 			bVo.setBlogMdContent(rs.getString(BlogDetailsMapping.BLOG_MD_CONTENT));
 		}
+		if(AssistUtils.isExistColumn(rs, BlogDetailsMapping.BLOG_LABEL)) {
+			bVo.setBlogLabel(rs.getString(BlogDetailsMapping.BLOG_LABEL));
+		}
 		if(AssistUtils.isExistColumn(rs, BlogDetailsMapping.BLOG_DATE)) {
 			Date date = new Date(rs.getTimestamp(BlogDetailsMapping.BLOG_DATE).getTime());
 			bVo.setBlogDate(date);
@@ -117,6 +120,9 @@ public class TypeTransformUtils {
 		}
 		if(AssistUtils.isExistColumn(rs, CodeLibraryMapping.CODE_MD_CONTENT)) {
 			cVo.setCodeMdContent(rs.getString(CodeLibraryMapping.CODE_MD_CONTENT));
+		}
+		if(AssistUtils.isExistColumn(rs, CodeLibraryMapping.CODE_LABEL)) {
+			cVo.setCodeLabel(rs.getString(CodeLibraryMapping.CODE_LABEL));
 		}
 		
 		return cVo;

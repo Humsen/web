@@ -54,6 +54,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		String sql = "SELECT blog_id, blog_title, blog_date, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
+				+ BlogDetailsMapping.BLOG_LABEL + ", "
 				+ "blog_summary, blog_read, blog_author FROM blog_details"
 				+ " WHERE blog_id = ? ";
 		
@@ -68,7 +69,9 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		String sql = "INSERT INTO blog_details (blog_title, blog_date, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", "
 				+ "blog_summary, blog_author, blog_read, "
-				+ BlogDetailsMapping.BLOG_MD_CONTENT + ") VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
+				+ BlogDetailsMapping.BLOG_LABEL
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;
@@ -79,6 +82,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add((obj = bVo.getBlogAuthor()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogRead()) != null ? obj : 0);
 		paramList.add((obj = bVo.getBlogMdContent()) != null ? obj : "");
+		paramList.add((obj = bVo.getBlogLabel()) != null ? obj : "");
 		
 		return DbInsertUtils.insertBlogArticle(sql, paramList);
 	}
@@ -100,7 +104,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_AUTHOR + "=?, "
 				+ BlogDetailsMapping.BLOG_SUMMARY + "=?, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + "=?, "
-				+ BlogDetailsMapping.BLOG_MD_CONTENT + "=? "
+				+ BlogDetailsMapping.BLOG_MD_CONTENT + "=?, "
+				+ BlogDetailsMapping.BLOG_LABEL + "=? "
 				+ "WHERE "
 				+ BlogDetailsMapping.BLOG_ID + "=?";
 		
@@ -111,6 +116,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add(bVo.getBlogSummary());
 		paramList.add(bVo.getBlogHtmlContent());
 		paramList.add(bVo.getBlogMdContent());
+		paramList.add(bVo.getBlogLabel());
+
 		paramList.add(bVo.getBlogId());
 		
 		return DbUpdateUtils.updateRecordByParam(sql, paramList);

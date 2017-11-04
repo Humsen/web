@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 import pers.husen.web.bean.vo.CodeLibraryVo;
+import pers.husen.web.common.constants.CommonConstants;
 import pers.husen.web.common.helper.TypeConvertHelper;
 import pers.husen.web.service.CodeLibrarySvc;
 
@@ -31,14 +32,31 @@ public class NewCodeUploadServlet extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String newArticle = request.getParameter("newArticle");
+    	//获取文章细节
+    	String newArticle = request.getParameter("newArticle");
+    	//转化为json
 		JSONObject jsonObject = JSONObject.fromObject(newArticle);
-		
+		//转化为bean
 		CodeLibraryVo cVo = TypeConvertHelper.jsonObj2CodeBean(jsonObject);
-		CodeLibrarySvc cSvc = new CodeLibrarySvc();
-		int insertResult = cSvc.insertCodeLibrary(cVo);
 		
+		CodeLibrarySvc cSvc = new CodeLibrarySvc();
 		PrintWriter out = response.getWriter();
+
+		String uploadType = request.getParameter("type");
+		//如果是修改代码
+		if(uploadType != null && CommonConstants.REQUEST_MODIFY_ARTICLE.equals(uploadType)) {
+			//获取id
+	    	int codeId = Integer.parseInt(request.getParameter("articleId"));
+	    	//设置id
+	    	cVo.setCodeId(codeId);
+	    	
+	    	int resultInsert = cSvc.updateCodeById(cVo);
+	    	out.println(resultInsert);
+	    	
+	    	return;
+		}
+		
+		int insertResult = cSvc.insertCodeLibrary(cVo);
 		out.println(insertResult);
 	}
 

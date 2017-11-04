@@ -32,4 +32,8 @@ public class CodeLibrarySvc {
 	public int updateCodeReadById(int codeId) {
 		return cImpl.updateCodeReadById(codeId);
 	}
+	
+	public int updateCodeById(CodeLibraryVo cVo) {
+		return cImpl.updateCodeById(cVo);
+	}
 }

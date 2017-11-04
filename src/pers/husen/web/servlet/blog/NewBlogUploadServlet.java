@@ -33,18 +33,25 @@ public class NewBlogUploadServlet extends HttpServlet {
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//获取文章细节
 		String newArticle = request.getParameter("newArticle");
-
-		int blogId = Integer.parseInt(request.getParameter("articleId"));
+		//转化为json
 		JSONObject jsonObject = JSONObject.fromObject(newArticle);
+		//转化为bean
 		BlogArticleVo bVo = TypeConvertHelper.jsonObj2BlogBean(jsonObject);
-		bVo.setBlogId(blogId);
+		//关键字多个空格变为一个空格
+		bVo.setBlogLabel(bVo.getBlogLabel().replaceAll("\\s+", " "));
 		
 		BlogArticleSvc bSvc = new BlogArticleSvc();
 		PrintWriter out = response.getWriter();
 		
 		String uploadType = request.getParameter("type");
+		//如果是修改博客
 		if(uploadType != null && CommonConstants.REQUEST_MODIFY_ARTICLE.equals(uploadType)) {
+			//获取id
+			int blogId = Integer.parseInt(request.getParameter("articleId"));
+			//设置id
+			bVo.setBlogId(blogId);
 			
 			int insertResult = bSvc.updateBlogById(bVo);
 			out.println(insertResult);

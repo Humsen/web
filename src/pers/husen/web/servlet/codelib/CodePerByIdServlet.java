@@ -34,8 +34,7 @@ public class CodePerByIdServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
@@ -45,10 +44,9 @@ public class CodePerByIdServlet extends HttpServlet {
 		int codeId = Integer.parseInt(request.getParameter("codeId"));
 		CodeLibraryVo cVo = cSvc.queryPerCodeById(codeId);
 		
-		//判断是否是返回博客json数据
+		//判断是否是返回代码json数据
 		String returnType = request.getParameter("type");
 		if(returnType != null && CommonConstants.RETURN_JSON_DATA.equals(returnType)) {
-			// String json =JSONObject.fromObject(cVo).toString();
 			out.println(JSONObject.fromObject(cVo));
 			
 			return;
@@ -78,7 +76,7 @@ public class CodePerByIdServlet extends HttpServlet {
 			}
 		}
 
-		String htmlReturn = GenericTemplate.htmlHeader("代码库") + GenericTemplate.jsAndCssPlugins()
+		String htmlReturn = GenericTemplate.htmlHeader("代码库", cVo.getCodeSummary(), cVo.getCodeLabel()) + GenericTemplate.jsAndCssPlugins()
 				+ CodeTemplate.customizeHeader() + GenericTemplate.headBody() 
 				+ CodeTemplate.detailCodeBody(cVo, isSuperAdmin) + GenericTemplate.bodyHtml();
 

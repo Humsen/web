@@ -19,7 +19,20 @@ public class BlogArticleVo implements Serializable{
 	private String blogHtmlContent;
 	private int blogRead;
 	private String blogMdContent;
+	private String blogLabel;
 	
+	/**
+	 * @return the blogLabel
+	 */
+	public String getBlogLabel() {
+		return blogLabel;
+	}
+	/**
+	 * @param blogLabel the blogLabel to set
+	 */
+	public void setBlogLabel(String blogLabel) {
+		this.blogLabel = blogLabel;
+	}
 	/**
 	 * @return the blogHtmlContent
 	 */
@@ -122,13 +135,10 @@ public class BlogArticleVo implements Serializable{
 	public void setBlogRead(int blogRead) {
 		this.blogRead = blogRead;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "BlogArticleVo [blogId=" + blogId + ", blogTitle=" + blogTitle + ", blogAuthor=" + blogAuthor
-				+ ", blogDate=" + blogDate + ", blogSummary=" + blogSummary + ", blogContent=" + blogHtmlContent
-				+ ", blogRead=" + blogRead + "]";
+				+ ", blogDate=" + blogDate + ", blogSummary=" + blogSummary + ", blogHtmlContent=" + blogHtmlContent
+				+ ", blogRead=" + blogRead + ", blogMdContent=" + blogMdContent + ", blogLabel=" + blogLabel + "]";
 	}
 }

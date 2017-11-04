@@ -40,7 +40,8 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	public CodeLibraryVo queryPerCodeById(int codeId) {
 		String sql = "SELECT code_id, code_title, code_date, code_author, code_summary, code_read, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
-				+ CodeLibraryMapping.CODE_MD_CONTENT
+				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
+				+ CodeLibraryMapping.CODE_LABEL
 				+ " FROM code_library WHERE code_id = ? ";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
@@ -53,8 +54,9 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	public int insertCodeLibrary(CodeLibraryVo cVo) {
 		String sql = "INSERT INTO code_library (code_title, code_date, code_summary, code_author, code_read, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
-				+ CodeLibraryMapping.CODE_MD_CONTENT
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
+				+ CodeLibraryMapping.CODE_LABEL
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;
@@ -65,6 +67,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add((obj = cVo.getCodeRead()) != null ? obj : 0);
 		paramList.add((obj = cVo.getCodeHtmlContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeMdContent()) != null ? obj : "");
+		paramList.add((obj = cVo.getCodeLabel()) != null ? obj : "");
 		
 		return DbInsertUtils.insertNewRecord(sql, paramList);
 	}
@@ -75,6 +78,32 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(codeId);
 		paramList.add(codeId);
+		
+		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+	}
+
+	@Override
+	public int updateCodeById(CodeLibraryVo cVo) {
+		String sql = "UPDATE " + CodeLibraryMapping.DB_NAME + " SET "
+				+ CodeLibraryMapping.CODE_TITLE + "=?, "
+				+ CodeLibraryMapping.CODE_AUTHOR + "=?, "
+				+ CodeLibraryMapping.CODE_SUMMARY + "=?, "
+				+ CodeLibraryMapping.CODE_HTML_CONTENT + "=?, "
+				+ CodeLibraryMapping.CODE_MD_CONTENT + "=?, "
+				+ CodeLibraryMapping.CODE_LABEL + "=? "
+				+ "WHERE "
+				+ CodeLibraryMapping.CODE_ID + "=?";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		
+		paramList.add(cVo.getCodeTitle());
+		paramList.add(cVo.getCodeAuthor());
+		paramList.add(cVo.getCodeSummary());
+		paramList.add(cVo.getCodeHtmlContent());
+		paramList.add(cVo.getCodeMdContent());
+		paramList.add(cVo.getCodeLabel());
+
+		paramList.add(cVo.getCodeId());
 		
 		return DbUpdateUtils.updateRecordByParam(sql, paramList);
 	}

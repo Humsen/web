@@ -47,4 +47,11 @@ public interface CodeLibraryDao {
 	 * @return
 	 */
 	public int updateCodeReadById(int codeId);
+	
+	/**
+	 * 根据id修改代码内容
+	 * @param cVo
+	 * @return
+	 */
+	public int updateCodeById(CodeLibraryVo cVo);
 }

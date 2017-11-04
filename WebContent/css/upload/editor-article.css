@@ -1,48 +1,10 @@
 @charset "UTF-8";
 
-.table-label {
-	margin: 10px 5px 10px 30px;
+/**************  新版编辑文章   ***************/
+.editor-form-div {
+	margin-top: 20px;
 }
 
-.summary-label {
-	display: block;
-}
-
-.summary-input {
-	width: 95%;
-	height: 60px;
-	margin: 10px 30px 10px 30px;
-	font-size: 16px;
-}
-
-.dotted-line {
-	height: 2px;
-	border: none;
-	border-top: 2px dotted #185598;
-}
-
-.btn-publish {
-	font-size: 24px;
-	float: right;
-	margin: 0px 200px 10px 5px;
-}
-
-.btn-clear{
-	font-size: 16px;
-	float: right;
-	margin: 0px 100px 10px 5px;
-}
-.title-input {
-	width: 90%;
-	height: 30px;
-	margin: 10px 30px 10px 10px;
-	font-size: 20px;
-}
-
-.author-input {
-	margin: 10px 30px 10px 5px;
-}
-
-.blog-input {
-	margin-left: 100px;
+.article-type {
+	width: initial;
 }

@@ -44,9 +44,9 @@ public class BlogPerByIdServlet extends HttpServlet {
 		int blogId = Integer.parseInt(request.getParameter("blogId"));
 		BlogArticleVo bVo = bSvc.queryPerBlogById(blogId);
 		
+		//判断是否是返回博客json数据
 		String returnType = request.getParameter("type");
 		if(returnType != null && CommonConstants.RETURN_JSON_DATA.equals(returnType)) {
-			//String json = JSONObject.fromObject(bVo).toString();
 			out.println(JSONObject.fromObject(bVo));
 			
 			return;
@@ -76,7 +76,7 @@ public class BlogPerByIdServlet extends HttpServlet {
             }
         }
 		
-		String htmlReturn = GenericTemplate.htmlHeader("博客") + GenericTemplate.jsAndCssPlugins()
+		String htmlReturn = GenericTemplate.htmlHeader("博客", bVo.getBlogSummary(), bVo.getBlogLabel()) + GenericTemplate.jsAndCssPlugins()
 			+ BlogTemplate.customizeHeader() + GenericTemplate.headBody() 
 			+ BlogTemplate.detailBlogBody(bVo, isSuperAdmin) + GenericTemplate.bodyHtml();
 		

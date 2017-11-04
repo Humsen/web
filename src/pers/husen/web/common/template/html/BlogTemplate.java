@@ -3,6 +3,7 @@ package pers.husen.web.common.template.html;
 import java.text.SimpleDateFormat;
 
 import pers.husen.web.bean.vo.BlogArticleVo;
+import pers.husen.web.common.constants.BootstrapConstans;
 
 /**
  *
@@ -22,14 +23,14 @@ public class BlogTemplate {
 				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.min.css\" />\r\n" + 
 				"	\r\n" + 
 				"	<!-- editor.md -->\r\n" + 
-				"	<script type=\"text/javascript\" src=\"/plugins/editormd/lib/marked.min.js\"></script>\r\n" + 
-				"	<script type=\"text/javascript\" src=\"/plugins/editormd/lib/prettify.min.js\"></script>\r\n" + 
-				"	<script type=\"text/javascript\" src=\"/plugins/editormd/js/editormd.min.js\"></script>\r\n" + 
+				"	<script src=\"/plugins/editormd/lib/marked.min.js\"></script>\r\n" + 
+				"	<script src=\"/plugins/editormd/lib/prettify.min.js\"></script>\r\n" + 
+				"	<script src=\"/plugins/editormd/js/editormd.min.js\"></script>\r\n" + 
 				"	\r\n" + 
 				"	<!-- 自定义CSS -->\r\n" + 
 				"	<link rel=\"stylesheet\" href=\"/css/article/article.css\">\r\n"+
 				"	<!-- 自定义脚本 -->\r\n" + 
-				"	<script type=\"text/javascript\" src=\"/js/article/article-markdown.js\"></script>";
+				"	<script src=\"/js/article/article-markdown.js\"></script>";
 		
 		return cHeader;
 	}
@@ -39,9 +40,24 @@ public class BlogTemplate {
 	 * @return
 	 */
 	public static String detailBlogBody(BlogArticleVo bVo, boolean isSuperAdmin) {
+		//关键字处理
+		StringBuffer keyWordsStrBuf = new StringBuffer();
+		String blogLabel = bVo.getBlogLabel();
+		if(blogLabel != null && blogLabel != "") {
+			//关键字处理
+			String []keyWordsArray = bVo.getBlogLabel().split("\\s+");
+			
+			for(int index=0; index < keyWordsArray.length; index++){
+			    keyWordsStrBuf.append(
+			    	"<span class=\"label label-"
+			    	+ BootstrapConstans.BOOTSTRAP5COLOR[index] 
+			    	+ "\">" + keyWordsArray[index] + "</span> ");
+			}
+		}
+		
 		String body = "<div id=\"fh5co-page\">\r\n" + 
 				"	<a href=\"#\" class=\"js-fh5co-nav-toggle fh5co-nav-toggle\"><i></i></a>\r\n" + 
-				"	<a id=\"menuBarNo\" style=\"display: none;\">1</a>\r\n" + 
+				"	<input\r\n id=\"menuBarNo\" type=\"hidden\" value=\"1\" />\r\n" + 
 					GenericTemplate.loginAndRegister()+
 				"	\r\n" + 
 				"	<div id=\"fh5co-main\">\r\n" + 
@@ -56,7 +72,8 @@ public class BlogTemplate {
 				"					</h2>"+
 				"					<span class=\"fh5co-post-date\">" + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(bVo.getBlogDate()) + "</span>"+
 				"					<span class=\"fh5co-post-date\">作者:" + bVo.getBlogAuthor() + "</span>"+
-				"					<span class=\"fh5co-post-date\">浏览" + bVo.getBlogRead() + "次</span>";
+				"					<span class=\"fh5co-post-date\">浏览" + bVo.getBlogRead() + "次</span>"+
+				"					<span class=\"fh5co-post-date label-lowercase\">关键字：" + keyWordsStrBuf.toString() + "</span>";
 		
 		if(isSuperAdmin) {
 			body += "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a>"; 

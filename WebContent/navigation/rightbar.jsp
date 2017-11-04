@@ -8,8 +8,10 @@
 	<div>
 		<div class="sidebar-module">
 			<h4>关于本站</h4>
-			<p>&emsp;&emsp;欢迎来到何明胜的个人网站。本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及分享软件等资源。</p>
-			<p>&emsp;&emsp;本站目前处于测试运行阶段，希望各位访客多提宝贵意见。</p>
+			<p>&emsp;&emsp;欢迎来到何明胜的个人网站。本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及软件等资源。</p>
+			<p>本站源码已托管github。欢迎访问：<br/>
+				<a href="https://github.com/HelloHusen/web" target="_blank">https://github.com/HelloHusen/web</a>
+			</p>
 		</div>
 		<div class="sidebar-module">
 			<h4>我的其他主页</h4>
