@@ -92,4 +92,4 @@
 
 <!-- 底部版权信息 -->
 <nav class="navbar-fixed-bottom navbar-bottom">
-	<span class="glyphicon glyphicon-copyright-mark"></span>2017&nbsp; 何明胜&nbsp;All Rights Reserved&nbsp;渝ICP备16013250号</nav>
+	<span class="glyphicon glyphicon-copyright-mark"></span>2017&nbsp;何明胜&nbsp;版权所有&nbsp;渝ICP备16013250号</nav>
