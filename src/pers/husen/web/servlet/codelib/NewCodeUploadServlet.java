@@ -38,7 +38,15 @@ public class NewCodeUploadServlet extends HttpServlet {
 		JSONObject jsonObject = JSONObject.fromObject(newArticle);
 		//转化为bean
 		CodeLibraryVo cVo = TypeConvertHelper.jsonObj2CodeBean(jsonObject);
-		
+		//如果不是以逗号分隔的，关键字之间的多个空格都处理为一个
+		String codeLabel = cVo.getCodeLabel();
+		if(codeLabel.indexOf(",") == -1 && codeLabel.indexOf("，") == -1) {
+			cVo.setCodeLabel(codeLabel.replaceAll("\\s+", " "));
+		}
+		if(codeLabel.indexOf("，") != -1) {
+			cVo.setCodeLabel(codeLabel.replace("，", ","));
+		}
+				
 		CodeLibrarySvc cSvc = new CodeLibrarySvc();
 		PrintWriter out = response.getWriter();
 

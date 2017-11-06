@@ -39,8 +39,14 @@ public class NewBlogUploadServlet extends HttpServlet {
 		JSONObject jsonObject = JSONObject.fromObject(newArticle);
 		//转化为bean
 		BlogArticleVo bVo = TypeConvertHelper.jsonObj2BlogBean(jsonObject);
-		//关键字多个空格变为一个空格
-		bVo.setBlogLabel(bVo.getBlogLabel().replaceAll("\\s+", " "));
+		//如果不是以逗号分隔的，关键字之间的多个空格都处理为一个
+		String blogLabel = bVo.getBlogLabel();
+		if(blogLabel.indexOf(",") == -1 && blogLabel.indexOf("，") == -1) {
+			bVo.setBlogLabel(blogLabel.replaceAll("\\s+", " "));
+		}
+		if(blogLabel.indexOf("，") != -1) {
+			bVo.setBlogLabel(blogLabel.replace("，", ","));
+		}
 		
 		BlogArticleSvc bSvc = new BlogArticleSvc();
 		PrintWriter out = response.getWriter();

@@ -63,7 +63,7 @@
 			<label for="txt_articleLabel" class="col-sm-1 control-label">标签</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="txt_articleLabel"
-					placeholder="文章标签,用空格分隔">
+					placeholder="文章标签，用空格分隔，含空格词组的用逗号分隔">
 			</div>
 			<!-- 发布按钮 -->
 			<div class="col-sm-1">

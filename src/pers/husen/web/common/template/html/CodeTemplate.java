@@ -39,15 +39,22 @@ public class CodeTemplate {
 		//关键字处理
 		StringBuffer keyWordsStrBuf = new StringBuffer();
 		String codeLabel = cVo.getCodeLabel();
+
 		if(codeLabel != null && codeLabel != "") {
 			//关键字处理
-			String []keyWordsArray = codeLabel.split("\\s+");
+			String []keyWordsArray = null;
+			
+			if(codeLabel.indexOf(",") != -1) {
+				keyWordsArray = codeLabel.split(",");
+			}else {
+				keyWordsArray = codeLabel.split("\\s+");
+			}
 			
 			for(int index=0; index < keyWordsArray.length; index++){
 			    keyWordsStrBuf.append(
 			    	"<span class=\"label label-"
 			    	+ BootstrapConstans.BOOTSTRAP5COLOR[index] 
-			    	+ "\">" + keyWordsArray[index] + "</span> ");
+			    	+ "\">" + keyWordsArray[index].trim() + "</span> ");
 			}
 		}
 				

@@ -15,8 +15,8 @@ public class GenericTemplate {
 	 */
 	public static String htmlHeader(String title, String description, String keyWords) {
 		//空格变为英文逗号
-		if(keyWords != null && keyWords != "") {
-			keyWords = keyWords.replace(" ", ",");
+		if(keyWords != null && keyWords != "" && keyWords.indexOf(",") == -1) {
+			keyWords = keyWords.replaceAll("\\s", ",");
 		}
 		
 		String header = "<html class=\"no-js\"> \r\n" + 

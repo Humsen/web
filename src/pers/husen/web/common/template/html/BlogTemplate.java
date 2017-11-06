@@ -43,15 +43,22 @@ public class BlogTemplate {
 		//关键字处理
 		StringBuffer keyWordsStrBuf = new StringBuffer();
 		String blogLabel = bVo.getBlogLabel();
+		
 		if(blogLabel != null && blogLabel != "") {
 			//关键字处理
-			String []keyWordsArray = bVo.getBlogLabel().split("\\s+");
+			String []keyWordsArray = null;
+			
+			if(blogLabel.indexOf(",") != -1) {
+				keyWordsArray = blogLabel.split(",");
+			}else {
+				keyWordsArray = blogLabel.split("\\s+");
+			}
 			
 			for(int index=0; index < keyWordsArray.length; index++){
 			    keyWordsStrBuf.append(
 			    	"<span class=\"label label-"
 			    	+ BootstrapConstans.BOOTSTRAP5COLOR[index] 
-			    	+ "\">" + keyWordsArray[index] + "</span> ");
+			    	+ "\">" + keyWordsArray[index].trim() + "</span> ");
 			}
 		}
 		
