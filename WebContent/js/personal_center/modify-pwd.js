@@ -42,13 +42,13 @@ function submitModifyPwdForm() {
 	}
 
 	$.ajax({
-		url : '/userLoginValidate',
+		url : '/userinfo.hms',
 		async : false,// 同步，会阻塞操作
 		type : 'POST',// PUT DELETE POST
 		data : {
-			username : $.cookie('username'),
-			password : $('#newPassword').val(),
-			type : 'modify' // 登录为login
+			type : 'modify_pwd',
+			userName : $.cookie('username'),
+			password : $('#newPassword').val()
 		},
 		success : function(response) {
 			if(response == 1){
@@ -124,13 +124,13 @@ function confirmOldPwd() {
 	var result;
 
 	$.ajax({
-		url : '/userLoginValidate',
+		url : '/userinfo.hms',
 		async : false,// 同步，会阻塞操作
 		type : 'POST',// PUT DELETE POST
 		data : {
-			username : $.cookie('username'),
-			password : $('#oldPassword').val(),
-			type : 'validate' // 登录为login
+			type : 'auth_pwd',
+			userName : $.cookie('username'),
+			password : $('#oldPassword').val()
 		},
 		success : function(response) {
 			if (response == 1) {

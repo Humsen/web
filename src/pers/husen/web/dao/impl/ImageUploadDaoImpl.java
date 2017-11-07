@@ -5,7 +5,7 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.ImageUploadVo;
 import pers.husen.web.dao.ImageUploadDao;
-import pers.husen.web.dbutil.DbInsertUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 
 /**
  * @author 何明胜
@@ -26,6 +26,6 @@ public class ImageUploadDaoImpl implements ImageUploadDao {
 		paramList.add((obj = iVo.getImageType()) != null ? obj : "");
 		paramList.add((obj = iVo.getImageDownloadCount()) != null ? obj : 0);
 		
-		return DbInsertUtils.insertNewRecord(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 }

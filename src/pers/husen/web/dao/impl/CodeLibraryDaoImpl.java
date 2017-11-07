@@ -5,9 +5,8 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.CodeLibraryVo;
 import pers.husen.web.dao.CodeLibraryDao;
-import pers.husen.web.dbutil.DbInsertUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
-import pers.husen.web.dbutil.DbUpdateUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.mappingdb.CodeLibraryMapping;
 
 /**
@@ -21,7 +20,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		String sql = "SELECT count(*) as count FROM code_library";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryCountByCondition(sql, paramList);
+		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryCodeLibrarys(sql, paramList);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, CodeLibraryVo.class);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(codeId);
 		
-		return DbQueryUtils.queryCodeLibrarys(sql, paramList).get(0);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, CodeLibraryVo.class).get(0);
 	}
 
 	@Override
@@ -69,7 +68,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add((obj = cVo.getCodeMdContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeLabel()) != null ? obj : "");
 		
-		return DbInsertUtils.insertNewRecord(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 
 	@Override
@@ -79,7 +78,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add(codeId);
 		paramList.add(codeId);
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 
 	@Override
@@ -105,6 +104,6 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 
 		paramList.add(cVo.getCodeId());
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 }

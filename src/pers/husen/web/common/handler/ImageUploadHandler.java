@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import pers.husen.web.common.helper.DateFormatHelper;
 import pers.husen.web.common.helper.StackTrace2Str;
-import pers.husen.web.config.DeployPathConfig;
+import pers.husen.web.config.ProjectDeployConfig;
 
 /**
  * 图片上传
@@ -29,7 +29,7 @@ public class ImageUploadHandler {
 
 	public String imageUploadHandler(HttpServletRequest request, String imageDatePath) {
 		// 得到上传图片的保存目录，将上传的文件存放于工程文件的兄弟级文件images目录下
-		String saveFile = DeployPathConfig.IMAGE_PATH + "/" + imageDatePath;
+		String saveFile = ProjectDeployConfig.IMAGE_PATH + "/" + imageDatePath;
 		File file = new File(saveFile);
 
 		// 判断上传图片的保存目录是否存在

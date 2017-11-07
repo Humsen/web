@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 
 import pers.husen.web.bean.vo.BlogArticleVo;
 import pers.husen.web.common.constants.BootstrapConstans;
+import pers.husen.web.common.constants.CommonConstants;
 
 /**
  *
@@ -48,7 +49,7 @@ public class BlogTemplate {
 			//关键字处理
 			String []keyWordsArray = null;
 			
-			if(blogLabel.indexOf(",") != -1) {
+			if(blogLabel.indexOf(CommonConstants.ENGLISH_COMMA) != -1) {
 				keyWordsArray = blogLabel.split(",");
 			}else {
 				keyWordsArray = blogLabel.split("\\s+");
@@ -83,7 +84,8 @@ public class BlogTemplate {
 				"					<span class=\"fh5co-post-date label-lowercase\">关键字：" + keyWordsStrBuf.toString() + "</span>";
 		
 		if(isSuperAdmin) {
-			body += "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a>"; 
+			body += "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a> "
+				  + "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-danger btn-sm\">删除</a>"; 
 		}
 		
 		body += 

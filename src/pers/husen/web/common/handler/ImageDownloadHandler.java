@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import pers.husen.web.config.DeployPathConfig;
+import pers.husen.web.config.ProjectDeployConfig;
 
 /**
  * 图片下载
@@ -29,7 +29,7 @@ public class ImageDownloadHandler {
 	    //得到要下载的url
         String imageUrl = request.getParameter("imageUrl");
         //上传的图片都是保存在工程文件的兄弟级文件images目录下
-        String saveFile = DeployPathConfig.IMAGE_PATH;
+        String saveFile = ProjectDeployConfig.IMAGE_PATH;
         File fileSaveRootPath = new File(saveFile);
         //得到要下载的文件
         logger.info("下载文件：" + fileSaveRootPath + "/" + imageUrl);

@@ -24,11 +24,11 @@ import pers.husen.web.service.ImageUploadSvc;
  *
  *         2017年10月20日
  */
-@WebServlet("/ImageUploadServlet")
-public class ImageUploadServlet extends HttpServlet {
+@WebServlet(urlPatterns="/imageUpload.hms")
+public class ImageUploadSvt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ImageUploadServlet() {
+	public ImageUploadSvt() {
 		super();
 	}
 
@@ -51,7 +51,7 @@ public class ImageUploadServlet extends HttpServlet {
 			//图片带网址完整链接
 			StringBuffer resquestUrl = request.getRequestURL();
 			int serverPathStart = resquestUrl.lastIndexOf("/");
-			String imageFullLink =  resquestUrl.substring(0, serverPathStart) + "/imageDownload?imageUrl=" + imageDatePath + "/" + fileName;
+			String imageFullLink =  resquestUrl.substring(0, serverPathStart) + "/imageDownload.hms?imageUrl=" + imageDatePath + "/" + fileName;
 			
 			ImageUploadVo iVo = new ImageUploadVo();
 			iVo.setImageName(imageDatePath + fileName);

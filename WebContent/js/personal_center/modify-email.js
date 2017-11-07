@@ -55,18 +55,17 @@ function initNextStepBtn(){
 }
 
 /**
- * 旧邮箱认证，下一步点击
+ * 修改邮箱, 旧邮箱认证, 下一步点击事件
  * @returns
  */
 function nextStepClick(){
 	$.ajax({
-		url : '/userInfoRegister',
+		url : '/userInfo/code.hms',
 		async : true,
 		type : 'POST',
 		data : {
-			type : 'validate',
-			rangdomcode : $('#txt_validateCode2').val(),
-			mode : 'modify_email_auth'
+			type : 'auth_code_old_email',
+			randomCode : $('#txt_validateCode2').val(),
 		},
 		success : function(response) {
 			if (response != 0) {
@@ -114,7 +113,7 @@ function nextStepClick(){
 }
 
 /**
- * 点击发送验证码事件
+ * 修改邮箱, 点击发送验证码事件
  * @returns
  */
 function sendAuthValidateCodeClick() {
@@ -127,15 +126,14 @@ function sendAuthValidateCodeClick() {
 		return;
 	}
 
-	// 发送ajax请求
+	// 修改邮箱, 发送验证码到旧邮箱
 	$.ajax({
-		url : '/userInfoRegister',
+		url : '/userInfo/code.hms',
 		async : true,// 异步，启动倒计时
 		type : 'POST',
 		data : {
-			type : 'sendcode',
+			type : 'send_code_old_email',
 			email : $('#txt_modifyEmail').val(),
-			mode : 'modify_email_auth'
 		},
 		success : function(response) {
 			if (response != 1) {
@@ -200,19 +198,18 @@ function initSubmitBtn(){
 }
 
 /**
- * 绑定新邮箱，提交
+ * 修改邮箱, 绑定新邮箱提交事件
  * @returns
  */
 function submitModifyEmailClick(){
 	$.ajax({
-		url : '/userInfoRegister',
+		url : '/userInfo/code.hms',
 		async : false,// 同步，会阻塞操作
 		type : 'POST',// PUT DELETE POST
 		data : {
-			type : 'validate',
-			rangdomcode : $('#txt_validateCode2').val(),
-			mode : 'modify_email_bind',
-			username : $.cookie('username'),
+			type : 'auth_code_bind_email',
+			randomCode : $('#txt_validateCode2').val(),
+			userName : $.cookie('username'),
 			email : $('#txt_modifyEmail').val(),
 		},
 		success : function(response) {
@@ -266,7 +263,7 @@ function submitModifyEmailClick(){
 }
 
 /**
- * 绑定新邮箱，发送验证码
+ * 绑定新邮箱, 发送验证码
  * @returns
  */
 function sendBindValidateCodeClick(){
@@ -281,13 +278,12 @@ function sendBindValidateCodeClick(){
 
 	// 发送ajax请求
 	$.ajax({
-		url : '/userInfoRegister',
+		url : '/userInfo/code.hms',
 		async : true,// 异步，启动倒计时
 		type : 'POST',
 		data : {
-			type : 'sendcode',
+			type : 'send_code_bind_email',
 			email : $('#txt_modifyEmail').val(),
-			mode : 'modify_email_bind'
 		},
 		success : function(response) {
 			if (response != 1) {

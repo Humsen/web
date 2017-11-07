@@ -20,7 +20,10 @@ function queryCodeNum(){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/codeLibTotalCount',
+		url : '/code/query.hms',
+		data : {
+			type : 'query_total_num'
+		},
 		success : function(response){
 			code_total_num = response;
 		},
@@ -52,9 +55,10 @@ function queryCodeCatalog(pageSize, pageNo){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/codeLibPerPage',
+		url : '/code/query.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_one_page',
 			pageSize : pageSize,
 			pageNo : pageNo,
 		},
@@ -81,53 +85,6 @@ function queryCodeCatalog(pageSize, pageNo){
 	});
 }
 
-/**
- * 显示博客详细内容点击
- * @returns
- */
-function getCodeDetailsClick(){
-	//setTimeout(function(){
-	$.each($('.fh5co-entry h2'), function(index, value){
-		$(this).click(function(){
-			$.ajax({
-				type : 'POST',
-				async: false,
-				url : '/codePerById',
-				dateType : 'json',
-				data : {
-					codeId : $(this).find('input[type="text"]').val(),
-				},
-				success : function(response){
-					$('#list_code').html('<div class="fh5co-entry" id="content">'
-							+ '<div>'
-							+ '<h2 class="text-align-center"><input type="hidden" value='+ response.codeId + ' /><a href=#>' + response.codeTitle + '</a></h2>'
-							+ '<span class="fh5co-post-date">' + new Date(response.codeDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
-							+ '<span class="fh5co-post-date">作者:' + response.codeAuthor + '</span>'
-							+ '<span class="fh5co-post-date">浏览' + response.codeRead + '次</span>'
-							+ '<p>' + response.codeContent +'</p>'
-							+ '</div>'
-						+ '</div>');
-					showMarkdown();
-				},
-				error : function(XMLHttpRequest, textStatus){
-					$.confirm({
-					    title: '代码库加载出错',
-					    content: textStatus + ' : ' + XMLHttpRequest.status,
-					    autoClose: 'ok|1000',
-					    type: 'green',
-					    buttons: {
-					    	ok: {
-					            text: '确认',
-					            btnClass: 'btn-primary',
-					        },
-					    }
-					});
-				}
-			});
-		});
-	});
-}
-
 
 /**
  * 加载目录形式的代码
@@ -141,7 +98,7 @@ function loadSimpleCode(code_data){
 		+ '<span class="fh5co-post-date">作者:' + code_data.codeAuthor + '</span>'
 		+ '<span class="fh5co-post-date">浏览' + code_data.codeRead + '次</span>'
 		+ '<h2 class="article-title"><input type="hidden" value=' + code_data.codeId + ' />'
-		+ '<a href="/codePerById?codeId=' + code_data.codeId + '">' + code_data.codeTitle + '</a></h2>'
+		+ '<a href="/code.hms?codeId=' + code_data.codeId + '">' + code_data.codeTitle + '</a></h2>'
 		+ '<p><b>摘要：</b>' + code_data.codeSummary + '</p>'
 		+ '</div>'
 		+ '</div>');

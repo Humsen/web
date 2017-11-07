@@ -5,9 +5,8 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.BlogArticleVo;
 import pers.husen.web.dao.BlogArticleDao;
-import pers.husen.web.dbutil.DbInsertUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
-import pers.husen.web.dbutil.DbUpdateUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.mappingdb.BlogDetailsMapping;
 
 /**
@@ -25,7 +24,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ "blog_summary FROM blog_details";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryBlogArticles(sql, paramList);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class);
 	}
 	
 	@Override
@@ -33,7 +32,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		String sql = "SELECT count(*) as count FROM blog_details";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryCountByCondition(sql, paramList);
+		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryBlogArticles(sql, paramList);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class);
 	}
 
 	@Override
@@ -61,7 +60,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(blogId);
 		
-		return DbQueryUtils.queryBlogArticles(sql, paramList).get(0);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class).get(0);
 	}
 
 	@Override
@@ -84,7 +83,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add((obj = bVo.getBlogMdContent()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogLabel()) != null ? obj : "");
 		
-		return DbInsertUtils.insertBlogArticle(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 
 	@Override
@@ -94,7 +93,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add(blogId);
 		paramList.add(blogId);
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 
 	@Override
@@ -120,6 +119,6 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 
 		paramList.add(bVo.getBlogId());
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 }

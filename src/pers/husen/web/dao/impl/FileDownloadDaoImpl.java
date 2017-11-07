@@ -5,9 +5,8 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.FileDownloadVo;
 import pers.husen.web.dao.FileDownloadDao;
-import pers.husen.web.dbutil.DbInsertUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
-import pers.husen.web.dbutil.DbUpdateUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 
 /**
  * @author 何明胜
@@ -20,7 +19,7 @@ public class FileDownloadDaoImpl implements FileDownloadDao {
 		String sql = "SELECT count(*) as count FROM file_download";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryCountByCondition(sql, paramList);
+		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class FileDownloadDaoImpl implements FileDownloadDao {
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		return DbQueryUtils.queryFileDownload(sql, paramList);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, FileDownloadVo.class);
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class FileDownloadDaoImpl implements FileDownloadDao {
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(fileId);
 		
-		return DbQueryUtils.queryFileDownload(sql, paramList).get(0);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, FileDownloadVo.class).get(0);
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class FileDownloadDaoImpl implements FileDownloadDao {
 		paramList.add((obj = fVo.getFileUploadDate()) != null ? obj : "");
 		paramList.add((obj = fVo.getFileDownloadCount()) != null ? obj : "");
 		
-		return DbInsertUtils.insertNewRecord(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 
 	@Override
@@ -66,6 +65,6 @@ public class FileDownloadDaoImpl implements FileDownloadDao {
 		paramList.add(fileUrl);
 		paramList.add(fileUrl);
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 }

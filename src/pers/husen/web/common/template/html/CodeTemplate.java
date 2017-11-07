@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 
 import pers.husen.web.bean.vo.CodeLibraryVo;
 import pers.husen.web.common.constants.BootstrapConstans;
+import pers.husen.web.common.constants.CommonConstants;
 
 /**
  * @author 何明胜
@@ -44,7 +45,7 @@ public class CodeTemplate {
 			//关键字处理
 			String []keyWordsArray = null;
 			
-			if(codeLabel.indexOf(",") != -1) {
+			if(codeLabel.indexOf(CommonConstants.ENGLISH_COMMA) != -1) {
 				keyWordsArray = codeLabel.split(",");
 			}else {
 				keyWordsArray = codeLabel.split("\\s+");

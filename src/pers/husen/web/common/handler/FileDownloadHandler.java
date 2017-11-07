@@ -14,7 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import pers.husen.web.config.DeployPathConfig;
+import pers.husen.web.config.ProjectDeployConfig;
 import pers.husen.web.service.FileDownloadSvc;
 
 /**
@@ -26,12 +26,11 @@ public class FileDownloadHandler {
 	private final Logger logger = LogManager.getLogger(FileUploadHandler.class.getName());
 	
 	public void fileDownloadHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8"); 
 	    //得到要下载的文件名
         String fileName = request.getParameter("filename");
         //上传的文件都是保存在工程文件的兄弟级文件download目录
-        String saveFile = DeployPathConfig.DOWNLOAD_PATH;
+        String saveFile = ProjectDeployConfig.DOWNLOAD_PATH;
         File fileSaveRootPath = new File(saveFile);
         //得到要下载的文件
         logger.info("下载文件：" + fileSaveRootPath + "/" + fileName);

@@ -11,8 +11,8 @@ $(function() {
 	Comment.allocate({
 		parent : $('#message_box'), // 你想要将这个评论放到页面哪个元素中
 		id : 0,
-		getCmtUrl : '/messageGetServlet',
-		setCmtUrl : '/messageUpload'
+		getCmtUrl : '/message.hms',
+		setCmtUrl : '/message.hms'
 	})
 
 });
@@ -123,6 +123,7 @@ fn.getList = function() {
 		type : 'get',
 		dataType : 'json',
 		data : {
+			type : 'query_all',
 			messageId : self.belong
 		},
 		success : function(data) {
@@ -365,11 +366,12 @@ fn.addCmt = function (_btn, _text, _parent) {
 		 dataType: 'json',
 		 url: this.setCmtUrl,
 		 data: {
+			 type : 'create_one',
 			 newMessage : JSON.stringify(new_message),
-			 /*
-				 * belong: self.belong, parent: _parent, email: email, username:
-				 * username, content: value
-				 */
+		   /*
+			* belong: self.belong, parent: _parent, email: email, username:
+			* username, content: value
+			*/
 	  },
 	  success: function(_data){
 		  // 解除禁止点击

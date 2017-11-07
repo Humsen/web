@@ -13,8 +13,8 @@ public class BootstrapConstans {
 	public static final String COLOR_BLUE = BOOTSTRAP5COLOR[0];
 	public static final String COLOR_GREEN = BOOTSTRAP5COLOR[1];
 	/** 青色 */
-	public static final String color_Cyan = BOOTSTRAP5COLOR[2];
+	public static final String COLOR_CYAN = BOOTSTRAP5COLOR[2];
 	/** 橘黄色 */
-	public static final String color_Orange = BOOTSTRAP5COLOR[3];
-	public static final String color_Red = BOOTSTRAP5COLOR[4];
+	public static final String COLOR_ORANGE = BOOTSTRAP5COLOR[3];
+	public static final String COLOR_RED = BOOTSTRAP5COLOR[4];
 }

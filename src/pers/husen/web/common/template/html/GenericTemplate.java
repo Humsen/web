@@ -1,5 +1,7 @@
 package pers.husen.web.common.template.html;
 
+import pers.husen.web.common.constants.CommonConstants;
+
 /**
  * 存放通用的html模板
  *
@@ -15,7 +17,7 @@ public class GenericTemplate {
 	 */
 	public static String htmlHeader(String title, String description, String keyWords) {
 		//空格变为英文逗号
-		if(keyWords != null && keyWords != "" && keyWords.indexOf(",") == -1) {
+		if(keyWords != null && keyWords != "" && keyWords.indexOf(CommonConstants.ENGLISH_COMMA) == -1) {
 			keyWords = keyWords.replaceAll("\\s", ",");
 		}
 		

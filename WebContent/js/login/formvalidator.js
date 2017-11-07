@@ -370,11 +370,12 @@ function submitLoginForm() {
 
 	if ($loginValidate.isValid()) {
 		$.ajax({
-			url : '/userLoginValidate',
+			url : '/userinfo.hms',
 			async : false,// 同步，会阻塞操作
 			type : 'POST',// PUT DELETE POST
 			data : {
-				username : $('#txt_userNameLogin').val(),
+				type : 'auth_login',
+				userName : $('#txt_userNameLogin').val(),
 				password : $('#txt_userPwdLogin').val()
 			},
 			success : function(result) {
@@ -476,15 +477,14 @@ function submitRegisterForm() {
 				//获取验证码点击
 				$('#btn_sendCode').click(
 						function() {
-							// 发送ajax请求
+							// 注册发送验证码
 							$.ajax({
-								url : '/userInfoRegister',
+								url : '/userInfo/code.hms',
 								async : false,// 同步，会阻塞操作
 								type : 'POST',// PUT DELETE POST
 								data : {
-									type : 'sendcode',
+									type : 'send_code_register',
 									email : email ,
-									mode : 'register'
 								},
 								success : function(response) {
 									if(response != 1){
@@ -541,15 +541,14 @@ function submitRegisterForm() {
 					btnClass : 'btn-blue',
 					keys : [ 'enter' ],
 					action : function() {
-						// 发送ajax请求
+						// 注册校验验证码
 						$.ajax({
-							url : '/userInfoRegister',
+							url : '/userInfo/code.hms',
 							async : false,// 同步，会阻塞操作
 							type : 'POST',// PUT DELETE POST
 							data : {
-								type : 'validate',
-								rangdomcode : $('#txt_validateCode').val(),
-								mode : 'register'
+								type : 'auth_code_register',
+								randomCode : $('#txt_validateCode').val(),
 							},
 							success : function(response) {
 								if (response != 0) {
@@ -613,9 +612,9 @@ function submitRegisterForm() {
 function sendRegisterInfo() {
 	// 发送ajax请求
 	$.ajax({
-		url : '/userInfoRegister',
+		url : '/userInfo.hms',
 		async : false,// 同步，会阻塞操作
-		type : 'GET',// PUT DELETE POST
+		type : 'POST',// PUT DELETE POST
 		data : registerInfo2Json(),
 		success : function(result) {
 			if (result != 0) {
@@ -672,8 +671,9 @@ function sendRegisterInfo() {
  */
 function registerInfo2Json() {
 	var newUserInfo = {};
-
-	newUserInfo.username = $('#txt_userNameRegister').val();
+	
+	newUserInfo.type = 'register_user_info';
+	newUserInfo.userName = $('#txt_userNameRegister').val();
 	newUserInfo.password = $('#txt_userPwdRegister').val()
 	newUserInfo.email = $('#txt_userEmailRegister').val();
 
@@ -717,15 +717,14 @@ function retrievePassword() {
 									return;
 								}
 								
-								// 发送ajax请求
+								// 找回密码, 发送验证码
 								$.ajax({
-									url : '/userInfoRegister',
+									url : '/userInfo/code.hms',
 									async : true,// 异步，启动倒计时
 									type : 'POST',
 									data : {
-										type : 'sendcode',
+										type : 'send_code_retrive_pwd',
 										email : $('#txt_emailInput').val(),
-										mode : 'retrivepwd'
 									},
 									success : function(response) {
 										if(response != 1){
@@ -790,17 +789,16 @@ function retrievePassword() {
 							//验证码有效期10分钟
 							//暂时不考虑这个
 							
+							//找回密码, 校验验证码
 							$.ajax({
-								url : '/userInfoRegister',
+								url : '/userInfo/code.hms',
 								async : false,// 同步，会阻塞操作
 								type : 'POST',// PUT DELETE POST
 								data : {
-									type : 'validate',
-									rangdomcode : $('#txt_validateCode1').val(),
-									mode : 'retrivepwd',
-									username : $('#txt_username').val(),
+									type : 'auth_code_retrive_pwd',
+									randomCode : $('#txt_validateCode1').val(),
+									userName : $('#txt_username').val(),
 									email : $('#txt_emailInput').val(),
-									
 								},
 								success : function(response) {
 									if (response != 0) {

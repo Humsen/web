@@ -21,7 +21,7 @@ $(document).ready(function(){
 function loadAccessStatistics(){
 	$.ajax({
 		type : 'POST',
-		url : '/accessAtatistics',
+		url : '/accessAtatistics.hms',
 		success : function(response, ststus){
 			var response = JSON.parse(response);
 			

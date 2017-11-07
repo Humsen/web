@@ -129,9 +129,10 @@ function showUserInfo(){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/userInfoQuery',
+		url : '/userinfo.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_user_info',
 			userName : $.cookie('username')
 		},
 		success : function(response){
@@ -268,7 +269,7 @@ function submitNewVerFea() {
 	$.ajax({
 		type : 'POST',
 		async : false,
-		url : '/newReleaseFeature',
+		url : '/newReleaseFeature.hms',
 		dataType : 'json',
 		data : {
 			newArticle : article_data,

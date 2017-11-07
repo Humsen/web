@@ -5,9 +5,8 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.UserInfoVo;
 import pers.husen.web.dao.UserInfoDao;
-import pers.husen.web.dbutil.DbInsertUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
-import pers.husen.web.dbutil.DbUpdateUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.mappingdb.UserInfoMapping;
 
 
@@ -24,7 +23,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(userName);
 		
-		return DbQueryUtils.queryPasswordByUserName(sql, paramList);
+		return DbQueryUtils.queryStringByParam(sql, paramList);
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		paramList.add((obj = uVo.getUserSex()) != null ? obj : "");
 		paramList.add((obj = uVo.getUserAddress()) != null ? obj : 0);
 		
-		return DbInsertUtils.insertUserInfo(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 
 	@Override
@@ -64,7 +63,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(userName);
 		
-		return DbQueryUtils.queryUserInfo(sql, paramList);
+		return DbQueryUtils.queryBeanByParam(sql, paramList, UserInfoVo.class);
 	}
 
 	@Override
@@ -91,7 +90,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		paramList.add(uVo.getUserHeadUrl());
 		paramList.add(uVo.getUserId());
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 
 	@Override
@@ -106,7 +105,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		paramList.add(uVo.getUserPassword());
 		paramList.add(uVo.getUserName());
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 
 	@Override
@@ -124,7 +123,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		paramList.add(uVo.getUserName());
 		paramList.add(uVo.getUserEmail());
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 
 	@Override
@@ -139,6 +138,6 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		paramList.add(uVo.getUserEmail());
 		paramList.add(uVo.getUserName());
 		
-		return DbUpdateUtils.updateRecordByParam(sql, paramList);
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 }

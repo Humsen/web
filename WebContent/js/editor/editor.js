@@ -38,11 +38,11 @@ function initInputBox() {
 	var jsonData;
 
 	if (article_id = $.getUrlParam('blogId')) {
-		url = '/blogPerById';
-		jsonData = 'blogId=' + article_id + '&type=json';
+		url = '/blog.hms';
+		jsonData = 'blogId=' + article_id + '&type=json_return';
 	} else if ((article_id = $.getUrlParam('codeId'))) {
-		url = '/codePerById';
-		jsonData = 'codeId=' + article_id + '&type=json';
+		url = '/code.hms';
+		jsonData = 'codeId=' + article_id + '&type=json_return';
 	}
 
 	if (article_id) {// 获取文章以供编辑
@@ -113,7 +113,7 @@ function initMarkdownEditor() {
 		saveHTMLToTextarea : true,//构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单
 		imageUpload : true,// 启动本地图片上传功能
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
-		imageUploadURL : '/imageUpload'
+		imageUploadURL : '/imageUpload.hms'
 	});
 }
 
@@ -130,7 +130,7 @@ function btnPublishClick() {
 	$.ajax({
 		type : 'POST',
 		async : false,
-		url : (isBlogOrCode() == 'blog') ? '/newBlogUpload' : '/newCodeUpload',
+		url : (isBlogOrCode() == 'blog') ? '/blog/upload.hms' : '/code/upload.hms',
 		data : {
 			newArticle : articleData,
 			type : article_id ? 'modify' : 'create',

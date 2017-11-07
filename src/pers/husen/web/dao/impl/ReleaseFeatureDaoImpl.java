@@ -5,7 +5,7 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.ReleaseFeatureVo;
 import pers.husen.web.dao.ReleaseFeatureDao;
-import pers.husen.web.dbutil.DbInsertUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
 
 /**
@@ -29,7 +29,7 @@ public class ReleaseFeatureDaoImpl implements ReleaseFeatureDao{
 		paramList.add((obj = rVo.getReleaseNumber()) != null ? obj : "");
 		paramList.add((obj = rVo.getReleaseContent()) != null ? obj : "");
 		
-		return DbInsertUtils.insertNewRecord(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class ReleaseFeatureDaoImpl implements ReleaseFeatureDao{
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		ArrayList<ReleaseFeatureVo> result = DbQueryUtils.queryLatestReleaseFeature(sql, paramList);
+		ArrayList<ReleaseFeatureVo> result = DbQueryUtils.queryBeanListByParam(sql, paramList, ReleaseFeatureVo.class);
 		
 		if(result == null || result.size() == 0) {
 			return new ReleaseFeatureVo();

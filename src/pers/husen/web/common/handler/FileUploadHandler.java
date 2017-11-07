@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import pers.husen.web.common.helper.StackTrace2Str;
-import pers.husen.web.config.DeployPathConfig;
+import pers.husen.web.config.ProjectDeployConfig;
 
 /**
  * @author 何明胜
@@ -26,7 +26,7 @@ public class FileUploadHandler {
 	
 	public String fileUploadHandler(HttpServletRequest request) {
         //得到上传文件的保存目录，将上传的文件存放于工程文件的兄弟级文件download目录下
-        String saveFile = DeployPathConfig.DOWNLOAD_PATH;
+        String saveFile = ProjectDeployConfig.DOWNLOAD_PATH;
         File file = new File(saveFile);
         
         //判断上传文件的保存目录是否存在

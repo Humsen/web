@@ -5,7 +5,7 @@ import java.util.Date;
 
 import pers.husen.web.bean.vo.MessageAreaVo;
 import pers.husen.web.dao.MessageAreaDao;
-import pers.husen.web.dbutil.DbInsertUtils;
+import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
 
 /**
@@ -21,7 +21,7 @@ public class MessageAreaDaoImpl implements MessageAreaDao {
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(messageId);
 		
-		return DbQueryUtils.queryAllMessageArea(sql, paramList);
+		return DbQueryUtils.queryBeanListByParam(sql, paramList, MessageAreaVo.class);
 	}
 
 	@Override
@@ -38,6 +38,6 @@ public class MessageAreaDaoImpl implements MessageAreaDao {
 		paramList.add((obj = mVo.getMessageEmail()) != null ? obj : "");
 		paramList.add((obj = mVo.getMessageUsername()) != null ? obj : 0);
 		
-		return DbInsertUtils.insertMessageNew(sql, paramList);
+		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}
 }

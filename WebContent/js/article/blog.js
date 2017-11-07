@@ -22,7 +22,10 @@ function queryBlogNum(){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/blogTotalCount',
+		url : '/blog/query.hms',
+		data : {
+			type : 'query_total_num'
+		},
 		success : function(response){
 			blog_total_num = response;
 		},
@@ -54,9 +57,10 @@ function queryBlogCatalog(pageSize, pageNo){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/blogArticlePerPage',
+		url : '/blog/query.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_one_page',
 			pageSize : pageSize,
 			pageNo : pageNo,
 		},
@@ -84,53 +88,6 @@ function queryBlogCatalog(pageSize, pageNo){
 }
 
 /**
- * 显示博客详细内容点击
- * @returns
- */
-function getBlogDetailsClick(){
-	$.each($('.fh5co-entry h2'), function(index, value){
-		$(this).click(function(){
-			$.ajax({
-				type : 'POST',
-				async: false,
-				url : '/blogPerById',
-				dataType : 'json',
-				data : {
-					blogId : $(this).find('input[type="text"]').val()
-				},
-				success : function(response){
-					$('#list_blog').html('<div class="fh5co-entry" id="content">'
-							+ '<div>'
-							+ '<h2 class="text-align-center"><input type="hidden" value='+ response.blogId + ' /><a href=#>' + response.blogTitle + '</a></h2>'
-							+ '<span class="fh5co-post-date">' + new Date(response.blogDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
-							+ '<span class="fh5co-post-date">作者:' + response.blogAuthor + '</span>'
-							+ '<span class="fh5co-post-date">浏览' + response.blogRead + '次</span>'
-							+ '<p>' + response.blogContent +'</p>'
-							+ '</div>'
-						+ '</div>');
-					showMarkdown();
-				},
-				error : function(XMLHttpRequest, textStatus){
-					$.confirm({
-					    title: '详细博客加载出错',
-					    content: textStatus + ' : ' + XMLHttpRequest.status,
-					    autoClose: 'ok|1000',
-					    type: 'green',
-					    buttons: {
-					    	ok: {
-					            text: '确认',
-					            btnClass: 'btn-primary',
-					        },
-					    }
-					});
-				}
-			});
-		});
-	});
-}
-
-
-/**
  * 加载目录形式的博客
  * 
  * @param blog_data
@@ -142,7 +99,7 @@ function loadSimpleBlog(blog_data){
 		+ '<span class="fh5co-post-date">作者:' + blog_data.blogAuthor + '</span>'
 		+ '<span class="fh5co-post-date">浏览' + blog_data.blogRead + '次</span>'
 		+ '<h2 class="article-title"><input type="hidden" value=' + blog_data.blogId + ' />'
-		+ '<a href=/blogPerById?blogId=' + blog_data.blogId + '>' + blog_data.blogTitle + '</a></h2>'
+		+ '<a href=/blog.hms?blogId=' + blog_data.blogId + '>' + blog_data.blogTitle + '</a></h2>'
 		+ '<p><b>摘要：</b>' + blog_data.blogSummary + '</p>'
 		+ '</div>'
 		+ '</div><hr>');

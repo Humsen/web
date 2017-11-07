@@ -4,43 +4,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import pers.husen.web.bean.vo.BlogArticleVo;
-import pers.husen.web.bean.vo.CodeLibraryVo;
-import pers.husen.web.bean.vo.FileDownloadVo;
-import pers.husen.web.bean.vo.MessageAreaVo;
-import pers.husen.web.bean.vo.ReleaseFeatureVo;
-import pers.husen.web.bean.vo.UserInfoVo;
 import pers.husen.web.common.helper.StackTrace2Str;
 import pers.husen.web.dbutil.assist.DbConnectUtils;
 import pers.husen.web.dbutil.assist.SetPsParamUtils;
 import pers.husen.web.dbutil.assist.TypeTransformUtils;
 
 /**
- * 数据库查询工具类
+ * 数据库查询工具类 DQL
  * 
- * @author : 何明胜
+ * @author 何明胜
  *
  *         2017年9月21日
  */
 public class DbQueryUtils {
-	private static final Logger logger = LogManager.getLogger(DbQueryUtils.class.getName());
+	private static final Logger logger = LogManager.getLogger(DbQueryUtils.class);
 
 	/**
-	 * 根据条件查询博客文章
+	 * 根据条件查询 beanVoList
 	 * 
 	 * @param sql
 	 * @param paramList
+	 * @param classType
+	 *            Vo类 类型
 	 * @return
 	 */
-	public static ArrayList<BlogArticleVo> queryBlogArticles(String sql, ArrayList<Object> paramList) {
+	public static <T> ArrayList<T> queryBeanListByParam(String sql, ArrayList<Object> paramList, Class<T> classType) {
 		Connection conn = DbConnectUtils.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<BlogArticleVo> blogArticleVos = new ArrayList<BlogArticleVo>();
+		ArrayList<T> tVos = null;
 
 		try {
 			ps = conn.prepareStatement(sql);
@@ -52,31 +49,30 @@ public class DbQueryUtils {
 
 			logger.info(ps);
 			rs = ps.executeQuery();
-			while (rs.next()) {
-				blogArticleVos.add(TypeTransformUtils.resultSet2BlogBean(rs));
-			}
-			logger.info("Success query, return records's count : " + blogArticleVos.size());
+			tVos = TypeTransformUtils.resultSet2BeanList(rs, classType);
 		} catch (Exception e) {
 			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
 		} finally {
 			DbConnectUtils.closeResouce(rs, ps, conn);
 		}
 
-		return blogArticleVos;
+		return tVos;
 	}
 
 	/**
-	 * 根据条件查询代码库代码
+	 * 根据条件查询bean
+	 * 
+	 * @param <T>
 	 * 
 	 * @param sql
 	 * @param paramList
 	 * @return
 	 */
-	public static ArrayList<CodeLibraryVo> queryCodeLibrarys(String sql, ArrayList<Object> paramList) {
+	public static <T> T queryBeanByParam(String sql, ArrayList<Object> paramList, Class<T> classType) {
 		Connection conn = DbConnectUtils.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<CodeLibraryVo> cVos = new ArrayList<CodeLibraryVo>();
+		T tVo = null;
 
 		try {
 			ps = conn.prepareStatement(sql);
@@ -88,109 +84,52 @@ public class DbQueryUtils {
 
 			logger.info(ps);
 			rs = ps.executeQuery();
-			while (rs.next()) {
-				cVos.add(TypeTransformUtils.resultSet2CodeBean(rs));
-			}
-			logger.info("Success query, return records's count : " + cVos.size());
+			tVo = TypeTransformUtils.resultSet2Bean(rs, classType);
 		} catch (Exception e) {
 			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
 		} finally {
 			DbConnectUtils.closeResouce(rs, ps, conn);
 		}
 
-		return cVos;
+		return tVo;
 	}
-
-	/**
-	 * 根据条件查询下载区数量
-	 * 
-	 * @param sql
-	 * @param paramList
-	 * @return
-	 */
-	public static UserInfoVo queryUserInfo(String sql, ArrayList<Object> paramList) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		UserInfoVo uVo = new UserInfoVo();
-
-		try {
-			ps = conn.prepareStatement(sql);
-			if (paramList != null && paramList.size() != 0) {
-				for (int i = 0; i < paramList.size(); i++) {
-					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
-				}
-			}
-
-			logger.info(ps);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				uVo = TypeTransformUtils.resultSet2UserBean(rs);
-			}
-			logger.info("Success query, return value : " + uVo);
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-
-		return uVo;
+	
+	public static int queryIntByParam(String sql, ArrayList<Object> paramList) {
+		return ((Number)queryResultByParam(sql, paramList)).intValue();
+	}
+	
+	public static String queryStringByParam(String sql, ArrayList<Object> paramList) {
+		return (String) queryResultByParam(sql, paramList);
+	}
+	
+	public static Date queryDateByParam(String sql, ArrayList<Object> paramList) {
+		java.sql.Date sqlDate = (java.sql.Date) queryResultByParam(sql, paramList);
+		Date date = new Date(sqlDate.getTime());
+		return date;
+	}
+	
+	public static boolean queryBooleanByParam(String sql, ArrayList<Object> paramList) {
+		return (boolean) queryResultByParam(sql, paramList);
 	}
 	
 	/**
-	 * 根据条件查询下载区数量
+	 * 根据条件查询某个字段或者数量 String int Date etc.
 	 * 
 	 * @param sql
 	 * @param paramList
+	 * @param classType
 	 * @return
 	 */
-	public static ArrayList<FileDownloadVo> queryFileDownload(String sql, ArrayList<Object> paramList) {
+	private static Object queryResultByParam(String sql, ArrayList<Object> paramList) {
 		Connection conn = DbConnectUtils.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<FileDownloadVo> fVos = new ArrayList<FileDownloadVo>();
-
-		try {
-			ps = conn.prepareStatement(sql);
-			if (paramList != null && paramList.size() != 0) {
-				for (int i = 0; i < paramList.size(); i++) {
-					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
-				}
-			}
-
-			logger.info(ps);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				fVos.add(TypeTransformUtils.resultSet2FileBean(rs));
-			}
-			logger.info("Success query, return records's count : " + fVos.size());
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-
-		return fVos;
-	}
-
-	/**
-	 * 根据条件查询数量
-	 * 
-	 * @param sql
-	 * @param paramList
-	 * @return
-	 */
-	public static int queryCountByCondition(String sql, ArrayList<Object> paramList) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		int count = 0;
+		Object result = null;
 
 		try {
 			ps = conn.prepareStatement(sql);
 
 			if (paramList != null && paramList.size() != 0) {
-				ps = conn.prepareStatement(sql);
 				for (int i = 0; i < paramList.size(); i++) {
 					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
 				}
@@ -199,80 +138,7 @@ public class DbQueryUtils {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				count = rs.getInt("count");
-			}
-			logger.info("Success query, count : " + count);
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-			return -1;
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-		
-		return count;
-	}
-
-	/**
-	 * 查询所有留言
-	 * 
-	 * @param sql
-	 * @param paramList
-	 * @return
-	 */
-	public static ArrayList<MessageAreaVo> queryAllMessageArea(String sql, ArrayList<Object> paramList) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		ArrayList<MessageAreaVo> messageAreaVos = new ArrayList<MessageAreaVo>();
-
-		try {
-			ps = conn.prepareStatement(sql);
-			if (paramList != null && paramList.size() != 0) {
-				for (int i = 0; i < paramList.size(); i++) {
-					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
-				}
-			}
-
-			logger.info(ps);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				messageAreaVos.add(TypeTransformUtils.resyltSet2MessageBean(rs));
-			}
-			logger.info("Success query, return records's count : " + messageAreaVos.size());
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-
-		return messageAreaVos;
-	}
-
-	/**
-	 * 根据用户名查询密码
-	 * 
-	 * @param sql
-	 * @param paramList
-	 * @return
-	 */
-	public static String queryPasswordByUserName(String sql, ArrayList<Object> paramList) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			ps = conn.prepareStatement(sql);
-			if (paramList != null && paramList.size() != 0) {
-				for (int i = 0; i < paramList.size(); i++) {
-					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
-				}
-			}
-
-			logger.info(ps);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				logger.info("Success query, pass validation !");
-				return rs.getString("user_password");
+				result = rs.getObject(1);
 			}
 		} catch (Exception e) {
 			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
@@ -280,97 +146,6 @@ public class DbQueryUtils {
 			DbConnectUtils.closeResouce(rs, ps, conn);
 		}
 
-		return null;
-	}
-
-	public static int queryMaxId(String sql) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			ps = conn.prepareStatement(sql);
-			logger.info(ps);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				int maxId = rs.getInt(1); 
-				logger.info("Success query, maxId : " + maxId);
-				return maxId;
-			}
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-
-		return 0;
-	}
-
-	/**
-	 * 查询网站总访问量
-	 * 
-	 * @return
-	 */
-	public static int queryVisitTotal(String sql, ArrayList<Object> paramList) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			ps = conn.prepareStatement(sql);
-			if (paramList != null && paramList.size() != 0) {
-				for (int i = 0; i < paramList.size(); i++) {
-					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
-				}
-			}
-
-			logger.info(ps);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				int visitTotal = rs.getInt("count");
-				logger.info("Success query, visit total : " + visitTotal);
-				return visitTotal;
-			}
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-		return 0;
-	}
-	
-	/**
-	 * 查询最新的新版特性
-	 * @param sql
-	 * @param paramList
-	 * @return
-	 */
-	public static ArrayList<ReleaseFeatureVo> queryLatestReleaseFeature(String sql, ArrayList<Object> paramList) {
-		Connection conn = DbConnectUtils.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		ArrayList<ReleaseFeatureVo> rVos = new ArrayList<ReleaseFeatureVo>();
-
-		try {
-			ps = conn.prepareStatement(sql);
-			if (paramList != null && paramList.size() != 0) {
-				for (int i = 0; i < paramList.size(); i++) {
-					SetPsParamUtils.setParamInit(i + 1, paramList.get(i), ps);
-				}
-			}
-
-			logger.info(ps);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				rVos.add(TypeTransformUtils.resultSet2ReleaseBean(rs));
-			}
-			logger.info("Success query, return records's count : " + rVos.size());
-		} catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
-		} finally {
-			DbConnectUtils.closeResouce(rs, ps, conn);
-		}
-
-		return rVos;
+		return result;
 	}
 }

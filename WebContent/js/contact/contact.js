@@ -81,7 +81,7 @@ function sendEmailClick() {
 		if ($formContactAdmin.isValid()) {
 			// 发送ajax请求
 			$.ajax({
-				url : '/sendEmail',
+				url : '/sendEmail.hms',
 				async : false,// 同步，会阻塞操作
 				type : 'POST',// PUT DELETE POST
 				data : $('#form_contactAdmin').serialize(),

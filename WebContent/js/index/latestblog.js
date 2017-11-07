@@ -18,23 +18,23 @@ function queryLatestBlog(pageSize){
 	$.ajax({
 		type : 'POST',
 		async: true,
-		url : '/blogArticlePerPage',
+		url : '/blog/query.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_one_page',
 			pageSize : pageSize,
 			pageNo : 1,
 		},
 		success : function(response, status){
-			// response = JSON.parse(response);
 			for(x in response){
 				loadSimpleBlog(response[x]);
 			}
 		},
-		error : function(response, status){
+		error : function(XMLHttpRequest, textStatus){
 			$.confirm({
 			    title: '博客加载出错',
-			    content: status + ' : ' +response,
-			    autoClose: 'ok|1000',
+			    content: textStatus + ' : ' + XMLHttpRequest.status,
+			    autoClose: 'ok|2000',
 			    type: 'red',
 			    buttons: {
 			    	ok: {
@@ -57,12 +57,12 @@ function loadSimpleBlog(blogData){
 	$('#latestBlog').append('<div class="col-md-3 col-sm-6 col-padding article-box-div" >'
 		+ '<div class="blog-entry">'
 		+ '<div class="desc">'
-		+ '<h3 class="article-title"><a href="/blogPerById?blogId=' + blogData.blogId +'">' + blogData.blogTitle + '</a></h3>'
+		+ '<h3 class="article-title"><a href="/blog.hms?blogId=' + blogData.blogId +'">' + blogData.blogTitle + '</a></h3>'
 		+ '<span class="article-author">'+ '作者:'+ blogData.blogAuthor +'&nbsp;'
 		+  new Date(blogData.blogDate.time).format('yyyy-MM-dd hh:mm:ss') + '&nbsp;'
 		+ '<i class="icon-comment"></i>浏览' + blogData.blogRead + '次</span>'
 		+ '<p><b>摘要：</b>' + blogData.blogSummary + '</p>'
-		+ '<a href="/blogPerById?blogId='+ blogData.blogId +'" class="lead read-more">阅读更多 <i class="glyphicon glyphicon-arrow-right"></i></a>'
+		+ '<a href="/blog.hms?blogId='+ blogData.blogId +'" class="lead read-more">阅读更多 <i class="glyphicon glyphicon-arrow-right"></i></a>'
 		+ '</div>'
 		+ '</div>');
 }

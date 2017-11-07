@@ -22,7 +22,10 @@ function queryFileNum(){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/fileDownTotalCount',
+		url : '/file/download.hms',
+		data : {
+			type : 'query_total_num'
+		},
 		success : function(response){
 			file_total_num = response;
 		},
@@ -54,9 +57,10 @@ function queryFileCatalog(pageSize, pageNo){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/fileDownPerPage',
+		url : '/file/download.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_one_page',
 			pageSize : pageSize,
 			pageNo : pageNo
 		},
@@ -99,7 +103,7 @@ function getSimpleFile(file_data){
 		+ '<h3 class="h3-letter-space">' + file_data.fileName + '</h3>'
 		+ '<p><span>下载' + file_data.fileDownloadCount + '次</span>&nbsp;/&nbsp;'
 		+ '<span>' + new Date(file_data.fileUploadDate.time).format('yyyy-MM-dd hh:mm:ss') +'上传</span></p>'
-		+ '<a href="' + '/fileDownload?filename=' + file_data.fileUrl +'">点击下载</a>'
+		+ '<a href="' + '/file/download.hms?filename=' + file_data.fileUrl +'">点击下载</a>'
 		+ '</div>'
 		+ '</div>'
 		+ '</div>');

@@ -1,4 +1,4 @@
-package pers.husen.web.servlet.codelib;
+package pers.husen.web.servlet.image;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,24 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pers.husen.web.common.handler.ImageDownloadHandler;
+
 /**
- * 此处暂未使用
+ * 图片下载
  *
  * @author 何明胜
  *
  * 2017年10月20日
  */
-@WebServlet("/CodeLibraryServlet")
-public class CodeLibraryServlet extends HttpServlet {
+@WebServlet(urlPatterns="/imageDownload.hms")
+public class ImageDownloadSvt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CodeLibraryServlet() {
+    public ImageDownloadSvt() {
         super();
     }
-    
+
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ImageDownloadHandler iHandler = new ImageDownloadHandler();
+		iHandler.imageDownloadHandler(request, response);
 	}
 
     @Override

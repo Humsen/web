@@ -15,7 +15,7 @@ $(function(){
 function loadNewVersionFeature(){
 	$.ajax({
 		type : 'POST',
-		url : '/latestReleaseFeature',
+		url : '/latestReleaseFeature.hms',
 		dataType : 'json',
 		success : function(response){
 			$('#newVersionFeature').append('<div class="col-md-6 animate-box fadeInLeft animated version-width" data-animate-effect="fadeInLeft">'

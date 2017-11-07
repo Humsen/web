@@ -16,9 +16,8 @@ import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import pers.husen.web.common.constants.CommonConstants;
 import pers.husen.web.common.helper.StackTrace2Str;
-import pers.husen.web.listener.WebInitConfigListener;
+import pers.husen.web.config.listener.WebInitConfigListener;
 
 /**
  * @author 何明胜
@@ -28,37 +27,25 @@ import pers.husen.web.listener.WebInitConfigListener;
 public class Log4j2Config {
 	public void startLog4j2Config() {
 		// 获取完整路径
-		String xmlFilePath = DeployPathConfig.LOG4J2_CONFIG_PATH;
+		String xmlFilePath = ProjectDeployConfig.LOG4J2_CONFIG_PATH;
 		// 获取日志输出位置
-		String logsParentDir = DeployPathConfig.LOG4J2_OUT_PATH;
-
+		String logsParentDir = ProjectDeployConfig.LOG4J2_OUT_PATH;
+		
 		/**
-		 * 根据user.dir判断当前是本地开发还是远程部署 在centos为用户目录，以'/'开头 在windows为当前web工程部署的地方，一般以大写字母开头
-		 * 通过修改log4j2.xml的日志文件存放位置的属性，来修改日志保存的位置
+		 * 先配保存的目录,再配读取的 目录
+		 * 日志在读取配置后立即生效,以使产生日志能全部保存
 		 */
-		String currUserDir = System.getProperty("user.dir");
-		if (currUserDir.charAt(0) == CommonConstants.LINUX_ROOT_PATH) {
+		if (ProjectDeployConfig.IS_REMOTE_DEPLOY) {
 			this.remoteLogsPathConfig(xmlFilePath, logsParentDir);
-		} else if (currUserDir.charAt(0) == CommonConstants.WINDOWS_SYSTEM_DISK_LETTER) {
-			// 我一般部署在C盘tomcat下，但是日志显示在F盘工程目录下，方便开发
-			this.localLogsPathConfig(xmlFilePath, logsParentDir);
-		} else {
-			Logger logger = LogManager.getLogger(WebInitConfigListener.class.getName());
-			logger.warn("识别 user.dir 出错，使用log4j2默认配置 : ${web:rootDir}/logs \n");
-		}
-
-		/**
-		 * 配置读取的目录 先配保存的，再配读取的 日志在读取配置好生效，然后产生日志能保存
-		 */
-		if (currUserDir.charAt(0) == CommonConstants.LINUX_ROOT_PATH) {
 			// 服务器为部署目录
 			this.readLog4jPath(xmlFilePath);
 		} else {
+			this.localLogsPathConfig(xmlFilePath, logsParentDir);
 			// 本地配置读取log4j2.xml的路径为当前工程根目录
 			this.readLog4jPath(xmlFilePath);
-		}
+		} 
 
-		Logger logger = LogManager.getLogger(WebInitConfigListener.class.getName());
+		Logger logger = LogManager.getLogger(WebInitConfigListener.class);
 		logger.info("成功配置log4j2日志输出路径 -> " + logsParentDir);
 	}
 

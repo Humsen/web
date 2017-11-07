@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import pers.husen.web.common.constants.CommonConstants;
 import pers.husen.web.common.helper.StackTrace2Str;
-import pers.husen.web.config.DeployPathConfig;
+import pers.husen.web.config.ProjectDeployConfig;
 
 
 /**
@@ -46,18 +46,17 @@ public class DbConnectUtils {
 			String username = null;
 			String password = null;
 			String driveClass = null;
-			//获取当前工程环境目录
-			String currUserDir = System.getProperty("user.dir");
+			
 			//读取数据库连接文件
 			Properties properties = new Properties();
 			
-			FileInputStream inputStream = new FileInputStream(DeployPathConfig.WEB_ROOT_PATH + CommonConstants.DB_CONNECT_INFO_FILE_RELATIVE_PATH);
+			FileInputStream inputStream = new FileInputStream(ProjectDeployConfig.WEB_ROOT_PATH + CommonConstants.DB_CONNECT_INFO_FILE_RELATIVE_PATH);
 			properties.load(inputStream);
 			dbName = properties.getProperty("dbname_test");
 		
 			//如果是在服务器环境,则加载正式数据库
-			if(currUserDir.charAt(0) == CommonConstants.LINUX_ROOT_PATH) {
-				inputStream = new FileInputStream(DeployPathConfig.WEB_ROOT_PATH + CommonConstants.DB_CONNECT_INFO_FILE_RELATIVE_PATH);
+			if(ProjectDeployConfig.IS_REMOTE_DEPLOY) {
+				inputStream = new FileInputStream(ProjectDeployConfig.WEB_ROOT_PATH + CommonConstants.DB_CONNECT_INFO_FILE_RELATIVE_PATH);
 				properties.load(inputStream);
 				dbName = properties.getProperty("dbname_official");
 			}
@@ -71,6 +70,7 @@ public class DbConnectUtils {
 			
 			Class.forName(driveClass);
 			connection = DriverManager.getConnection(url+dbName, username, password);
+			//logger.info("成功获取数据库连接, url->" + (url+dbName) + ", username->" + username + ", password->" + password);
 		}catch (ClassNotFoundException e) {
 			logger.error(e);
 		}catch (SQLException e) {

@@ -25,9 +25,10 @@ function queryLatestCode(pageSize){
 	$.ajax({
 		type : 'POST',
 		async: true,
-		url : '/codeLibPerPage',
+		url : '/code/query.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_one_page',
 			pageSize : pageSize,
 			pageNo : 1,
 		},
@@ -63,12 +64,12 @@ function loadSimpleCode(codeData){
 	$('#latestCode').append('<div class="col-md-3 col-sm-6 col-padding article-box-div" >'
 			+ '<div class="blog-entry">'
 			+ '<div class="desc">'
-			+ '<h3 class="article-title"><a href="/codePerById?codeId=' + codeData.codeId + '">' + codeData.codeTitle + '</a></h3>'
+			+ '<h3 class="article-title"><a href="/code.hms?codeId=' + codeData.codeId + '">' + codeData.codeTitle + '</a></h3>'
 			+ '<span class="article-author">'+ '作者:'+ codeData.codeAuthor +'&nbsp;'
 			+  new Date(codeData.codeDate.time).format('yyyy-MM-dd hh:mm:ss') + '&nbsp;'
 			+ '<i class="icon-comment"></i>浏览' + codeData.codeRead + '次</span>'
 			+ '<p><b>摘要：</b>' + codeData.codeSummary + '</p>'
-			+ '<a href="/codePerById?codeId=' + codeData.codeId + '" class="lead read-more" >阅读更多 <i class="glyphicon glyphicon-arrow-right"></i></a>'
+			+ '<a href="/code.hms?codeId=' + codeData.codeId + '" class="lead read-more" >阅读更多 <i class="glyphicon glyphicon-arrow-right"></i></a>'
 			+ '</div>'
 			+ '</div>');
 }

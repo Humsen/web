@@ -41,9 +41,10 @@ function fillUserInfo() {
 	$.ajax({
 		type : 'POST',
 		async : false,
-		url : '/userInfoQuery',
+		url : '/userinfo.hms',
 		dataType : 'json',
 		data : {
+			type : 'query_user_info',
 			userName : $.cookie('username')
 		},
 		success : function(response) {
@@ -79,8 +80,9 @@ function submitForm() {
 	$.ajax({
 		type : 'POST',
 		async : false,
-		url : '/userInfoModify',
+		url : '/userInfo.hms',
 		data : {
+			type : 'modify_user_info',
 			formdata : formDataJson
 		},
 		success : function(response) {

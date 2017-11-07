@@ -88,9 +88,6 @@ public class MessageAreaVo {
 		this.messageDate = messageDate;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "MessageAreaVo [messageId=" + messageId + ", messageParent=" + messageParent + ", messageBelong="
