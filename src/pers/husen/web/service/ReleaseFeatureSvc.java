@@ -1,6 +1,7 @@
 package pers.husen.web.service;
 
 import pers.husen.web.bean.vo.ReleaseFeatureVo;
+import pers.husen.web.dao.ReleaseFeatureDao;
 import pers.husen.web.dao.impl.ReleaseFeatureDaoImpl;
 
 /**
@@ -8,7 +9,7 @@ import pers.husen.web.dao.impl.ReleaseFeatureDaoImpl;
  *
  * 2017年10月17日
  */
-public class ReleaseFeatureSvc {
+public class ReleaseFeatureSvc implements ReleaseFeatureDao{
 	private ReleaseFeatureDaoImpl rImpl = new ReleaseFeatureDaoImpl();
 	
 	public int insertReleaseFeature(ReleaseFeatureVo rVo) {

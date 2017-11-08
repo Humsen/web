@@ -1,4 +1,4 @@
-package pers.husen.web.servlet.blog;
+package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,16 +45,17 @@ public class BlogSvt extends HttpServlet {
 		int blogId = Integer.parseInt(request.getParameter("blogId"));
 		BlogArticleVo bVo = bSvc.queryPerBlogById(blogId);
 
-		// 判断是否是返回博客json数据
+		/** 判断是否是返回博客json数据 */
 		String returnType = request.getParameter("type");
 		if (returnType != null && RequestConstants.REQUEST_TYPE_JSON.equals(returnType)) {
 			out.println(JSONObject.fromObject(bVo));
 
 			return;
 		}
-
+		
+		/** 默认返回整篇文章 */
 		HttpSession session = request.getSession();
-		// 判断是否已经访问过该页面，修改浏览次数
+		//判断是否已经访问过该页面，修改浏览次数 
 		Object counter = session.getAttribute("blog_" + blogId);
 		if (counter == null) {
 			session.setAttribute("blog_" + blogId, new Integer(1));

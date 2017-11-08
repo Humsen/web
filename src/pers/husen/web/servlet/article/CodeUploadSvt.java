@@ -1,4 +1,4 @@
-package pers.husen.web.servlet.blog;
+package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,28 +10,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
-import pers.husen.web.bean.vo.BlogArticleVo;
+import pers.husen.web.bean.vo.CodeLibraryVo;
 import pers.husen.web.common.constants.CommonConstants;
 import pers.husen.web.common.constants.RequestConstants;
 import pers.husen.web.common.helper.TypeConvertHelper;
-import pers.husen.web.service.BlogArticleSvc;
+import pers.husen.web.service.CodeLibrarySvc;
 
 /**
- * 上传博客, 可能是新的,也可能是编辑
+ * 上传代码, 可能是新的,也可能是编辑
  *
  * @author 何明胜
  *
  *         2017年11月7日
  */
-@WebServlet(urlPatterns = "/blog/upload.hms")
-public class BlogUploadSvt extends HttpServlet {
+@WebServlet(urlPatterns = "/code/upload.hms")
+public class CodeUploadSvt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public BlogUploadSvt() {
+	public CodeUploadSvt() {
 		super();
 	}
 
-	 @Override
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 获取文章细节
@@ -39,37 +39,37 @@ public class BlogUploadSvt extends HttpServlet {
 		// 转化为json
 		JSONObject jsonObject = JSONObject.fromObject(newArticle);
 		// 转化为bean
-		BlogArticleVo bVo = TypeConvertHelper.jsonObj2BlogBean(jsonObject);
+		CodeLibraryVo cVo = TypeConvertHelper.jsonObj2CodeBean(jsonObject);
 		// 如果不是以逗号分隔的，关键字之间的多个空格都处理为一个
-		String blogLabel = bVo.getBlogLabel();
-		if (blogLabel.indexOf(CommonConstants.ENGLISH_COMMA) == -1
-				&& blogLabel.indexOf(CommonConstants.CHINESE_COMMA) == -1) {
-			bVo.setBlogLabel(blogLabel.replaceAll("\\s+", " "));
+		String codeLabel = cVo.getCodeLabel();
+		if (codeLabel.indexOf(CommonConstants.ENGLISH_COMMA) == -1
+				&& codeLabel.indexOf(CommonConstants.CHINESE_COMMA) == -1) {
+			cVo.setCodeLabel(codeLabel.replaceAll("\\s+", " "));
 		}
-		if (blogLabel.indexOf(CommonConstants.CHINESE_COMMA) != -1) {
-			bVo.setBlogLabel(blogLabel.replace("，", ","));
+		if (codeLabel.indexOf(CommonConstants.CHINESE_COMMA) != -1) {
+			cVo.setCodeLabel(codeLabel.replace("，", ","));
 		}
 
-		BlogArticleSvc bSvc = new BlogArticleSvc();
+		CodeLibrarySvc cSvc = new CodeLibrarySvc();
 		PrintWriter out = response.getWriter();
+
 		String uploadType = request.getParameter("type");
-
-		// 如果是修改博客
-		if (RequestConstants.REQUEST_TYPE_MODIFY.equals(uploadType)) {
+		// 如果是修改代码
+		if (uploadType != null && RequestConstants.REQUEST_TYPE_MODIFY.equals(uploadType)) {
 			// 获取id
-			int blogId = Integer.parseInt(request.getParameter("articleId"));
+			int codeId = Integer.parseInt(request.getParameter("articleId"));
 			// 设置id
-			bVo.setBlogId(blogId);
+			cVo.setCodeId(codeId);
 
-			int insertResult = bSvc.updateBlogById(bVo);
-			out.println(insertResult);
+			int resultInsert = cSvc.updateCodeById(cVo);
+			out.println(resultInsert);
 
 			return;
 		}
-		// 如果是上传新博客
+		// 如果是上传新代码
 		if (RequestConstants.REQUEST_TYPE_CREATE.equals(uploadType)) {
-			int resultInsert = bSvc.insertBlogArticle(bVo);
-			out.println(resultInsert);
+			int insertResult = cSvc.insertCodeLibrary(cVo);
+			out.println(insertResult);
 
 			return;
 		}

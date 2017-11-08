@@ -93,25 +93,25 @@ public class DbQueryUtils {
 
 		return tVo;
 	}
-	
+
 	public static int queryIntByParam(String sql, ArrayList<Object> paramList) {
-		return ((Number)queryResultByParam(sql, paramList)).intValue();
+		return ((Number) queryResultByParam(sql, paramList)).intValue();
 	}
-	
+
 	public static String queryStringByParam(String sql, ArrayList<Object> paramList) {
 		return (String) queryResultByParam(sql, paramList);
 	}
-	
+
 	public static Date queryDateByParam(String sql, ArrayList<Object> paramList) {
 		java.sql.Date sqlDate = (java.sql.Date) queryResultByParam(sql, paramList);
 		Date date = new Date(sqlDate.getTime());
 		return date;
 	}
-	
+
 	public static boolean queryBooleanByParam(String sql, ArrayList<Object> paramList) {
 		return (boolean) queryResultByParam(sql, paramList);
 	}
-	
+
 	/**
 	 * 根据条件查询某个字段或者数量 String int Date etc.
 	 * 

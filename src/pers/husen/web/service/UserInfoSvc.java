@@ -1,6 +1,7 @@
 package pers.husen.web.service;
 
 import pers.husen.web.bean.vo.UserInfoVo;
+import pers.husen.web.dao.UserInfoDao;
 import pers.husen.web.dao.impl.UserInfoDaoImpl;
 
 
@@ -10,7 +11,7 @@ import pers.husen.web.dao.impl.UserInfoDaoImpl;
  * 2017年9月17日
  */
 
-public class UserInfoSvc {
+public class UserInfoSvc implements UserInfoDao{
 	private UserInfoDaoImpl uImpl = new UserInfoDaoImpl();
 	
 	public String queryPasswordByUserName(String userName) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import pers.husen.web.bean.vo.CodeLibraryVo;
+import pers.husen.web.common.constants.DbConstans;
 import pers.husen.web.dao.CodeLibraryDao;
 import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
@@ -17,8 +18,9 @@ import pers.husen.web.dbutil.mappingdb.CodeLibraryMapping;
 public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	@Override
 	public int queryCodeTotalCount() {
-		String sql = "SELECT count(*) as count FROM code_library";
+		String sql = "SELECT count(*) as count FROM code_library WHERE code_delete = ?";
 		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
@@ -27,10 +29,11 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(int pageSize, int pageNo) {
 		String sql = "SELECT code_id, code_title, code_date, code_author, code_summary, code_read, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT
-				+ " FROM code_library"
+				+ " FROM code_library WHERE code_delete = ?"
 				+ " ORDER BY code_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, CodeLibraryVo.class);
 	}
@@ -41,10 +44,11 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_LABEL
-				+ " FROM code_library WHERE code_id = ? ";
+				+ " FROM code_library WHERE code_id = ? AND code_delete = ?";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(codeId);
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, CodeLibraryVo.class).get(0);
 	}
@@ -105,5 +109,14 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add(cVo.getCodeId());
 		
 		return DbManipulationUtils.updateRecordByParam(sql, paramList);
+	}
+
+	@Override
+	public int logicDeleteCodeById(int codeId) {
+		String sql = "UPDATE code_library SET code_delete = 1 WHERE code_id = ?";
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(codeId);
+		
+		return DbManipulationUtils.deleteRecordByParamLogic(sql, paramList);
 	}
 }

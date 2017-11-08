@@ -3,6 +3,7 @@ package pers.husen.web.service;
 import java.util.ArrayList;
 
 import pers.husen.web.bean.vo.FileDownloadVo;
+import pers.husen.web.dao.FileDownloadDao;
 import pers.husen.web.dao.impl.FileDownloadDaoImpl;
 
 /**
@@ -10,7 +11,7 @@ import pers.husen.web.dao.impl.FileDownloadDaoImpl;
  *
  *         2017年9月29日
  */
-public class FileDownloadSvc {
+public class FileDownloadSvc implements FileDownloadDao{
 	private FileDownloadDaoImpl fImpl = new FileDownloadDaoImpl();
 
 	public int queryFileTotalCount() {

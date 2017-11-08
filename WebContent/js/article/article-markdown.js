@@ -5,6 +5,7 @@
  */
 
 $(function(){
+	// 加载文章细节后, 自动显示markdown
 	showMarkdown();
 });
 

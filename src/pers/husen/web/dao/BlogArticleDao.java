@@ -65,4 +65,11 @@ public interface BlogArticleDao {
 	 * @return
 	 */
 	public int updateBlogById(BlogArticleVo bVo);
+	
+	/**
+	 * 根据id逻辑删除博客
+	 * @param blogId
+	 * @return
+	 */
+	public int logicDeleteBlogById(int blogId);
 }

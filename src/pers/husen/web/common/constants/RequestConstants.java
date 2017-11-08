@@ -31,6 +31,10 @@ public class RequestConstants {
 	public static final String REQUEST_TYPE_SEND_CODE = "send_code";
 	/** 请求类型：发送验证码 -> 认证邮箱等 */
 	public static final String REQUEST_TYPE_AUTH_CODE = "auth_code";
+	/** 请求类型：逻辑删除 -> 博客、代码等 */
+	public static final String REQUEST_TYPE_LOGIC_DELETE = "logic_delete";
+	/** 请求类型：物理删除 -> 博客、代码等 */
+	public static final String REQUEST_TYPE_PHYSICALLY_DELETE = "physically_delete";
 	
 	/* ********************* 我是分割线  ******************************/
 	
@@ -56,4 +60,13 @@ public class RequestConstants {
 	public static final String MODE_ONE_PAGE = "_one_page";
 	/** 请求模式：总数量  */
 	public static final String MODE_TOTAL_NUM = "_total_num";
+	
+	/** 请求模式：博客 */
+	public static final String MODE_BLOG = "_blog";
+	/** 请求模式：代码 */
+	public static final String MODE_CODE = "_code";
+	/** 请求模式：留言 */
+	public static final String MODE_MESSAGE = "_message";
+	/** 请求模式：文件 */
+	public static final String MODE_FILE = "_file";
 }

@@ -27,7 +27,8 @@ public class CodeTemplate {
 				"	<!-- 自定义CSS -->\r\n" + 
 				"	<link rel=\"stylesheet\" href=\"/css/article/article.css\">\r\n"+
 				"	<!-- 自定义脚本 -->\r\n" + 
-				"	<script src=\"/js/article/article-markdown.js\"></script>";
+				"	<script src=\"/js/article/article-markdown.js\"></script>" +
+				"	<script src=\"/js/article/code-details.js\"></script>";
 		
 		return cHeader;
 	}
@@ -71,7 +72,7 @@ public class CodeTemplate {
 				"			\r\n" +
 				"			<div class=\"fh5co-entry\" id=\"content\">" +
 				"				<div>" +
-				"					<h2 style=\"text-align: center;\"><input type=\"text\" style=\"display:none\" value="+ cVo.getCodeId() + "\"  />"+
+				"					<h2 class=\"text-align-center\"\"><input id=\"hiden_codeId\" type=\"hidden\" value=" + cVo.getCodeId() + " />"+
 				"						<a href=#>" + cVo.getCodeTitle() + "</a>"+
 				"					</h2>"+
 				"					<span class=\"fh5co-post-date\">" + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(cVo.getCodeDate()) + "</span>"+
@@ -80,7 +81,8 @@ public class CodeTemplate {
 				"					<span class=\"fh5co-post-date label-lowercase\">关键字：" + keyWordsStrBuf.toString() + "</span>";
 		
 		if(isSuperAdmin) {
-			body += "<a href=\"/upload/editor_article.jsp?codeId=" + cVo.getCodeId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a>";
+			body += "<a href=\"/upload/editor_article.jsp?codeId=" + cVo.getCodeId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a> "
+					+ "<a id=\"btn_deleteCode\" href=\"javascript:void(0)\" role=\"button\" class=\"btn btn-danger btn-sm\">删除</a>";
 		}
 		
 		body +=

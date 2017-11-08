@@ -1,5 +1,7 @@
 /**
- * 加载博客
+ * 加载博客目录
+ * 
+ * @author 何明胜
  * 
  * 2017年9月18日
  */
@@ -103,21 +105,6 @@ function loadSimpleBlog(blog_data){
 		+ '<p><b>摘要：</b>' + blog_data.blogSummary + '</p>'
 		+ '</div>'
 		+ '</div><hr>');
-}
-
-/** 
- * 解析markdown html
- * 
- * */
-function showMarkdown() {
-	editormd.markdownToHTML('content', {
-		htmlDecode : 'style,script,iframe', // you can filter tags decode
-		emoji : true,
-		taskList : true,
-		tex : true, // 默认不解析
-		flowChart : true, // 默认不解析
-		sequenceDiagram : true, // 默认不解析
-	});
 }
 
 /**

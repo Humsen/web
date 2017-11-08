@@ -1,4 +1,4 @@
-package pers.husen.web.servlet.blog;
+package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +38,7 @@ public class BlogQuerySvt extends HttpServlet {
 		BlogArticleSvc bSvc = new BlogArticleSvc();
 		String requestType = request.getParameter("type");
 		
-		//如果是请求查询总共数量
+		/** 如果是请求查询总共数量 */
 		String queryTotalCount = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_TOTAL_NUM;
 		if(queryTotalCount.equals(requestType)) {
 			int count = bSvc.queryBlogTotalCount();
@@ -46,7 +46,7 @@ public class BlogQuerySvt extends HttpServlet {
 			
 			return;
 		}
-		//如果是请求查询某一页的博客
+		/** 如果是请求查询某一页的博客 */
 		String queryOnePage = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_ONE_PAGE;
 		if(queryOnePage.equals(requestType)) {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
@@ -59,7 +59,7 @@ public class BlogQuerySvt extends HttpServlet {
 			
 			return;
 		}
-		//如果是请求查询所有博客
+		/** 如果是请求查询所有博客 */
 		String queryAllBlog = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_ALL;
 		if(queryAllBlog.equals(requestType)) {
 			ArrayList<BlogArticleVo> aVos = bSvc.queryBlogArticles();

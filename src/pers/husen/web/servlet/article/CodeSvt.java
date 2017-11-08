@@ -1,4 +1,4 @@
-package pers.husen.web.servlet.codelib;
+package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;

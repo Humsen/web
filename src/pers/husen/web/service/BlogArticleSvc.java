@@ -3,6 +3,7 @@ package pers.husen.web.service;
 import java.util.ArrayList;
 
 import pers.husen.web.bean.vo.BlogArticleVo;
+import pers.husen.web.dao.BlogArticleDao;
 import pers.husen.web.dao.impl.BlogArticleDaoImpl;
 
 /**
@@ -10,7 +11,7 @@ import pers.husen.web.dao.impl.BlogArticleDaoImpl;
  *
  * 2017年9月17日
  */
-public class BlogArticleSvc {
+public class BlogArticleSvc implements BlogArticleDao{
 	private BlogArticleDaoImpl bImpl = new BlogArticleDaoImpl();
 	
 	public ArrayList<BlogArticleVo> queryBlogArticles(){
@@ -39,5 +40,14 @@ public class BlogArticleSvc {
 	
 	public int updateBlogById(BlogArticleVo bVo) {
 		return bImpl.updateBlogById(bVo);
+	}
+	
+	public int logicDeleteBlogById(int blogId) {
+		return bImpl.logicDeleteBlogById(blogId);
+	}
+
+	@Override
+	public ArrayList<BlogArticleVo> queryAllBlogArticles() {
+		return bImpl.queryAllBlogArticles();
 	}
 }

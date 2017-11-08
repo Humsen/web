@@ -3,6 +3,7 @@ package pers.husen.web.service;
 import java.util.ArrayList;
 
 import pers.husen.web.bean.vo.CodeLibraryVo;
+import pers.husen.web.dao.CodeLibraryDao;
 import pers.husen.web.dao.impl.CodeLibraryDaoImpl;
 
 /**
@@ -10,15 +11,11 @@ import pers.husen.web.dao.impl.CodeLibraryDaoImpl;
  *
  * 2017年9月28日
  */
-public class CodeLibrarySvc {
+public class CodeLibrarySvc implements CodeLibraryDao{
 	private CodeLibraryDaoImpl cImpl = new CodeLibraryDaoImpl();
 	
 	public int queryCodeTotalCount() {
 		return cImpl.queryCodeTotalCount();
-	}
-	
-	public ArrayList<CodeLibraryVo> queryBlogArticlePerPage(int pageSize, int pageNo){
-		return cImpl.queryCodeLibraryPerPage(pageSize, pageNo);
 	}
 	
 	public CodeLibraryVo queryPerCodeById(int codeId) {
@@ -35,5 +32,14 @@ public class CodeLibrarySvc {
 	
 	public int updateCodeById(CodeLibraryVo cVo) {
 		return cImpl.updateCodeById(cVo);
+	}
+	
+	public int logicDeleteCodeById(int codeId) {
+		return cImpl.logicDeleteCodeById(codeId);
+	}
+
+	@Override
+	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(int pageSize, int pageNo) {
+		return cImpl.queryCodeLibraryPerPage(pageSize, pageNo);
 	}
 }

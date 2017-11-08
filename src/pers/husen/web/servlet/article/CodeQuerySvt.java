@@ -1,4 +1,4 @@
-package pers.husen.web.servlet.codelib;
+package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,7 +53,7 @@ public class CodeQuerySvt extends HttpServlet {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 
-			ArrayList<CodeLibraryVo> cVos = cSvc.queryBlogArticlePerPage(pageSize, pageNo);
+			ArrayList<CodeLibraryVo> cVos = cSvc.queryCodeLibraryPerPage(pageSize, pageNo);
 			String json = JSONArray.fromObject(cVos).toString();
 
 			out.println(json);

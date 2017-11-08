@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import pers.husen.web.bean.vo.BlogArticleVo;
+import pers.husen.web.common.constants.DbConstans;
 import pers.husen.web.dao.BlogArticleDao;
 import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
@@ -29,8 +30,9 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 	
 	@Override
 	public int queryBlogTotalCount() {
-		String sql = "SELECT count(*) as count FROM blog_details";
+		String sql = "SELECT count(*) as count FROM blog_details WHERE blog_delete = ?";
 		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
@@ -40,10 +42,11 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		String sql = "SELECT blog_id, blog_title, blog_date, blog_author, blog_summary, blog_read, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", " 
 				+ BlogDetailsMapping.BLOG_MD_CONTENT
-				+ " FROM blog_details"
+				+ " FROM blog_details WHERE blog_delete = ?"
 				+ " ORDER BY blog_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class);
 	}
@@ -55,10 +58,11 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_LABEL + ", "
 				+ "blog_summary, blog_read, blog_author FROM blog_details"
-				+ " WHERE blog_id = ? ";
+				+ " WHERE blog_id = ? AND blog_delete = ?";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(blogId);
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class).get(0);
 	}
@@ -120,5 +124,14 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add(bVo.getBlogId());
 		
 		return DbManipulationUtils.updateRecordByParam(sql, paramList);
+	}
+
+	@Override
+	public int logicDeleteBlogById(int blogId) {
+		String sql = "UPDATE blog_details SET blog_delete = 1 WHERE blog_id = ?";
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(blogId);
+		
+		return DbManipulationUtils.deleteRecordByParamLogic(sql, paramList);
 	}
 }

@@ -54,4 +54,11 @@ public interface CodeLibraryDao {
 	 * @return
 	 */
 	public int updateCodeById(CodeLibraryVo cVo);
+	
+	/**
+	 * 根据id逻辑删除代码
+	 * @param blogId
+	 * @return
+	 */
+	public int logicDeleteCodeById(int blogId);
 }

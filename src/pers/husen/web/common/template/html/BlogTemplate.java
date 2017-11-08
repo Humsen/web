@@ -19,7 +19,8 @@ public class BlogTemplate {
 	 * @return
 	 */
 	public static String customizeHeader() {
-		String cHeader = "	<!-- editor.md -->\r\n" + 
+		String cHeader = "<!-- 单独的js和css --> 	"
+				+ " <!-- editor.md -->\r\n" + 
 				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.preview.min.css\" />\r\n" + 
 				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.min.css\" />\r\n" + 
 				"	\r\n" + 
@@ -31,7 +32,8 @@ public class BlogTemplate {
 				"	<!-- 自定义CSS -->\r\n" + 
 				"	<link rel=\"stylesheet\" href=\"/css/article/article.css\">\r\n"+
 				"	<!-- 自定义脚本 -->\r\n" + 
-				"	<script src=\"/js/article/article-markdown.js\"></script>";
+				"	<script src=\"/js/article/article-markdown.js\"></script>" +
+				"	<script src=\"/js/article/blog-details.js\"></script>";
 		
 		return cHeader;
 	}
@@ -75,7 +77,7 @@ public class BlogTemplate {
 				"			\r\n" +
 				"			<div class=\"fh5co-entry\" id=\"content\">" +
 				"				<div>" +
-				"					<h2 style=\"text-align: center;\"><input type=\"text\" style=\"display:none\" value="+ bVo.getBlogId() + "\"  />"+
+				"					<h2 class=\"text-align-center\"><input id=\"hiden_blogId\" type=\"hidden\" value="+ bVo.getBlogId() + " />"+
 				"						<a href=#>" + bVo.getBlogTitle() + "</a>"+
 				"					</h2>"+
 				"					<span class=\"fh5co-post-date\">" + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(bVo.getBlogDate()) + "</span>"+
@@ -85,7 +87,7 @@ public class BlogTemplate {
 		
 		if(isSuperAdmin) {
 			body += "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a> "
-				  + "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-danger btn-sm\">删除</a>"; 
+				  + "<a id=\"btn_deleteBlog\" href=\"javascript:void(0)\" role=\"button\" class=\"btn btn-danger btn-sm\">删除</a>"; 
 		}
 		
 		body += 
