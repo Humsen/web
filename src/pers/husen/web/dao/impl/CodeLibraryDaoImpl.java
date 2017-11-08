@@ -58,8 +58,9 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		String sql = "INSERT INTO code_library (code_title, code_date, code_summary, code_author, code_read, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
-				+ CodeLibraryMapping.CODE_LABEL
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ CodeLibraryMapping.CODE_LABEL + ", "
+				+ CodeLibraryMapping.CODE_DELETE
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;
@@ -71,6 +72,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add((obj = cVo.getCodeHtmlContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeMdContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeLabel()) != null ? obj : "");
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}

@@ -22,7 +22,7 @@ import pers.husen.web.service.UserInfoSvc;
  *
  *         2017年10月20日
  */
-@WebServlet(urlPatterns = "/userinfo.hms")
+@WebServlet(urlPatterns = "/userInfo.hms")
 public class UserInfoSvt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,10 +31,8 @@ public class UserInfoSvt extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-
 		PrintWriter out = response.getWriter();
 		UserInfoSvc uSvc = new UserInfoSvc();
 
@@ -65,7 +63,7 @@ public class UserInfoSvt extends HttpServlet {
 			String formData = request.getParameter("formdata");
 			JSONObject jsonObject = JSONObject.fromObject(formData);
 			UserInfoVo uVo = (UserInfoVo) JSONObject.toBean(jsonObject, UserInfoVo.class);
-
+			
 			int updateResult = uSvc.updateUserInfoById(uVo);
 			out.println(updateResult);
 

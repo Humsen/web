@@ -6,7 +6,7 @@
  * 2017年9月25日
  */
 
-//初始化
+// 初始化
 $(function() {
 	Comment.allocate({
 		parent : $('#message_box'), // 你想要将这个评论放到页面哪个元素中
@@ -21,19 +21,21 @@ $(function() {
  * 执行初始化的函数
  */
 Comment.allocate = function(options) {
-	//构造函数
+	// 构造函数
 	var oCmt = new Comment(options);
 	if (oCmt.belong == undefined || !oCmt.getCmtUrl || !oCmt.setCmtUrl) {
 		return null;
-	};
-	//初始化
+	}
+	;
+	// 初始化
 	oCmt.init(options);
-	
+
 	return oCmt;
 };
 
 /**
  * 构造函数
+ * 
  * @param options
  * @returns
  */
@@ -68,7 +70,8 @@ fn.init = function(options) {
 fn.initNode = function(options) {
 	// init wrapper box
 	if (!!options.parent) {
-		this.parent = options.parent[0].nodeType == 1 ? options.parent : $('#' + options.parent);
+		this.parent = options.parent[0].nodeType == 1 ? options.parent : $('#'
+				+ options.parent);
 	}
 
 	if (!this.parent) {
@@ -82,14 +85,14 @@ fn.initNode = function(options) {
 				+ '<div class="cmt-form" >'
 				+ '<textarea class="cmt-text form-control meessage-input" placeholder="请输入留言..."></textarea>'
 				+ '<button class="btn btn-success btn-sm u-button btn-submit-commit">提交评论</button>'
-				+ '<hr class="commit-hr">'
-				+ '</div>' + '<div class="cmt-content">'
+				+ '<hr class="commit-hr">' + '</div>'
+				+ '<div class="cmt-content">'
 				+ '<div class="u-loading1"></div>'
 				+ '<div class="no-cmt">暂时没有评论</div>'
 				+ '<ul class="cmt-list"></ul>' + '<div class="f-clear">'
 				+ '<div class="pager-box"></div>' + '</div>' + '</div>'
 				+ '</div>';
-		
+
 		return $(strHtml);
 	})();
 
@@ -129,23 +132,24 @@ fn.getList = function() {
 		success : function(data) {
 			if (!data) {
 				$.confirm({
-				    content: '获取评论列表失败',
-				    autoClose: 'ok|2000',
-				    type: 'red',
-				    buttons: {
-				    	ok: {
-				            text: '确认',
-				            btnClass: 'btn-primary',
-				        },
-				    }
+					content : '获取评论列表失败',
+					autoClose : 'ok|2000',
+					type : 'red',
+					buttons : {
+						ok : {
+							text : '确认',
+							btnClass : 'btn-primary',
+						},
+					}
 				});
-				
+
 				return !1;
 			}
 			// 增加reponse字段和处理时间
-			for(var i in data){
+			for ( var i in data) {
 				data[i].response = [];
-				data[i].messageDate = new Date(data[i].messageDate.time).format('yyyy-MM-dd hh:mm:ss')
+				data[i].messageDate = new Date(data[i].messageDate.time)
+						.format('yyyy-MM-dd hh:mm:ss')
 			}
 			// 整理评论列表
 			self.initList(data);
@@ -153,15 +157,15 @@ fn.getList = function() {
 			// 显示评论列表
 			if (self.lists.length == 0) {
 				$.confirm({
-				    content: '暂时没有评论',
-				    autoClose: 'ok|2000',
-				    type: 'red',
-				    buttons: {
-				    	ok: {
-				            text: '确认',
-				            btnClass: 'btn-primary',
-				        },
-				    }
+					content : '暂时没有评论',
+					autoClose : 'ok|2000',
+					type : 'red',
+					buttons : {
+						ok : {
+							text : '确认',
+							btnClass : 'btn-primary',
+						},
+					}
 				});
 				// 暂时没有评论
 				self.noCmt.css('display', 'block');
@@ -181,18 +185,18 @@ fn.getList = function() {
 				});
 			}
 		},
-		error : function(XMLHttpRequest, textStatus){
+		error : function(XMLHttpRequest, textStatus) {
 			$.confirm({
-			    title: '获取评论列表出错',
-			    content: textStatus + ' : ' + XMLHttpRequest.status,
-			    autoClose: 'ok|2000',
-			    type: 'red',
-			    buttons: {
-			    	ok: {
-			            text: '确认',
-			            btnClass: 'btn-primary',
-			        },
-			    }
+				title : '获取评论列表出错',
+				content : textStatus + ' : ' + XMLHttpRequest.status,
+				autoClose : 'ok|2000',
+				type : 'red',
+				buttons : {
+					ok : {
+						text : '确认',
+						btnClass : 'btn-primary',
+					},
+				}
 			});
 		}
 	});
@@ -247,7 +251,8 @@ fn.showList = (function() {
 			str1 += '<li class="f-clear"><table><tbody><tr><td>'
 					+ '<span class="username">' + t.messageUsername
 					+ '：</span></td><td>' + '<span class="child-content">'
-					+ t.messageContent + '</span></td></tr></tbody></table>' + '</li>'
+					+ t.messageContent + '</span></td></tr></tbody></table>'
+					+ '</li>'
 		}
 		// 处理评论
 		var headImg = '';
@@ -259,10 +264,10 @@ fn.showList = (function() {
 		}
 		_obj.messageContent = _obj.messageContent.replace(/\<\;/g, '<');
 		_obj.messageContent = _obj.messageContent.replace(/\>\;/g, '>');
-		var str2 = '<li class="f-clear">' 
-				+ '<hr class="commit-hr1"/>'
-				+ '<div class="user-head">'
-				+ '<img src="/images/message/' + headImg + '"	 class="message-head-img"/>'
+		var str2 = '<li class="f-clear">' + '<hr class="commit-hr1"/>'
+				+ '<div class="user-head">' + '<img src="/images/message/'
+				+ headImg
+				+ '"	 class="message-head-img"/>'
 				+ '</div>'
 				+ '<div class="content c-float-left">'
 				+ '<div class="f-clear">'
@@ -286,10 +291,12 @@ fn.showList = (function() {
 
 		return str2;
 	}
-	
+
 	var page = 1;
-	return function(page){
-		var len = this.lists.length, end = len - (page - 1) * this.offset, start = end - this.offset < 0 ? 0 : end - this.offset, current = this.lists.slice(start, end);
+	return function(page) {
+		var len = this.lists.length, end = len - (page - 1) * this.offset, start = end
+				- this.offset < 0 ? 0 : end - this.offset, current = this.lists
+				.slice(start, end);
 		var cmtList = '';
 		for (var i = current.length - 1; i >= 0; i--) {
 			var t = current[i], index = this.keys[t['messageId']];
@@ -298,7 +305,7 @@ fn.showList = (function() {
 		}
 		this.cmtList.html(cmtList);
 	};
-	
+
 })();
 
 /**
@@ -311,229 +318,231 @@ fn.initEvent = function() {
 	this.cmtList.on('click', this.doClickResponse.bind(this));
 };
 
-fn.addCmt = function (_btn, _text, _parent) {
-	 // 防止多次点击
-	 if(_btn.attr('data-disabled') == 'true') {
-		 return !1;
-	 }
-	 // 处理提交空白
-	 var value = _text.val().replace(/^\s+|\s+$/g, '');
-	 value = value.replace(/[\r\n]/g,'<br >');
-	 if(!value){
-			$.confirm({
-			    title: '',
-			    content: '内容不能为空',
-			    autoClose: 'ok|2000',
-			    type: 'red',
-			    buttons: {
-			    	ok: {
-			            text: '确认',
-			            btnClass: 'btn-primary',
-			        },
-			    }
-			});
-		 return !1;
-	 }
-	 // 禁止点击
-	 _btn.attr('data-disabled','true');
-	 _btn.html('评论提交中...');
-	 // 提交处理
-	 /**
-	  * todo 暂时全部设置为游客
-	  */
-	 var self = this;
-	 var email='940706904@qq.com';
-	 var username='游客';
-	 
-	 /*
-		 * username = $.cookie('user'); if (!username) { alert('游客') username =
-		 * '游客'; } email = $.cookie('email'); if (!email) { email =
-		 * 'default@163.com'; }
+fn.addCmt = function(_btn, _text, _parent) {
+	// 防止多次点击
+	if (_btn.attr('data-disabled') == 'true') {
+		return !1;
+	}
+	// 处理提交空白
+	var value = _text.val().replace(/^\s+|\s+$/g, '');
+	value = value.replace(/[\r\n]/g, '<br >');
+	if (!value) {
+		$.confirm({
+			title : '',
+			content : '内容不能为空',
+			autoClose : 'ok|2000',
+			type : 'red',
+			buttons : {
+				ok : {
+					text : '确认',
+					btnClass : 'btn-primary',
+				},
+			}
+		});
+		return !1;
+	}
+	// 禁止点击
+	_btn.attr('data-disabled', 'true');
+	_btn.html('评论提交中...');
+	// 提交处理
+	/**
+	 * todo 暂时全部设置为游客
+	 */
+	var self = this;
+	var email = '940706904@qq.com';
+	var username = '游客';
+
+	/*
+	 * username = $.cookie('user'); if (!username) { alert('游客') username =
+	 * '游客'; } email = $.cookie('email'); if (!email) { email =
+	 * 'default@163.com'; }
+	 */
+
+	var now = $.nowDateHMS();
+	// 将参数封装到对象里
+	var new_message = {};
+	new_message.messageBelong = self.belong;
+	new_message.messageParent = _parent;
+	new_message.messageEmail = email;
+	new_message.messageUsername = username;
+	new_message.messageContent = value;
+	new_message.messageDate = now;
+
+	$.ajax({
+		type : 'get',
+		dataType : 'json',
+		url : this.setCmtUrl,
+		data : {
+			type : 'create_one',
+			newMessage : JSON.stringify(new_message),
+		/*
+		 * belong: self.belong, parent: _parent, email: email, username:
+		 * username, content: value
 		 */
-	 
-	 var now = $.nowDateHMS();
-	 // 将参数封装到对象里
-	 var new_message = {};
-	 new_message.messageBelong = self.belong;
-	 new_message.messageParent = _parent;
-	 new_message.messageEmail = email;
-	 new_message.messageUsername = username;
-	 new_message.messageContent = value;
-	 new_message.messageDate = now;
-	 
-	 $.ajax({
-		 type: 'get',
-		 dataType: 'json',
-		 url: this.setCmtUrl,
-		 data: {
-			 type : 'create_one',
-			 newMessage : JSON.stringify(new_message),
-		   /*
-			* belong: self.belong, parent: _parent, email: email, username:
-			* username, content: value
-			*/
-	  },
-	  success: function(_data){
-		  // 解除禁止点击
-		  _btn.attr('data-disabled', '');
-		  _btn.html('提交评论');
-		  if (!_data) {
+		},
+		success : function(_data) {
+			// 解除禁止点击
+			_btn.attr('data-disabled', '');
+			_btn.html('提交评论');
+			if (!_data) {
 				$.confirm({
-				    content: '评论失败，请重新评论',
-				    autoClose: 'ok|2000',
-				    type: 'green',
-				    buttons: {
-				    	ok: {
-				            text: '确认',
-				            btnClass: 'btn-primary',
-				        },
-				    }
+					content : '评论失败，请重新评论',
+					autoClose : 'ok|2000',
+					type : 'green',
+					buttons : {
+						ok : {
+							text : '确认',
+							btnClass : 'btn-primary',
+						},
+					}
 				});
-		  
-			  return !1;
-		  }
-	   if (_data['result'] == 1) {
-		   // 评论成功
-		   $.confirm({
-			    content: '评论成功',
-			    autoClose: 'ok|1500',
-			    type: 'green',
-			    buttons: {
-			    	ok: {
-			            text: '确认',
-			            btnClass: 'btn-primary',
-			        },
-			    }
-			});
-		   
-		   var id = _data['messageId'];
-		   var time = now;
-		   /*
-			 * time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +
-			 * now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() +
-			 * ':' + now.getSeconds();
-			 */
-		   if (_parent == 0) {
-			   var index = self.lists.length;
 
-			   if (!self.pager) {
-				   // 设置分页器
-				   self.noCmt.css('display', 'none');
-				   var total = Math.ceil(self.lists.length / self.offset);
+				return !1;
+			}
+			if (_data['result'] == 1) {
+				// 评论成功
+				$.confirm({
+					title : false,
+					content : '评论成功',
+					autoClose : 'ok|1500',
+					type : 'green',
+					buttons : {
+						ok : {
+							text : '确认',
+							btnClass : 'btn-primary',
+						},
+					}
+				});
 
-				   self.pager = new Pager({
-					   index: 1,
-					   total: total,
-					   parent: self.pagerBox[0],
-					   onchange: self.doChangePage.bind(self),
-					   label:{
-						   prev: '<',
-						   next: '>'
-					   }
-				   });
-			   }
+				var id = _data['messageId'];
+				var time = now;
+				/*
+				 * time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +
+				 * now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() +
+				 * ':' + now.getSeconds();
+				 */
+				if (_parent == 0) {
+					var index = self.lists.length;
 
-			   self.keys[id] = index;
-			   self.lists.push({
-				   'messageId': id,
-				   'messageUsername': username,
-				   'messageDate': time,
-				   'messageContent': value,
-				   'response': []
-			   });
-			   self.showList(1);
-			   self.pager._$setIndex(1);
-		   }else {
-			   var index = self.keys[_parent],
-			   page = self.pager.__index;
-			   self.lists[index]['response'].push({
-				   'messageId': id,
-				   'messageUsername': username,
-				   'messageDate': time,
-				   'messageContent': value
-			   });
-			   self.showList(page);
-		   }
+					if (!self.pager) {
+						// 设置分页器
+						self.noCmt.css('display', 'none');
+						var total = Math.ceil(self.lists.length / self.offset);
 
-		   self.text.val('');
-	   } else {
+						self.pager = new Pager({
+							index : 1,
+							total : total,
+							parent : self.pagerBox[0],
+							onchange : self.doChangePage.bind(self),
+							label : {
+								prev : '<',
+								next : '>'
+							}
+						});
+					}
+
+					self.keys[id] = index;
+					self.lists.push({
+						'messageId' : id,
+						'messageUsername' : username,
+						'messageDate' : time,
+						'messageContent' : value,
+						'response' : []
+					});
+					self.showList(1);
+					self.pager._$setIndex(1);
+				} else {
+					var index = self.keys[_parent], page = self.pager.__index;
+					self.lists[index]['response'].push({
+						'messageId' : id,
+						'messageUsername' : username,
+						'messageDate' : time,
+						'messageContent' : value
+					});
+					self.showList(page);
+				}
+
+				self.text.val('');
+			} else {
+				$.confirm({
+					title : '',
+					content : '评论失败，请重新评论',
+					autoClose : 'ok|2000',
+					type : 'red',
+					buttons : {
+						ok : {
+							text : '确认',
+							btnClass : 'btn-primary',
+						},
+					}
+				});
+			}
+		},
+		error : function(XMLHttpRequest, textStatus) {
 			$.confirm({
-			    title: '',
-			    content: '评论失败，请重新评论',
-			    autoClose: 'ok|2000',
-			    type: 'red',
-			    buttons: {
-			    	ok: {
-			            text: '确认',
-			            btnClass: 'btn-primary',
-			        },
-			    }
+				title : '评论出错，请重新评论',
+				content : textStatus + ' : ' + XMLHttpRequest.status,
+				autoClose : 'ok|2000',
+				type : 'green',
+				buttons : {
+					ok : {
+						text : '确认',
+						btnClass : 'btn-primary',
+					},
+				}
 			});
-	   	}
-	  },
-	  error : function(XMLHttpRequest, textStatus){
-		  $.confirm({
-			  title: '评论出错，请重新评论',
-			  content: textStatus + ' : ' + XMLHttpRequest.status,
-		      autoClose: 'ok|2000',
-		      type: 'green',
-		      buttons: {
-		       	  ok: {
-		              text: '确认',
-		              btnClass: 'btn-primary',
-		          },
-		      }
-			});
-		  
-		   // 解除禁止点击
-		   _btn.attr('data-disabled', '');
-		   _btn.html('提交评论');
-	  }
-	 });
+
+			// 解除禁止点击
+			_btn.attr('data-disabled', '');
+			_btn.html('提交评论');
+		}
+	});
 }
 
 /**
  * doClickResponse 函数
  */
-fn.doClickResponse = function(_event){
-	 var target = $(_event.target);
+fn.doClickResponse = function(_event) {
+	var target = $(_event.target);
 
-	 var id = target.attr('data-id');
+	var id = target.attr('data-id');
 
-	 if (target.hasClass('response') && target.attr('data-disabled') != 'true') {
-		 // 点击回复
-		 var oDiv = document.createElement('div');
-		 oDiv.className = 'cmt-form';
-		 
-		 var replyHtml = '';
-		 //判断是否是手机
-		 if($.isMobile()){
-			 replyHtml += '<textarea class="cmt-text comment-input mobile-reply" placeholder="请输入回复评论..."></textarea>';
-			 replyHtml += '<div class="reply-div-mobile">';
-		 }else{
-			 replyHtml += '<textarea class="cmt-text comment-input" placeholder="请输入回复评论..."></textarea>';
-			 replyHtml += '<div class="reply-div-pc">';
-		 }
-		 oDiv.innerHTML = replyHtml +
-			 '<button class="u-button resBtn" data-id="' + id + '">提交评论</button>' +
-			 '<a href="javascript:void(0);" class="cancel cancel-reply">[取消回复]</a>'+
-			 '</div>';
-		 target.parent().parent().append(oDiv);
-		 oDiv = null;
-		 target.attr('data-disabled', 'true');
-	 } else if (target.hasClass('cancel')) {
-		  // 点击取消回复
-		  var ppNode = target.parent().parent().parent(),
-		  oRes = ppNode.find('.response').eq(0);
-		  target.parent().parent().remove();
-		  oRes.attr('data-disabled', '');
-	 } else if (target.hasClass('resBtn')) {
-		  // 点击评论
-		  var oText = target.parent().parent().find('.cmt-text').eq(0);
-		  var parent = target.attr('data-id');
-		  this.addCmt(target, oText, parent);
-	 }else{
-		  // 其他情况
-		  return !1;
-	 }
+	if (target.hasClass('response') && target.attr('data-disabled') != 'true') {
+		// 点击回复
+		var oDiv = document.createElement('div');
+		oDiv.className = 'cmt-form';
+
+		var replyHtml = '';
+		// 判断是否是手机
+		if ($.isMobile()) {
+			replyHtml += '<textarea class="cmt-text comment-input mobile-reply" placeholder="请输入回复评论..."></textarea>';
+			replyHtml += '<div class="reply-div-mobile">';
+		} else {
+			replyHtml += '<textarea class="cmt-text comment-input" placeholder="请输入回复评论..."></textarea>';
+			replyHtml += '<div class="reply-div-pc">';
+		}
+		oDiv.innerHTML = replyHtml
+				+ '<button class="u-button resBtn" data-id="'
+				+ id
+				+ '">提交评论</button>'
+				+ '<a href="javascript:void(0);" class="cancel cancel-reply">[取消回复]</a>'
+				+ '</div>';
+		target.parent().parent().append(oDiv);
+		oDiv = null;
+		target.attr('data-disabled', 'true');
+	} else if (target.hasClass('cancel')) {
+		// 点击取消回复
+		var ppNode = target.parent().parent().parent(), oRes = ppNode.find(
+				'.response').eq(0);
+		target.parent().parent().remove();
+		oRes.attr('data-disabled', '');
+	} else if (target.hasClass('resBtn')) {
+		// 点击评论
+		var oText = target.parent().parent().find('.cmt-text').eq(0);
+		var parent = target.attr('data-id');
+		this.addCmt(target, oText, parent);
+	} else {
+		// 其他情况
+		return !1;
+	}
 };

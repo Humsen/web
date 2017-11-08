@@ -73,8 +73,9 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", "
 				+ "blog_summary, blog_author, blog_read, "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
-				+ BlogDetailsMapping.BLOG_LABEL
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ BlogDetailsMapping.BLOG_LABEL + ", "
+				+ BlogDetailsMapping.BLOG_DELETE
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;
@@ -86,6 +87,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add((obj = bVo.getBlogRead()) != null ? obj : 0);
 		paramList.add((obj = bVo.getBlogMdContent()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogLabel()) != null ? obj : "");
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}

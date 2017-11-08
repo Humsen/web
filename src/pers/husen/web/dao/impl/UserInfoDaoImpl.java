@@ -75,7 +75,8 @@ public class UserInfoDaoImpl implements UserInfoDao{
 				+ UserInfoMapping.USER_AGE + "=?, "
 				+ UserInfoMapping.USER_SEX + "=?, "
 				+ UserInfoMapping.USER_ADDRESS + "=?, "
-				+ UserInfoMapping.USRE_HEAD_URL + "=? "
+				+ UserInfoMapping.USRE_HEAD_URL + "=?, "
+				+ UserInfoMapping.USER_NICK_NAME + "=? "
 				+ "WHERE "
 				+ UserInfoMapping.USER_ID + "=?";
 		
@@ -88,6 +89,8 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		paramList.add(uVo.getUserSex());
 		paramList.add(uVo.getUserAddress());
 		paramList.add(uVo.getUserHeadUrl());
+		paramList.add(uVo.getUserNickName());
+		
 		paramList.add(uVo.getUserId());
 		
 		return DbManipulationUtils.updateRecordByParam(sql, paramList);

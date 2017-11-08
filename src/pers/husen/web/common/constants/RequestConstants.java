@@ -1,7 +1,7 @@
 package pers.husen.web.common.constants;
 
 /**
- * 前端请求常量
+ * 前端到后端请求常量
  *
  * @author 何明胜
  *

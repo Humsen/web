@@ -129,7 +129,7 @@ function showUserInfo(){
 	$.ajax({
 		type : 'POST',
 		async: false,
-		url : '/userinfo.hms',
+		url : '/userInfo.hms',
 		dataType : 'json',
 		data : {
 			type : 'query_user_info',

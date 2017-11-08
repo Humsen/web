@@ -4,18 +4,34 @@
  * 2017年10月25日
  */
 
+// 图片是否修改
+is_pic_modify = false;
+
 $(function() {
 	// 填充用户信息
 	fillUserInfo();
-
-	// 验证
+	// 添加验证
 	modifyValidator();
+	// 用户头像更换点击事件
+	userHeadChangeClick();
+	// 提交事件
+	$('#submitModify').click(submitForm);
+	// 个人资料点击跳转修改邮箱
+	$('#btn_goModifyEmail').click(gotoModifyEmailClick);
+});
 
+/**
+ * 用户头像更新点击事件
+ * 
+ * @returns
+ */
+function userHeadChangeClick() {
 	$('#upimg').on('change', function() {
 		var objUrl = getObjectURL(this.files[0]); // 获取图片的路径，该路径不是图片在本地的路径
 
 		if (objUrl) {
 			$('#imgshow').attr('src', objUrl); // 将图片路径存入src中，显示出图片
+			is_pic_modify = true;
 		}
 	});
 
@@ -26,10 +42,7 @@ $(function() {
 	$('#changepic').click(function() {
 		$('#upimg').click(); // 隐藏了input:file样式后，点击头像就可以本地上传
 	});
-
-	// 提交事件
-	$('#submitModify').click(submitForm);
-});
+}
 
 /**
  * 填充用户信息
@@ -41,7 +54,7 @@ function fillUserInfo() {
 	$.ajax({
 		type : 'POST',
 		async : false,
-		url : '/userinfo.hms',
+		url : '/userInfo.hms',
 		dataType : 'json',
 		data : {
 			type : 'query_user_info',
@@ -53,7 +66,7 @@ function fillUserInfo() {
 			$('#userid').val(response.userId);
 			$('#username').val(response.userName);
 			$('#txt_userNickName').val(response.userNickName);
-			$('#email').val(response.userEmail);
+			$('#txt_userEmail').val(response.userEmail);
 			$('#phone').val(response.userPhone);
 			$('#age').val(response.userAge);
 			$('#address').val(response.userAddress);
@@ -67,16 +80,25 @@ function fillUserInfo() {
  * @returns
  */
 function submitForm() {
-	// 上传图片
-	var url = uploadPic();
+	// 如果图像修改，上传新头像
+	if (is_pic_modify) {
+		// 上传图片
+		var url = uploadPic();
 
-	if (url) {
-		$('#headurl').val(url);
+		if (typeof url == 'undefined') {
+			return;
+		} else {
+			$('#headurl').val(url);
+		}
 	}
 
-	var formDataJson = JSON.stringify($('#modifyForm').form2Json());
+	var formDataJson = $('#modifyForm').form2Json();
+	// 邮箱被禁用，单独添加
+	formDataJson['userEmail'] = $('#txt_userEmail').val();
+	formDataJson = JSON.stringify(formDataJson);
+
 	var new_username = $('#username').val();
-	
+
 	$.ajax({
 		type : 'POST',
 		async : false,
@@ -109,16 +131,31 @@ function submitForm() {
 						}
 					}
 				});
-				//如果修改了用户名，则修改cookie值
-				if(new_username != $.cookie('username')){
-					$.cookie('username', new_username, {path : '/'});
+				// 如果修改了用户名，则修改cookie值
+				if (new_username != $.cookie('username')) {
+					$.cookie('username', new_username, {
+						path : '/'
+					});
 				}
+			} else {
+				$.confirm({
+					title : '修改个人资料失败',
+					content : '请稍后重试',
+					autoClose : 'ok|2000',
+					type : 'red',
+					buttons : {
+						ok : {
+							text : '确认',
+							btnClass : 'btn-primary',
+						}
+					}
+				});
 			}
 
 		},
 		error : function(XMLHttpRequest, textStatus) {
 			$.confirm({
-				title : '修改出错',
+				title : '修改个人资料出错',
 				content : textStatus + ' : ' + XMLHttpRequest.status,
 				autoClose : 'ok|2000',
 				type : 'red',
@@ -151,7 +188,7 @@ function uploadPic() {
 	fd.append('uploadFile', pic);
 
 	$.ajax({
-		url : '/imageUpload',
+		url : '/imageUpload.hms',
 		type : 'post',
 		async : false,
 		dataType : 'json',
@@ -184,6 +221,7 @@ function uploadPic() {
 
 /**
  * 获取file的url
+ * 
  * @param file
  * @returns
  */
@@ -200,7 +238,8 @@ function getObjectURL(file) {
 }
 
 /**
- * 修改密码表单添加验证
+ * 修改个人信息表单添加验证
+ * 
  * @returns
  */
 function modifyValidator() {
@@ -248,7 +287,7 @@ function modifyValidator() {
 							userPhone : {
 								validators : {
 									regexp : {
-										regexp :  /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/,
+										regexp : /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/,
 										message : '手机号不合法!'
 									}
 								}
@@ -270,4 +309,13 @@ function modifyValidator() {
 						}
 					});
 
+}
+
+/**
+ * 人资料点击跳转修改邮箱
+ * 
+ * @returns
+ */
+function gotoModifyEmailClick() {
+	$('#btn_modifyEmail').click();
 }

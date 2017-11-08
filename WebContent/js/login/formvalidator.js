@@ -370,7 +370,7 @@ function submitLoginForm() {
 
 	if ($loginValidate.isValid()) {
 		$.ajax({
-			url : '/userinfo.hms',
+			url : '/userInfo.hms',
 			async : false,// 同步，会阻塞操作
 			type : 'POST',// PUT DELETE POST
 			data : {
@@ -480,7 +480,7 @@ function submitRegisterForm() {
 							// 注册发送验证码
 							$.ajax({
 								url : '/userInfo/code.hms',
-								async : false,// 同步，会阻塞操作
+								async : true,// 同步，会阻塞操作
 								type : 'POST',// PUT DELETE POST
 								data : {
 									type : 'send_code_register',
@@ -544,15 +544,14 @@ function submitRegisterForm() {
 						// 注册校验验证码
 						$.ajax({
 							url : '/userInfo/code.hms',
-							async : false,// 同步，会阻塞操作
+							async : true,// 同步，会阻塞操作
 							type : 'POST',// PUT DELETE POST
 							data : {
 								type : 'auth_code_register',
 								randomCode : $('#txt_validateCode').val(),
 							},
 							success : function(response) {
-								if (response != 0) {
-									// $('#register').modal('show');
+								if (response == 1) {
 									// 发送注册信息
 									sendRegisterInfo();
 								} else {
@@ -617,7 +616,7 @@ function sendRegisterInfo() {
 		type : 'POST',// PUT DELETE POST
 		data : registerInfo2Json(),
 		success : function(result) {
-			if (result != 0) {
+			if (result == 1) {
 				$.confirm({
 					title : '注册成功',
 					content : '注册成功',
@@ -672,7 +671,7 @@ function sendRegisterInfo() {
 function registerInfo2Json() {
 	var newUserInfo = {};
 	
-	newUserInfo.type = 'register_user_info';
+	newUserInfo.type = 'create_user_info';
 	newUserInfo.userName = $('#txt_userNameRegister').val();
 	newUserInfo.password = $('#txt_userPwdRegister').val()
 	newUserInfo.email = $('#txt_userEmailRegister').val();

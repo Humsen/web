@@ -54,7 +54,7 @@ public class CodeUploadSvt extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String uploadType = request.getParameter("type");
-		// 如果是修改代码
+		/** 如果是修改代码 */
 		if (uploadType != null && RequestConstants.REQUEST_TYPE_MODIFY.equals(uploadType)) {
 			// 获取id
 			int codeId = Integer.parseInt(request.getParameter("articleId"));
@@ -66,7 +66,7 @@ public class CodeUploadSvt extends HttpServlet {
 
 			return;
 		}
-		// 如果是上传新代码
+		/** 如果是上传新代码 */
 		if (RequestConstants.REQUEST_TYPE_CREATE.equals(uploadType)) {
 			int insertResult = cSvc.insertCodeLibrary(cVo);
 			out.println(insertResult);

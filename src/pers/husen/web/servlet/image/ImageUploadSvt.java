@@ -71,7 +71,6 @@ public class ImageUploadSvt extends HttpServlet {
 		}
 		
 		JSONObject jsonObject = JSONObject.fromObject(iPo);
-		
 		PrintWriter out = response.getWriter();
 		out.println(jsonObject);
 	}

@@ -19,6 +19,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.sun.mail.util.MailSSLSocketFactory;
 
+import pers.husen.web.common.constants.ResponseConstants;
+
 /**
  * 发送邮件
  *
@@ -117,12 +119,12 @@ public class SendEmailHelper {
 			
 			logger.info("发送邮件成功! 收件人：" + email);
 			
-			return 1;
+			return ResponseConstants.RESPONSE_OPERATION_SUCCESS;
 		} catch (MessagingException | UnsupportedEncodingException | GeneralSecurityException mex) {
 			logger.error(StackTrace2Str.exceptionStackTrace2Str(mex));
 		}
 		
-		return 0;
+		return ResponseConstants.RESPONSE_OPERATION_FAILURE;
 	}
 	
 	/**

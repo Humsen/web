@@ -9,6 +9,13 @@ package pers.husen.web.bean.po;
  */
 public class ImageUploadPo {
 	private int success;
+	private String message;
+	private String url;
+	
+	@Override
+	public String toString() {
+		return "ImageUploadPo [success=" + success + ", message=" + message + ", url=" + url + "]";
+	}
 	/**
 	 * @return the success
 	 */
@@ -45,6 +52,4 @@ public class ImageUploadPo {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	private String message;
-	private String url;
 }

@@ -47,8 +47,9 @@ function contactFormValidate() {
 					notEmpty : {
 						message : '邮箱为必填哦!'
 					},
-					emailAddress : {
-						message : '输入邮件地址无效!'
+					regexp : {
+						regexp : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+						message : '邮箱格式不正确'
 					}
 				}
 			},
@@ -78,6 +79,7 @@ function sendEmailClick() {
 		// 进行表单验证
 		var $formContactAdmin = $('#form_contactAdmin').data('bootstrapValidator');
 		$formContactAdmin.validate();
+		
 		if ($formContactAdmin.isValid()) {
 			// 发送ajax请求
 			$.ajax({
@@ -89,8 +91,8 @@ function sendEmailClick() {
 					if(result == 1){
 						$.confirm({
 						    title: '发送成功',
-						    content: textStatus + ' : ' + XMLHttpRequest.status,
-						    autoClose: 'ok|1000',
+						    content: '您的邮箱已经发送到站长邮箱，感谢您的支持!',
+						    autoClose: 'ok|5000',
 						    type: 'green',
 						    buttons: {
 						    	ok: {

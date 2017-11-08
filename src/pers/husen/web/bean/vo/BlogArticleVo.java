@@ -20,7 +20,20 @@ public class BlogArticleVo implements Serializable{
 	private int blogRead;
 	private String blogMdContent;
 	private String blogLabel;
+	private int blogDelete;
 	
+	/**
+	 * @return the blogDelete
+	 */
+	public int getBlogDelete() {
+		return blogDelete;
+	}
+	/**
+	 * @param blogDelete the blogDelete to set
+	 */
+	public void setBlogDelete(int blogDelete) {
+		this.blogDelete = blogDelete;
+	}
 	/**
 	 * @return the blogLabel
 	 */
@@ -139,6 +152,7 @@ public class BlogArticleVo implements Serializable{
 	public String toString() {
 		return "BlogArticleVo [blogId=" + blogId + ", blogTitle=" + blogTitle + ", blogAuthor=" + blogAuthor
 				+ ", blogDate=" + blogDate + ", blogSummary=" + blogSummary + ", blogHtmlContent=" + blogHtmlContent
-				+ ", blogRead=" + blogRead + ", blogMdContent=" + blogMdContent + ", blogLabel=" + blogLabel + "]";
+				+ ", blogRead=" + blogRead + ", blogMdContent=" + blogMdContent + ", blogLabel=" + blogLabel
+				+ ", blogDelete=" + blogDelete + "]";
 	}
 }

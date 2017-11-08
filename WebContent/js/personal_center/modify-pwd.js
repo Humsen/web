@@ -42,7 +42,7 @@ function submitModifyPwdForm() {
 	}
 
 	$.ajax({
-		url : '/userinfo.hms',
+		url : '/userInfo.hms',
 		async : false,// 同步，会阻塞操作
 		type : 'POST',// PUT DELETE POST
 		data : {
@@ -124,7 +124,7 @@ function confirmOldPwd() {
 	var result;
 
 	$.ajax({
-		url : '/userinfo.hms',
+		url : '/userInfo.hms',
 		async : false,// 同步，会阻塞操作
 		type : 'POST',// PUT DELETE POST
 		data : {

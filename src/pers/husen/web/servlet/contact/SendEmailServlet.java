@@ -30,10 +30,10 @@ public class SendEmailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		SendEmailHelper sendEmail = new SendEmailHelper();
-		String senderName = request.getParameter("contact_name");
-		String senderEmail = request.getParameter("contact_email");
-		String senderPhone = request.getParameter("contact_phone");
-		String senderContent = request.getParameter("contact_content");
+		String senderName = request.getParameter("contactName");
+		String senderEmail = request.getParameter("contactEmail");
+		String senderPhone = request.getParameter("contactPhone");
+		String senderContent = request.getParameter("contactContent");
 		
 		int result = sendEmail.sendEmail2Admin(senderName, senderEmail, senderPhone, senderContent);
 		

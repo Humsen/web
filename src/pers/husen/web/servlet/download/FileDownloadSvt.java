@@ -34,7 +34,7 @@ public class FileDownloadSvt extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
+		
 		// 如果是请求下载文件
 		String filename = request.getParameter("filename");
 		if (filename != null) {
@@ -43,6 +43,7 @@ public class FileDownloadSvt extends HttpServlet {
 
 			return;
 		}
+		PrintWriter out = response.getWriter();
 		String requestType = request.getParameter("type");
 		//如果是查询所有文件的数量
 		String queryTotalCount = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_TOTAL_NUM;
