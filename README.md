@@ -13,6 +13,9 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 - `docs` -> 说明文档
 - `libs` -> 后端jar包
 - `src` -> 后端源文件
+- `download` -> 下载文件存在的文件夹
+- `images` -> 博客、代码图片，用户头像存放的文件夹
+- `logs` -> 日志文件夹
 
 ------------
 
@@ -378,4 +381,5 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
             │  
             └─lib
     
-    **注：** 其中`web/WebContent/plugins/`为存放第三方插件的文件夹，由于文件比较多，在这里省略了。详情可前往至具体文件夹查看。
+    **注：** 
+    其中`web/WebContent/plugins/`为存放第三方插件的文件夹，由于文件比较多，在这里省略了。详情可前往至具体文件夹查看。
