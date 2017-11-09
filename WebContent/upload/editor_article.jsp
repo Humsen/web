@@ -34,7 +34,7 @@
 <script src="/plugins/jqueryconfirm/js/jquery-confirm.min.js"></script>
 
 <body>
-	<div class="form-horizontal editor-form-div ">
+	<div id="form_editorArticle" class="form-horizontal editor-form-div ">
 		<!-- 标题 -->
 		<div class="form-group">
 			<label for="txt_title" class="col-sm-1 control-label">标题</label>

@@ -7,6 +7,7 @@
  */
 
 var article_id = -1;// 文章id,新文章默认为-1,编辑文章为相应的id
+var article_type = -1; //文章类型，默认-1，博客=blog，代码=code
 
 $(document).ready(function() {
 	// 判断是否超级管理员，否则不能访问
@@ -39,9 +40,11 @@ function initInputBox() {
 
 	if (article_id = $.getUrlParam('blogId')) {
 		url = '/blog.hms';
+		article_type = 'blog';
 		jsonData = 'blogId=' + article_id + '&type=json_return';
 	} else if ((article_id = $.getUrlParam('codeId'))) {
 		url = '/code.hms';
+		article_type = 'code';
 		jsonData = 'codeId=' + article_id + '&type=json_return';
 	}
 
@@ -118,11 +121,75 @@ function initMarkdownEditor() {
 }
 
 /**
+ * 校验编辑区合法性
+ * @returns
+ */
+function isEditorValid(){
+	var flag = true;
+	//标题不能为空
+	if($('#txt_title').val() == ""){
+		$('#txt_title').parent('div').parent('div').addClass('has-error');
+		flag =  false;
+	}else{
+		$('#txt_title').parent('div').parent('div').removeClass('has-error');
+	}
+	//标签不能为空
+	if($('#txt_articleLabel').val() == ""){
+		$('#txt_articleLabel').parent('div').addClass('has-error'); 
+		flag =  false;
+	}else{
+		$('#txt_articleLabel').parent('div').removeClass('has-error');
+	}
+	
+	return flag;
+}
+
+/**
  * 发布按钮点击事件
  * 
  * @returns
  */
 function btnPublishClick() {
+	//检验合法性
+	if(!isEditorValid()){
+		return;
+	}
+	
+	//判断文章类型是否改变
+	if(article_type != -1 && article_type != isBlogOrCode()){
+		$.confirm({
+			title : '文章类型改变',
+			content : '您在编辑过程中改变了文章类型，是否确定？',
+			type : 'red',
+			buttons : {
+				ok : {
+					text : '确定',
+					btnClass : 'btn btn-danger',
+					keys : [ 'enter' ],
+					action : function() {
+						submitActInfo('create');
+					}
+				},
+				cancel : {
+					text : '返回修改',
+					btnClass : 'btn-success',
+					keys : [ 'ESC' ],
+				}
+			}
+		});
+	}else{
+		submitActInfo(article_id ? 'modify' : 'create');
+	}
+	
+	
+}
+
+/**
+ * 提交文章信息
+ * @param type
+ * @returns
+ */
+function submitActInfo(type){
 	// 获取文章细节
 	var articleData = JSON.stringify(articleDetail());
 	var jsonData;
@@ -133,7 +200,7 @@ function btnPublishClick() {
 		url : (isBlogOrCode() == 'blog') ? '/blog/upload.hms' : '/code/upload.hms',
 		data : {
 			newArticle : articleData,
-			type : article_id ? 'modify' : 'create',
+			type : type ,
 			articleId : article_id
 		},
 		success : function(response) {
@@ -205,20 +272,20 @@ function articleDetail() {
 	
 	if (type == 'blog') {
 		newArticle.blogTitle = $('#txt_title').val();
-		newArticle.blogAuthor = $('#txt_author').val();
-		newArticle.blogSummary = $('#txt_summary').val();
+		newArticle.blogAuthor = $('#txt_author').val() == '' ? '何明胜' : $('#txt_author').val();
+		newArticle.blogSummary = $('#txt_summary').val() == '' ? '无摘要' : $('#txt_summary').val();
 		newArticle.blogRead = 0;
 		newArticle.blogDate = $.nowDateHMS();
-		newArticle.blogHtmlContent = editorHtml;
+		newArticle.blogHtmlContent = editorHtml == '' ? '暂无内容' : editorHtml;
 		newArticle.blogMdContent = editormarkdown;
 		newArticle.blogLabel = $('#txt_articleLabel').val();
 	} else if (type == 'code') {
 		newArticle.codeTitle = $('#txt_title').val();
-		newArticle.codeAuthor = $('#txt_author').val();
-		newArticle.codeSummary = $('#txt_summary').val();
+		newArticle.codeAuthor = $('#txt_author').val() == '' ? '何明胜' : $('#txt_author').val();
+		newArticle.codeSummary = $('#txt_summary').val() == '' ? '无摘要' : $('#txt_summary').val();
 		newArticle.codeRead = 0;
 		newArticle.codeDate = $.nowDateHMS();
-		newArticle.codeHtmlContent = editorHtml;
+		newArticle.codeHtmlContent = editorHtml == '' ? '暂无内容' : editorHtml;
 		newArticle.codeMdContent = editormarkdown;
 		newArticle.codeLabel = $('#txt_articleLabel').val();
 	} else {

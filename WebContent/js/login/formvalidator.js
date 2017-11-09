@@ -133,232 +133,6 @@ function enterKeyClick() {
 }
 
 /**
- * 登录表单验证
- * 
- * @returns
- */
-function loginValidator() {
-	$('#loginForm').bootstrapValidator({
-		message : '输入无效!',
-		feedbackIcons : {
-			valid : 'glyphicon glyphicon-ok',
-			invalid : 'glyphicon glyphicon-remove',
-			validating : 'glyphicon glyphicon-refresh'
-		},
-		fields : {
-			username : {
-				message : '用户名无效!',
-				validators : {
-					notEmpty : {
-						message : '用户名不能为空!'
-					},
-					stringLength : {
-						min : 5,
-						max : 15,
-						message : '用户名长度必须在5到15位之间!'
-					},
-					regexp : {
-						regexp : /^[a-zA-Z0-9_\.]+$/,
-						message : '用户名只能由字母，数字，点和下划线几种组成!'
-					}
-				}
-			},
-			password : {
-				message : '密码无效!',
-				validators : {
-					notEmpty : {
-						message : '密码不能为空!'
-					},
-					stringLength : {
-						min : 6,
-						max : 15,
-						message : '密码长度必须在6到15位之间!'
-					}
-				}
-			}
-		}
-	});
-}
-
-/**
- * 注册表单验证
- * 
- * @returns
- */
-function registerValidator() {
-	$('#registerForm')
-			.bootstrapValidator(
-					{
-						message : '输入无效!',
-						feedbackIcons : {
-							valid : 'glyphicon glyphicon-ok',
-							invalid : 'glyphicon glyphicon-remove',
-							validating : 'glyphicon glyphicon-refresh'
-						},
-						fields : {
-							username : {
-								message : '用户名无效!',
-								validators : {
-									notEmpty : {
-										message : '用户名不能为空!'
-									},
-									stringLength : {
-										min : 5,
-										max : 15,
-										message : '用户名长度必须在5到15位之间!'
-									},
-									/*
-									 * remote: { url: 'remote.php', message:
-									 * 'The username is not available' },
-									 */
-									regexp : {
-										regexp : /^[a-zA-Z0-9_\.]+$/,
-										message : '用户名只能由字母，数字，点和下划线几种组成!'
-									}
-								}
-							},
-							password : {
-								message : '密码无效!',
-								validators : {
-									notEmpty : {
-										message : '密码不能为空!'
-									},
-									stringLength : {
-										min : 6,
-										max : 15,
-										message : '密码长度必须在6到15位之间!'
-									},
-									different : {
-										field : 'username',
-										message : '密码不能和用户名相同!'
-									}
-								}
-							},
-							confirmPassword : {
-								message : '确认密码无效!',
-								validators : {
-									notEmpty : {
-										message : '密码不能为空!'
-									},
-									identical : {
-										field : 'password',
-										message : '两次输入密码不一致!'
-									},
-									different : {
-										field : 'username',
-										message : '密码不能和用户名相同!'
-									}
-								}
-							},
-							email : {
-								message1 : '邮件输入无效!',
-								validators : {
-									notEmpty : {
-										message : '邮箱为必填哦!'
-									},
-									regexp : {
-										regexp : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-										message : '邮箱格式不正确'
-									}
-								}
-							}
-						}
-					});
-}
-
-/**
- * 找回密码表单验证
- * 
- * @returns
- */
-function retrievePwdValidator() {
-	$('#form_retrivePwd')
-			.bootstrapValidator(
-					{
-						message : '输入无效!',
-						feedbackIcons : {
-							valid : 'glyphicon glyphicon-ok',
-							invalid : 'glyphicon glyphicon-remove',
-							validating : 'glyphicon glyphicon-refresh'
-						},
-						fields : {
-							username : {
-								message : '用户名无效!',
-								validators : {
-									notEmpty : {
-										message : '用户名不能为空!'
-									},
-									stringLength : {
-										min : 5,
-										max : 15,
-										message : '用户名长度必须在5到15位之间!'
-									},
-									regexp : {
-										regexp : /^[a-zA-Z0-9_\.]+$/,
-										message : '用户名只能由字母，数字，点和下划线几种组成!'
-									}
-								}
-							},
-							email : {
-								message : '用户名无效!',
-								validators : {
-									notEmpty : {
-										message : '邮箱不能为空!'
-									},
-									regexp : {
-										regexp : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-										message : '邮箱格式不正确'
-									}
-								}
-							},
-							validateCode : {
-								message : '验证码无效!',
-								validators : {
-									notEmpty : {
-										message : '验证码不能为空!'
-									},
-									regexp : {
-										regexp : /^\d{6}$/,
-										message : '验证码为6位数字'
-									}
-								}
-							}
-						}
-					});
-}
-
-/**
- * 注册时 验证码合法校验
- * @returns
- */
-function registerEmailCodeValidator(){
-	$('#form_emailValidate')
-	.bootstrapValidator(
-			{
-				message : '输入无效!',
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					validateCode : {
-						message : '验证码无效!',
-						validators : {
-							notEmpty : {
-								message : '验证码不能为空!'
-							},
-							regexp : {
-								regexp : /^\d{6}$/,
-								message : '验证码为6位数字'
-							}
-						}
-					}
-				}
-			});
-}
-
-/**
  * 提交登录表单
  * 
  * @returns
@@ -455,26 +229,29 @@ function submitRegisterForm() {
 			content : 'url:/login/email_check.html',
 			// theme: 'supervan',
 			onContentReady : function() {
-				//显示邮件
+				// 显示邮件
 				$('#txt_emailShow').text(email);
-				//修改邮件点击
+				// 修改邮件点击
 				this.$content.find('a').click(function() {
 					validateEmail.close();
 					$('#register').modal('show');
 				});
-				//如果是手机，调整排版
-				if($.isMobile()){
+				// 如果是手机，调整排版
+				if ($.isMobile()) {
 					$('#txt_emailShow').css('float', 'left');
-					$('#form_emailValidate').find('.modify-email').css({'float': 'left', 'margin-top': '6px'});
+					$('#form_emailValidate').find('.modify-email').css({
+						'float' : 'left',
+						'margin-top' : '6px'
+					});
 					$('#btn_sendCode').css('margin-top', '10px');
 				}
-				//禁用Ok按钮
+				// 禁用Ok按钮
 				validateEmail.buttons.ok.disable();
 				validateEmail.buttons.ok.removeClass('btn-blue');
-				//添加表单校验
+				// 添加表单校验
 				registerEmailCodeValidator();
-				
-				//获取验证码点击
+
+				// 获取验证码点击
 				$('#btn_sendCode').click(
 						function() {
 							// 注册发送验证码
@@ -484,10 +261,10 @@ function submitRegisterForm() {
 								type : 'POST',// PUT DELETE POST
 								data : {
 									type : 'send_code_register',
-									email : email ,
+									email : email,
 								},
 								success : function(response) {
-									if(response != 1){
+									if (response != 1) {
 										$.confirm({
 											title : false,
 											content : '验证码发送失败',
@@ -518,22 +295,25 @@ function submitRegisterForm() {
 									});
 								}
 							});
-							
+
 							// 60s倒计时
 							$.codeCountDown($('#btn_sendCode'));
 						});
-				
-				//绑定表单监听
-				$('#txt_validateCode').on('input propertychange', function() {
-					//点击下一步，先看表单是否合法
-					var $formRetrivePwd = $('#form_emailValidate').data('bootstrapValidator');
-					$formRetrivePwd.validate();
 
-					if ($formRetrivePwd.isValid()) {
-						validateEmail.buttons.ok.enable();
-						validateEmail.buttons.ok.addClass('btn-blue');
-					}
-				});
+				// 绑定表单监听
+				$('#txt_validateCode').on(
+						'input propertychange',
+						function() {
+							// 点击下一步，先看表单是否合法
+							var $formRetrivePwd = $('#form_emailValidate')
+									.data('bootstrapValidator');
+							$formRetrivePwd.validate();
+
+							if ($formRetrivePwd.isValid()) {
+								validateEmail.buttons.ok.enable();
+								validateEmail.buttons.ok.addClass('btn-blue');
+							}
+						});
 			},
 			buttons : {
 				ok : {
@@ -565,9 +345,9 @@ function submitRegisterForm() {
 											ok : {
 												text : '是，立即前往',
 												btnClass : 'btn-primary',
-												keys : [ 'enter'],
+												keys : [ 'enter' ],
 												action : function() {
-													//重新打开该对话框
+													// 重新打开该对话框
 													submitRegisterForm();
 												}
 											},
@@ -670,7 +450,7 @@ function sendRegisterInfo() {
  */
 function registerInfo2Json() {
 	var newUserInfo = {};
-	
+
 	newUserInfo.type = 'create_user_info';
 	newUserInfo.userName = $('#txt_userNameRegister').val();
 	newUserInfo.password = $('#txt_userPwdRegister').val()
@@ -693,90 +473,107 @@ function retrievePassword() {
 				content : 'url:/login/retrive_pwd.html',
 				// theme: 'supervan',
 				onContentReady : function() {
-					//如果是手机，调整排版
-					if($.isMobile()){
-						$('#form_retrivePwd').find('.form-div-label').css('width', '100%');
+					// 如果是手机，调整排版
+					if ($.isMobile()) {
+						$('#form_retrivePwd').find('.form-div-label').css(
+								'width', '100%');
 						$('#btn_sendValidateCode').css('margin-top', '10px');
 					}
 
-					//禁用Ok按钮
+					// 禁用Ok按钮
 					retrivePwdConfirm.buttons.ok.disable();
 					retrivePwdConfirm.buttons.ok.removeClass('btn-blue');
-					//添加表单检验
+					// 添加表单检验
 					retrievePwdValidator();
 
-					$('#btn_sendValidateCode').click(
-							function() {
-								// 判断邮箱格式是否正确
-								var $emailValidate = $('#form_retrivePwd').data('bootstrapValidator');
-								$emailValidate.validateField('email');
+					$('#btn_sendValidateCode')
+							.click(
+									function() {
+										// 判断邮箱格式是否正确
+										var $emailValidate = $(
+												'#form_retrivePwd').data(
+												'bootstrapValidator');
+										$emailValidate.validateField('email');
 
-								var isEmailValid = $emailValidate.isValidField('email');
-								if (!isEmailValid) {
-									return;
-								}
-								
-								// 找回密码, 发送验证码
-								$.ajax({
-									url : '/userInfo/code.hms',
-									async : true,// 异步，启动倒计时
-									type : 'POST',
-									data : {
-										type : 'send_code_retrive_pwd',
-										email : $('#txt_emailInput').val(),
-									},
-									success : function(response) {
-										if(response != 1){
-											$.confirm({
-												title : '验证码发送失败',
-												content : textStatus
-														+ ' : '
-														+ XMLHttpRequest.status,
-												autoClose : 'ok|2000',
-												type : 'red',
-												buttons : {
-													ok : {
-														text : '确认',
-														btnClass : 'btn-primary',
-													},
-												}
-											});
+										var isEmailValid = $emailValidate
+												.isValidField('email');
+										if (!isEmailValid) {
+											return;
 										}
-									},
-									error : function(XMLHttpRequest, textStatus) {
-										$.confirm({
-											title : '验证码发送失败',
-											content : textStatus
-													+ ' : '
-													+ XMLHttpRequest.status,
-											autoClose : 'ok|2000',
-											type : 'red',
-											buttons : {
-												ok : {
-													text : '确认',
-													btnClass : 'btn-primary',
-												},
-											}
-										});
-												
-									}
-								});
-								
-								// 60s倒计时
-								$.codeCountDown($('#btn_sendValidateCode'));
-							});	
-					
-					//绑定表单监听
-					$('#form_retrivePwd').find('input').on('input propertychange', function() {
-						//点击下一步，先看表单是否合法
-						var $formRetrivePwd = $('#form_retrivePwd').data('bootstrapValidator');
-						$formRetrivePwd.validate();
 
-						if ($formRetrivePwd.isValid()) {
-							retrivePwdConfirm.buttons.ok.enable();
-							retrivePwdConfirm.buttons.ok.addClass('btn-blue');
-						}
-					});
+										// 找回密码, 发送验证码
+										$
+												.ajax({
+													url : '/userInfo/code.hms',
+													async : true,// 异步，启动倒计时
+													type : 'POST',
+													data : {
+														type : 'send_code_retrive_pwd',
+														email : $(
+																'#txt_emailInput')
+																.val(),
+													},
+													success : function(response) {
+														if (response != 1) {
+															$
+																	.confirm({
+																		title : '验证码发送失败',
+																		content : textStatus
+																				+ ' : '
+																				+ XMLHttpRequest.status,
+																		autoClose : 'ok|2000',
+																		type : 'red',
+																		buttons : {
+																			ok : {
+																				text : '确认',
+																				btnClass : 'btn-primary',
+																			},
+																		}
+																	});
+														}
+													},
+													error : function(
+															XMLHttpRequest,
+															textStatus) {
+														$
+																.confirm({
+																	title : '验证码发送失败',
+																	content : textStatus
+																			+ ' : '
+																			+ XMLHttpRequest.status,
+																	autoClose : 'ok|2000',
+																	type : 'red',
+																	buttons : {
+																		ok : {
+																			text : '确认',
+																			btnClass : 'btn-primary',
+																		},
+																	}
+																});
+
+													}
+												});
+
+										// 60s倒计时
+										$
+												.codeCountDown($('#btn_sendValidateCode'));
+									});
+
+					// 绑定表单监听
+					$('#form_retrivePwd').find('input').on(
+							'input propertychange',
+							function() {
+								// 点击下一步，先看表单是否合法
+								var $formRetrivePwd = $('#form_retrivePwd')
+										.data('bootstrapValidator');
+								$formRetrivePwd.validate();
+
+								if ($formRetrivePwd.isValid()) {
+									retrivePwdConfirm.buttons.ok.enable();
+									retrivePwdConfirm.buttons.ok
+											.addClass('btn-blue');
+								}
+							});
 				},
 				buttons : {
 					ok : {
@@ -784,78 +581,312 @@ function retrievePassword() {
 						btnClass : 'btn-blue',
 						keys : [ 'enter' ],
 						action : function() {
-							//先判断有没有发送过验证码，有可能关闭后又开
-							//验证码有效期10分钟
-							//暂时不考虑这个
-							
-							//找回密码, 校验验证码
-							$.ajax({
-								url : '/userInfo/code.hms',
-								async : false,// 同步，会阻塞操作
-								type : 'POST',// PUT DELETE POST
-								data : {
-									type : 'auth_code_retrive_pwd',
-									randomCode : $('#txt_validateCode1').val(),
-									userName : $('#txt_username').val(),
-									email : $('#txt_emailInput').val(),
-								},
-								success : function(response) {
-									if (response != 0) {
-										$.confirm({
-											title : '密码重置成功',
-											content : '您的密码已成功重置为123456，请尽快修改！',
-											autoClose : 'ok|4000',
-											type : 'green',
-											buttons : {
-												ok : {
-													text : '确认',
-													btnClass : 'btn-primary',
-												},
+							// 先判断有没有发送过验证码，有可能关闭后又开
+							// 验证码有效期10分钟
+							// 暂时不考虑这个
+
+							// 找回密码, 校验验证码
+							$
+									.ajax({
+										url : '/userInfo/code.hms',
+										async : false,// 同步，会阻塞操作
+										type : 'POST',// PUT DELETE POST
+										data : {
+											type : 'auth_code_retrive_pwd',
+											randomCode : $('#txt_validateCode1')
+													.val(),
+											userName : $('#txt_username').val(),
+											email : $('#txt_emailInput').val(),
+										},
+										success : function(response) {
+											if (response != 0) {
+												$
+														.confirm({
+															title : '密码重置成功',
+															content : '您的密码已成功重置为123456，请尽快修改！',
+															autoClose : 'ok|4000',
+															type : 'green',
+															buttons : {
+																ok : {
+																	text : '确认',
+																	btnClass : 'btn-primary',
+																},
+															}
+														});
+											} else {
+												$
+														.confirm({
+															title : '验证失败',
+															content : '是否需要重新尝试？',
+															autoClose : 'ok|3000',
+															type : 'green',
+															buttons : {
+																ok : {
+																	text : '是，立即前往',
+																	btnClass : 'btn-primary',
+																	keys : [
+																			'enter',
+																			'a' ],
+																	action : function() {
+																		// 重新打开该对话框
+																		retrievePassword();
+																	}
+																},
+																cancel : {
+																	text : '否，不再尝试',
+																	btnClass : 'btn-primary',
+																	keys : [ 'ESC' ],
+																}
+															}
+														});
 											}
-										});
-									} else {
-										$.confirm({
-											title : '验证失败',
-											content : '是否需要重新尝试？',
-											autoClose : 'ok|3000',
-											type : 'green',
-											buttons : {
-												ok : {
-													text : '是，立即前往',
-													btnClass : 'btn-primary',
-													keys : [ 'enter', 'a' ],
-													action : function() {
-														//重新打开该对话框
-														retrievePassword();
-													}
-												},
-												cancel : {
-													text : '否，不再尝试',
-													btnClass : 'btn-primary',
-													keys : [ 'ESC' ],
-												}
-											}
-										});
-									}
-								},
-								error : function(XMLHttpRequest, textStatus) {
-									$.confirm({
-										title : '验证码校验发送失败',
-										content : textStatus + ' : '
-												+ XMLHttpRequest.status,
-										autoClose : 'ok|2000',
-										type : 'red',
-										buttons : {
-											ok : {
-												text : '确认',
-												btnClass : 'btn-primary',
-											},
+										},
+										error : function(XMLHttpRequest,
+												textStatus) {
+											$
+													.confirm({
+														title : '验证码校验发送失败',
+														content : textStatus
+																+ ' : '
+																+ XMLHttpRequest.status,
+														autoClose : 'ok|2000',
+														type : 'red',
+														buttons : {
+															ok : {
+																text : '确认',
+																btnClass : 'btn-primary',
+															},
+														}
+													});
 										}
 									});
-								}
-							});
 						}
 					}
 				}
 			});
+}
+
+/**
+ * 登录表单添加验证
+ * 
+ * @returns
+ */
+function loginValidator() {
+	$('#loginForm').bootstrapValidator({
+		message : '输入无效!',
+		feedbackIcons : {
+			valid : 'glyphicon glyphicon-ok',
+			invalid : 'glyphicon glyphicon-remove',
+			validating : 'glyphicon glyphicon-refresh'
+		},
+		fields : {
+			username : {
+				message : '用户名无效!',
+				validators : {
+					notEmpty : {
+						message : '用户名不能为空!'
+					},
+					stringLength : {
+						min : 5,
+						max : 15,
+						message : '用户名长度必须在5到15位之间!'
+					},
+					regexp : {
+						regexp : /^[a-zA-Z0-9_\.]+$/,
+						message : '用户名只能由字母，数字，点和下划线几种组成!'
+					}
+				}
+			},
+			password : {
+				message : '密码无效!',
+				validators : {
+					notEmpty : {
+						message : '密码不能为空!'
+					},
+					stringLength : {
+						min : 6,
+						max : 15,
+						message : '密码长度必须在6到15位之间!'
+					}
+				}
+			}
+		}
+	});
+}
+
+/**
+ * 注册表单添加验证
+ * 
+ * @returns
+ */
+function registerValidator() {
+	$('#registerForm')
+			.bootstrapValidator(
+					{
+						message : '输入无效!',
+						feedbackIcons : {
+							valid : 'glyphicon glyphicon-ok',
+							invalid : 'glyphicon glyphicon-remove',
+							validating : 'glyphicon glyphicon-refresh'
+						},
+						fields : {
+							username : {
+								message : '用户名无效!',
+								validators : {
+									notEmpty : {
+										message : '用户名不能为空!'
+									},
+									stringLength : {
+										min : 5,
+										max : 15,
+										message : '用户名长度必须在5到15位之间!'
+									},
+									/*
+									 * remote: { url: 'remote.php', message:
+									 * 'The username is not available' },
+									 */
+									regexp : {
+										regexp : /^[a-zA-Z0-9_\.]+$/,
+										message : '用户名只能由字母，数字，点和下划线几种组成!'
+									}
+								}
+							},
+							password : {
+								message : '密码无效!',
+								validators : {
+									notEmpty : {
+										message : '密码不能为空!'
+									},
+									stringLength : {
+										min : 6,
+										max : 15,
+										message : '密码长度必须在6到15位之间!'
+									},
+									different : {
+										field : 'username',
+										message : '密码不能和用户名相同!'
+									}
+								}
+							},
+							confirmPassword : {
+								message : '确认密码无效!',
+								validators : {
+									notEmpty : {
+										message : '密码不能为空!'
+									},
+									identical : {
+										field : 'password',
+										message : '两次输入密码不一致!'
+									},
+									different : {
+										field : 'username',
+										message : '密码不能和用户名相同!'
+									}
+								}
+							},
+							email : {
+								message1 : '邮件输入无效!',
+								validators : {
+									notEmpty : {
+										message : '邮箱为必填哦!'
+									},
+									regexp : {
+										regexp : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+										message : '邮箱格式不正确'
+									}
+								}
+							}
+						}
+					});
+}
+
+/**
+ * 找回密码表单添加验证
+ * 
+ * @returns
+ */
+function retrievePwdValidator() {
+	$('#form_retrivePwd')
+			.bootstrapValidator(
+					{
+						message : '输入无效!',
+						feedbackIcons : {
+							valid : 'glyphicon glyphicon-ok',
+							invalid : 'glyphicon glyphicon-remove',
+							validating : 'glyphicon glyphicon-refresh'
+						},
+						fields : {
+							username : {
+								message : '用户名无效!',
+								validators : {
+									notEmpty : {
+										message : '用户名不能为空!'
+									},
+									stringLength : {
+										min : 5,
+										max : 15,
+										message : '用户名长度必须在5到15位之间!'
+									},
+									regexp : {
+										regexp : /^[a-zA-Z0-9_\.]+$/,
+										message : '用户名只能由字母，数字，点和下划线几种组成!'
+									}
+								}
+							},
+							email : {
+								message : '用户名无效!',
+								validators : {
+									notEmpty : {
+										message : '邮箱不能为空!'
+									},
+									regexp : {
+										regexp : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+										message : '邮箱格式不正确'
+									}
+								}
+							},
+							validateCode : {
+								message : '验证码无效!',
+								validators : {
+									notEmpty : {
+										message : '验证码不能为空!'
+									},
+									regexp : {
+										regexp : /^\d{6}$/,
+										message : '验证码为6位数字'
+									}
+								}
+							}
+						}
+					});
+}
+
+/**
+ * 注册时 验证码合法校验
+ * 
+ * @returns
+ */
+function registerEmailCodeValidator() {
+	$('#form_emailValidate').bootstrapValidator({
+		message : '输入无效!',
+		feedbackIcons : {
+			valid : 'glyphicon glyphicon-ok',
+			invalid : 'glyphicon glyphicon-remove',
+			validating : 'glyphicon glyphicon-refresh'
+		},
+		fields : {
+			validateCode : {
+				message : '验证码无效!',
+				validators : {
+					notEmpty : {
+						message : '验证码不能为空!'
+					},
+					regexp : {
+						regexp : /^\d{6}$/,
+						message : '验证码为6位数字'
+					}
+				}
+			}
+		}
+	});
 }
