@@ -1,8 +1,8 @@
 # web
 
-个人网站项目，包括博客、代码库、文件下载、留言、登录注册等功能
+个人网站项目，前台包括博客、代码库、文件下载、留言、登录注册等功能，后台包括上传文件、博客、代码，编辑、删除文章，查看、修改个人资料及邮箱、头像等功能。
 
-网址：www.hemingsheng.cn
+PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 
 ------------
 
@@ -18,15 +18,8 @@
 
 ### web工程目录结构如下：
     
-    web:
-    │  .classpath
-    │  .gitattributes
-    │  .gitignore
-    │  .project
-    │  README.md
-    │  
+
     ├─config
-    │      db_connect_info.properties
     │      log4j2.xml
     │      
     ├─docs
@@ -34,6 +27,8 @@
     │      web项目前端命名规范.txt
     │      网站logo图片.png
     │      
+    ├─download
+    ├─images
     ├─libs
     │  ├─file
     │  │      commons-fileupload-1.3.3.jar
@@ -60,6 +55,13 @@
     │  └─servlet
     │          servlet-api.jar
     │          
+    ├─logs
+    │      debug.log
+    │      error.log
+    │      info.log
+    │      trace.log
+    │      warn.log
+    │      
     ├─src
     │  │  rebel.xml
     │  │  
@@ -93,7 +95,9 @@
     │              │  ├─constants
     │              │  │      BootstrapConstans.java
     │              │  │      CommonConstants.java
-    │              │  │      package-info.java
+    │              │  │      DbConstans.java
+    │              │  │      RequestConstants.java
+    │              │  │      ResponseConstants.java
     │              │  │      
     │              │  ├─handler
     │              │  │      FileDownloadHandler.java
@@ -104,6 +108,7 @@
     │              │  │      
     │              │  ├─helper
     │              │  │      DateFormatHelper.java
+    │              │  │      JudgeIsMobile.java
     │              │  │      package-info.java
     │              │  │      RandomCodeHelper.java
     │              │  │      SendEmailHelper.java
@@ -117,10 +122,19 @@
     │              │              GenericTemplate.java
     │              │              
     │              ├─config
-    │              │      DeployPathConfig.java
-    │              │      Log4j2Config.java
-    │              │      package-info.java
-    │              │      
+    │              │  │  Log4j2Config.java
+    │              │  │  package-info.java
+    │              │  │  ProjectDeployConfig.java
+    │              │  │  
+    │              │  ├─filter
+    │              │  │      ExceptionFilter.java
+    │              │  │      package-info.java
+    │              │  │      
+    │              │  └─listener
+    │              │          OnlineCountListener.java
+    │              │          package-info.java
+    │              │          WebInitConfigListener.java
+    │              │          
     │              ├─dao
     │              │  │  BlogArticleDao.java
     │              │  │  CodeLibraryDao.java
@@ -142,13 +156,10 @@
     │              │          VisitTotalDaoImpl.java
     │              │          
     │              ├─dbutil
-    │              │  │  DbDeleteUtils.java
-    │              │  │  DbInsertUtils.java
+    │              │  │  DbManipulationUtils.java
     │              │  │  DbQueryUtils.java
-    │              │  │  DbUpdateUtils.java
     │              │  │  
     │              │  ├─assist
-    │              │  │      AssistUtils.java
     │              │  │      DbConnectUtils.java
     │              │  │      package-info.java
     │              │  │      SetPsParamUtils.java
@@ -165,11 +176,6 @@
     │              │          UserInfoMapping.java
     │              │          VisitTotalMapping.java
     │              │          
-    │              ├─listener
-    │              │      OnlineCountListener.java
-    │              │      package-info.java
-    │              │      WebInitConfigListener.java
-    │              │      
     │              ├─service
     │              │      BlogArticleSvc.java
     │              │      CodeLibrarySvc.java
@@ -181,52 +187,40 @@
     │              │      VisitTotalSvc.java
     │              │      
     │              └─servlet
-    │                  │  package-info.java
+    │                  │  ArticleDeleteSvt.java
     │                  │  
-    │                  ├─blog
-    │                  │      BlogArticlePerPageServlet.java
-    │                  │      BlogArticleServlet.java
-    │                  │      BlogPerByIdServlet.java
-    │                  │      BlogTotalCountServlet.java
-    │                  │      NewBlogUploadServlet.java
-    │                  │      
-    │                  ├─codelib
-    │                  │      CodeLibPerPageServlet.java
-    │                  │      CodeLibraryServlet.java
-    │                  │      CodeLibTotalCountServlet.java
-    │                  │      CodePerByIdServlet.java
-    │                  │      NewCodeUploadServlet.java
+    │                  ├─article
+    │                  │      BlogQuerySvt.java
+    │                  │      BlogSvt.java
+    │                  │      BlogUploadSvt.java
+    │                  │      CodeQuerySvt.java
+    │                  │      CodeSvt.java
+    │                  │      CodeUploadSvt.java
     │                  │      
     │                  ├─common
-    │                  │      AccessAtatisticsServlet.java
+    │                  │      AccessAtatisticsSvt.java
     │                  │      
     │                  ├─contact
     │                  │      SendEmailServlet.java
     │                  │      
     │                  ├─download
-    │                  │      FileDownloadServlet.java
-    │                  │      FileDownPerPageServlet.java
-    │                  │      FileDownTotalCountServlet.java
-    │                  │      FileUploadServlet.java
+    │                  │      FileDownloadSvt.java
+    │                  │      FileUploadSvt.java
     │                  │      
     │                  ├─image
-    │                  │      ImageDownloadServlet.java
-    │                  │      ImageUploadServlet.java
-    │                  │      package-info.java
+    │                  │      ImageDownloadSvt.java
+    │                  │      ImageUploadSvt.java
     │                  │      
     │                  ├─message
-    │                  │      MessageGetServlet.java
-    │                  │      MessageUploadServlet.java
+    │                  │      MessageSvt.java
     │                  │      
     │                  ├─releasefea
-    │                  │      LatestReleaseFeatureServlet.java
-    │                  │      NewReleaseFeatureServlet.java
+    │                  │      LatestReleaseFeatureSvt.java
+    │                  │      NewReleaseFeatureSvt.java
     │                  │      
     │                  └─userinfo
-    │                          UserInfoModifyServlet.java
-    │                          UserInfoQueryServlet.java
-    │                          UserInfoRegisterServlet.java
-    │                          UserLoginValidateServlet.java
+    │                          UserInfoCodeSvt.java
+    │                          UserInfoSvt.java
     │                          
     └─WebContent
         │  index.jsp
@@ -303,7 +297,9 @@
         │  │  
         │  ├─article
         │  │      article-markdown.js
+        │  │      blog-details.js
         │  │      blog.js
+        │  │      code-details.js
         │  │      code-library.js
         │  │      
         │  ├─contact
@@ -367,101 +363,12 @@
         │  │  plugins.jsp
         │  │  
         │  ├─bootstrap
-        │  │  ├─css
-        │  │  │      bootstrap.css
-        │  │  │      bootstrap.css.map
-        │  │  │      bootstrap.min.css
-        │  │  │      bootstrap.min.css.map
-        │  │  │      
-        │  │  ├─fonts
-        │  │  │      glyphicons-halflings-regular.eot
-        │  │  │      glyphicons-halflings-regular.svg
-        │  │  │      glyphicons-halflings-regular.ttf
-        │  │  │      glyphicons-halflings-regular.woff
-        │  │  │      glyphicons-halflings-regular.woff2
-        │  │  │      
-        │  │  └─js
-        │  │          bootstrap.js
-        │  │          bootstrap.min.js
-        │  │          
         │  ├─editormd
         │  ├─jquery
-        │  │  └─js
-        │  │          jquery-3.2.1.min.js
-        │  │          jquery.cookie.js
-        │  │          jquery.easing.1.3.js
-        │  │          jquery.flexslider-min.js
-        │  │          jquery.form.min.js
-        │  │          jquery.waypoints.min.js
-        │  │          
         │  ├─jqueryconfirm
-        │  │  ├─css
-        │  │  │      jquery-confirm.min.css
-        │  │  │      
-        │  │  └─js
-        │  │          jquery-confirm.min.js
-        │  │          
         │  ├─json
-        │  │  └─js
-        │  │          json2.js
-        │  │          
         │  ├─template
-        │  │  ├─css
-        │  │  │      animate.css
-        │  │  │      flexslider.css
-        │  │  │      icomoon.css
-        │  │  │      style.css
-        │  │  │      style.css.map
-        │  │  │      
-        │  │  └─js
-        │  │          main.js
-        │  │          modernizr-2.6.2.min.js
-        │  │          
         │  └─validator
-        │      ├─css
-        │      │      bootstrapValidator.css
-        │      │      bootstrapValidator.min.css
-        │      │      
-        │      └─js
-        │          │  bootstrapValidator.js
-        │          │  bootstrapValidator.min.js
-        │          │  
-        │          └─language
-        │                  ar_MA.js
-        │                  be_FR.js
-        │                  be_NL.js
-        │                  bg_BG.js
-        │                  cs_CZ.js
-        │                  da_DK.js
-        │                  de_DE.js
-        │                  en_US.js
-        │                  es_CL.js
-        │                  es_ES.js
-        │                  fa_IR.js
-        │                  fr_FR.js
-        │                  gr_EL.js
-        │                  he_IL.js
-        │                  hu_HU.js
-        │                  id_ID.js
-        │                  it_IT.js
-        │                  ja_JP.js
-        │                  nl_NL.js
-        │                  no_NO.js
-        │                  pl_PL.js
-        │                  pt_BR.js
-        │                  pt_PT.js
-        │                  ro_RO.js
-        │                  ru_RU.js
-        │                  sq_AL.js
-        │                  sr_RS.js
-        │                  sv_SE.js
-        │                  th_TH.js
-        │                  tr_TR.js
-        │                  ua_UA.js
-        │                  vi_VN.js
-        │                  zh_CN.js
-        │                  zh_TW.js
-        │                  
         ├─upload
         │      editor_article.jsp
         │      upload_file.jsp
@@ -471,3 +378,4 @@
             │  
             └─lib
     
+    **注：** 其中`web/WebContent/plugins/`为存放第三方插件的文件夹，由于文件比较多，在这里省略了。详情可前往至具体文件夹查看。
