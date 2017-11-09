@@ -3,10 +3,10 @@
 #rightBar {
 	float: right;
 	margin-top: 60px;
-	width: 18%;
+	width: 15%;
 	margin-right: 2%;
 	position: fixed;
-	margin-left: 80%;
+	margin-left: 85%;
 }
 
 .sidebar-module {

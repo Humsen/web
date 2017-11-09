@@ -8,9 +8,9 @@
 	<div>
 		<div class="sidebar-module">
 			<h4>关于本站</h4>
-			<p>&emsp;&emsp;欢迎来到何明胜的个人网站。本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及软件等资源。</p>
-			<p>本站源码已托管github。欢迎访问：<br/>
-				<a href="https://github.com/HelloHusen/web" target="_blank">https://github.com/HelloHusen/web</a>
+			<p>&emsp;欢迎来到何明胜的个人网站。本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及软件等资源。</p>
+			<p>本站源码已托管github.欢迎访问:<br/>
+				<a href="https://github.com/HelloHusen/web" target="_blank">github.com/HelloHusen/web</a>
 			</p>
 		</div>
 		<div class="sidebar-module">
