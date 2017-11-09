@@ -27,13 +27,13 @@ function menuBarInit(menuBarNo){
 		+'<li><a href="/module/contact.jsp">联系站长</a></li>'
 		+'</ul>'
 		+'</nav>'
-		+'<div class="fh5co-footer footer-div">'
+		/*+'<div class="fh5co-footer footer-div">'
 		+'<p>'
 		+'<small><span>渝ICP备16013250号 </span>' 
 		+'<span>&copy;'
 		+'2017 All Rights Reserved </span></small>'
 		+'</p>'
-		+'</div>'
+		+'</div>'*/
 		+'</aside>';
 	
 	$('#fh5co-page').prepend(menu_bar);
