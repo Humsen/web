@@ -14,26 +14,32 @@ import pers.husen.web.dao.impl.CodeLibraryDaoImpl;
 public class CodeLibrarySvc implements CodeLibraryDao{
 	private CodeLibraryDaoImpl cImpl = new CodeLibraryDaoImpl();
 	
+	@Override
 	public int queryCodeTotalCount() {
 		return cImpl.queryCodeTotalCount();
 	}
 	
+	@Override
 	public CodeLibraryVo queryPerCodeById(int codeId) {
 		return cImpl.queryPerCodeById(codeId);
 	}
 	
+	@Override
 	public int insertCodeLibrary(CodeLibraryVo cVo) {
 		return cImpl.insertCodeLibrary(cVo);
 	}
 	
+	@Override
 	public int updateCodeReadById(int codeId) {
 		return cImpl.updateCodeReadById(codeId);
 	}
 	
+	@Override
 	public int updateCodeById(CodeLibraryVo cVo) {
 		return cImpl.updateCodeById(cVo);
 	}
 	
+	@Override
 	public int logicDeleteCodeById(int codeId) {
 		return cImpl.logicDeleteCodeById(codeId);
 	}

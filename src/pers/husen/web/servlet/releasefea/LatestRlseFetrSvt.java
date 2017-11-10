@@ -20,11 +20,11 @@ import pers.husen.web.service.ReleaseFeatureSvc;
  *
  * 2017年10月20日
  */
-@WebServlet(urlPatterns="/latestReleaseFeature.hms")
-public class LatestReleaseFeatureSvt extends HttpServlet {
+@WebServlet(urlPatterns="/latestRlseFetr.hms")
+public class LatestRlseFetrSvt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public LatestReleaseFeatureSvt() {
+    public LatestRlseFetrSvt() {
         super();
     }
 
@@ -35,9 +35,25 @@ public class LatestReleaseFeatureSvt extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		ReleaseFeatureSvc rSvc = new ReleaseFeatureSvc();
-		ReleaseFeatureVo rVo = rSvc.queryLatestReleaseFeature();
-		String json = JSONObject.fromObject(rVo).toString();
-		out.println(json);
+		ReleaseFeatureVo rVo; 
+		
+		String releaseId = request.getParameter("releaseId");
+		/** 如果是请求最新版本 id为 null或者0 */
+		if(releaseId == null || Integer.parseInt(releaseId) == 0) {
+			rVo = rSvc.queryLatestReleaseFeature();
+			String json = JSONObject.fromObject(rVo).toString();
+			out.println(json);
+			
+			return;
+		}
+		/** 如果是请求其他版本 */
+		if(releaseId != null && Integer.parseInt(releaseId) != 0) {
+			rVo = rSvc.queryReleaseById(Integer.parseInt(releaseId));
+			String json = JSONObject.fromObject(rVo).toString();
+			out.println(json);
+			
+			return;
+		}
 	}
 
     @Override
