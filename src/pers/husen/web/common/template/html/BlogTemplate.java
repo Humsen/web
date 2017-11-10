@@ -19,21 +19,11 @@ public class BlogTemplate {
 	 * @return
 	 */
 	public static String customizeHeader() {
-		String cHeader = "<!-- 单独的js和css --> 	"
-				+ " <!-- editor.md -->\r\n" + 
-				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.preview.min.css\" />\r\n" + 
-				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.min.css\" />\r\n" + 
-				"	\r\n" + 
-				"	<!-- editor.md -->\r\n" + 
-				"	<script src=\"/plugins/editormd/lib/marked.min.js\"></script>\r\n" + 
-				"	<script src=\"/plugins/editormd/lib/prettify.min.js\"></script>\r\n" + 
-				"	<script src=\"/plugins/editormd/js/editormd.min.js\"></script>\r\n" + 
-				"	\r\n" + 
-				"	<!-- 自定义CSS -->\r\n" + 
-				"	<link rel=\"stylesheet\" href=\"/css/article/article.css\">\r\n"+
-				"	<!-- 自定义脚本 -->\r\n" + 
-				"	<script src=\"/js/article/article-markdown.js\"></script>" +
-				"	<script src=\"/js/article/blog-details.js\"></script>";
+		String cHeader = ""+
+				"<!-- 自定义CSS -->\r\n" + 
+				"<link rel=\"stylesheet\" href=\"/css/article/article.css\">\r\n" + 
+				"<!-- 自定义脚本 -->\r\n" + 
+				"<script src=\"/js/article/blog-details.js\"></script>";;
 		
 		return cHeader;
 	}
@@ -65,13 +55,15 @@ public class BlogTemplate {
 			}
 		}
 		
-		String body = "<div id=\"fh5co-page\">\r\n" + 
-				"	<a href=\"#\" class=\"js-fh5co-nav-toggle fh5co-nav-toggle\"><i></i></a>\r\n" + 
-				"	<input\r\n id=\"menuBarNo\" type=\"hidden\" value=\"1\" />\r\n" + 
-					GenericTemplate.loginAndRegister()+
-				"	\r\n" + 
+		String body = GenericTemplate.topFixedBar()+
+				GenericTemplate.loginAndRegister() + 
+				"<input id=\"menuBarNo\" type=\"hidden\" value=\"1\" />"+
+				"<div id=\"fh5co-page\">\r\n" +
+				"	<!-- 左侧导航  -->\r\n" + 
+				GenericTemplate.leftBar()+ 
+				
+				"	<!-- 中间内容  -->" + 
 				"	<div id=\"fh5co-main\">\r\n" + 
-					GenericTemplate.topFixedBar() +
 				"		<div id=\"list_blog\" class=\"fh5co-post\"> \r\n" + 
 				"			<!-- js脚本动态添加内容 -->" +
 				"			\r\n" +
@@ -86,7 +78,7 @@ public class BlogTemplate {
 				"					<span class=\"fh5co-post-date label-lowercase\">关键字：" + keyWordsStrBuf.toString() + "</span>";
 		
 		if(isSuperAdmin) {
-			body += "<a href=\"/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a> "
+			body += "<a href=\"/module/upload/editor_article.jsp?blogId=" + bVo.getBlogId() + "\" target=\"_blank\" role=\"button\" class=\"btn btn-default btn-sm\">编辑</a> "
 				  + "<a id=\"btn_deleteBlog\" href=\"javascript:void(0)\" role=\"button\" class=\"btn btn-danger btn-sm\">删除</a>"; 
 		}
 		
@@ -96,6 +88,7 @@ public class BlogTemplate {
 				"			</div>" +
 				"		</div>\r\n" + 
 				"	</div>\r\n" + 
+				GenericTemplate.rightBar() +
 				"</div>";
 		
 		return body;

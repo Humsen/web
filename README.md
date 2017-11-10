@@ -298,7 +298,6 @@
         │          
         ├─js
         │  │  customize-sdk.js
-        │  │  is-pc-or-mobile.js
         │  │  pagination.js
         │  │  
         │  ├─article

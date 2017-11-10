@@ -23,14 +23,14 @@
 
 </head>
 <body>
+	<%@include file="/module/common.jsp"%>
+	<input id="menuBarNo" type="hidden" value="5" />
+	
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> 
-		<input id="menuBarNo" type="hidden" value="5"/>
-		<%@include file="/login/login.jsp"%>
-
+		<!-- 左侧导航  -->
+		<%@include file="/module/navigation/leftbar.jsp"%>
+		<!-- 中间内容  -->
 		<div id="fh5co-main">
-			<%@include file="/navigation/topbar.jsp"%>
-
 			<div class="fh5co-narrow-content animate-box contact-div"
 				data-animate-effect="fadeInLeft">
 				<div class="row">
@@ -72,6 +72,8 @@
 				</form>
 			</div>
 		</div>
+		<!-- 右侧导航  -->
+		<%@include file="/module/navigation/rightbar.jsp"%>
 	</div>
 </body>
 </html>

@@ -5,7 +5,8 @@
  */
 
 $(function(){
-	loadNewVersionFeature();//加载新版本特性
+	//加载新版本特性
+	loadNewVersionFeature();
 });
 
 /**
@@ -15,17 +16,15 @@ $(function(){
 function loadNewVersionFeature(){
 	$.ajax({
 		type : 'POST',
-		url : '/latestReleaseFeature.hms',
+		url : '/latestRlseFetr.hms',
 		dataType : 'json',
 		success : function(response){
-			$('#newVersionFeature').append('<div class="col-md-6 animate-box fadeInLeft animated version-width" data-animate-effect="fadeInLeft">'
-					+ '<h2 class="fh5co-heading">新版特性</h2>'
-					+ '<div class="version-content">'
-					+ '<h5 class="version-heading">发布时间:' + new Date(response.releaseDate.time).format('yyyy-MM-dd hh:mm:ss') +'&nbsp; &nbsp; &nbsp; &nbsp;'
-					+ '版本:' + response.releaseNumber + '</h5>'
-					+ response.releaseContent
-					+ '</div>'
-					+ '</div>');
+			$('#txt_versionFeature').append(''
+					+'<h4>新版特性<span class="latest-version">版本:' + response.releaseNumber + '</span></h4>'
+					+ '<h5>发布时间:' + new Date(response.releaseDate.time).format('yyyy-MM-dd hh:mm:ss') +'</h5>'
+					+'<ol class="list-unstyled">'
+					+'<li>' + response.releaseContent + '</li>'
+					+'</ol>');
 		},
 		error : function(response, status){
 			$.confirm({

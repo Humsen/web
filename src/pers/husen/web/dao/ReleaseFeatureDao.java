@@ -24,4 +24,18 @@ public interface ReleaseFeatureDao {
 	 * @return
 	 */
 	public ReleaseFeatureVo queryLatestReleaseFeature();
+	
+	/**
+	 * 根据id查询版本
+	 * @param releaseId
+	 * @return
+	 */
+	public ReleaseFeatureVo queryReleaseById(int releaseId);
+	
+	/**
+	 * 根据id修改版本信息
+	 * @param releaseId
+	 * @return
+	 */
+	public int updateReleaseContentById(ReleaseFeatureVo rVo);
 }

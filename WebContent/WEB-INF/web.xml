@@ -4,6 +4,11 @@
   <description>默认欢迎列表</description>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>blog.jsp</welcome-file>
+    <welcome-file>code_library.jsp</welcome-file>
+    <welcome-file>contact.jsp</welcome-file>
+    <welcome-file>download.jsp</welcome-file>
+    <welcome-file>message.jsp</welcome-file>
   </welcome-file-list>
   <description>设置session的有效时间(分钟)</description>
   <session-config>
@@ -17,13 +22,13 @@
   <listener>
     <listener-class>pers.husen.web.config.listener.OnlineCountListener</listener-class>
   </listener>
-  <description>异常处理过滤器</description>
+  <description>全局过滤器</description>
   <filter>
-    <filter-name>ExceptionFilter</filter-name>
-    <filter-class>pers.husen.web.config.filter.ExceptionFilter</filter-class>
+    <filter-name>WebFilter</filter-name>
+    <filter-class>pers.husen.web.config.filter.WebFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>ExceptionFilter</filter-name>
+    <filter-name>WebFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>

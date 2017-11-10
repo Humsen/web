@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+#fh5co-main {
+	width: 60%;
+	float: left;
+	margin: 0 2.5%;
+	transition: 0.5s;
+	-moz-transition: 0.5s; /* Firefox 4 */
+	-webkit-transition: 0.5s; /* Safari 和 Chrome */
+	-o-transition: 0.5s; /* Opera */
+}
+
+#fh5co-main .fh5co-narrow-content {
+	position: relative;
+	width: 93%;
+	margin: 0 auto;
+	padding: 4em 0;
+	clear: both;
+}
+
+.fh5co-heading {
+	font-size: 18px;
+	margin-bottom: 2em;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.blog-entry {
+	width: 100%;
+	float: left;
+	background: #f3f3f1;
+}
+
+.blog-entry .desc {
+	padding: 0 25px 20px 25px;
+}
+
+.blog-entry .desc span {
+	display: block;
+	margin-bottom: 20px;
+	font-size: 13px;
+	letter-spacing: 1px;
+}
+
+.blog-entry .desc .lead {
+	font-size: 12px;
+	letter-spacing: 2px;
+	color: #000;
+}
+
+.fh5co-feature {
+	text-align: left;
+	width: 100%;
+	float: left;
+	margin-bottom: 40px;
+	position: relative;
+}
+
+.fh5co-feature .fh5co-icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 100px;
+	display: table;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.05);
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.fh5co-feature .fh5co-icon i {
+	display: table-cell;
+	vertical-align: middle;
+	color: #228896;
+	font-size: 40px;
+	height: 100px;
+}
+
+.fh5co-feature .fh5co-text {
+	padding-left: 120px;
+	width: 100%;
+}
+
+.fh5co-feature .fh5co-text h3 {
+	font-weight: 500;
+	margin-bottom: 20px;
+	color: rgba(0, 0, 0, 0.8);
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+.fh5co-feature .fh5co-text h2, .fh5co-feature .fh5co-text h3 {
+	margin: 0;
+	padding: 0;
+}

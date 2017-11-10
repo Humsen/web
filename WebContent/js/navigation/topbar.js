@@ -7,10 +7,12 @@
  */
 
 $(document).ready(function(){
-	loadAccessStatistics();
+	//选择的栏目增加active
+	var menuBarNo = Number($('#menuBarNo').val());
+	$('.nav.nav-pills.topbar-nav').children().removeClass('active').eq(menuBarNo).addClass('active');
 	
-	//绑定切换主题事件
-	$('.choose-theme').click(nextThemeClick);
+	//加载当前网站访问统计
+	loadAccessStatistics();
 });
 
 /**
@@ -22,12 +24,11 @@ function loadAccessStatistics(){
 	$.ajax({
 		type : 'POST',
 		url : '/accessAtatistics.hms',
+		dataType : 'json',
 		success : function(response, ststus){
-			var response = JSON.parse(response);
-			
-			$('#accessToday').html('今日访问量：' + response.accessToday);
-			$('#accessTotal').html('总访问量：' + response.accessTotal);
-			$('#onlineCurrent').html('当前在线人数：' + response.onlineCurrent);
+			$('#txt_accessToday').html('今日访问量：' + response.accessToday + ',');
+			$('#txt_accessTotal').html('总访问量：' + response.accessTotal + ',');
+			$('#txt_onlineCurrent').html('当前在线人数：' + response.onlineCurrent);
 		},
 		error : function(XMLHttpRequest, textStatus){
 			$.confirm({

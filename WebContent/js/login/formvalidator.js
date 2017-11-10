@@ -85,7 +85,7 @@ function persCenterBtnClick() {
 
 	// 如果没有登录，跳转到错误页面
 	if (!$.cookie('username')) {
-		window.open('/error/error.jsp');
+		window.open('/module/error/error.jsp');
 	} else {
 		window.open('/personal_center/mycenter.jsp');
 	}
@@ -226,7 +226,7 @@ function submitRegisterForm() {
 		var validateEmail = $.confirm({
 			title : false,
 			closeIcon : true,
-			content : 'url:/login/email_check.html',
+			content : 'url:/module/login/email_check.html',
 			// theme: 'supervan',
 			onContentReady : function() {
 				// 显示邮件
@@ -470,7 +470,7 @@ function retrievePassword() {
 			.confirm({
 				title : false,
 				closeIcon : true,
-				content : 'url:/login/retrive_pwd.html',
+				content : 'url:/module/login/retrive_pwd.html',
 				// theme: 'supervan',
 				onContentReady : function() {
 					// 如果是手机，调整排版

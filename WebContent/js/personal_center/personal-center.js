@@ -10,7 +10,7 @@
 $(function(){
 	//如果没有登录
 	/*if(!$.cookie('username')){
-		window.location.replace('/error/error.jsp');
+		window.location.replace('/module/error/error.jsp');
 	}*/	
 	
 	//调整顶部导航的宽度
@@ -52,7 +52,6 @@ $(function() {
  */
 function loadSuperAdminManage(){
 	if($.cookie('username') == 'super_admin'){
-		//window.location.replace('/error/error.jsp');
 		$('#menunav').append(
 			'<!-- 站长才有 -->' +
 			'<li><a href="#webManagement" class="nav-header collapsed"' +
@@ -60,9 +59,9 @@ function loadSuperAdminManage(){
 					' class="pull-right glyphicon glyphicon-chevron-down"></span>' +
 				'</a>' +
 				'<ul id="webManagement" class="nav nav-list collapse secondmenu">' +
-					'<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i>写新博客</a></li>' +
-					'<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i>写新代码库</a></li>' +
-					'<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i>上传新文件</a></li>' +
+					'<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i>写新博客</a></li>' +
+					'<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i>写新代码库</a></li>' +
+					'<li><a href="/module/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i>上传新文件</a></li>' +
 					'<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i>编辑新版特性</a></li>' +
 					'<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>查看所有用户</a></li>' +
 				'</ul>' +
@@ -229,123 +228,15 @@ function editUserInfo(){
  */
 function editVerFeature(){
 	$('#mainWindow').html('');
-	$('#mainWindow').append('<strong>版本：</strong><input id="newVersion"/><br/>');
-	for (var i = 0; i < 5; i++) {
-		$('#mainWindow').append(
-			'<strong>'+ (i + 1) + '：</strong>' +
-			'<textarea rows="1" cols="100" class="version-input"></textarea><br/>'
-		);
-	}
 	
-	$('#mainWindow').append('<button id="subVerFea">提交版本特性</button>');
-	$('#subVerFea').bind('click', submitNewVerFea);
-}
-
-/**
- * 新版本特性提交
- * @returns
- */
-function submitNewVerFea() {
-	// 获取文章细节
-	var article_data = JSON.stringify(articleDetail());
-
-	if( typeof(article_data) == 'undefined'){
-		$.confirm({
-		    title: '收集新版特性出错',
-		    content: '新版特性内容不能为空',
-		    autoClose: 'ok|2000',
-		    type: 'red',
-		    buttons: {
-		    	ok: {
-		            text: '确认',
-		            btnClass: 'btn-primary',
-		        },
-		    }
-		});
-		
-		return;
-	}
-	
-	$.ajax({
-		type : 'POST',
-		async : false,
-		url : '/newReleaseFeature.hms',
-		dataType : 'json',
-		data : {
-			newArticle : article_data,
-		},
-		success : function(response, status) {
-			if(response != 0){
-				$.confirm({
-				    title: '上传成功',
-				    content: '上传成功',
-				    autoClose: 'ok|2000',
-				    type: 'green',
-				    buttons: {
-				    	ok: {
-				            text: '确认',
-				            btnClass: 'btn-primary',
-				        },
-				    }
-				});
-			}else{
-				$.confirm({
-				    title: '上传失败',
-				    content: '上传失败',
-				    autoClose: 'ok|2000',
-				    type: 'red',
-				    buttons: {
-				    	ok: {
-				            text: '确认',
-				            btnClass: 'btn-primary',
-				        },
-				    }
-				});
-			}
-		},
-		error : function(XMLHttpRequest, textStatus){
-			$.confirm({
-			    title: '上传出错',
-			    content: textStatus + ' : ' + XMLHttpRequest.status,
-			    autoClose: 'ok|2000',
-			    type: 'red',
-			    buttons: {
-			    	ok: {
-			            text: '确认',
-			            btnClass: 'btn-primary',
-			        },
-			    }
-			});
-		}
+	$.ajax( {
+	    url: 'editor_version.html', //这里是静态页的地址
+	    async : false,
+	    type: 'GET', //静态页用get方法，否则服务器会抛出405错误
+	    success: function(data){
+	    	$('#mainWindow').html(data);
+	    }
 	});
-}
-
-/**
- * 提交时获取新版特性细节
- * @returns
- */
-function articleDetail() {
-	var new_version_feature = {};
-
-	var version_input = $('#mainWindow').children('.version-input');
-	var version_feature = '';
-	$('.version-input').each(function(i) {
-		if($(this).val() != ''){
-			version_feature += '<p>' + (i+1) + '、' + $(this).val() + '</p>';
-		}
-	});
-
-	//如果新版特性为空，直接返回
-	if(version_feature == ''){
-		return;
-	}
-	
-	new_version_feature.releaseAuthor = '何明胜';
-	new_version_feature.releaseDate = $.nowDateHMS();
-	new_version_feature.releaseNumber = $('#newVersion').val();
-	new_version_feature.releaseContent = version_feature;
-
-	return new_version_feature;
 }
 
 /**

@@ -3,6 +3,8 @@
 	
 <link rel="stylesheet" href="/css/login/login.css">	
 	
+<!-- 此处修改记得更新 后端通用模板  -->	
+	
 <!-- 注册窗口 -->
 <div id="register" class="modal fade" tabindex="-1"
 	data-backdrop="static" data-keyboard="false">
@@ -87,8 +89,6 @@
 		</div>
 	</div>
 </div>
-
-<%@include file="/navigation/rightbar.jsp"%>
 
 <!-- 底部版权信息 -->
 <nav class="navbar-fixed-bottom navbar-bottom">

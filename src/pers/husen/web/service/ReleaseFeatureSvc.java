@@ -19,4 +19,14 @@ public class ReleaseFeatureSvc implements ReleaseFeatureDao{
 	public ReleaseFeatureVo queryLatestReleaseFeature() {
 		return rImpl.queryLatestReleaseFeature();
 	}
+
+	@Override
+	public ReleaseFeatureVo queryReleaseById(int releaseId) {
+		return rImpl.queryReleaseById(releaseId);
+	}
+
+	@Override
+	public int updateReleaseContentById(ReleaseFeatureVo rVo) {
+		return rImpl.updateReleaseContentById(rVo);
+	}
 }

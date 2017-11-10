@@ -6,7 +6,7 @@
 }
 
 .version-input {
-	resize: none;
+	/* resize: none; */
 }
 
 .return-index {
@@ -22,6 +22,10 @@
 	height: 80px;
 }
 
-.form-show-p{
+.form-show-p {
 	width: 30%;
+}
+
+.back-left-menu {
+	margin-top: 60px;
 }

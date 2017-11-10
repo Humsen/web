@@ -7,6 +7,7 @@ import pers.husen.web.bean.vo.ReleaseFeatureVo;
 import pers.husen.web.dao.ReleaseFeatureDao;
 import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
+import pers.husen.web.dbutil.mappingdb.ReleaseFeatureMapping;
 
 /**
  *
@@ -34,17 +35,45 @@ public class ReleaseFeatureDaoImpl implements ReleaseFeatureDao{
 
 	@Override
 	public ReleaseFeatureVo queryLatestReleaseFeature() {
-		String sql = "SELECT release_author, release_date, release_number, release_content FROM release_feature"
+		String sql = "SELECT release_author, release_date, release_number, release_content, "
+				+ ReleaseFeatureMapping.RELEASE_ID
+				+ " FROM release_feature"
 				+ " WHERE release_id = (SELECT max(release_id) FROM release_feature)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		
-		ArrayList<ReleaseFeatureVo> result = DbQueryUtils.queryBeanListByParam(sql, paramList, ReleaseFeatureVo.class);
+		ReleaseFeatureVo result = DbQueryUtils.queryBeanByParam(sql, paramList, ReleaseFeatureVo.class);
 		
-		if(result == null || result.size() == 0) {
-			return new ReleaseFeatureVo();
-		}
+		return result; 
+	}
+
+	@Override
+	public ReleaseFeatureVo queryReleaseById(int releaseId) {
+		String sql = "SELECT release_author, release_date, release_number, release_content, "
+				+ ReleaseFeatureMapping.RELEASE_ID
+				+ " FROM release_feature"
+				+ " WHERE release_id = ?";
 		
-		return result.get(0); 
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(releaseId);
+		
+		ReleaseFeatureVo result = DbQueryUtils.queryBeanByParam(sql, paramList, ReleaseFeatureVo.class);
+		
+		return result; 
+	}
+
+	@Override
+	public int updateReleaseContentById(ReleaseFeatureVo rVo) {
+		String sql = "UPDATE " + ReleaseFeatureMapping.DB_NAME + " SET "
+				+ ReleaseFeatureMapping.RELEASE_CONTENT + "=? "
+				+ "WHERE "
+				+ ReleaseFeatureMapping.RELEASE_ID + "=?";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		
+		paramList.add(rVo.getReleaseContent());
+		paramList.add(rVo.getReleaseId());
+		
+		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
 }

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- 放在login.jsp里面 -->
+
+<!-- 此处修改记得更新 后端通用模板  -->
+
 <!-- 右侧固定栏 -->
 <link rel="stylesheet" href="/css/navigation/rightbar.css" />
 
-<div id="rightBar">
+<div id="bar_right">
 	<div>
 		<div class="sidebar-module">
 			<h4>关于本站</h4>
@@ -28,10 +30,6 @@
 			<ol class="list-unstyled">
 				<li><a href="http://www.jianshu.com/u/062170d22472"
 					target="_blank">简书 &emsp;鲁莽书生</a></li>
-				<!-- <li><a
-					href="http://www.jianshu.com/users/933952e4f1d6/timeline" target="_blank">简书
-						一格的博客</a></li>
-				<li><a href="https://github.com/HelloHusen" target="_blank">GitHub 何明胜</a></li> -->
 			</ol>
 		</div>
 	</div>

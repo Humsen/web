@@ -1,12 +1,8 @@
 @charset "UTF-8";
 
-#rightBar {
-	float: right;
-	margin-top: 60px;
-	width: 15%;
-	margin-right: 2%;
-	position: fixed;
-	margin-left: 85%;
+#bar_right {
+	float: left;
+	width: 18%;
 }
 
 .sidebar-module {

@@ -25,8 +25,8 @@ import pers.husen.web.common.helper.StackTrace2Str;
  *
  *         2017年11月7日
  */
-public class ExceptionFilter implements Filter {
-	private final Logger logger = LogManager.getLogger(ExceptionFilter.class);
+public class WebFilter implements Filter {
+	private final Logger logger = LogManager.getLogger(WebFilter.class);
 
 	@Override
 	public void destroy() {
@@ -35,15 +35,23 @@ public class ExceptionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// 如果是手机访问,且是访问hemingshengcn. 转发到m.hemingsheng.cn
 		HttpServletRequest svtRequest = (HttpServletRequest) request;
+		HttpServletResponse svtResponse = (HttpServletResponse) response;
 		StringBuffer resquestUrl = svtRequest.getRequestURL();
 		
 		String regStr = ".*www.hemingsheng.cn/$";
 		String userAgent = svtRequest.getHeader("User-Agent");
-		if (Pattern.matches(regStr, resquestUrl) && JudgeIsMobile.isMobile(userAgent)) {
-			HttpServletResponse svtResponse = (HttpServletResponse) response;
+		Boolean isMobile = JudgeIsMobile.isMobile(userAgent);
+		// 如果是手机访问,且是访问hemingshengcn. 转发到m.hemingsheng.cn
+		if (Pattern.matches(regStr, resquestUrl) && isMobile) {
+			
 			svtResponse.sendRedirect("https://m.hemingsheng.cn");
+			return;
+		}
+		//如果是手机访问www分享的链接，则替换成m
+		if(isMobile && resquestUrl.indexOf("www") != -1) {
+			String newResquestUrl = resquestUrl.toString().replace("www", "m");
+			svtResponse.sendRedirect(newResquestUrl + "?" + svtRequest.getQueryString());
 			return;
 		}
 		

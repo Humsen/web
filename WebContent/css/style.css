@@ -24,10 +24,6 @@ a:hover, a:active, a:focus {
 	text-decoration: none !important;
 }
 
-p {
-	margin-bottom: 1.5em;
-}
-
 figure {
 	margin-bottom: 2.5em;
 	float: left;
@@ -259,15 +255,6 @@ figure figcaption {
 	color: #228896;
 }
 
-#fh5co-main {
-	width: 60%;
-	float: left;
-	margin-left: 16%;
-	-webkit-transition: 0.5s;
-	-o-transition: 0.5s;
-	transition: 0.5s;
-}
-
 @media screen and (max-width: 1200px) {
 	#fh5co-main {
 		width: 70%;
@@ -278,14 +265,6 @@ figure figcaption {
 	#fh5co-main {
 		width: 100%;
 	}
-}
-
-#fh5co-main .fh5co-narrow-content {
-	position: relative;
-	width: 93%;
-	margin: 0 auto;
-	padding: 4em 0;
-	clear: both;
 }
 
 @media screen and (max-width: 768px) {
@@ -842,60 +821,9 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 	background: #fafafa;
 }
 
-.fh5co-feature {
-	text-align: left;
-	width: 100%;
-	float: left;
-	margin-bottom: 40px;
-	position: relative;
-}
 
-.fh5co-feature .fh5co-icon {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100px;
-	height: 100px;
-	display: table;
-	text-align: center;
-	background: rgba(0, 0, 0, 0.05);
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-ms-border-radius: 50%;
-	border-radius: 50%;
-}
 
-.fh5co-feature .fh5co-icon i {
-	display: table-cell;
-	vertical-align: middle;
-	color: #228896;
-	font-size: 40px;
-	height: 100px;
-}
 
-@media screen and (max-width: 1200px) {
-	.fh5co-feature .fh5co-icon i {
-		font-size: 40px;
-	}
-}
-
-.fh5co-feature .fh5co-text {
-	padding-left: 120px;
-	width: 100%;
-}
-
-.fh5co-feature .fh5co-text h2, .fh5co-feature .fh5co-text h3 {
-	margin: 0;
-	padding: 0;
-}
-
-.fh5co-feature .fh5co-text h3 {
-	font-weight: 500;
-	margin-bottom: 20px;
-	color: rgba(0, 0, 0, 0.8);
-	font-size: 14px;
-	letter-spacing: .2em;
-}
 
 .fh5co-feature.fh5co-feature-sm .fh5co-text {
 	margin-top: 30px;
@@ -910,13 +838,6 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 	.fh5co-feature.fh5co-feature-sm .fh5co-icon i {
 		font-size: 28px;
 	}
-}
-
-.fh5co-heading {
-	font-size: 18px;
-	margin-bottom: 2em;
-	font-weight: 500;
-	letter-spacing: 2px;
 }
 
 .fh5co-heading.fh5co-light {
@@ -944,10 +865,6 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 
 .btn-outline:hover, .btn-outline:focus, .btn-outline:active {
 	box-shadow: none;
-}
-
-#message {
-	height: 130px;
 }
 
 .fh5co-nav-toggle {
@@ -1118,4 +1035,3 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .label-lowercase {
 	text-transform: initial !important;
 }
-/*# sourceMappingURL=style.css.map */

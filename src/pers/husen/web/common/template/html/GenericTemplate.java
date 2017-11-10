@@ -21,17 +21,19 @@ public class GenericTemplate {
 			keyWords = keyWords.replaceAll("\\s", ",");
 		}
 		
-		String header = "<html class=\"no-js\"> \r\n" + 
-				"	<head>\r\n" + 
-				"	<meta charset=\"utf-8\">\r\n" + 
-				"	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + 
-				"	<title> " + title + "</title>\r\n" + 
-				"	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-				"	<meta name=\"description\" content=\"" + description + "\"/>\r\n" + 
-				"	<meta name=\"keywords\" content=\"" + keyWords + "\" />\r\n" + 
-				"	<meta name=\"author\" content=\"何明胜,一格\">\r\n\r\n" + 
-				"	<!-- 网站图标 -->\r\n" + 
-				"	<link rel=\"shortcut icon\" href=\"/images/favicon.ico\">";
+		String header = ""+
+				"<html>\r\n" + 
+				"<head>\r\n" + 
+				"<meta charset=\"UTF-8\">\r\n" + 
+				"<title>何明胜的个人网站</title>\r\n" + 
+				"\r\n" + 
+				"<meta name=\"description\"\r\n" + 
+				"	content=\"欢迎来到何明胜的个人网站.本站主要用于记录和分享本人的学习心得和编程经验,并分享常见可复用代码、推荐书籍以及软件等资源.本站源码已托管github,欢迎访问：https://github.com/HelloHusen/web\" />\r\n" + 
+				"<meta name=\"keywords\" content=\"何明胜,何明胜的个人网站,何明胜的博客,一格的程序人生\" />\r\n" + 
+				"<meta name=\"author\" content=\"何明胜,一格\">\r\n" + 
+				"\r\n" + 
+				"<!-- 网站图标 -->\r\n" + 
+				"<link rel=\"shortcut icon\" href=\"/images/favicon.ico\">";
 		
 		return header;
 	}
@@ -41,54 +43,48 @@ public class GenericTemplate {
 	 * @return
 	 */
 	public static String jsAndCssPlugins() {
-		String plugins = "<!-- 插件统一放  -->\r\n\r\n" + 
-				"<!-- Animate.css -->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/plugins/template/css/animate.css\">\r\n" + 
-				"<!-- Icomoon Icon Fonts-->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/plugins/template/css/icomoon.css\">\r\n" + 
+		String plugins = "<!-- 插件统一放  -->\r\n" + 
 				"<!-- Bootstrap  -->\r\n" + 
 				"<link rel=\"stylesheet\" href=\"/plugins/bootstrap/css/bootstrap.min.css\">\r\n" + 
-				"<!-- Flexslider  -->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/plugins/template/css/flexslider.css\">\r\n" + 
-				"<!-- Theme style  -->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/plugins/template/css/style.css\">\r\n" + 
 				"<!-- validator -->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/plugins/validator/css/bootstrapValidator.min.css\" />\r\n" + 
+				"<link rel=\"stylesheet\"\r\n" + 
+				"	href=\"/plugins/validator/css/bootstrapValidator.min.css\" />\r\n" + 
 				"<!-- jquery confirm -->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/plugins/jqueryconfirm/css/jquery-confirm.min.css\" />\r\n" + 
-				"<!-- 左侧菜单栏 -->\r\n" + 
-				"<link rel=\"stylesheet\" href=\"/css/navigation/left-menu-bar.css\">" +
-				"\r\n" + 
-				"\r\n" + 
+				"<link rel=\"stylesheet\"\r\n" + 
+				"	href=\"/plugins/jqueryconfirm/css/jquery-confirm.min.css\" />\r\n" + 
+				"<!-- 自定义中间内容板块 css -->\r\n" + 
+				"<link rel=\"stylesheet\" href=\"/css/navigation/middle.css\">\r\n" + 
+				"<!-- 全局css -->\r\n" + 
+				"<link rel=\"stylesheet\" href=\"/css/global.css\">\r\n" + 
 				"<!-- jQuery -->\r\n" + 
 				"<script src=\"/plugins/jquery/js/jquery-3.2.1.min.js\"></script>\r\n" + 
-				"<!-- jQuery -->\r\n" + 
+				"<!-- jQuery form -->\r\n" + 
 				"<script src=\"/plugins/jquery/js/jquery.form.min.js\"></script>\r\n" + 
-				"<!-- 初始化菜单栏 -->\r\n" + 
-				"<script src=\"/js/navigation/left-menu-bar.js\"></script>\r\n" + 
-				"<!-- 判断访问类型是电脑还是手机 -->\r\n" + 
-				"<script src=\"/js/is-pc-or-mobile.js\"></script>\r\n" + 
-				"<!-- jQuery Easing -->\r\n" + 
-				"<script src=\"/plugins/jquery/js/jquery.easing.1.3.js\"></script>\r\n" + 
-				"<!-- Bootstrap -->\r\n" + 
-				"<script src=\"/plugins/bootstrap/js/bootstrap.min.js\"></script>\r\n" + 
-				"<!-- Waypoints -->\r\n" + 
-				"<script src=\"/plugins/jquery/js/jquery.waypoints.min.js\"></script>\r\n" + 
-				"<!-- Flexslider -->\r\n" + 
-				"<script src=\"/plugins/jquery/js/jquery.flexslider-min.js\"></script>\r\n" + 
-				"<!-- MAIN JS -->\r\n" + 
-				"<script src=\"/plugins/template/js/main.js\"></script>\r\n" + 
-				"<!-- validator -->\r\n" + 
-				"<script src=\"/plugins/validator/js/bootstrapValidator.min.js\"></script>\r\n" + 
-				"<script src=\"/js/login/formvalidator.js\"></script>\r\n" + 
 				"<!-- JQuery cookie -->\r\n" + 
 				"<script src=\"/plugins/jquery/js/jquery.cookie.js\"></script>\r\n" + 
-				"<!-- Modernizr JS -->\r\n" + 
-				"<script src=\"/plugins/template/js/modernizr-2.6.2.min.js\"></script>\r\n" + 
+				"<!-- Bootstrap -->\r\n" + 
+				"<script src=\"/plugins/bootstrap/js/bootstrap.min.js\"></script>\r\n" + 
+				"<!-- validator -->\r\n" + 
+				"<script src=\"/plugins/validator/js/bootstrapValidator.min.js\"></script>\r\n" + 
 				"<!-- jquery confirm -->\r\n" + 
 				"<script src=\"/plugins/jqueryconfirm/js/jquery-confirm.min.js\"></script>\r\n" + 
+				"<!-- 登录、注册表单验证  -->\r\n" + 
+				"<script src=\"/js/login/formvalidator.js\"></script>\r\n" + 
 				"<!-- 自定义开发工具包  -->\r\n" + 
-				"<script src=\"/js/customize-sdk.js\"></script>"; 
+				"<script src=\"/js/customize-sdk.js\"></script>"+
+				
+				"<!-- 显示markdown,只有显示文章细节才有  -->" +
+				"<!-- editor.md -->\r\n" + 
+				"<link rel=\"stylesheet\"\r\n" + 
+				"	href=\"/plugins/editormd/css/editormd.preview.min.css\" />\r\n" + 
+				"<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.min.css\" />\r\n" + 
+				"\r\n" + 
+				"<!-- editor.md -->\r\n" + 
+				"<script src=\"/plugins/editormd/lib/marked.min.js\"></script>\r\n" + 
+				"<script src=\"/plugins/editormd/lib/prettify.min.js\"></script>\r\n" + 
+				"<script src=\"/plugins/editormd/js/editormd.min.js\"></script>\r\n" + 
+				"\r\n" + 
+				"<script src=\"/js/article/article-markdown.js\"></script>"; 
 		
 		return plugins;
 	}
@@ -106,33 +102,53 @@ public class GenericTemplate {
 	 * @return
 	 */
 	public static String topFixedBar() {
-		String topBar = "<!-- 上部导航栏 -->\r\n" + 
+		String topBar = "<!-- 顶部固定导航栏 -->\r\n" + 
 				"<link rel=\"stylesheet\" href=\"/css/navigation/topbar.css\">\r\n" + 
-				"<script type=\"text/javascript\" src=\"/js/navigation/topbar.js\"></script>\r\n" + 
+				"<script src=\"/js/navigation/topbar.js\"></script>\r\n" + 
 				"\r\n" + 
-				"<nav id=\"topBar\" class=\"navbar navbar-default topbar-nav\">\r\n" + 
-				"	<div class=\"container-fluid\">\r\n" + 
-				"		<div class=\"navbar-header\">\r\n" + 
-				"			<a class=\"navbar-brand navbar-brand-a\" href=\"#\"> <span\r\n" + 
-				"				id=\"trademark\" class=\"glyphicon glyphicon-header\" aria-hidden=\"true\"></span>\r\n" + 
-				"			</a> <label id=\"accessToday\" class=\"access-today\"></label> &nbsp; <label\r\n" + 
-				"				id=\"accessTotal\"></label>\r\n" + 
-				"		</div>\r\n" + 
-				"\r\n" + 
-				"		<label id=\"onlineCurrent\" class=\"online-current\"></label> <a\r\n" + 
-				"			id=\"loginBtn\" class=\"btn btn-warning btn-sm topbar-btn-login\"\r\n" + 
-				"			href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#login\"\r\n" + 
-				"			href=\"\"> <span class=\"glyphicon glyphicon-user\"></span>登录\r\n" + 
-				"		</a> <a id=\"registerBtn\" class=\"btn btn-info btn-sm topbar-btn-right\"\r\n" + 
-				"			href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#register\"\r\n" + 
-				"			href=\"\"> <span class=\"glyphicon glyphicon-log-in\"></span>注册\r\n" + 
-				"		</a> <a id=\"persCenterBtn\" class=\"btn btn-success btn-sm topbar-btn-pers\"\r\n" + 
-				"			href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#\" href=\"\">\r\n" + 
-				"			<span class=\"glyphicon glyphicon-header\"></span>个人中心\r\n" + 
-				"		</a> <a id=\"quitLoginBtn\" class=\"btn btn-primary btn-sm topbar-btn-right\"\r\n" + 
-				"			href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#\" href=\"\">\r\n" + 
-				"			<span class=\"glyphicon glyphicon-log-out\"></span>退出\r\n" + 
+				"<!-- 导航区  -->\r\n" + 
+				"<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n" + 
+				"	<!-- logo -->\r\n" + 
+				"	<div class=\"navbar-header\">\r\n" + 
+				"		<a class=\"navbar-brand\" href=\"/\"> <span id=\"trademark\"\r\n" + 
+				"			class=\"glyphicon glyphicon-header\"></span>\r\n" + 
 				"		</a>\r\n" + 
+				"	</div>\r\n" + 
+				"	<!-- 访问统计  -->\r\n" + 
+				"	<div class=\"access-statistics\">\r\n" + 
+				"		<label id=\"txt_accessToday\"></label> <label id=\"txt_accessTotal\"></label>\r\n" + 
+				"		<label id=\"txt_onlineCurrent\"></label>\r\n" + 
+				"	</div>\r\n" + 
+				"	<div class=\"colmun-nav\">\r\n" + 
+				"		<ul class=\"nav nav-pills topbar-nav\">\r\n" + 
+				"			<li role=\"presentation\" class=\"active\"><a href=\"/\">首页</a></li>\r\n" + 
+				"			<li role=\"presentation\"><a href=\"/topic/blog/\">博客</a></li>\r\n" + 
+				"			<li role=\"presentation\"><a href=\"/topic/code/\">代码库</a></li>\r\n" + 
+				"			<li role=\"presentation\"><a href=\"/topic/message/\">留言</a></li>\r\n" + 
+				"			<li role=\"presentation\"><a href=\"/topic/download/\">下载</a></li>\r\n" + 
+				"			<li role=\"presentation\"><a href=\"/topic/contact/\">联系站长</a></li>\r\n" + 
+				"		</ul>\r\n" + 
+				"	</div>\r\n" + 
+				"	<!-- 登录注册 -->\r\n" + 
+				"	<div class=\"login-register\">\r\n" + 
+				"		<a id=\"loginBtn\" class=\"btn btn-warning btn-sm\" href=\"#\" role=\"button\"\r\n" + 
+				"			data-toggle=\"modal\" data-target=\"#login\" href=\"\"> <span\r\n" + 
+				"			class=\"glyphicon glyphicon-user\"></span>登录\r\n" + 
+				"		</a> <a id=\"registerBtn\" class=\"btn btn-info btn-sm\" href=\"#\"\r\n" + 
+				"			role=\"button\" data-toggle=\"modal\" data-target=\"#register\" href=\"\">\r\n" + 
+				"			<span class=\"glyphicon glyphicon-log-in\"></span>注册\r\n" + 
+				"		</a> <a id=\"persCenterBtn\" class=\"btn btn-success btn-sm\" href=\"#\"\r\n" + 
+				"			role=\"button\" data-toggle=\"modal\" data-target=\"#\" href=\"\"> <span\r\n" + 
+				"			class=\"glyphicon glyphicon-header\"></span>个人中心\r\n" + 
+				"		</a> <a id=\"quitLoginBtn\" class=\"btn btn-primary btn-sm\" href=\"#\"\r\n" + 
+				"			role=\"button\" data-toggle=\"modal\" data-target=\"#\" href=\"\"> <span\r\n" + 
+				"			class=\"glyphicon glyphicon-log-out\"></span>退出\r\n" + 
+				"		</a>\r\n" + 
+				"	</div>\r\n" + 
+				"	<!-- 其他 -->\r\n" + 
+				"	<div class=\"nav-others\">\r\n" + 
+				"		<a class=\"btn btn-default btn-sm\" href=\"https://m.hemingsheng.cn/\" role=\"button\"><span\r\n" + 
+				"			class=\"glyphicon glyphicon glyphicon-phone\"></span> 手机版</a>\r\n" + 
 				"	</div>\r\n" + 
 				"</nav>";
 		
@@ -229,29 +245,42 @@ public class GenericTemplate {
 				"			</div>\r\n" + 
 				"		</div>\r\n" + 
 				"	</div>\r\n" + 
-				"</div>"+
-				" <!-- 右侧固定栏  -->"
-				+ rightBar() + 
-				"<!-- 底部版权信息 -->"
-				+ "<nav class=\"navbar-fixed-bottom navbar-bottom\">\r\n" + 
-				"	<span class=\"glyphicon glyphicon-copyright-mark\"></span>"
-				+ " 2017&nbsp; 何明胜&nbsp;版权所有&nbsp;渝ICP备16013250号"
-				+ "</nav>";
+				"</div>\r\n" + 
+				"\r\n" + 
+				"<!-- 底部版权信息 -->\r\n" + 
+				"<nav class=\"navbar-fixed-bottom navbar-bottom\">\r\n" + 
+				"	<span class=\"glyphicon glyphicon-copyright-mark\"></span>2017&nbsp;何明胜&nbsp;版权所有&nbsp;渝ICP备16013250号</nav>";
 		
 		return login;
+	}
+	
+	/**
+	 * 左侧导航
+	 * @return
+	 */
+	public static String leftBar() {
+		String leftBar = "<!-- 左侧固定栏 -->\r\n" + 
+				"<link rel=\"stylesheet\" href=\"/css/navigation/leftbar.css\" />\r\n" + 
+				"<!-- 加载新版本特性 -->\r\n" + 
+				"<script type=\"text/javascript\" src=\"/js/navigation/leftbar.js\"></script>\r\n" + 
+				"<div id=\"bar_left\">\r\n" + 
+				"	<!-- 加载新版特性 -->\r\n" + 
+				"	<div id=\"txt_versionFeature\" class=\"sidebar-module\"></div>\r\n" + 
+				"</div>";
+		
+		return leftBar;
 	}
 	
 	public static String rightBar() {
 		String rightBar = "<!-- 右侧固定栏 -->\r\n" + 
 				"<link rel=\"stylesheet\" href=\"/css/navigation/rightbar.css\" />\r\n" + 
-				"\r\n" + 
-				"<div id=\"rightBar\">\r\n" + 
+				"<div id=\"bar_right\">\r\n" + 
 				"	<div>\r\n" + 
 				"		<div class=\"sidebar-module\">\r\n" + 
 				"			<h4>关于本站</h4>\r\n" + 
-				"			<p>&emsp;&emsp;欢迎来到何明胜的个人网站。本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及分享软件等资源。</p>\r\n" + 
-				"			<p>本站源码已托管github。欢迎访问：<br/>\r\n" + 
-				"				<a href=\"https://github.com/HelloHusen/web\" target=\"_blank\">https://github.com/HelloHusen/web</a>\r\n" + 
+				"			<p>&emsp;欢迎来到何明胜的个人网站.本站主要用于记录和分享本人的学习心得和编程经验，并分享常见可复用代码、推荐书籍以及软件等资源。</p>\r\n" + 
+				"			<p>本站源码已托管github.欢迎访问:<br/>\r\n" + 
+				"				<a href=\"https://github.com/HelloHusen/web\" target=\"_blank\">github.com/HelloHusen/web</a>\r\n" + 
 				"			</p>\r\n" + 
 				"		</div>\r\n" + 
 				"		<div class=\"sidebar-module\">\r\n" + 
@@ -269,10 +298,6 @@ public class GenericTemplate {
 				"			<ol class=\"list-unstyled\">\r\n" + 
 				"				<li><a href=\"http://www.jianshu.com/u/062170d22472\"\r\n" + 
 				"					target=\"_blank\">简书 &emsp;鲁莽书生</a></li>\r\n" + 
-				"				<!-- <li><a\r\n" + 
-				"					href=\"http://www.jianshu.com/users/933952e4f1d6/timeline\" target=\"_blank\">简书\r\n" + 
-				"						一格的博客</a></li>\r\n" + 
-				"				<li><a href=\"https://github.com/HelloHusen\" target=\"_blank\">GitHub 何明胜</a></li> -->\r\n" + 
 				"			</ol>\r\n" + 
 				"		</div>\r\n" + 
 				"	</div>\r\n" + 

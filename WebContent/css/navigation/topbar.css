@@ -1,57 +1,29 @@
 @charset "UTF-8";
 
+/** 新版 */
 .topbar-nav {
-	min-height: 30px;
-	width: 100%;
-	margin-bottom: 0;
+	margin: 4px 0 0 20px;
 }
 
-.topbar-nav label {
-	color: #6e83ab;
+.navbar.navbar-default div {
+	float: left;
 }
 
-.navbar-brand-a {
-	padding: 5px 15px 1px;
-	height: 30px;
+.access-statistics {
+	margin: 15px 30px 0 0;
 }
 
-.access-today {
-	margin-top: 4px;
-	margin-left: 35px;
+.login-register {
+	position: fixed;
+	margin: 10px 20px 0 65%;
 }
 
-.online-current {
-	margin-top: 4px;
-	margin-left: 70px;
+.colmun-nav {
+	position: fixed;
+	margin-left: 30%;
 }
 
-.topbar-btn-login {
-	padding: 2px 2px !important;
-	font-size: 13px;
-	border: 1px solid #f0ad4e;
-	margin-left: 15%;
-	display: none;
-}
-
-.topbar-btn-pers {
-	padding: 2px 2px !important;
-	font-size: 13px;
-	border: 1px solid #5bc0de;
-	margin-left: 15%;
-	display: none;
-}
-
-.topbar-btn-right {
-	padding: 2px 2px !important;
-	font-size: 13px;
-	border: 1px solid #5bc0de;
-	display: none;
-	margin-left: 6px;
-}
-
-.choose-theme {
-	/* float: left; */
-	/* position: absolute;
-	top: 5px;
-	right: 15%; */
+.nav-others {
+	position: fixed;
+	margin: 10px 0 0 80%;
 }
