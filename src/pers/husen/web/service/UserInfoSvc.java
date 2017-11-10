@@ -14,30 +14,37 @@ import pers.husen.web.dao.impl.UserInfoDaoImpl;
 public class UserInfoSvc implements UserInfoDao{
 	private UserInfoDaoImpl uImpl = new UserInfoDaoImpl();
 	
+	@Override
 	public String queryPasswordByUserName(String userName) {
 		return uImpl.queryPasswordByUserName(userName);
 	}
 	
+	@Override
 	public int insertUserInfo(UserInfoVo uVo) {
 		return uImpl.insertUserInfo(uVo);
 	}
 	
+	@Override
 	public UserInfoVo queryUserInfoByName(String userName) {
 		return uImpl.queryUserInfoByName(userName);
 	}
 	
+	@Override
 	public int updateUserInfoById(UserInfoVo uVo) {
 		return uImpl.updateUserInfoById(uVo);
 	}
 	
+	@Override
 	public int updateUserPwdByName(UserInfoVo uVo) {
 		return uImpl.updateUserPwdByName(uVo);
 	}
 	
+	@Override
 	public int updateUserPwdByNameAndEmail(UserInfoVo uVo) {
 		return uImpl.updateUserPwdByNameAndEmail(uVo);
 	}
 	
+	@Override
 	public int updateUserEmailByName(UserInfoVo uVo) {
 		return uImpl.updateUserEmailByName(uVo);
 	}

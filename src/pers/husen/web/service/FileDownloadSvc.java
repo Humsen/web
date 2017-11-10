@@ -14,22 +14,27 @@ import pers.husen.web.dao.impl.FileDownloadDaoImpl;
 public class FileDownloadSvc implements FileDownloadDao{
 	private FileDownloadDaoImpl fImpl = new FileDownloadDaoImpl();
 
+	@Override
 	public int queryFileTotalCount() {
 		return fImpl.queryFileTotalCount();
 	}
 
+	@Override
 	public ArrayList<FileDownloadVo> queryFileDownlaodPerPage(int pageSize, int pageNo) {
 		return fImpl.queryFileDownlaodPerPage(pageSize, pageNo);
 	}
 
+	@Override
 	public FileDownloadVo queryPerFileById(int fileId) {
 		return fImpl.queryPerFileById(fileId);
 	}
 
+	@Override
 	public int insertFileDownload(FileDownloadVo fVo) {
 		return fImpl.insertFileDownload(fVo);
 	}
 	
+	@Override
 	public int updateFileDownCountByUrl(String fileUrl) {
 		return fImpl.updateFileDownCountByUrl(fileUrl);
 	}

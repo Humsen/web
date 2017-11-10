@@ -13,11 +13,29 @@ import java.util.Date;
 public class ReleaseFeatureVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	private int releaseId;
 	private String releaseAuthor;
 	private Date releaseDate;
 	private String releaseNumber;
 	private String releaseContent;
 	
+	@Override
+	public String toString() {
+		return "ReleaseFeatureVo [releaseId=" + releaseId + ", releaseAuthor=" + releaseAuthor + ", releaseDate="
+				+ releaseDate + ", releaseNumber=" + releaseNumber + ", releaseContent=" + releaseContent + "]";
+	}
+	/**
+	 * @return the releaseId
+	 */
+	public int getReleaseId() {
+		return releaseId;
+	}
+	/**
+	 * @param releaseId the releaseId to set
+	 */
+	public void setReleaseId(int releaseId) {
+		this.releaseId = releaseId;
+	}
 	/**
 	 * @return the releaseAuthor
 	 */

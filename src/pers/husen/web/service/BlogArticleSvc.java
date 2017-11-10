@@ -18,30 +18,37 @@ public class BlogArticleSvc implements BlogArticleDao{
 		return bImpl.queryAllBlogArticles();
 	}
 	
+	@Override
 	public int queryBlogTotalCount() {
 		return bImpl.queryBlogTotalCount();
 	}
 	
+	@Override
 	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(int pageSize, int pageNo){
 		return bImpl.queryBlogArticlePerPage(pageSize, pageNo);
 	}
 	
+	@Override
 	public BlogArticleVo queryPerBlogById(int blogId) {
 		return bImpl.queryPerBlogById(blogId);
 	}
 	
+	@Override
 	public int insertBlogArticle(BlogArticleVo bVo) {
 		return bImpl.insertBlogArticle(bVo);
 	}
 	
+	@Override
 	public int updateBlogReadById(int blogId) {
 		return bImpl.updateBlogReadById(blogId);
 	}
 	
+	@Override
 	public int updateBlogById(BlogArticleVo bVo) {
 		return bImpl.updateBlogById(bVo);
 	}
 	
+	@Override
 	public int logicDeleteBlogById(int blogId) {
 		return bImpl.logicDeleteBlogById(blogId);
 	}

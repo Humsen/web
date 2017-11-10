@@ -11,14 +11,17 @@ import pers.husen.web.dao.impl.VisitTotalDaoImpl;
 public class VisitTotalSvc implements VisitTotalDao{
 	private VisitTotalDaoImpl vImpl = new VisitTotalDaoImpl();
 	
+	@Override
 	public int queryVisitTotal() {
 		return vImpl.queryVisitTotal();
 	}
 	
+	@Override
 	public int queryVisitToday() {
 		return vImpl.queryVisitToday();
 	}
 	
+	@Override
 	public int updateVisitCount() {
 		return vImpl.updateVisitCount();
 	}

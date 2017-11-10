@@ -16,7 +16,7 @@ import pers.husen.web.common.handler.ImageDownloadHandler;
  *
  * 2017年10月20日
  */
-@WebServlet(urlPatterns="/imageDownload.hms")
+@WebServlet(urlPatterns= {"/imageDownload.hms", "/imageDownload"})
 public class ImageDownloadSvt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
