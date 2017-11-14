@@ -53,11 +53,10 @@
 				<div id="latestCode" class="row"></div>
 			</div>
 			<!-- 每日一言  -->
-			<script type="text/javascript"
-				src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script>
+			<script src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script>
 			<div id="lwlhitokoto">
 				<script>
-					lwlhitokoto()
+					lwlhitokoto();
 				</script>
 			</div>
 		</div>
