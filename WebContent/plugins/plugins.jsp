@@ -17,10 +17,6 @@
 <link rel="stylesheet" href="/css/navigation/middle.css">
 <!-- 全局css -->
 <link rel="stylesheet" href="/css/global.css">
-<!-- 模板  -->
-<!-- <link rel="stylesheet" href="/css/style.css"> -->
-
-
 
 <!-- jQuery -->
 <script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
