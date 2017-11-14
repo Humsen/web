@@ -41,7 +41,7 @@
 			<div class="fh5co-narrow-content article-box-div">
 				<h2 class="fh5co-heading article-bar"
 					data-animate-effect="fadeInLeft">最近更新的博客</h2>
-				<a href="/module/blog.jsp" class="read-more-article"><span
+				<a href="/topic/blog/" class="read-more-article"><span
 					class="glyphicon glyphicon-hand-right"></span>&nbsp;阅读更多博客</a>
 				<div id="latestBlog" class="row"></div>
 			</div>
@@ -49,7 +49,7 @@
 			<div class="fh5co-narrow-content article-box-div">
 				<h2 class="fh5co-heading article-bar"
 					data-animate-effect="fadeInLeft">最近更新的代码</h2>
-				<a href="/module/code_library.jsp" class="read-more-article"><span
+				<a href="/topic/code/" class="read-more-article"><span
 					class="glyphicon glyphicon-hand-right"></span>&nbsp;阅读更多代码</a>
 				<div id="latestCode" class="row"></div>
 			</div>
