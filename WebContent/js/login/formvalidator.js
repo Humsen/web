@@ -176,7 +176,7 @@ function submitLoginForm() {
 						title : '登录失败',
 						content : '登录失败',
 						autoClose : 'ok|2000',
-						type : 'green',
+						type : 'red',
 						buttons : {
 							ok : {
 								text : '确认',

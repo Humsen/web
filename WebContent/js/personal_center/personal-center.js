@@ -31,7 +31,7 @@ $(function() {
 					'<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
 
 	// 加载网站管理
-	loadSuperAdminManage();
+	loadAdminManageMenu();
 });
 
 /**
@@ -50,11 +50,11 @@ $(function() {
 });
 
 /**
- * 判断是否加载超级管理员的网站管理
+ * 根据用户级别加载管理员的网站管理
  * 
  * @returns
  */
-function loadSuperAdminManage() {
+function loadAdminManageMenu() {
 	if ($.cookie('username') == 'super_admin') {
 		// window.location.replace('/error/error.jsp');
 		$('#menunav')
@@ -71,6 +71,19 @@ function loadSuperAdminManage() {
 								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i>编辑新版特性</a></li>'
 								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>查看所有用户</a></li>'
 								+ '</ul>' + '</li>');
+	}else{
+		$('#menunav')
+		.append(
+				'<!-- 站长才有 -->'
+						+ '<li><a href="#webManagement" class="nav-header collapsed"'
+						+ 'data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i> 新文章 & 新文件<span'
+						+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
+						+ '</a>'
+						+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
+						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i>写新博客</a></li>'
+						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i>写新代码库</a></li>'
+						+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i>上传新文件</a></li>'
+						+ '</ul>' + '</li>');
 	}
 }
 

@@ -56,14 +56,14 @@
 							class="glyphicon glyphicon-th-large"></i>菜单栏</a></li>
 					<li><a id="personaldata" href="#nav_personalData"
 						class="nav-header collapsed" data-toggle="collapse"> <i
-							class="glyphicon glyphicon-cog"></i>个人资料 <span
+							class="glyphicon glyphicon-cog"></i> 个人资料 <span
 							class="pull-right glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul id="nav_personalData" class="nav nav-list collapse secondmenu">
 							<li><a href="#" id="showuserinfo"><i
-									class="glyphicon glyphicon-user"></i>个人资料查看</a></li>
+									class="glyphicon glyphicon-user"></i> 个人资料查看</a></li>
 							<li><a href="#" id="edituserinfo"><i
-									class="glyphicon glyphicon-th-list"></i>个人资料修改</a></li>
+									class="glyphicon glyphicon-th-list"></i> 个人资料修改</a></li>
 						</ul></li>
 					<li><a href="#" id="modifypassword"> <i
 							class="glyphicon glyphicon-credit-card"></i> 修改密码
@@ -75,7 +75,7 @@
 							class="glyphicon glyphicon-globe"></i> 私信 <span
 							class="label label-warning pull-right">5</span></a></li>
 					<li><a href="#" id="aboutweb"> <i
-							class="glyphicon glyphicon-fire"></i>关于本站
+							class="glyphicon glyphicon-fire"></i> 关于本站
 					</a></li>
 				</ul>
 			</div>
