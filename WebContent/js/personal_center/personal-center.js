@@ -8,11 +8,6 @@
 
 /** 初始化 */
 $(function() {
-	// 如果没有登录
-	/*
-	 * if(!$.cookie('username')){ window.location.replace('/error/error.jsp'); }
-	 */
-
 	// 调整顶部导航的宽度
 	$('#topBar').css('width', '100%');
 
@@ -26,16 +21,7 @@ $(function() {
 		$('.online-current').css('margin-left', '32px');
 	}
 	// 添加返回首页按钮
-	$('.choose-theme')
-			.append(
-					'<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
-
-	// 加载网站管理
-	loadSuperAdminManage();
-	// 添加返回首页按钮
-	$('.choose-theme')
-			.append(
-					'<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
+	$('.choose-theme').append('<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
 
 	// 加载网站管理
 	loadAdminManageMenu();
