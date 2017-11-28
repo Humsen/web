@@ -53,7 +53,7 @@
 			<div class="col-md-2">
 				<ul id="menunav" class="nav nav-tabs nav-stacked">
 					<li class="active"><a href="#"><i
-							class="glyphicon glyphicon-th-large"></i>菜单栏</a></li>
+							class="glyphicon glyphicon-th-large"></i> 菜单栏</a></li>
 					<li><a id="personaldata" href="#nav_personalData"
 						class="nav-header collapsed" data-toggle="collapse"> <i
 							class="glyphicon glyphicon-cog"></i> 个人资料 <span

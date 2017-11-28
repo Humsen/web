@@ -54,15 +54,15 @@ function loadAdminManageMenu() {
 				.append(
 						'<!-- 站长才有 -->'
 								+ '<li><a href="#webManagement" class="nav-header collapsed"'
-								+ 'data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>网站管理<span'
+								+ 'data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i> 网站管理<span'
 								+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
 								+ '</a>'
 								+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
-								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i>写新博客</a></li>'
-								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i>写新代码库</a></li>'
-								+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i>上传新文件</a></li>'
-								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i>编辑新版特性</a></li>'
-								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>查看所有用户</a></li>'
+								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
+								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
+								+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
+								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i> 编辑新版特性</a></li>'
+								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
 								+ '</ul>' + '</li>');
 	}else{
 		$('#menunav')
@@ -73,9 +73,10 @@ function loadAdminManageMenu() {
 						+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
 						+ '</a>'
 						+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
-						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i>写新博客</a></li>'
-						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i>写新代码库</a></li>'
-						+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i>上传新文件</a></li>'
+						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
+						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
+						+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
+						+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
 						+ '</ul>' + '</li>');
 	}
 }
