@@ -11,10 +11,10 @@ var article_type = -1; //文章类型，默认-1，博客=blog，代码=code
 
 $(document).ready(function() {
 	// 判断是否超级管理员，否则不能访问
-	if ($.cookie('username') != 'super_admin') {
+	/*if ($.cookie('username') != 'super_admin') {
 		window.location.replace('/module/error/error.jsp');
 		return;
-	}
+	}*/
 	
 	//初始化Markdown编辑区
 	initMarkdownEditor();
