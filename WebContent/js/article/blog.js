@@ -8,10 +8,11 @@
 
 //博客总数
 var blog_total_num = 0;
+var blog_page_size = 5;//默认每页显示5条
 
 $(function(){
 	queryBlogNum();
-	queryBlogCatalog($('#num_blogPageSize').text(), 1);
+	queryBlogCatalog(1);
 	//页面选择
 	choosePageSize();
 });
@@ -55,7 +56,7 @@ function queryBlogNum(){
  * @param pageNo
  * @returns
  */
-function queryBlogCatalog(pageSize, pageNo){
+function queryBlogCatalog(pageNo){
 	$.ajax({
 		type : 'POST',
 		async: false,
@@ -63,14 +64,14 @@ function queryBlogCatalog(pageSize, pageNo){
 		dataType : 'json',
 		data : {
 			type : 'query_one_page',
-			pageSize : pageSize,
+			pageSize : blog_page_size,
 			pageNo : pageNo,
 		},
 		success : function(response){
 			for(x in response){
 				loadSimpleBlog(response[x]);
 			}
-			showPagination(pageNo, 6, Math.ceil(blog_total_num/pageSize));//显示分页
+			showPagination(pageNo, 6);//显示分页,6为最大显示6条分页页码
 		},
 		error : function(XMLHttpRequest, textStatus){
 			$.confirm({
@@ -112,15 +113,16 @@ function loadSimpleBlog(blog_data){
  * 
  * @returns void
  */
-function showPagination(currPageNum, paginationMaxLength, totalPages){
+function showPagination(currPageNum, paginationMaxLength){
 	$('#list_blog').append('<hr />'
 		+	'<div id="pagination" class="text-align-center" pagination="pagination_new" '
-		+	' currpagenum=' + currPageNum + ' paginationmaxlength=' + paginationMaxLength + ' totalpages=' + totalPages
+		+	' currpagenum=' + currPageNum + ' paginationmaxlength=' + paginationMaxLength + ' totalpages=' + Math.ceil(blog_total_num/blog_page_size)
 		+   ' onlyonepageshow="true"> '
 		+ 	'</div>'
 		+ 	'<hr />');
 	
-	PaginationHelper($('#pagination'));//显示分页
+	//显示分页, 调用pagination.js
+	PaginationHelper($('#pagination'), blog_page_size);
 }
 
 /**
@@ -130,10 +132,11 @@ function showPagination(currPageNum, paginationMaxLength, totalPages){
  */
 function choosePageSize(){
 	$('#choose_page_size').find('.dropdown-menu').children('li').click(function() {
-		$('#num_blogPageSize').text($(this).attr('value'));
+		blog_page_size = $(this).attr('value');
 		$('#list_blog').html('');
 		queryBlogNum();
-		queryBlogCatalog($('#num_blogPageSize').text(), currentPageNum);
+		queryBlogCatalog(currentPageNum);
+		choosePageSize();
 	});
 }
 
@@ -147,5 +150,5 @@ function choosePageSize(){
 function paginationClick(currentPageNum) {
 	$('#list_blog').html('');
 	queryBlogNum();
-	queryBlogCatalog($('#num_blogPageSize').text(), currentPageNum);
+	queryBlogCatalog(currentPageNum);
 }

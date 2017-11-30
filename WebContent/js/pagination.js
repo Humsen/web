@@ -15,8 +15,8 @@ var onlyOnePageIsShow = true;// 只有一页的时候是否显示
  * @param paginationContainer
  * @returns
  */
-function PaginationHelper(paginationContainer) {
-	initPagination(paginationContainer);
+function PaginationHelper(paginationContainer, pageSize) {
+	initPagination(paginationContainer, pageSize);
 }
 
 /**
@@ -25,7 +25,7 @@ function PaginationHelper(paginationContainer) {
  * @param element
  * @returns
  */
-function initPagination(paginationContainer) {
+function initPagination(paginationContainer, pageSize) {
 	paginationContainer.html('');
 	// 当前选中页码
 	currentPageNum = Number(paginationContainer.attr('currpagenum'));
@@ -48,6 +48,8 @@ function initPagination(paginationContainer) {
 		// 右边的箭头
 		content += '<li value="-1"><a href="javascript:void(0);">»</a></li></ul>';
 		paginationContainer.append(content);
+		//添加每页大小选择显示
+		addPageSizeChoose(paginationContainer, pageSize);
 		// 当前页面添加激活类
 		paginationContainer.children('ul').children('li[value=' + currentPageNum + ']').attr('class', 'active');
 		// 设置显示最大长度
@@ -138,7 +140,7 @@ function setDisplayMaxLength(element, len) {
 }
 
 /**
- * 点击注册
+ * 点击事件注册
  * 
  * @param element
  * @returns
@@ -171,4 +173,24 @@ function addClickListener(element) {
 function checkParamIsPositiveInteger(param) {
 	var reg = /^[1-9]+[0-9]*]*$/;
 	return reg.test(param);
+}
+
+/**
+ * 在分页后面显示选择每页数量
+ * @param paginationContainer
+ * @param currPageSize
+ * @returns
+ */
+function addPageSizeChoose(paginationContainer, currPageSize){
+	paginationContainer.append(' <!-- 选择每页显示的条数 -->'
+            +'<div id="choose_page_size" class="btn-group pagination pagination-sm dropup choose-page-size">'
+	            +'<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+	                +'每页显示<span>' + currPageSize + '</span>条 <span class="caret"></span>'
+	            +'</button>'
+	            +'<ul class="dropdown-menu">'
+	                +'<li value="5"><a href="#">每页显示5条</a></li>'
+	                +'<li value="10"><a href="#">每页显示10条</a></li>'
+	                +'<li value="20"><a href="#">每页显示20条</a></li>'
+	            +'</ul>'
+            +'</div>');
 }

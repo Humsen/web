@@ -7,10 +7,11 @@
  */
 
 var code_total_num = 0;
+var code_page_size = 5;//默认每页显示5条
 
 $(function(){
 	queryCodeNum();
-	queryCodeCatalog($('#num_codePageSize').text(), 1);
+	queryCodeCatalog(1);
 	//页面选择
 	choosePageSize();
 });
@@ -55,7 +56,7 @@ function queryCodeNum(){
  * @param pageNo
  * @returns
  */
-function queryCodeCatalog(pageSize, pageNo){
+function queryCodeCatalog(pageNo){
 	$.ajax({
 		type : 'POST',
 		async: false,
@@ -63,14 +64,14 @@ function queryCodeCatalog(pageSize, pageNo){
 		dataType : 'json',
 		data : {
 			type : 'query_one_page',
-			pageSize : pageSize,
+			pageSize : code_page_size,
 			pageNo : pageNo,
 		},
 		success : function(response){
 			for(x in response){
 				loadSimpleCode(response[x]);
 			}
-			showPagination(pageNo, 6, Math.ceil(code_total_num/pageSize));//显示分页
+			showPagination(pageNo, 6);//显示分页
 		},
 		error : function(XMLHttpRequest, textStatus){
 			$.confirm({
@@ -113,15 +114,15 @@ function loadSimpleCode(code_data){
  * 
  * @returns void
  */
-function showPagination(currpagenum, paginationmaxlength, totalpages){
+function showPagination(currpagenum, paginationmaxlength){
 	$('#list_code').append('<hr />'
 		+	'<div id="pagination" class="text-align-center" pagination="pagination_new" '
-		+	' currpagenum=' + currpagenum + ' paginationmaxlength=' + paginationmaxlength + ' totalpages=' + totalpages
+		+	' currpagenum=' + currpagenum + ' paginationmaxlength=' + paginationmaxlength + ' totalpages=' + Math.ceil(code_total_num/code_page_size)
 		+   ' onlyonepageshow="true"> '
 		+ 	'</div>'
 		+ 	'<hr />');
 	
-	PaginationHelper($('#pagination'));//显示分页
+	PaginationHelper($('#pagination'), code_page_size);//显示分页
 }
 
 /**
@@ -131,10 +132,11 @@ function showPagination(currpagenum, paginationmaxlength, totalpages){
  */
 function choosePageSize(){
 	$('#choose_page_size').find('.dropdown-menu').children('li').click(function() {
-		$('#num_codePageSize').text($(this).attr('value'));
+		code_page_size = $(this).attr('value');
 		$('#list_code').html('');
 		queryCodeNum();
-		queryCodeCatalog($('#num_codePageSize').text(), currentPageNum);
+		queryCodeCatalog(currentPageNum);
+		choosePageSize();
 	});
 }
 
@@ -148,5 +150,5 @@ function choosePageSize(){
 function paginationClick(currentPageNum) {
 	$('#list_code').html('');
 	queryCodeNum();
-	queryCodeCatalog($('#num_codePageSize').text(), currentPageNum);
+	queryCodeCatalog(currentPageNum);
 }
