@@ -41,22 +41,6 @@
 
 		<div id="fh5co-main">
 			<%@include file="/navigation/topbar.jsp"%>
-			<!-- 选择每页显示的条数 -->
-			<div class="collapse navbar-collapse" id="choose_page_size">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle choose-page-size" data-toggle="dropdown"
-						role="button" aria-haspopup="true" aria-expanded="false"> 每页显示<span
-							id="num_blogPageSize">5</span>条<span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu">
-							<li value="5"><a href="#">每页显示5条</a></li>
-							<li value="10"><a href="#">每页显示10条</a></li>
-							<li value="20"><a href="#">每页显示20条</a></li>
-						</ul></li>
-				</ul>
-			</div>
-
 			<div id="list_blog" class="fh5co-post">
 				<!-- js脚本动态添加内容 -->
 			</div>

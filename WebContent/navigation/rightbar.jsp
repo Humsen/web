@@ -20,7 +20,7 @@
 				<li><a
 					href="http://www.jianshu.com/users/933952e4f1d6/timeline"
 					target="_blank">简书&emsp;一格的博客</a></li>
-				<li><a href="https://github.com/HelloHusen" target="_blank">GitHub&emsp;何明胜</a></li>
+				<li><a href="https://github.com/CrazyHusen/" target="_blank">GitHub&emsp;何明胜</a></li>
 			</ol>
 		</div>
 		<div class="sidebar-module">

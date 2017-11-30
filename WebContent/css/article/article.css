@@ -67,8 +67,7 @@ img {
 }
 
 .choose-page-size {
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
+	vertical-align: initial;
 }
 
 .article-title {
