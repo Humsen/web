@@ -182,15 +182,20 @@ function checkParamIsPositiveInteger(param) {
  * @returns
  */
 function addPageSizeChoose(paginationContainer, currPageSize){
-	paginationContainer.append(' <!-- 选择每页显示的条数 -->'
-            +'<div id="choose_page_size" class="btn-group pagination pagination-sm dropup choose-page-size">'
-	            +'<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
-	                +'每页显示<span>' + currPageSize + '</span>条 <span class="caret"></span>'
-	            +'</button>'
-	            +'<ul class="dropdown-menu">'
-	                +'<li value="5"><a href="#">每页显示5条</a></li>'
-	                +'<li value="10"><a href="#">每页显示10条</a></li>'
-	                +'<li value="20"><a href="#">每页显示20条</a></li>'
-	            +'</ul>'
-            +'</div>');
+var isDownload = new RegExp('download').test(window.location.href);
+	
+	//目前不支持文件
+	if (!isDownload) {
+		paginationContainer
+				.append(' <!-- 选择每页显示的条数 -->'
+						+ '<div id="choose_page_size" class="btn-group pagination pagination-sm dropup choose-page-size">'
+						+ '<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+						+ '每页显示<span>' + currPageSize
+						+ '</span>条 <span class="caret"></span>' + '</button>'
+						+ '<ul class="dropdown-menu">'
+						+ '<li value="5"><a href="#">每页显示5条</a></li>'
+						+ '<li value="10"><a href="#">每页显示10条</a></li>'
+						+ '<li value="20"><a href="#">每页显示20条</a></li>'
+						+ '</ul>' + '</div>');
+	}
 }

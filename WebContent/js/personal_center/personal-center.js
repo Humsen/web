@@ -21,7 +21,9 @@ $(function() {
 		$('.online-current').css('margin-left', '32px');
 	}
 	// 添加返回首页按钮
-	$('.choose-theme').append('<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
+	$('.choose-theme')
+			.append(
+					'<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
 
 	// 加载网站管理
 	loadAdminManageMenu();
@@ -38,6 +40,7 @@ $(function() {
 	$('#edituserinfo').click(editUserInfo);
 	$('#modifypassword').click(modifyPassword);
 	$('#btn_modifyEmail').click(modifyEmail);
+	$('#btn_uploadFile').click(uploadFile);
 	// $('#privatemessage').click();
 	// $('#aboutweb').click();
 });
@@ -60,24 +63,24 @@ function loadAdminManageMenu() {
 								+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
 								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
 								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
-								+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
+								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
 								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i> 编辑新版特性</a></li>'
 								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
 								+ '</ul>' + '</li>');
-	}else{
+	} else {
 		$('#menunav')
-		.append(
-				'<!-- 站长才有 -->'
-						+ '<li><a href="#webManagement" class="nav-header collapsed"'
-						+ 'data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i> 新文章 & 新文件<span'
-						+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
-						+ '</a>'
-						+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
-						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
-						+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
-						+ '<li><a href="/upload/upload_file.jsp" target="_blank"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
-						+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
-						+ '</ul>' + '</li>');
+				.append(
+						'<!-- 站长才有 -->'
+								+ '<li><a href="#webManagement" class="nav-header collapsed"'
+								+ 'data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i> 新文章 & 新文件<span'
+								+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
+								+ '</a>'
+								+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
+								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
+								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
+								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
+								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
+								+ '</ul>' + '</li>');
 	}
 }
 
@@ -257,7 +260,7 @@ function editUserInfo() {
  */
 function editVerFeature() {
 	$('#mainWindow').html('');
-	
+
 	$.ajax({
 		url : 'editor_version.html', // 这里是静态页的地址
 		async : false,
@@ -282,6 +285,24 @@ function modifyEmail() {
 
 	$.ajax({
 		url : 'modify_email.html', // 这里是静态页的地址
+		async : false,
+		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		success : function(data) {
+			$('#mainWindow').html(data);
+		}
+	});
+}
+
+/**
+ * 上传新文件点击事件
+ * 
+ * @returns
+ */
+function uploadFile() {
+	$('#mainWindow').html('');
+
+	$.ajax({
+		url : 'upload_file.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
