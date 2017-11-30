@@ -20,21 +20,21 @@ public interface BlogArticleDao {
 	 */
 	public ArrayList<BlogArticleVo> queryAllBlogArticles();
 	
-	/** 
-	 * 查询博客数量
-	 * 
-	 * @return 博客数量
+	/**
+	 * 根据条件询博客数量
+	 * @param bVo
+	 * @return
 	 */
-	public int queryBlogTotalCount();
+	public int queryBlogTotalCount(BlogArticleVo bVo);
 	
-	/** 
+	/**
 	 * 按照页面大小和页码查询博
-	 * 
+	 * @param bVo
 	 * @param pageSize
 	 * @param pageNo
-	 * @return 分页后一页的所有博客
+	 * @return
 	 */
-	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(int pageSize, int pageNo);
+	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(BlogArticleVo bVo, int pageSize, int pageNo);
 	
 	/** 
 	 * 根据id查询单独的一篇博客

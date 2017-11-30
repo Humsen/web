@@ -2,7 +2,8 @@
 
 /** 新版 */
 .topbar-nav {
-	margin: 4px 0 0 20px;
+	margin: 10px 0 0 20px;
+	line-height: 0.8;
 }
 
 .navbar.navbar-default div {
@@ -15,15 +16,28 @@
 
 .login-register {
 	position: fixed;
-	margin: 10px 20px 0 65%;
+	margin: 10px 20px 0 82%;
 }
 
 .colmun-nav {
 	position: fixed;
-	margin-left: 30%;
+	margin-left: 28%;
 }
 
 .nav-others {
 	position: fixed;
-	margin: 10px 0 0 80%;
+	margin: 10px 0 0 93%;
 }
+
+.search-bar {
+	position: fixed;
+	margin: 10px 20px 0 59%;
+}
+
+.search-target {
+	min-width: initial;
+}
+
+/* .btn-search {
+	margin-left: 5px;
+} */

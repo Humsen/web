@@ -49,7 +49,8 @@ public class WebFilter implements Filter {
 			return;
 		}
 		//如果是手机访问www分享的链接，则替换成m
-		if(isMobile && resquestUrl.indexOf("www") != -1) {
+		String webPc = "www";
+		if(isMobile && resquestUrl.indexOf(webPc) != -1) {
 			String newResquestUrl = resquestUrl.toString().replace("www", "m");
 			svtResponse.sendRedirect(newResquestUrl + "?" + svtRequest.getQueryString());
 			return;

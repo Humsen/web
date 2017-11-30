@@ -12,6 +12,7 @@ import pers.husen.web.dao.impl.ImageUploadDaoImpl;
 public class ImageUploadSvc implements ImageUploadDao{
 	private ImageUploadDaoImpl iImpl = new ImageUploadDaoImpl();
 	
+	@Override
 	public int insertImageUpload(ImageUploadVo iVo) {
 		return iImpl.insertImageUpload(iVo);
 	}

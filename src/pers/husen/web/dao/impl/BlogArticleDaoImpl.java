@@ -29,24 +29,35 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 	}
 	
 	@Override
-	public int queryBlogTotalCount() {
+	public int queryBlogTotalCount(BlogArticleVo bVo) {
 		String sql = "SELECT count(*) as count FROM blog_details WHERE blog_delete = ?";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		
+		if(bVo.getBlogTitle() != null && !bVo.getBlogTitle().trim().isEmpty()) {
+			sql += " AND " + BlogDetailsMapping.BLOG_TITLE + " ~* ?";
+			paramList.add(bVo.getBlogTitle());
+		}
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
 
 	@Override
-	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(int pageSize, int pageNo) {
+	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(BlogArticleVo bVo, int pageSize, int pageNo) {
 		String sql = "SELECT blog_id, blog_title, blog_date, blog_author, blog_summary, blog_read, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", " 
 				+ BlogDetailsMapping.BLOG_MD_CONTENT
-				+ " FROM blog_details WHERE blog_delete = ?"
-				+ " ORDER BY blog_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
+				+ " FROM blog_details WHERE blog_delete = ?";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		
+		if(bVo.getBlogTitle() != null && !bVo.getBlogTitle().trim().isEmpty()) {
+			sql += " AND " + BlogDetailsMapping.BLOG_TITLE + " ~* ?";
+			paramList.add(bVo.getBlogTitle());
+		}
+		
+		sql += " ORDER BY blog_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class);
 	}

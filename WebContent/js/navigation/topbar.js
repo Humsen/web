@@ -13,6 +13,9 @@ $(document).ready(function(){
 	
 	//加载当前网站访问统计
 	loadAccessStatistics();
+	
+	//搜索类型选择事件注册
+	chooseSearchType();
 });
 
 /**
@@ -65,4 +68,32 @@ function nextThemeClick(){
 	
 	var img = '/images/background/bg-' + curr_theme_no + '.jpg';
 	$('body').css('background-image','url(' + img + ')');
+}
+
+/**
+ * 选择搜索类型
+ * @returns
+ */
+function chooseSearchType(){
+	$('#choose_search_type').find('.dropdown-menu').children('li').click(function() {
+		searchByKeyWords($(this).attr('value'));
+	});
+	
+	$('#search_blog').click(function(){
+		searchByKeyWords('blog');
+	})
+}
+
+/**
+ * 跳转到相应页面，并附带搜索参数
+ * @param searchType
+ * @returns
+ */
+function searchByKeyWords(searchType){
+	if(searchType == 'blog'){
+		$(window).attr('location','/topic/blog/?keywords='+$('#search_keyWords').val());
+	}
+	if(searchType == 'code'){
+		$(window).attr('location','/topic/code/?keywords='+$('#search_keyWords').val());
+	}
 }

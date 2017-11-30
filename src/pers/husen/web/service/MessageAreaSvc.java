@@ -14,10 +14,12 @@ import pers.husen.web.dao.impl.MessageAreaDaoImpl;
 public class MessageAreaSvc implements MessageAreaDao{
 	private MessageAreaDaoImpl mImpl = new MessageAreaDaoImpl();
 	
+	@Override
 	public ArrayList<MessageAreaVo> queryAllMessageArea(int messageId) {
 		return mImpl.queryAllMessageArea(messageId);
 	}
 	
+	@Override
 	public int insertMessageNew(MessageAreaVo mVo) {
 		return mImpl.insertMessageNew(mVo);
 	}

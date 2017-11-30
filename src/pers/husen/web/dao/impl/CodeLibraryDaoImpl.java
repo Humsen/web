@@ -17,23 +17,34 @@ import pers.husen.web.dbutil.mappingdb.CodeLibraryMapping;
  */
 public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	@Override
-	public int queryCodeTotalCount() {
+	public int queryCodeTotalCount(CodeLibraryVo cVo) {
 		String sql = "SELECT count(*) as count FROM code_library WHERE code_delete = ?";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		
+		if(cVo.getCodeTitle() != null && !cVo.getCodeTitle().trim().isEmpty()) {
+			sql += " AND " + CodeLibraryMapping.CODE_TITLE + " ~* ?";
+			paramList.add(cVo.getCodeTitle());
+		}
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
 
 	@Override
-	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(int pageSize, int pageNo) {
+	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(CodeLibraryVo cVo, int pageSize, int pageNo) {
 		String sql = "SELECT code_id, code_title, code_date, code_author, code_summary, code_read, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT
-				+ " FROM code_library WHERE code_delete = ?"
-				+ " ORDER BY code_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
+				+ " FROM code_library WHERE code_delete = ?";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		
+		if(cVo.getCodeTitle() != null && !cVo.getCodeTitle().trim().isEmpty()) {
+			sql += " AND " + CodeLibraryMapping.CODE_TITLE + " ~* ?";
+			paramList.add(cVo.getCodeTitle());
+		}
+		
+		sql += " ORDER BY code_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, CodeLibraryVo.class);
 	}

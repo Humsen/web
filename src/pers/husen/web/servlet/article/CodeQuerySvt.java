@@ -2,6 +2,7 @@ package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -38,11 +39,16 @@ public class CodeQuerySvt extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		CodeLibrarySvc cSvc = new CodeLibrarySvc();
 		String requestType = request.getParameter("type");
-
+		String requestKeywords = request.getParameter(RequestConstants.PARAM_KEYWORDS);
+		requestKeywords = (requestKeywords == null ? "" : URLDecoder.decode(requestKeywords,"utf-8"));
+		
+		CodeLibraryVo cVo = new CodeLibraryVo();
+		cVo.setCodeTitle(requestKeywords);
+		
 		// 如果是请求查询总共数量
 		String queryTotalCount = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_TOTAL_NUM;
 		if (queryTotalCount.equals(requestType)) {
-			int count = cSvc.queryCodeTotalCount();
+			int count = cSvc.queryCodeTotalCount(cVo);
 			out.println(count);
 
 			return;
@@ -53,7 +59,7 @@ public class CodeQuerySvt extends HttpServlet {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 
-			ArrayList<CodeLibraryVo> cVos = cSvc.queryCodeLibraryPerPage(pageSize, pageNo);
+			ArrayList<CodeLibraryVo> cVos = cSvc.queryCodeLibraryPerPage(cVo, pageSize, pageNo);
 			String json = JSONArray.fromObject(cVos).toString();
 
 			out.println(json);

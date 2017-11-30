@@ -47,8 +47,9 @@ public class FileUploadSvt extends HttpServlet {
 			insertResult = fSvc.insertFileDownload(fVo);
 		}
 		
-		PrintWriter out = response.getWriter();
-		out.println(insertResult);
+		response.sendRedirect("/personal_center/mycenter.jsp");
+		/*PrintWriter out = response.getWriter();
+		out.println(insertResult);*/
 	}
 
     @Override

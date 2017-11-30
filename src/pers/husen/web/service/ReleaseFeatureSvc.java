@@ -12,10 +12,12 @@ import pers.husen.web.dao.impl.ReleaseFeatureDaoImpl;
 public class ReleaseFeatureSvc implements ReleaseFeatureDao{
 	private ReleaseFeatureDaoImpl rImpl = new ReleaseFeatureDaoImpl();
 	
+	@Override
 	public int insertReleaseFeature(ReleaseFeatureVo rVo) {
 		return rImpl.insertReleaseFeature(rVo);
 	}
 	
+	@Override
 	public ReleaseFeatureVo queryLatestReleaseFeature() {
 		return rImpl.queryLatestReleaseFeature();
 	}

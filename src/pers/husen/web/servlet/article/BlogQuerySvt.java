@@ -2,6 +2,7 @@ package pers.husen.web.servlet.article;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -32,16 +33,22 @@ public class BlogQuerySvt extends HttpServlet {
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
 		PrintWriter out = response.getWriter();
 		BlogArticleSvc bSvc = new BlogArticleSvc();
-		String requestType = request.getParameter("type");
+		String requestType = request.getParameter(RequestConstants.PARAM_TYPE);
+		String requestKeywords = request.getParameter(RequestConstants.PARAM_KEYWORDS);
+		requestKeywords = (requestKeywords == null ? "" : URLDecoder.decode(requestKeywords,"utf-8"));
+		
+		BlogArticleVo bVo = new BlogArticleVo();
+		bVo.setBlogTitle(requestKeywords);
 		
 		/** 如果是请求查询总共数量 */
 		String queryTotalCount = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_TOTAL_NUM;
 		if(queryTotalCount.equals(requestType)) {
-			int count = bSvc.queryBlogTotalCount();
+			int count = bSvc.queryBlogTotalCount(bVo);
 			out.println(count);
 			
 			return;
@@ -52,7 +59,7 @@ public class BlogQuerySvt extends HttpServlet {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 
-			ArrayList<BlogArticleVo> bVos = bSvc.queryBlogArticlePerPage(pageSize, pageNo);
+			ArrayList<BlogArticleVo> bVos = bSvc.queryBlogArticlePerPage(bVo, pageSize, pageNo);
 			String json =JSONArray.fromObject(bVos).toString();
 			
 			out.println(json);

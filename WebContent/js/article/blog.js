@@ -27,7 +27,8 @@ function queryBlogNum(){
 		async: false,
 		url : '/blog/query.hms',
 		data : {
-			type : 'query_total_num'
+			type : 'query_total_num',
+			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
 		},
 		success : function(response){
 			blog_total_num = response;
@@ -64,6 +65,7 @@ function queryBlogCatalog(pageNo){
 		dataType : 'json',
 		data : {
 			type : 'query_one_page',
+			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
 			pageSize : blog_page_size,
 			pageNo : pageNo,
 		},

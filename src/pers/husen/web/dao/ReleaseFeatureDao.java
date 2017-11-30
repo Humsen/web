@@ -34,7 +34,7 @@ public interface ReleaseFeatureDao {
 	
 	/**
 	 * 根据id修改版本信息
-	 * @param releaseId
+	 * @param rVo
 	 * @return
 	 */
 	public int updateReleaseContentById(ReleaseFeatureVo rVo);

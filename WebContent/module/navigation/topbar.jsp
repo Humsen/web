@@ -30,6 +30,24 @@
 			<li role="presentation"><a href="/topic/contact/">联系站长</a></li>
 		</ul>
 	</div>
+	<!-- 站内搜索功能 -->
+	<div class="navbar-form navbar-left search-bar" role="search">
+		<div class="form-group">
+			<input id="search_keyWords" type="text" class="form-control" placeholder="输入搜索关键字">
+		</div>
+		<div id="choose_search_type" class="btn-group">
+			<button id="search_blog" type="button" class="btn btn-default">搜索博客</button>
+			<button type="button" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu search-target">
+				<li value="code"><a href="#">搜索代码</a></li>
+				<li role="separator" class="divider"></li>
+				<li value="file"><a href="#">搜索文件（开发中）</a></li>
+			</ul>
+		</div>
+	</div>
 	<!-- 登录注册 -->
 	<div class="login-register">
 		<a id="loginBtn" class="btn btn-warning btn-sm" href="#" role="button"
@@ -48,7 +66,8 @@
 	</div>
 	<!-- 其他 -->
 	<div class="nav-others">
-		<a class="btn btn-default btn-sm" href="https://m.hemingsheng.cn/" role="button"><span
-			class="glyphicon glyphicon glyphicon-phone"></span> 手机版</a>
+		<a class="btn btn-default btn-sm" href="https://m.hemingsheng.cn/"
+			role="button"><span class="glyphicon glyphicon glyphicon-phone"></span>
+			手机版</a>
 	</div>
 </nav>

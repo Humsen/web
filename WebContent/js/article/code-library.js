@@ -27,7 +27,8 @@ function queryCodeNum(){
 		async: false,
 		url : '/code/query.hms',
 		data : {
-			type : 'query_total_num'
+			type : 'query_total_num',
+			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
 		},
 		success : function(response){
 			code_total_num = response;
@@ -64,6 +65,7 @@ function queryCodeCatalog(pageNo){
 		dataType : 'json',
 		data : {
 			type : 'query_one_page',
+			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
 			pageSize : code_page_size,
 			pageNo : pageNo,
 		},
