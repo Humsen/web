@@ -56,7 +56,7 @@ public class FileUploadHandler {
                     String name = item.getFieldName();
                     //解决普通输入项的数据的中文乱码问题
                     String value = item.getString("UTF-8");
-                    logger.info("普通表单：" + name + "=" + value);
+                    logger.info("普通表单（暂不处理）：" + name + "=" + value);
                 }else{//如果fileitem中封装的是上传文件
                     //得到上传的文件名称，
                     String filename = item.getName();
