@@ -50,23 +50,23 @@
 	</div>
 	<!-- 登录注册 -->
 	<div class="login-register">
-		<a id="loginBtn" class="btn btn-warning btn-sm" href="#" role="button"
+		<a id="loginBtn" class="btn btn-warning btn-xs" href="#" role="button"
 			data-toggle="modal" data-target="#login" href=""> <span
 			class="glyphicon glyphicon-user"></span>登录
-		</a> <a id="registerBtn" class="btn btn-info btn-sm" href="#"
+		</a> <a id="registerBtn" class="btn btn-info btn-xs" href="#"
 			role="button" data-toggle="modal" data-target="#register" href="">
 			<span class="glyphicon glyphicon-log-in"></span>注册
-		</a> <a id="persCenterBtn" class="btn btn-success btn-sm" href="#"
+		</a> <a id="persCenterBtn" class="btn btn-success btn-xs" href="#"
 			role="button" data-toggle="modal" data-target="#" href=""> <span
 			class="glyphicon glyphicon-header"></span>个人中心
-		</a> <a id="quitLoginBtn" class="btn btn-primary btn-sm" href="#"
+		</a> <a id="quitLoginBtn" class="btn btn-primary btn-xs	" href="#"
 			role="button" data-toggle="modal" data-target="#" href=""> <span
 			class="glyphicon glyphicon-log-out"></span>退出
 		</a>
 	</div>
 	<!-- 其他 -->
 	<div class="nav-others">
-		<a class="btn btn-default btn-sm" href="https://m.hemingsheng.cn/"
+		<a class="btn btn-default btn-xs" href="https://m.hemingsheng.cn/"
 			role="button"><span class="glyphicon glyphicon glyphicon-phone"></span>
 			手机版</a>
 	</div>
