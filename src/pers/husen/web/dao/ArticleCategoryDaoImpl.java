@@ -50,7 +50,8 @@ public class ArticleCategoryDaoImpl implements ArticleCategoryDao {
 		String cateClass = null;
 		String isValid = null;
 		
-		if("blog".equals(classification)) {
+		String classBlog = "blog";
+		if(classBlog.equals(classification)) {
 			dbName = BlogDetailsMapping.DB_NAME;
 			cateClass = BlogDetailsMapping.BLOG_CATEGOTY;
 			isValid = BlogDetailsMapping.BLOG_DELETE;

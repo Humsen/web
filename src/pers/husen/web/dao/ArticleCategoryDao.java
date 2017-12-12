@@ -27,6 +27,7 @@ public interface ArticleCategoryDao {
 	
 	/**
 	 * 根据文章类别查询分类和相应的数量
+	 * @param classification
 	 * @return
 	 */
 	public ArrayList<ArticleCategoryVo> queryCategory3Num(String classification);
