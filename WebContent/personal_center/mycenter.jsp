@@ -70,9 +70,6 @@
 					<li><a href="#" id="btn_modifyEmail"> <i
 							class="glyphicon glyphicon-credit-card"></i> 修改邮箱
 					</a></li>
-					<li><a href="#" id="privatemessage"> <i
-							class="glyphicon glyphicon-globe"></i> 私信 <span
-							class="label label-warning pull-right">5</span></a></li>
 					<li><a href="#" id="aboutweb"> <i
 							class="glyphicon glyphicon-fire"></i> 关于本站
 					</a></li>

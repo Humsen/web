@@ -22,11 +22,20 @@ $(document).ready(function() {
 	/** 判断是编辑还是新建文章，如果是编辑，加载内容 */
 	initInputBox();
 	
-	// 发布按钮点击
+	//加载文章分类
+	loadCategory();
+	
+	// 发布按钮点击事件
 	$('#btn_publish').click(btnPublishClick);
 	
-	//清空编辑区按钮点击
+	//清空编辑区按钮点击事件
 	$('#btn_clearEditor').click(btnClearClick);
+	
+	//选择文章分类 点击事件
+	chooseCategory();
+	
+	//添加文章分类 点击事件
+	addCategory();
 });
 
 /**
@@ -64,6 +73,8 @@ function initInputBox() {
 					$('#txt_editorMdContent').val(response.blogMdContent);
 					$('#txt_articleLabel').val(response.blogLabel);
 					$('input:radio[name="article"]:eq(0)').prop('checked',true);
+					$('#txt_curCategory').text(response.categoryName);
+					$('#txt_curCtegy').val(response.blogCategory);
 				} else {
 					$('#txt_title').val(response.codeTitle);
 					$('#txt_author').val(response.codeAuthor);
@@ -71,6 +82,8 @@ function initInputBox() {
 					$('#txt_editorMdContent').val(response.codeMdContent);
 					$('#txt_articleLabel').val(response.codeLabel);
 					$('input:radio[name="article"]:eq(1)').prop('checked',true);
+					$('#txt_curCategory').text(response.categoryName);
+					$('#txt_curCtegy').val(response.codeCategory);
 				}
 			},
 			error : function(XMLHttpRequest, textStatus) {
@@ -279,6 +292,8 @@ function articleDetail() {
 		newArticle.blogHtmlContent = editorHtml == '' ? '暂无内容' : editorHtml;
 		newArticle.blogMdContent = editormarkdown;
 		newArticle.blogLabel = $('#txt_articleLabel').val();
+		newArticle.blogCategory = $('#txt_curCtegy').val();
+		
 	} else if (type == 'code') {
 		newArticle.codeTitle = $('#txt_title').val();
 		newArticle.codeAuthor = $('#txt_author').val() == '' ? '何明胜' : $('#txt_author').val();
@@ -288,6 +303,7 @@ function articleDetail() {
 		newArticle.codeHtmlContent = editorHtml == '' ? '暂无内容' : editorHtml;
 		newArticle.codeMdContent = editormarkdown;
 		newArticle.codeLabel = $('#txt_articleLabel').val();
+		newArticle.codeCategory = $('#txt_curCtegy').val();
 	} else {
 		$.confirm({
 			title : '获取文章出错',
@@ -317,4 +333,103 @@ function btnClearClick(){
 	$('input:radio[name="article"]:eq(0)').prop('checked',true);
 	//清空内容
 	$('.editormd-menu li a i[name="clear"]').click();
+	$('#txt_curCtegy').val('');
+	$('#txt_curCategory').text('所有文章');
+}
+
+/**
+ * 选择文章分类
+ * @returns
+ */
+function chooseCategory(){
+	$('.dropdown-menu.category-width').children('li').click(
+			function() {
+				if(typeof $(this).attr('value') != 'undefined'){
+					$('#txt_curCategory').text($(this).children('a').text());
+					$('#txt_curCtegy').val($(this).attr('value'));
+				}
+			});
+}
+
+/**
+ * 添加文章分类
+ * @returns
+ */
+function addCategory(){
+	$('#tbl_addCategory').find('button').click(function(){
+		var newCategory = $('#tbl_addCategory').find('input').val();
+		var value = 0;
+		
+		if(newCategory != ''){
+			//插入数据库，返回id
+			$.ajax({
+				type : 'POST',
+				async : false,
+				url : '/category.hms',
+				dataType : 'json',
+				data : {
+					type : 'create',
+					cateName : newCategory,
+				},
+				success : function(response) {
+					value = response;
+				},
+				error : function(XMLHttpRequest, textStatus) {
+					$.confirm({
+						title : '添加分类出错',
+						content : textStatus + ' : ' + XMLHttpRequest.status,
+						autoClose : 'ok|2000',
+						type : 'red',
+						buttons : {
+							ok : {
+								text : '确认',
+								btnClass : 'btn-primary',
+							},
+						}
+					});
+				}
+			});
+				
+			$('.dropdown-menu.category-width').children('.divider').before('<li value="' + value + '"><a href="#">' + newCategory + '</a></li>');
+			//重新注册点击事件
+			chooseCategory();
+		}
+	});
+}
+
+/**
+ * 加载文章分类
+ * @returns
+ */
+function loadCategory(){
+	$.ajax({
+		type : 'POST',
+		async : false,
+		url : '/category.hms',
+		dataType : 'json',
+		data : {
+			type : 'query_all',
+			'class' : isBlogOrCode(),
+		},
+		success : function(response) {
+			for(x in response){
+				var curCategory = response[x];
+				$('.dropdown-menu.category-width').children('.divider').before('<li value="' + curCategory.categoryId + '"><a href="#">' + curCategory.categoryName + '</a></li>');
+			}
+		},
+		error : function(XMLHttpRequest, textStatus) {
+			$.confirm({
+				title : '查询分类出错',
+				content : textStatus + ' : ' + XMLHttpRequest.status,
+				autoClose : 'ok|2000',
+				type : 'red',
+				buttons : {
+					ok : {
+						text : '确认',
+						btnClass : 'btn-primary',
+					},
+				}
+			});
+		}
+	});
 }

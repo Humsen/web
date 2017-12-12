@@ -54,16 +54,38 @@
 			<div class="col-sm-2 article-type">
 				<label class="radio-inline"> <input type="radio"
 					name="article" value="blog" checked="checked" /> 博客
-				</label> 
-				<label class="radio-inline"> <input type="radio"
+				</label> <label class="radio-inline"> <input type="radio"
 					name="article" value="code" /> 代码
 				</label>
 			</div>
 			<!-- 文章标签  -->
 			<label for="txt_articleLabel" class="col-sm-1 control-label">标签</label>
-			<div class="col-sm-5">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="txt_articleLabel"
-					placeholder="文章标签，用空格分隔，含空格词组的用逗号分隔">
+					placeholder="标签，用空格分隔，含空格词组的用逗号分隔">
+			</div>
+			<!-- 文章类别  -->
+			<div class="col-sm-2">
+				<button type="button"
+					class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="true">
+					<span id="txt_curCategory">所有文章 </span>&emsp;<span class="caret"></span>
+				</button>
+				<input id="txt_curCtegy" type="hidden" value="">
+				<ul class="dropdown-menu category-width">
+					<!-- <li value="0"><a href="#">所有文章</a></li> -->
+					<li role="separator" class="divider"></li>
+					<li id="tbl_addCategory">
+						<div class="row">
+							<div class="col-sm-7 category-input">
+								<input type="text" class="form-control ">
+							</div>
+							<div class="col-sm-1">
+								<button type="button" class="btn btn-default">添加</button>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 			<!-- 发布按钮 -->
 			<div class="col-sm-1">

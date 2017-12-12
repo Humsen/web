@@ -29,6 +29,7 @@ function queryBlogNum(){
 		data : {
 			type : 'query_total_num',
 			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
+			category : $.getUrlParam('category') ? $.getUrlParam('category') : '',
 		},
 		success : function(response){
 			blog_total_num = response;
@@ -66,6 +67,7 @@ function queryBlogCatalog(pageNo){
 		data : {
 			type : 'query_one_page',
 			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
+			category : $.getUrlParam('category') ? $.getUrlParam('category') : '',
 			pageSize : blog_page_size,
 			pageNo : pageNo,
 		},

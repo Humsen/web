@@ -1,6 +1,5 @@
 package pers.husen.web.bean.vo;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +7,7 @@ import java.util.Date;
  *
  * 2017年9月28日
  */
-public class CodeLibraryVo implements Serializable{
+public class CodeLibraryVo extends ArticleCategoryVo{
 	private static final long serialVersionUID = 1L;
 	
 	private int codeId;
@@ -20,6 +19,7 @@ public class CodeLibraryVo implements Serializable{
 	private String codeHtmlContent;
 	private String codeMdContent;
 	private String codeLabel;
+	private int codeCategory;
 	
 	@Override
 	public String toString() {
@@ -135,5 +135,17 @@ public class CodeLibraryVo implements Serializable{
 	 */
 	public void setCodeMdContent(String codeMdContent) {
 		this.codeMdContent = codeMdContent;
+	}
+	/**
+	 * @return the codeCategory
+	 */
+	public int getCodeCategory() {
+		return codeCategory;
+	}
+	/**
+	 * @param codeCategory the codeCategory to set
+	 */
+	public void setCodeCategory(int codeCategory) {
+		this.codeCategory = codeCategory;
 	}
 }

@@ -38,14 +38,20 @@ public class CodeQuerySvt extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		CodeLibrarySvc cSvc = new CodeLibrarySvc();
-		String requestType = request.getParameter("type");
+		String requestType = request.getParameter(RequestConstants.PARAM_TYPE);
 		String requestKeywords = request.getParameter(RequestConstants.PARAM_KEYWORDS);
 		requestKeywords = (requestKeywords == null ? "" : URLDecoder.decode(requestKeywords,"utf-8"));
+		String category = request.getParameter(RequestConstants.PARAM_CATEGORY);
 		
 		CodeLibraryVo cVo = new CodeLibraryVo();
 		cVo.setCodeTitle(requestKeywords);
+		if(category != null && category.trim() != "") {
+			cVo.setCodeCategory(Integer.parseInt(category));
+		}else {
+			cVo.setCodeCategory(-1);
+		}
 		
-		// 如果是请求查询总共数量
+		/** 如果是请求查询总共数量 */
 		String queryTotalCount = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_TOTAL_NUM;
 		if (queryTotalCount.equals(requestType)) {
 			int count = cSvc.queryCodeTotalCount(cVo);
@@ -53,7 +59,7 @@ public class CodeQuerySvt extends HttpServlet {
 
 			return;
 		}
-		// 如果是查询某一页的代码
+		/** 如果是查询某一页的代码 */
 		String queryOnePage = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_ONE_PAGE;
 		if (queryOnePage.equals(requestType)) {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));

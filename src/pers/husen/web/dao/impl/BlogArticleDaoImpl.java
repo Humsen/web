@@ -8,6 +8,7 @@ import pers.husen.web.common.constants.DbConstans;
 import pers.husen.web.dao.BlogArticleDao;
 import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
+import pers.husen.web.dbutil.mappingdb.ArticleCategoryMapping;
 import pers.husen.web.dbutil.mappingdb.BlogDetailsMapping;
 
 /**
@@ -38,6 +39,10 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 			sql += " AND " + BlogDetailsMapping.BLOG_TITLE + " ~* ?";
 			paramList.add(bVo.getBlogTitle());
 		}
+		if(bVo.getBlogCategory() != -1) {
+			sql += " AND " + BlogDetailsMapping.BLOG_CATEGOTY + " = ?";
+			paramList.add(bVo.getBlogCategory());
+		}
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
@@ -56,6 +61,10 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 			sql += " AND " + BlogDetailsMapping.BLOG_TITLE + " ~* ?";
 			paramList.add(bVo.getBlogTitle());
 		}
+		if(bVo.getBlogCategory() != -1) {
+			sql += " AND " + BlogDetailsMapping.BLOG_CATEGOTY + " = ?";
+			paramList.add(bVo.getBlogCategory());
+		}
 		
 		sql += " ORDER BY blog_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
@@ -68,8 +77,13 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_LABEL + ", "
-				+ "blog_summary, blog_read, blog_author FROM blog_details"
-				+ " WHERE blog_id = ? AND blog_delete = ?";
+				+ BlogDetailsMapping.BLOG_CATEGOTY + ", "
+				+ ArticleCategoryMapping.CATEGORY_NAME + ", "
+				+ "blog_summary, blog_read, blog_author FROM blog_details, "
+				+ ArticleCategoryMapping.DB_NAME
+				+ " WHERE "
+				+ BlogDetailsMapping.BLOG_CATEGOTY + " = " + ArticleCategoryMapping.CATEGORY_ID
+				+ " AND blog_id = ? AND blog_delete = ?";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(blogId);
@@ -85,7 +99,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ "blog_summary, blog_author, blog_read, "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_LABEL + ", "
-				+ BlogDetailsMapping.BLOG_DELETE
+				+ BlogDetailsMapping.BLOG_DELETE + ", "
+				+ BlogDetailsMapping.BLOG_CATEGOTY
 				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
@@ -98,6 +113,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add((obj = bVo.getBlogRead()) != null ? obj : 0);
 		paramList.add((obj = bVo.getBlogMdContent()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogLabel()) != null ? obj : "");
+		paramList.add((obj = bVo.getBlogCategory()) != null ? obj : "");
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
@@ -121,7 +137,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_SUMMARY + "=?, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + "=?, "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + "=?, "
-				+ BlogDetailsMapping.BLOG_LABEL + "=? "
+				+ BlogDetailsMapping.BLOG_LABEL + "=?, "
+				+ BlogDetailsMapping.BLOG_CATEGOTY + "=? "
 				+ "WHERE "
 				+ BlogDetailsMapping.BLOG_ID + "=?";
 		
@@ -133,7 +150,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add(bVo.getBlogHtmlContent());
 		paramList.add(bVo.getBlogMdContent());
 		paramList.add(bVo.getBlogLabel());
-
+		paramList.add(bVo.getBlogCategory());
+		
 		paramList.add(bVo.getBlogId());
 		
 		return DbManipulationUtils.updateRecordByParam(sql, paramList);

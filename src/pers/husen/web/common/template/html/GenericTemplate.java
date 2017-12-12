@@ -265,7 +265,9 @@ public class GenericTemplate {
 				"<script type=\"text/javascript\" src=\"/js/navigation/leftbar.js\"></script>\r\n" + 
 				"<div id=\"bar_left\">\r\n" + 
 				"	<!-- 加载新版特性 -->\r\n" + 
-				"	<div id=\"txt_versionFeature\" class=\"sidebar-module\"></div>\r\n" + 
+				"	<div id=\"txt_versionFeature\" class=\"sidebar-module\"></div>\r\n"+
+				"   <!-- 加载文章分类  -->\r\n" + 
+				"	<div id=\"txt_articleCategory\" class=\"sidebar-module category-hide\"></div>" + 
 				"</div>";
 		
 		return leftBar;

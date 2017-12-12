@@ -10,3 +10,11 @@
 	font-size: smaller;
 	float: right;
 }
+
+.category-hide {
+	display: none;
+}
+
+.category-show {
+	margin-left: 20px;
+}

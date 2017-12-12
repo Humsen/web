@@ -8,6 +8,7 @@ import pers.husen.web.common.constants.DbConstans;
 import pers.husen.web.dao.CodeLibraryDao;
 import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
+import pers.husen.web.dbutil.mappingdb.ArticleCategoryMapping;
 import pers.husen.web.dbutil.mappingdb.CodeLibraryMapping;
 
 /**
@@ -26,6 +27,10 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 			sql += " AND " + CodeLibraryMapping.CODE_TITLE + " ~* ?";
 			paramList.add(cVo.getCodeTitle());
 		}
+		if(cVo.getCodeCategory() != -1) {
+			sql += " AND " + CodeLibraryMapping.CODE_CATEGORY + " = ?";
+			paramList.add(cVo.getCodeCategory());
+		}
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
@@ -43,6 +48,10 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 			sql += " AND " + CodeLibraryMapping.CODE_TITLE + " ~* ?";
 			paramList.add(cVo.getCodeTitle());
 		}
+		if(cVo.getCodeCategory() != -1) {
+			sql += " AND " + CodeLibraryMapping.CODE_CATEGORY + " = ?";
+			paramList.add(cVo.getCodeCategory());
+		}
 		
 		sql += " ORDER BY code_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
@@ -54,8 +63,14 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		String sql = "SELECT code_id, code_title, code_date, code_author, code_summary, code_read, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
-				+ CodeLibraryMapping.CODE_LABEL
-				+ " FROM code_library WHERE code_id = ? AND code_delete = ?";
+				+ CodeLibraryMapping.CODE_LABEL + ", "
+				+ CodeLibraryMapping.CODE_CATEGORY + ", "
+				+ ArticleCategoryMapping.CATEGORY_NAME
+				+ " FROM code_library, "
+				+ ArticleCategoryMapping.DB_NAME
+				+ " WHERE "
+				+ CodeLibraryMapping.CODE_CATEGORY + " = " + ArticleCategoryMapping.CATEGORY_ID
+				+ " AND code_id = ? AND code_delete = ?";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(codeId);
@@ -70,7 +85,8 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_LABEL + ", "
-				+ CodeLibraryMapping.CODE_DELETE
+				+ CodeLibraryMapping.CODE_DELETE + ", "
+				+ CodeLibraryMapping.CODE_CATEGORY
 				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
@@ -83,6 +99,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add((obj = cVo.getCodeHtmlContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeMdContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeLabel()) != null ? obj : "");
+		paramList.add((obj = cVo.getCodeCategory()) != null ? obj : "");
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
@@ -106,7 +123,8 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ CodeLibraryMapping.CODE_SUMMARY + "=?, "
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + "=?, "
 				+ CodeLibraryMapping.CODE_MD_CONTENT + "=?, "
-				+ CodeLibraryMapping.CODE_LABEL + "=? "
+				+ CodeLibraryMapping.CODE_LABEL + "=?, "
+				+ CodeLibraryMapping.CODE_CATEGORY + "=? "
 				+ "WHERE "
 				+ CodeLibraryMapping.CODE_ID + "=?";
 		
@@ -118,6 +136,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		paramList.add(cVo.getCodeHtmlContent());
 		paramList.add(cVo.getCodeMdContent());
 		paramList.add(cVo.getCodeLabel());
+		paramList.add(cVo.getCodeCategory());
 
 		paramList.add(cVo.getCodeId());
 		

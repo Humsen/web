@@ -7,6 +7,8 @@
 $(function(){
 	//加载新版本特性
 	loadNewVersionFeature();
+	//加载文章类别
+	loadCategory();
 });
 
 /**
@@ -38,6 +40,66 @@ function loadNewVersionFeature(){
 			            btnClass: 'btn-primary',
 			        },
 			    }
+			});
+		}
+	});
+}
+
+/**
+ * 加载文章类别
+ * @returns
+ */
+function loadCategory(){
+	var urlAddrPath = window.location.pathname;
+	
+	if(urlAddrPath.indexOf('blog') > 0){
+		getCategory3Num('blog');
+	}
+	if(urlAddrPath.indexOf('code') > 0){
+		getCategory3Num('code');
+	}
+}
+
+/**
+ * 从数据库获取类别和数量
+ * @returns
+ */
+function getCategory3Num(type){
+	$('#txt_articleCategory').show();
+	
+	$.ajax({
+		type : 'POST',
+		async : false,
+		url : '/category.hms',
+		dataType : 'json',
+		data : {
+			type : 'query_category',
+			'class' : type,
+		},
+		success : function(response) {
+			var $category = $('#txt_articleCategory').children(".list-unstyled");
+			
+			for(x in response){
+				$category.append('<li>'
+						+'<a href="/topic/' + type + '/?category=' + response[x].categoryId + '">'
+						+ response[x].categoryName
+						+'&emsp;<span class="badge">'
+						+ response[x].categoryNum
+						+ '</span></a></li>');
+			}
+		},
+		error : function(XMLHttpRequest, textStatus) {
+			$.confirm({
+				title : '查询分类出错',
+				content : textStatus + ' : ' + XMLHttpRequest.status,
+				autoClose : 'ok|2000',
+				type : 'red',
+				buttons : {
+					ok : {
+						text : '确认',
+						btnClass : 'btn-primary',
+					},
+				}
 			});
 		}
 	});

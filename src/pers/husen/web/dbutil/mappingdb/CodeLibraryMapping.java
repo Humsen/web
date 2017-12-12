@@ -23,4 +23,5 @@ public class CodeLibraryMapping {
 	public static final String CODE_MD_CONTENT = "code_md_content";
 	public static final String CODE_LABEL = "code_label";
 	public static final String CODE_DELETE = "code_delete";
+	public static final String CODE_CATEGORY = "code_category";
 }

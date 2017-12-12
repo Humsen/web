@@ -9,8 +9,12 @@
 <!-- 加载新版本特性 -->
 <script type="text/javascript" src="/js/navigation/leftbar.js"></script>
 
-
 <div id="bar_left">
 	<!-- 加载新版特性 -->
 	<div id="txt_versionFeature" class="sidebar-module"></div>
+	<!-- 加载文章分类  -->
+	<div id="txt_articleCategory" class="sidebar-module category-hide">
+		<h4>文章分类</h4>
+		<ol class="list-unstyled category-show"></ol>
+	</div>
 </div>

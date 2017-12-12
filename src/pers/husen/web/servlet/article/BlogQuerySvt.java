@@ -17,7 +17,7 @@ import pers.husen.web.common.constants.RequestConstants;
 import pers.husen.web.service.BlogArticleSvc;
 
 /**
- * 博客查询sevlet,如博客总数量、某一页的博客等
+ * 博客查询servlet,如博客总数量、某一页的博客等
  *
  * @author 何明胜
  *
@@ -41,9 +41,15 @@ public class BlogQuerySvt extends HttpServlet {
 		String requestType = request.getParameter(RequestConstants.PARAM_TYPE);
 		String requestKeywords = request.getParameter(RequestConstants.PARAM_KEYWORDS);
 		requestKeywords = (requestKeywords == null ? "" : URLDecoder.decode(requestKeywords,"utf-8"));
+		String category = request.getParameter(RequestConstants.PARAM_CATEGORY);
 		
 		BlogArticleVo bVo = new BlogArticleVo();
 		bVo.setBlogTitle(requestKeywords);
+		if(category != null && category.trim() != "") {
+			bVo.setBlogCategory(Integer.parseInt(category)); 
+		}else {
+			bVo.setBlogCategory(-1);
+		}
 		
 		/** 如果是请求查询总共数量 */
 		String queryTotalCount = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_TOTAL_NUM;

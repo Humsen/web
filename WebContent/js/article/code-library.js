@@ -29,6 +29,7 @@ function queryCodeNum(){
 		data : {
 			type : 'query_total_num',
 			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
+			category : $.getUrlParam('category') ? $.getUrlParam('category') : '',
 		},
 		success : function(response){
 			code_total_num = response;
@@ -66,6 +67,7 @@ function queryCodeCatalog(pageNo){
 		data : {
 			type : 'query_one_page',
 			keywords : $.getUrlParam('keywords') ? $.getUrlParam('keywords') : '',
+			category : $.getUrlParam('category') ? $.getUrlParam('category') : '',
 			pageSize : code_page_size,
 			pageNo : pageNo,
 		},
