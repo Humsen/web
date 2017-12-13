@@ -85,9 +85,9 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_MD_CONTENT + ", "
 				+ CodeLibraryMapping.CODE_LABEL + ", "
-				+ CodeLibraryMapping.CODE_DELETE + ", "
-				+ CodeLibraryMapping.CODE_CATEGORY
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ CodeLibraryMapping.CODE_CATEGORY + ", "
+				+ CodeLibraryMapping.CODE_DELETE
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;

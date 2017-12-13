@@ -99,9 +99,9 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ "blog_summary, blog_author, blog_read, "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_LABEL + ", "
-				+ BlogDetailsMapping.BLOG_DELETE + ", "
-				+ BlogDetailsMapping.BLOG_CATEGOTY
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ BlogDetailsMapping.BLOG_CATEGOTY + ", "
+				+ BlogDetailsMapping.BLOG_DELETE
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;
