@@ -20,11 +20,16 @@ $(document).ready(function() {
 	registerValidator();
 
 	// 重置登录表单
-	$('#loginForm').clearForm();
-	$('#loginForm').data('bootstrapValidator').resetForm(true);
+	if($('#loginForm').length > 0){
+		$('#loginForm').clearForm();
+		$('#loginForm').data('bootstrapValidator').resetForm(true);
+	}
+	
 	// 重置注册表单
-	$('#registerForm').clearForm();
-	$('#registerForm').data('bootstrapValidator').resetForm(true);
+	if($('#registerForm').length > 0){
+		$('#registerForm').clearForm();
+		$('#registerForm').data('bootstrapValidator').resetForm(true);
+	}
 });
 
 /** 绑定点击事件 */

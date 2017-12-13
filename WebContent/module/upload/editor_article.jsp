@@ -15,23 +15,13 @@
 
 <!-- editormd start -->
 <link rel="stylesheet" href="/plugins/editormd/css/editormd.min.css" />
-<!-- jquery confirm -->
-<link rel="stylesheet"
-	href="/plugins/jqueryconfirm/css/jquery-confirm.min.css" />
 <!-- 自定义css -->
 <link rel="stylesheet" href="/css/upload/editor-article.css">
 
 
-<script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
-<!-- JQuery cookie -->
-<script src="/plugins/jquery/js/jquery.cookie.js"></script>
 <!-- editormd -->
 <script src="/plugins/editormd/js/editormd.min.js"></script>
 <script src="/js/editor/editor.js"></script>
-<!-- 自定开开发工具包  -->
-<script src="/js/customize-sdk.js"></script>
-<!-- jquery confirm -->
-<script src="/plugins/jqueryconfirm/js/jquery-confirm.min.js"></script>
 
 <body>
 	<div id="form_editorArticle" class="form-horizontal editor-form-div ">
