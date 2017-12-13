@@ -57,4 +57,14 @@ public class BlogArticleSvc implements BlogArticleDao{
 	public ArrayList<BlogArticleVo> queryAllBlogArticles() {
 		return bImpl.queryAllBlogArticles();
 	}
+
+	@Override
+	public BlogArticleVo queryPreviousBlog(int blogId) {
+		return bImpl.queryPreviousBlog(blogId);
+	}
+
+	@Override
+	public BlogArticleVo queryNextBlog(int blogId) {
+		return bImpl.queryNextBlog(blogId);
+	}
 }

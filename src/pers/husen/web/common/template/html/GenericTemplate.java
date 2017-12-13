@@ -267,8 +267,11 @@ public class GenericTemplate {
 				"	<!-- 加载新版特性 -->\r\n" + 
 				"	<div id=\"txt_versionFeature\" class=\"sidebar-module\"></div>\r\n"+
 				"   <!-- 加载文章分类  -->\r\n" + 
-				"	<div id=\"txt_articleCategory\" class=\"sidebar-module category-hide\"></div>" + 
-				"</div>";
+				"	<div id=\"txt_articleCategory\" class=\"sidebar-module category-hide\">\r\n" + 
+				"		<h4>文章分类</h4>\r\n" + 
+				"		<ol class=\"list-unstyled category-show\"></ol>\r\n" + 
+				"	</div>"
+				+"</div>";
 		
 		return leftBar;
 	}

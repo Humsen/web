@@ -19,6 +19,7 @@ public class CodeLibraryVo extends ArticleCategoryVo{
 	private String codeHtmlContent;
 	private String codeMdContent;
 	private String codeLabel;
+	private int codeDelete;
 	private int codeCategory;
 	
 	@Override
@@ -135,6 +136,18 @@ public class CodeLibraryVo extends ArticleCategoryVo{
 	 */
 	public void setCodeMdContent(String codeMdContent) {
 		this.codeMdContent = codeMdContent;
+	}
+	/**
+	 * @return the codeDelete
+	 */
+	public int getCodeDelete() {
+		return codeDelete;
+	}
+	/**
+	 * @param codeDelete the codeDelete to set
+	 */
+	public void setCodeDelete(int codeDelete) {
+		this.codeDelete = codeDelete;
 	}
 	/**
 	 * @return the codeCategory

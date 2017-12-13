@@ -72,4 +72,18 @@ public interface BlogArticleDao {
 	 * @return
 	 */
 	public int logicDeleteBlogById(int blogId);
+	
+	/**
+	 * 根据id查找上一篇有效博客
+	 * @param blogId
+	 * @return
+	 */
+	public BlogArticleVo queryPreviousBlog(int blogId);
+	
+	/**
+	 * 根据id查找下一篇有效博客
+	 * @param blogId
+	 * @return
+	 */
+	public BlogArticleVo queryNextBlog(int blogId);
 }

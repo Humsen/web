@@ -48,4 +48,14 @@ public class CodeLibrarySvc implements CodeLibraryDao{
 	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(CodeLibraryVo cVo, int pageSize, int pageNo) {
 		return cImpl.queryCodeLibraryPerPage(cVo, pageSize, pageNo);
 	}
+
+	@Override
+	public CodeLibraryVo queryPreviousCode(int codeId) {
+		return cImpl.queryPreviousCode(codeId);
+	}
+
+	@Override
+	public CodeLibraryVo queryNextCode(int codeId) {
+		return cImpl.queryNextCode(codeId);
+	}
 }

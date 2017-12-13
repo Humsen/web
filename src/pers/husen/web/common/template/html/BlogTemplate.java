@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import pers.husen.web.bean.vo.BlogArticleVo;
 import pers.husen.web.common.constants.BootstrapConstans;
 import pers.husen.web.common.constants.CommonConstants;
+import pers.husen.web.service.BlogArticleSvc;
 
 /**
  *
@@ -68,6 +69,12 @@ public class BlogTemplate {
 				"			<!-- js脚本动态添加内容 -->" +
 				"			\r\n" +
 				"			<div class=\"fh5co-entry\" id=\"content\">" +
+				"				<nav>\r\n" + 
+				" 					 <ul class=\"pager\">\r\n" + 
+										findPreviousBlog(bVo.getBlogId()) +
+										findNextBlog(bVo.getBlogId()) +
+				"  					</ul>\r\n" + 
+				"				</nav>"+	
 				"				<div>" +
 				"					<h2 class=\"text-align-center\"><input id=\"hiden_blogId\" type=\"hidden\" value="+ bVo.getBlogId() + " />"+
 				"						<a href=#>" + bVo.getBlogTitle() + "</a>"+
@@ -85,6 +92,12 @@ public class BlogTemplate {
 		body += 
 				"					<p>" + bVo.getBlogHtmlContent() +"</p>" +
 				"				</div>" +
+				/*" 				<nav>\r\n" + 
+				"  					<ul class=\"pager\">\r\n" + 
+				"    					<li><a href=\"/blog.hms?blogId=" + (bVo.getBlogId()-1) + "\"><span class=\"glyphicon glyphicon-hand-left\" aria-hidden=\"true\"></span> 上一篇</a></li>\r\n" + 
+				"    					<li><a href=\"/blog.hms?blogId=" + (bVo.getBlogId()+1) + "\">下一篇 <span class=\"glyphicon glyphicon-hand-right\" aria-hidden=\"true\"></span></a></li>\r\n" + 
+				"  					</ul>\r\n" + 
+				"				</nav>"+*/
 				"			</div>" +
 				"		</div>\r\n" + 
 				"	</div>\r\n" + 
@@ -92,5 +105,41 @@ public class BlogTemplate {
 				"</div>";
 		
 		return body;
+	}
+	
+	/**
+	 * 查找上一篇博客
+	 * @return
+	 */
+	public static String findPreviousBlog(int blogId) {
+		BlogArticleSvc bSvc = new BlogArticleSvc();
+		BlogArticleVo bVo = bSvc.queryPreviousBlog(blogId);
+		
+		String previousBlog = null;
+		if(bVo != null && bVo.getBlogId() != 0) {
+			previousBlog = "<li class=\"previous\"><a href=\"/blog.hms?blogId=" + bVo.getBlogId() +  "\"><span class=\"glyphicon glyphicon-hand-left\" aria-hidden=\"true\"></span> 上一篇</a></li>\r\n";
+		}else {
+			previousBlog = "<li class=\"previous disabled\"><a href=\"#\"><span class=\"glyphicon glyphicon-hand-left\" aria-hidden=\"true\"></span> 上一篇</a></li>\r\n";
+		}
+		
+		return previousBlog;
+	}
+	
+	/**
+	 * 查找下一篇博客
+	 * @return
+	 */
+	public static String findNextBlog(int blogId) {
+		BlogArticleSvc bSvc = new BlogArticleSvc();
+		BlogArticleVo bVo = bSvc.queryNextBlog(blogId);
+		
+		String nextBlog = null;
+		if(bVo != null && bVo.getBlogId() != 0) {
+			nextBlog = "<li class=\"next\"><a href=\"/blog.hms?blogId=" + bVo.getBlogId() + "\">下一篇 <span class=\"glyphicon glyphicon-hand-right\" aria-hidden=\"true\"></span></a></li>\r\n";
+		}else {
+			nextBlog = "<li class=\"next disabled\"><a href=\"#\">下一篇 <span class=\"glyphicon glyphicon-hand-right\" aria-hidden=\"true\"></span></a></li>\r\n";
+		}
+		
+		return nextBlog;
 	}
 }

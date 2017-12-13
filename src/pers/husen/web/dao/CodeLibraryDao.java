@@ -61,4 +61,18 @@ public interface CodeLibraryDao {
 	 * @return
 	 */
 	public int logicDeleteCodeById(int blogId);
+	
+	/**
+	 * 根据id查找上一篇有效代码
+	 * @param codeId
+	 * @return
+	 */
+	public CodeLibraryVo queryPreviousCode(int codeId);
+	
+	/**
+	 * 根据id查找下一篇有效代码
+	 * @param codeId
+	 * @return
+	 */
+	public CodeLibraryVo queryNextCode(int codeId);
 }

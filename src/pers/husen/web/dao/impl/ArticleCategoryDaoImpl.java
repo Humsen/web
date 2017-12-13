@@ -1,15 +1,20 @@
-package pers.husen.web.dao;
+package pers.husen.web.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import pers.husen.web.bean.vo.ArticleCategoryVo;
+import pers.husen.web.bean.vo.BlogArticleVo;
+import pers.husen.web.bean.vo.CodeLibraryVo;
 import pers.husen.web.common.constants.DbConstans;
+import pers.husen.web.dao.ArticleCategoryDao;
 import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.mappingdb.ArticleCategoryMapping;
 import pers.husen.web.dbutil.mappingdb.BlogDetailsMapping;
 import pers.husen.web.dbutil.mappingdb.CodeLibraryMapping;
+import pers.husen.web.service.BlogArticleSvc;
+import pers.husen.web.service.CodeLibrarySvc;
 
 /**
  * @desc TODO
@@ -49,16 +54,25 @@ public class ArticleCategoryDaoImpl implements ArticleCategoryDao {
 		String dbName = null;
 		String cateClass = null;
 		String isValid = null;
+		int totalNum = 0;
 		
 		String classBlog = "blog";
 		if(classBlog.equals(classification)) {
 			dbName = BlogDetailsMapping.DB_NAME;
 			cateClass = BlogDetailsMapping.BLOG_CATEGOTY;
 			isValid = BlogDetailsMapping.BLOG_DELETE;
+			//查询总数量
+			BlogArticleVo bVo = new BlogArticleVo();
+			bVo.setBlogCategory(-1);;
+			totalNum = new BlogArticleSvc().queryBlogTotalCount(bVo);
 		}else {
 			dbName = CodeLibraryMapping.DB_NAME;
 			cateClass = CodeLibraryMapping.CODE_CATEGORY;
 			isValid = CodeLibraryMapping.CODE_DELETE;
+			//查询总数量
+			CodeLibraryVo cVo = new CodeLibraryVo();
+			cVo.setCodeCategory(-1);
+			totalNum = new CodeLibrarySvc().queryCodeTotalCount(cVo);
 		}
 		
 		String sql = "SELECT " + 
@@ -76,7 +90,11 @@ public class ArticleCategoryDaoImpl implements ArticleCategoryDao {
 				" ORDER BY " + 
 				ArticleCategoryMapping.CATEGORY_ID;
 		
-		return DbQueryUtils.queryBeanListByParam(sql, new ArrayList<Object>(), ArticleCategoryVo.class);
+		ArrayList<ArticleCategoryVo> aVos = DbQueryUtils.queryBeanListByParam(sql, new ArrayList<Object>(), ArticleCategoryVo.class);
+		
+		aVos.get(0).setCategoryNum(totalNum);
+		
+		return aVos;
 	}
 
 	@Override

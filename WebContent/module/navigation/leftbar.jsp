@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/navigation/leftbar.css" />
 
 <!-- 加载新版本特性 -->
-<script type="text/javascript" src="/js/navigation/leftbar.js"></script>
+<script src="/js/navigation/leftbar.js"></script>
 
 <div id="bar_left">
 	<!-- 加载新版特性 -->

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import pers.husen.web.bean.vo.CodeLibraryVo;
 import pers.husen.web.common.constants.BootstrapConstans;
 import pers.husen.web.common.constants.CommonConstants;
+import pers.husen.web.service.CodeLibrarySvc;
 
 /**
  * @author 何明胜
@@ -67,6 +68,12 @@ public class CodeTemplate {
 				"			<!-- js脚本动态添加内容 -->" +
 				"			\r\n" +
 				"			<div class=\"fh5co-entry\" id=\"content\">" +
+				"				<nav>\r\n" + 
+				" 					 <ul class=\"pager\">\r\n" + 
+										findPreviousCode(cVo.getCodeId()) +
+										findNextCode(cVo.getCodeId()) +
+				"  					</ul>\r\n" + 
+				"				</nav>"+	
 				"				<div>" +
 				"					<h2 class=\"text-align-center\"\"><input id=\"hiden_codeId\" type=\"hidden\" value=" + cVo.getCodeId() + " />"+
 				"						<a href=#>" + cVo.getCodeTitle() + "</a>"+
@@ -91,5 +98,41 @@ public class CodeTemplate {
 				"</div>";
 		
 		return body;
+	}
+	
+	/**
+	 * 查找上一篇有效代码
+	 * @return
+	 */
+	public static String findPreviousCode(int codeId) {
+		CodeLibrarySvc cSvc = new CodeLibrarySvc();
+		CodeLibraryVo cVo = cSvc.queryPreviousCode(codeId);
+		
+		String previousCode = null;
+		if(cVo != null && cVo.getCodeId() != 0) {
+			previousCode = "<li class=\"previous\"><a href=\"/code.hms?codeId=" + cVo.getCodeId() +  "\"><span class=\"glyphicon glyphicon-hand-left\" aria-hidden=\"true\"></span> 上一篇</a></li>\r\n";
+		}else {
+			previousCode = "<li class=\"previous disabled\"><a href=\"#\"><span class=\"glyphicon glyphicon-hand-left\" aria-hidden=\"true\"></span> 上一篇</a></li>\r\n";
+		}
+		
+		return previousCode;
+	}
+	
+	/**
+	 * 查找下一篇有效代码
+	 * @return
+	 */
+	public static String findNextCode(int codeId) {
+		CodeLibrarySvc cSvc = new CodeLibrarySvc();
+		CodeLibraryVo cVo = cSvc.queryPreviousCode(codeId);
+		
+		String nextCode = null;
+		if(cVo != null && cVo.getCodeId() != 0) {
+			nextCode = "<li class=\"next\"><a href=\"/code.hms?codeId=" + cVo.getCodeId() + "\">下一篇 <span class=\"glyphicon glyphicon-hand-right\" aria-hidden=\"true\"></span></a></li>\r\n";
+		}else {
+			nextCode = "<li class=\"next disabled\"><a href=\"#\">下一篇 <span class=\"glyphicon glyphicon-hand-right\" aria-hidden=\"true\"></span></a></li>\r\n";
+		}
+		
+		return nextCode;
 	}
 }

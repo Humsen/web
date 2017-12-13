@@ -151,4 +151,26 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 		
 		return DbManipulationUtils.deleteRecordByParamLogic(sql, paramList);
 	}
+
+	@Override
+	public CodeLibraryVo queryPreviousCode(int codeId) {
+		String sql = "SELECT * FROM code_library WHERE code_delete = ? AND code_id < ? ORDER BY code_id DESC LIMIT 1";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		paramList.add(codeId);
+		
+		return DbQueryUtils.queryBeanByParam(sql, paramList, CodeLibraryVo.class);
+	}
+	
+	@Override
+	public CodeLibraryVo queryNextCode(int codeId) {
+		String sql = "SELECT * FROM code_library WHERE code_delete = ? AND code_id > ? ORDER BY code_id LIMIT 1";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		paramList.add(codeId);
+		
+		return DbQueryUtils.queryBeanByParam(sql, paramList, CodeLibraryVo.class);
+	}
 }

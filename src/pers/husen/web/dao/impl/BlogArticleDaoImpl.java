@@ -165,4 +165,26 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		
 		return DbManipulationUtils.deleteRecordByParamLogic(sql, paramList);
 	}
+
+	@Override
+	public BlogArticleVo queryPreviousBlog(int blogId) {
+		String sql = "SELECT * FROM blog_details WHERE blog_delete = ? AND blog_id < ? ORDER BY blog_id DESC LIMIT 1";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		paramList.add(blogId);
+		
+		return DbQueryUtils.queryBeanByParam(sql, paramList, BlogArticleVo.class);
+	}
+
+	@Override
+	public BlogArticleVo queryNextBlog(int blogId) {
+		String sql = "SELECT * FROM blog_details WHERE blog_delete = ? AND blog_id > ? ORDER BY blog_id LIMIT 1";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		paramList.add(blogId);
+		
+		return DbQueryUtils.queryBeanByParam(sql, paramList, BlogArticleVo.class);
+	}
 }
