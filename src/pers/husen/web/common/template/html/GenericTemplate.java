@@ -129,27 +129,28 @@ public class GenericTemplate {
 				"			<li role=\"presentation\"><a href=\"/topic/contact/\">联系站长</a></li>\r\n" + 
 				"		</ul>\r\n" + 
 				"	</div>\r\n" + 
-				"	<!-- 登录注册 -->\r\n" + 
+				"   <!-- 登录注册 -->\r\n" + 
 				"	<div class=\"login-register\">\r\n" + 
-				"		<a id=\"loginBtn\" class=\"btn btn-warning btn-sm\" href=\"#\" role=\"button\"\r\n" + 
+				"		<a id=\"loginBtn\" class=\"btn btn-warning btn-xs\" href=\"#\" role=\"button\"\r\n" + 
 				"			data-toggle=\"modal\" data-target=\"#login\" href=\"\"> <span\r\n" + 
-				"			class=\"glyphicon glyphicon-user\"></span>登录\r\n" + 
-				"		</a> <a id=\"registerBtn\" class=\"btn btn-info btn-sm\" href=\"#\"\r\n" + 
+				"			class=\"glyphicon glyphicon-user\"></span> 登录\r\n" + 
+				"		</a> <a id=\"registerBtn\" class=\"btn btn-info btn-xs\" href=\"#\"\r\n" + 
 				"			role=\"button\" data-toggle=\"modal\" data-target=\"#register\" href=\"\">\r\n" + 
-				"			<span class=\"glyphicon glyphicon-log-in\"></span>注册\r\n" + 
-				"		</a> <a id=\"persCenterBtn\" class=\"btn btn-success btn-sm\" href=\"#\"\r\n" + 
+				"			<span class=\"glyphicon glyphicon-log-in\"></span> 注册\r\n" + 
+				"		</a> <a id=\"persCenterBtn\" class=\"btn btn-success btn-xs\" href=\"#\"\r\n" + 
 				"			role=\"button\" data-toggle=\"modal\" data-target=\"#\" href=\"\"> <span\r\n" + 
-				"			class=\"glyphicon glyphicon-header\"></span>个人中心\r\n" + 
-				"		</a> <a id=\"quitLoginBtn\" class=\"btn btn-primary btn-sm\" href=\"#\"\r\n" + 
+				"			class=\"glyphicon glyphicon-header\"></span> 个人中心\r\n" + 
+				"		</a> <a id=\"quitLoginBtn\" class=\"btn btn-primary btn-xs	\" href=\"#\"\r\n" + 
 				"			role=\"button\" data-toggle=\"modal\" data-target=\"#\" href=\"\"> <span\r\n" + 
-				"			class=\"glyphicon glyphicon-log-out\"></span>退出\r\n" + 
+				"			class=\"glyphicon glyphicon-log-out\"></span> 退出\r\n" + 
 				"		</a>\r\n" + 
-				"	</div>\r\n" + 
+				"	</div>" +
 				"	<!-- 其他 -->\r\n" + 
 				"	<div class=\"nav-others\">\r\n" + 
-				"		<a class=\"btn btn-default btn-sm\" href=\"https://m.hemingsheng.cn/\" role=\"button\"><span\r\n" + 
-				"			class=\"glyphicon glyphicon glyphicon-phone\"></span> 手机版</a>\r\n" + 
-				"	</div>\r\n" + 
+				"		<a class=\"btn btn-default btn-xs\" href=\"https://m.hemingsheng.cn/\"\r\n" + 
+				"			role=\"button\"><span class=\"glyphicon glyphicon glyphicon-phone\"></span>\r\n" + 
+				"			手机版</a>\r\n" + 
+				"	</div>" + 
 				"</nav>";
 		
 		return topBar;
