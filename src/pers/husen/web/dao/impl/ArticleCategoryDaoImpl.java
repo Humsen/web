@@ -92,7 +92,20 @@ public class ArticleCategoryDaoImpl implements ArticleCategoryDao {
 		
 		ArrayList<ArticleCategoryVo> aVos = DbQueryUtils.queryBeanListByParam(sql, new ArrayList<Object>(), ArticleCategoryVo.class);
 		
-		aVos.get(0).setCategoryNum(totalNum);
+		//判断是否还存在未分类的
+		//如果存在，设置该数量为总共梳理
+		//如果不存在，在最前面新增一个
+		if(aVos.get(0).getCategoryId() == 0) {
+			aVos.get(0).setCategoryNum(totalNum);
+		}else {
+			ArticleCategoryVo aVo = new ArticleCategoryVo();
+			aVo.setCategoryId(0);
+			aVo.setCategoryName("所有文章");
+			aVo.setCategoryNum(totalNum);
+			
+			aVos.add(0, aVo);
+		}
+		
 		
 		return aVos;
 	}
