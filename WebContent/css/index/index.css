@@ -13,3 +13,11 @@
 	color: #0073d8;
 	margin: 0 0 18px 0;
 }
+
+.carousel-height{
+	height: 400px;
+}
+
+.carousel-margin{
+	margin-top: 20px;
+}

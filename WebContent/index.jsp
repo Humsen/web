@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,8 @@
 <script type="text/javascript" src="/js/index/latestblog.js"></script>
 <!-- 加载最近3篇代码 -->
 <script type="text/javascript" src="/js/index/latestcode.js"></script>
+<!-- js文件  -->
+<script type="text/javascript" src="/js/index/index.js"></script>
 
 </head>
 <body>
@@ -37,6 +40,37 @@
 		<%@include file="/module/navigation/leftbar.jsp"%>
 		<!-- 中间内容  -->
 		<div id="fh5co-main">
+			<!-- 首页轮播  -->
+			<div id="indexCarousel" class="carousel slide carousel-height carousel-margin">
+				<!-- 轮播（Carousel）指标 -->
+				<ol class="carousel-indicators">
+					<li data-target="#indexCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#indexCarousel" data-slide-to="1"></li>
+					<li data-target="#indexCarousel" data-slide-to="2"></li>
+				</ol>
+				<!-- 轮播（Carousel）项目 -->
+				<div class="carousel-inner">
+					<div class="item carousel-height active">
+						<img src="/images/carousel/casel-1.jpg" alt="First slide">
+					</div>
+					<div class="item carousel-height">
+						<img src="/images/carousel/casel-2.jpg" alt="Second slide">
+					</div>
+					<div class="item carousel-height">
+						<img src="/images/carousel/casel-3.jpg" alt="Third slide">
+					</div>
+				</div>
+				<!-- 轮播（Carousel）导航 -->
+				<a class="left carousel-control" href="#indexCarousel" role="button"
+					data-slide="prev"> <span
+					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#indexCarousel" role="button"
+					data-slide="next"> <span
+					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
 			<div class="fh5co-narrow-content article-box-div">
 				<h2 class="fh5co-heading article-bar"
 					data-animate-effect="fadeInLeft">最近更新的博客</h2>
@@ -53,7 +87,8 @@
 				<div id="latestCode" class="row"></div>
 			</div>
 			<!-- 每日一言  -->
-			<script src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script>
+			<script
+				src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script>
 			<div id="lwlhitokoto">
 				<script>
 					lwlhitokoto();
