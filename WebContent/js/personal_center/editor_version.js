@@ -80,7 +80,7 @@ function fillVersionEditor(versionArticle){
 	relContent = relContent.split('</p><p>');
 	
 	$('.version-input').each(function(i) {
-		$(this).val(relContent[i].split('、')[1]);
+		$(this).val(relContent[i].slice(relContent[i].indexOf('、')+1));
 	});
 }
 
