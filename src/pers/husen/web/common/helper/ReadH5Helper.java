@@ -9,6 +9,11 @@ import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import pers.husen.web.dbutil.DbQueryUtils;
+
 /**
  * @desc 读取服务器的html文件
  *
@@ -17,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @created 2017年12月16日 下午11:34:49
  */
 public class ReadH5Helper {
+	private static final Logger logger = LogManager.getLogger(DbQueryUtils.class);
+	
 	/**
 	 * 读取html文件
 	 * @param htmlQualifiedName
@@ -62,7 +69,7 @@ public class ReadH5Helper {
 			outStream.close();
 			// 关闭输入流,释放系统资源
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
+			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
 		}
 	}
 }

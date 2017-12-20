@@ -5,17 +5,15 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 import pers.husen.web.bean.vo.BlogArticleVo;
 import pers.husen.web.common.constants.RequestConstants;
-import pers.husen.web.common.template.html.BlogTemplate;
-import pers.husen.web.common.template.html.GenericTemplate;
+import pers.husen.web.common.constants.ResponseConstants;
+import pers.husen.web.common.helper.ReadH5Helper;
 import pers.husen.web.service.BlogArticleSvc;
 
 /**
@@ -39,22 +37,23 @@ public class BlogSvt extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		PrintWriter out = response.getWriter();
 		BlogArticleSvc bSvc = new BlogArticleSvc();
 
 		int blogId = Integer.parseInt(request.getParameter("blogId"));
 		BlogArticleVo bVo = bSvc.queryPerBlogById(blogId);
-
+		
 		/** 判断是否是返回博客json数据 */
 		String returnType = request.getParameter("type");
 		if (returnType != null && RequestConstants.REQUEST_TYPE_JSON.equals(returnType)) {
+			PrintWriter out = response.getWriter();
 			out.println(JSONObject.fromObject(bVo));
 
 			return;
 		}
 		
 		/** 默认返回整篇文章 */
-		HttpSession session = request.getSession();
+		ReadH5Helper.writeHtmlByName(ResponseConstants.BLOG_TEMPLATE_PATH, response);
+		/*HttpSession session = request.getSession();
 		//判断是否已经访问过该页面，修改浏览次数 
 		Object counter = session.getAttribute("blog_" + blogId);
 		if (counter == null) {
@@ -82,7 +81,7 @@ public class BlogSvt extends HttpServlet {
 				+ GenericTemplate.jsAndCssPlugins() + BlogTemplate.customizeHeader() + GenericTemplate.headBody()
 				+ BlogTemplate.detailBlogBody(bVo, isSuperAdmin) + GenericTemplate.bodyHtml();
 
-		out.println(htmlReturn);
+		out.println(htmlReturn);*/
 	}
 
 	@Override
