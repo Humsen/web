@@ -81,7 +81,7 @@ function getCategory3Num(type){
 			
 			for(x in response){
 				$category.append('<li>'
-						+'<a href="/topic/' + type + '/?category=' + response[x].categoryId + '">'
+						+'<a href="/module/' + type + '.hms?category=' + response[x].categoryId + '">'
 						+ response[x].categoryName
 						+'&emsp;<span class="badge">'
 						+ response[x].categoryNum
