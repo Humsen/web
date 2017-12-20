@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -15,7 +12,9 @@
 <!-- 网站图标 -->
 <link rel="shortcut icon" href="/images/favicon.ico">
 
-<%@include file="/plugins/plugins.jsp"%>
+<!-- jQuery -->
+<script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
+
 <!-- 自定义css -->
 <link rel="stylesheet" href="/css/contact/contact.css">
 <!-- 异步发邮件 -->
@@ -23,12 +22,10 @@
 
 </head>
 <body>
-	<%@include file="/module/common.jsp"%>
 	<input id="menuBarNo" type="hidden" value="5" />
 	
 	<div id="fh5co-page">
 		<!-- 左侧导航  -->
-		<%@include file="/module/navigation/leftbar.jsp"%>
 		<!-- 中间内容  -->
 		<div id="fh5co-main">
 			<div class="fh5co-narrow-content animate-box contact-div"
@@ -73,7 +70,6 @@
 			</div>
 		</div>
 		<!-- 右侧导航  -->
-		<%@include file="/module/navigation/rightbar.jsp"%>
 	</div>
 </body>
 </html>

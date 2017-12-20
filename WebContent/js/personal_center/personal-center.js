@@ -6,6 +6,28 @@
  * 2017年10月17日
  */
 
+$(function() {
+	/** 顶部导航栏 **/
+	$.ajax({
+		url : '/module/navigation/topbar.html', // 这里是静态页的地址
+		async : false,
+		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		success : function(data) {
+			$(document.body).prepend(data);
+		}
+	});
+
+	/** 登录控制 **/
+	$.ajax({
+		url : '/module/login/login.html', // 这里是静态页的地址
+		async : false,
+		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		success : function(data) {
+			$(document.body).prepend(data);
+		}
+	});	
+});
+
 /** 初始化 */
 $(function() {
 	// 如果没有登录

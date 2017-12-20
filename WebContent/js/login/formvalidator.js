@@ -68,6 +68,7 @@ function showLoginStatus() {
 		$('#persCenterBtn').show();
 		$('#quitLoginBtn').show();
 	} else {
+		console.log($('#loginBtn'))
 		$('#loginBtn').show();
 		$('#registerBtn').show();
 		$('#persCenterBtn').hide();

@@ -43,9 +43,6 @@
 
 </head>
 <body>
-	<%@include file="/module/navigation/topbar.jsp"%>
-	<%@include file="/module/login/login.jsp"%>
-
 	<!-- 左侧菜单栏 -->
 	<div class="container-fluid back-left-menu">
 		<div class="row">

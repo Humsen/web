@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +13,8 @@
 <!-- 网站图标 -->
 <link rel="shortcut icon" href="/images/favicon.ico">
 
-<%@include file="/plugins/plugins.jsp"%>
+<!-- jQuery -->
+<script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
 
 <!-- 最新更新文章简介 -->
 <link rel="stylesheet" href="/css/index/article-profile.css">
@@ -24,20 +22,18 @@
 <link rel="stylesheet" href="/css/index/index.css">
 
 <!-- 加载最新3篇博客 -->
-<script type="text/javascript" src="/js/index/latestblog.js"></script>
+<script src="/js/index/latestblog.js"></script>
 <!-- 加载最近3篇代码 -->
-<script type="text/javascript" src="/js/index/latestcode.js"></script>
+<script src="/js/index/latestcode.js"></script>
 <!-- js文件  -->
-<script type="text/javascript" src="/js/index/index.js"></script>
+<script src="/js/index/index.js"></script>
 
 </head>
 <body>
-	<%@include file="/module/common.jsp"%>
 	<input id="menuBarNo" type="hidden" value="0" />
 
 	<div id="fh5co-page">
 		<!-- 左侧导航  -->
-		<%@include file="/module/navigation/leftbar.jsp"%>
 		<!-- 中间内容  -->
 		<div id="fh5co-main">
 			<!-- 首页轮播  -->
@@ -96,7 +92,6 @@
 			</div>
 		</div>
 		<!-- 右侧导航  -->
-		<%@include file="/module/navigation/rightbar.jsp"%>
 	</div>
 </body>
 </html>
