@@ -33,9 +33,9 @@ function loadAccessStatistics() {
 		url : '/accessAtatistics.hms',
 		dataType : 'json',
 		success : function(response, ststus) {
-			$('#txt_accessToday').html('今日访问量：' + response.accessToday + ',');
-			$('#txt_accessTotal').html('总访问量：' + response.accessTotal + ',');
-			$('#txt_onlineCurrent').html('当前在线人数：' + response.onlineCurrent);
+			$('#txt_accessToday').html('今日访问量:' + response.accessToday + ',');
+			$('#txt_accessTotal').html('总访问量:' + response.accessTotal + ',');
+			$('#txt_onlineCurrent').html('当前在线人数:' + response.onlineCurrent);
 		},
 		error : function(XMLHttpRequest, textStatus) {
 			$.confirm({
