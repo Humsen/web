@@ -102,29 +102,18 @@ function getJsonData() {
  * @returns
  */
 function loadDetail(data) {
-	var isSuperAdmin = true;
+	var codeBody = 
+			'<div>'
+			+ '<h2 class="text-align-center"><input id="hiden_blogId" type="hidden" value="'
+			+ 	data.codeId + '" />' 
+			+ 	'<a href=#>' + data.codeTitle + '</a>'
+			+ '</h2>'
+			+ '	<span class="fh5co-post-date">' + new Date(data.codeDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
+			+ ' <span class="fh5co-post-date">作者:' + data.codeAuthor + '</span>'
+			+ ' <span class="fh5co-post-date">浏览' + data.codeRead + '次</span>'
+			+ ' <span class="fh5co-post-date label-lowercase">关键字：' + keywordsProcess(data.codeLabel) + '</span>';
 
-	var codeBody = '<nav>'
-			+ ' 	<ul class="pager"> '
-			+
-			/*
-			 * findPreviousBlog(bVo.getBlogId()) + findNextBlog(bVo.getBlogId()) +
-			 */
-			'   </ul>'
-			+ '</nav>'
-			+ '<div>'
-			+ '	<h2 class="text-align-center"><input id="hiden_blogId" type="hidden" value="'
-			+ data.codeId + '" />' + '		<a href=#>' + data.codeTitle + '</a>'
-			+ '	</h2>' + '	<span class="fh5co-post-date">'
-			+ new Date(data.codeDate.time).format('yyyy-MM-dd hh:mm:ss')
-			+ '</span>' + '   <span class="fh5co-post-date">作者:'
-			+ data.codeAuthor + '</span>'
-			+ '   <span class="fh5co-post-date">浏览' + data.codeRead
-			+ '次</span>'
-			+ '   <span class="fh5co-post-date label-lowercase">关键字：'
-			+ keywordsProcess(data.codeLabel) + '</span>';
-
-	if (isSuperAdmin) {
+	if (isSuperAdmin()) {
 		codeBody += '<a href="/module/upload/editor_article.jsp?codeId='
 				+ data.codeId
 				+ '" target="_blank" role="button" class="btn btn-default btn-sm">编辑</a> '
@@ -134,6 +123,7 @@ function loadDetail(data) {
 	codeBody += '<p>' + data.codeHtmlContent + "</p>" + '</div>';
 
 	$('#content').append(codeBody);
+	loadBtnNeighbors(data.codeId);
 }
 
 /**
@@ -142,7 +132,11 @@ function loadDetail(data) {
  * @returns
  */
 function isSuperAdmin() {
+	if ($.cookie('username') == 'super_admin') {
+		return true;
+	}
 
+	return false;
 }
 
 /**
@@ -163,7 +157,6 @@ function keywordsProcess(codeLabel) {
 			keyWordsArray = codeLabel.split(/\s+/);
 		}
 
-		console.log(keyWordsArray)
 		for (var index = 0; index < keyWordsArray.length; index++) {
 			keyWordsStrBuf += '<span class="label label-' + colorArray[index] + '">'
 					+ keyWordsArray[index].trim() + '</span> ';
@@ -171,4 +164,106 @@ function keywordsProcess(codeLabel) {
 	}
 
 	return keyWordsStrBuf;
+}
+
+/**
+ * 加载上下两篇按钮
+ * 
+ * @returns
+ */
+function loadBtnNeighbors(codeId) {
+	var neighbors = 
+			'<nav>'
+			+ '	<ul class="pager">'
+			+ findPreviousCode(codeId) + findNextCode(codeId) 
+			+ '</ul>'
+			+ '</nav>';
+
+	$('#content').prepend(neighbors);
+}
+
+/**
+ * 查找上一篇代码
+ * @param codeId
+ * @returns
+ */
+function findPreviousCode(codeId) {
+	var previousCode = 0;
+	$
+			.ajax({
+				type : 'POST',
+				async : false,
+				url : '/code/query.hms',
+				dataType : 'json',
+				data : {
+					type : 'query_previous',
+					codeId : codeId
+				},
+				success : function(response) {
+					if (response != 0) {
+						previousCode = '<li class="previous"><a href="/code.hms?codeId=' + response +  '"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> 上一篇</a></li>';
+					}else {
+						previousCode = '<li class="previous disabled"><a href="#"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> 上一篇</a></li>';
+					}
+				},
+				error : function(XMLHttpRequest, textStatus) {
+					$.confirm({
+						title : '查询出错',
+						content : textStatus + ' : ' + XMLHttpRequest.status,
+						autoClose : 'ok|2000',
+						type : 'red',
+						buttons : {
+							ok : {
+								text : '确认',
+								btnClass : 'btn-primary',
+							},
+						}
+					});
+				}
+			});
+
+	return previousCode;
+}
+
+/**
+ * 查找下一篇代码
+ * @param codeId
+ * @returns
+ */
+function findNextCode(codeId) {
+	var nextCode = 0;
+	$
+			.ajax({
+				type : 'POST',
+				async : false,
+				url : '/code/query.hms',
+				dataType : 'json',
+				data : {
+					type : 'query_next',
+					codeId : codeId
+				},
+				success : function(response) {
+					if (response != 0) {
+						nextCode = '<li class="next"><a href="/code.hms?codeId=' + response + '">下一篇 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></a></li>';
+					}else {
+						nextCode = '<li class="next disabled"><a href="#">下一篇 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></a></li>';
+					}
+				},
+				error : function(XMLHttpRequest, textStatus) {
+					$.confirm({
+						title : '查询出错',
+						content : textStatus + ' : ' + XMLHttpRequest.status,
+						autoClose : 'ok|2000',
+						type : 'red',
+						buttons : {
+							ok : {
+								text : '确认',
+								btnClass : 'btn-primary',
+							},
+						}
+					});
+				}
+			});
+
+	return nextCode;
 }

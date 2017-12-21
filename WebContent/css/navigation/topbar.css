@@ -11,17 +11,17 @@
 }
 
 .access-statistics {
-	margin: 15px 30px 0 0;
+	margin: 15px 15px 0 0;
 }
 
 .login-register {
 	position: fixed;
-	margin: 16px 20px 0 84%;
+	margin: 16px 20px 0 82%;
 }
 
 .colmun-nav {
 	position: fixed;
-	margin-left: 30%;
+	margin-left: 27%;
 }
 
 .nav-others {
@@ -31,7 +31,7 @@
 
 .search-bar {
 	position: fixed;
-	margin: 10px 20px 0 61%;
+	margin: 10px 20px 0 58%;
 }
 
 .search-target {

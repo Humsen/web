@@ -37,6 +37,7 @@ public class BlogSvt extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
+		PrintWriter out = response.getWriter();
 		BlogArticleSvc bSvc = new BlogArticleSvc();
 
 		int blogId = Integer.parseInt(request.getParameter("blogId"));
@@ -45,14 +46,17 @@ public class BlogSvt extends HttpServlet {
 		/** 判断是否是返回博客json数据 */
 		String returnType = request.getParameter("type");
 		if (returnType != null && RequestConstants.REQUEST_TYPE_JSON.equals(returnType)) {
-			PrintWriter out = response.getWriter();
 			out.println(JSONObject.fromObject(bVo));
 
 			return;
 		}
 		
 		/** 默认返回整篇文章 */
-		ReadH5Helper.writeHtmlByName(ResponseConstants.BLOG_TEMPLATE_PATH, response);
+		response.setContentType("text/html");  
+		String resultHtml = ReadH5Helper.modifyHtmlKeywords(ResponseConstants.BLOG_TEMPLATE_PATH, bVo.getBlogLabel());
+		out.println(resultHtml);
+		//ReadH5Helper.writeHtmlByName(ResponseConstants.BLOG_TEMPLATE_PATH, response);
+		
 		/*HttpSession session = request.getSession();
 		//判断是否已经访问过该页面，修改浏览次数 
 		Object counter = session.getAttribute("blog_" + blogId);

@@ -79,4 +79,8 @@ public class RequestConstants {
 	public static final String MODE_MESSAGE = "_message";
 	/** 请求模式：文件 */
 	public static final String MODE_FILE = "_file";
+	/** 请求模式：上一篇 -> 有效文章等 **/
+	public static final String MODE_PREVIOUS = "_previous";
+	/** 请求模式：下一篇 -> 有效文章等 **/
+	public static final String MODE_NEXT = "_next";
 }

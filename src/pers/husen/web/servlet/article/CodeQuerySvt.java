@@ -72,6 +72,36 @@ public class CodeQuerySvt extends HttpServlet {
 
 			return;
 		}
+		/** 如果是查询上一篇有效代码 */
+		String queryPrevious = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_PREVIOUS;
+		if (queryPrevious.equals(requestType)) {
+			int codeId = Integer.parseInt(request.getParameter("codeId"));
+			cVo = cSvc.queryPreviousCode(codeId);
+
+			int previousCode = 0;
+			if (cVo != null && cVo.getCodeId() != 0) {
+				previousCode = cVo.getCodeId();
+			}
+			
+			out.println(previousCode);
+			
+			return;
+		}
+		/** 如果是查询上一篇有效代码 */
+		String queryNext = RequestConstants.REQUEST_TYPE_QUERY + RequestConstants.MODE_NEXT;
+		if (queryNext.equals(requestType)) {
+			int codeId = Integer.parseInt(request.getParameter("codeId"));
+			cVo = cSvc.queryNextCode(codeId);
+
+			int nextCode = 0;
+			if (cVo != null && cVo.getCodeId() != 0) {
+				nextCode = cVo.getCodeId();
+			}
+			
+			out.println(nextCode);
+			
+			return;
+		}
 	}
 
 	@Override
