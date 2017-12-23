@@ -36,6 +36,7 @@ public class CategorySvt extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
 		ArticleCategorySvc aSvc = new ArticleCategorySvc();
