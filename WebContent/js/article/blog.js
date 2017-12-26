@@ -155,7 +155,7 @@ function queryBlogCatalog(pageNo){
 function loadSimpleBlog(blog_data){
 	$('#list_blog').append('<div class="fh5co-entry padding">'
 		+ '<span class="fh5co-post-date">' + new Date(blog_data.blogDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
-		+ '<span class="fh5co-post-date">作者:' + blog_data.blogAuthor + '</span>'
+		+ '<span class="fh5co-post-date">作者:' + blog_data.userNickName + '</span>'
 		+ '<span class="fh5co-post-date">浏览' + blog_data.blogRead + '次</span>'
 		+ '<h2 class="article-title"><input type="hidden" value=' + blog_data.blogId + ' />'
 		+ '<a href=/blog.hms?blogId=' + blog_data.blogId + '>' + blog_data.blogTitle + '</a></h2>'

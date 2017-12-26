@@ -109,9 +109,9 @@ function loadDetail(data) {
 			+ 	'<a href=#>' + data.codeTitle + '</a>'
 			+ '</h2>'
 			+ '	<span class="fh5co-post-date">' + new Date(data.codeDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
-			+ ' <span class="fh5co-post-date">作者:' + data.codeAuthor + '</span>'
+			+ ' <span class="fh5co-post-date">作者:' + data.userNickName + '</span>'
 			+ ' <span class="fh5co-post-date">浏览' + data.codeRead + '次</span>'
-			+ ' <span class="fh5co-post-date label-lowercase">关键字：' + keywordsProcess(data.codeLabel) + '</span>';
+			+ ' <span class="fh5co-post-date">关键字：' + keywordsProcess(data.codeLabel) + '</span>';
 
 	if (isSuperAdminOrSelf(data.codeAuthor)) {
 		codeBody += '<a href="/module/upload/editor_article.jsp?codeId='

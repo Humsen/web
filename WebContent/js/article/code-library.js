@@ -156,7 +156,7 @@ function queryCodeCatalog(pageNo){
 function loadSimpleCode(code_data){
 	$('#list_code').append('<div class="fh5co-entry padding">'
 		+ '<span class="fh5co-post-date">' + new Date(code_data.codeDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>'
-		+ '<span class="fh5co-post-date">作者:' + code_data.codeAuthor + '</span>'
+		+ '<span class="fh5co-post-date">作者:' + code_data.userNickName + '</span>'
 		+ '<span class="fh5co-post-date">浏览' + code_data.codeRead + '次</span>'
 		+ '<h2 class="article-title"><input type="hidden" value=' + code_data.codeId + ' />'
 		+ '<a href="/code.hms?codeId=' + code_data.codeId + '">' + code_data.codeTitle + '</a></h2>'

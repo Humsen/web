@@ -21,13 +21,20 @@ public class CodeLibraryVo extends ArticleCategoryVo{
 	private String codeLabel;
 	private int codeDelete;
 	private int codeCategory;
+	private String userNickName;
 	
-	@Override
-	public String toString() {
-		return "CodeLibraryVo [codeId=" + codeId + ", codeTitle=" + codeTitle + ", codeAuthor=" + codeAuthor
-				+ ", codeDate=" + codeDate + ", codeRead=" + codeRead + ", codeSummary=" + codeSummary
-				+ ", codeHtmlContent=" + codeHtmlContent + ", codeMdContent=" + codeMdContent + ", codeLabel="
-				+ codeLabel + "]";
+	
+	/**
+	 * @return the userNickName
+	 */
+	public String getUserNickName() {
+		return userNickName;
+	}
+	/**
+	 * @param userNickName the userNickName to set
+	 */
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
 	}
 	/**
 	 * @return the codeLabel

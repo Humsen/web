@@ -21,7 +21,20 @@ public class BlogArticleVo extends ArticleCategoryVo{
 	private String blogLabel;
 	private int blogDelete;
 	private int blogCategory;
+	private String userNickName;
 	
+	/**
+	 * @return the userNickName
+	 */
+	public String getUserNickName() {
+		return userNickName;
+	}
+	/**
+	 * @param userNickName the userNickName to set
+	 */
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
 	/**
 	 * @return the blogDelete
 	 */

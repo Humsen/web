@@ -111,9 +111,9 @@ function loadDetail(data) {
 			+ '		<a href=#>' + data.blogTitle + '</a>'
 			+ '	</h2>' 
 			+ '	<span class="fh5co-post-date">' + new Date(data.blogDate.time).format('yyyy-MM-dd hh:mm:ss') + '</span>' 
-			+ ' <span class="fh5co-post-date">作者:' + data.blogAuthor + '</span>'
+			+ ' <span class="fh5co-post-date">作者:' + data.userNickName + '</span>'
 			+ ' <span class="fh5co-post-date">浏览' + data.blogRead + '次</span>'
-			+ ' <span class="fh5co-post-date label-lowercase">关键字：' + keywordsProcess(data.blogLabel) + '</span>';
+			+ ' <span class="fh5co-post-date">关键字：' + keywordsProcess(data.blogLabel) + '</span>';
 
 	if (isSuperAdminOrSelf(data.blogAuthor)) {
 		blogBody += '<a href="/module/upload/editor_article.jsp?blogId='

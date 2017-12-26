@@ -10,6 +10,7 @@ import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.mappingdb.ArticleCategoryMapping;
 import pers.husen.web.dbutil.mappingdb.CodeLibraryMapping;
+import pers.husen.web.dbutil.mappingdb.UserInfoMapping;
 
 /**
  * @author 何明胜
@@ -38,8 +39,12 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	@Override
 	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(CodeLibraryVo cVo, int pageSize, int pageNo) {
 		String sql = "SELECT code_id, code_title, code_date, code_author, code_summary, code_read, "
-				+ CodeLibraryMapping.CODE_HTML_CONTENT
-				+ " FROM code_library WHERE code_delete = ?";
+				+ CodeLibraryMapping.CODE_HTML_CONTENT + ", "
+				+ UserInfoMapping.USER_NICK_NAME
+				+ " FROM code_library, "
+				+ UserInfoMapping.DB_NAME
+				+ " WHERE code_delete = ? AND "
+				+ CodeLibraryMapping.CODE_AUTHOR + " = " + UserInfoMapping.USER_NAME;
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
@@ -71,6 +76,8 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ " WHERE "
 				+ CodeLibraryMapping.CODE_CATEGORY + " = " + ArticleCategoryMapping.CATEGORY_ID
 				+ " AND code_id = ? AND code_delete = ?";
+		
+		sql = "SELECT A.*, B.user_nick_name FROM (" + sql + ") as A, User_info as B WHERE A.code_author = B.user_name";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(codeId);

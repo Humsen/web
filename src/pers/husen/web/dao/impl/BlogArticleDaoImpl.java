@@ -10,6 +10,7 @@ import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
 import pers.husen.web.dbutil.mappingdb.ArticleCategoryMapping;
 import pers.husen.web.dbutil.mappingdb.BlogDetailsMapping;
+import pers.husen.web.dbutil.mappingdb.UserInfoMapping;
 
 /**
  * 博客文章接口实现
@@ -51,8 +52,11 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(BlogArticleVo bVo, int pageSize, int pageNo) {
 		String sql = "SELECT blog_id, blog_title, blog_date, blog_author, blog_summary, blog_read, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", " 
-				+ BlogDetailsMapping.BLOG_MD_CONTENT
-				+ " FROM blog_details WHERE blog_delete = ?";
+				+ UserInfoMapping.USER_NICK_NAME
+				+ " FROM blog_details, "
+				+ UserInfoMapping.DB_NAME
+				+ " WHERE blog_delete = ? AND "
+				+ BlogDetailsMapping.BLOG_AUTHOR + " = " + UserInfoMapping.USER_NAME;
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
@@ -83,7 +87,9 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ ArticleCategoryMapping.DB_NAME
 				+ " WHERE "
 				+ BlogDetailsMapping.BLOG_CATEGOTY + " = " + ArticleCategoryMapping.CATEGORY_ID
-				+ " AND blog_id = ? AND blog_delete = ?";
+				+ " AND blog_id = ? AND blog_delete = ? ";
+		
+		sql = "SELECT A.*, B.user_nick_name FROM (" + sql + ") as A, User_info as B WHERE A.blog_author = B.user_name";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(blogId);
