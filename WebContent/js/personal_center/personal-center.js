@@ -170,93 +170,92 @@ function showUserInfo() {
 		return;
 	}
 
-	$
-			.ajax({
-				type : 'POST',
-				async : false,
-				url : '/userInfo.hms',
-				dataType : 'json',
-				data : {
-					type : 'query_user_info',
-					userName : $.cookie('username')
-				},
-				success : function(response) {
-					$('#mainWindow').html('');
-					$('#mainWindow')
-							.append(
-									'<form class="form-horizontal form-show-userinfo">'
-											+ '<div class="form-group">'
-											+ '	<label class="col-sm-4 control-label">头像</label>'
-											+ '	<div class="col-sm-8">'
-											+ '<img src="'
-											+ response.userHeadUrl
-											+ '" alt=""'
-											+ 'class="img-circle img-user-head">'
-											+ '</div>'
-											+ '</div>'
-											+ '<div class="form-group">'
-											+ '<label class="col-sm-4 control-label">用户名（用作登录）</label>'
-											+ '<div class="col-sm-8">'
-											+ '<p class="form-control-static form-show-p">'
-											+ response.userName
-											+ '</p>'
-											+ '</div>'
-											+ '</div>'
-											+ '<div class="form-group">'
-											+ '<label class="col-sm-4 control-label">用户昵称（用作显示）</label>'
-											+ '<div class="col-sm-8">'
-											+ '<p class="form-control-static form-show-p">'
-											+ response.userNickName
-											+ '</p>'
-											+ '</div>'
-											+ '</div>'
-											+ '<div class="form-group">'
-											+ '<label class="col-sm-4 control-label">邮箱</label>'
-											+ '<div class="col-sm-8">'
-											+ '<p class="form-control-static form-show-p">'
-											+ response.userEmail
-											+ '</p>'
-											+ '</div>'
-											+ '</div>'
-											+ '<div class="form-group">'
-											+ '<label class="col-sm-4 control-label">手机</label>'
-											+ '<div class="col-sm-8">'
-											+ '<p class="form-control-static form-show-p">'
-											+ response.userPhone
-											+ '</p>'
-											+ '</div>'
-											+ '</div>'
-											+ '<div class="form-group">'
-											+ '<label class="col-sm-4 control-label">年龄</label>'
-											+ '<div class="col-sm-8">'
-											+ '<p class="form-control-static form-show-p">'
-											+ response.userAge
-											+ '</p>'
-											+ '</div>'
-											+ '</div>'
-											+ '<div class="form-group">'
-											+ '<label class="col-sm-4 control-label">地址</label>'
-											+ '<div class="col-sm-8">'
-											+ '<p class="form-control-static form-show-p">'
-											+ response.userAddress
-											+ '</p>'
-											+ '</div>' + '</div>' + '</form>');
-				},
-				error : function(XMLHttpRequest, textStatus) {
-					$.confirm({
-						title : '用户信息加载出错',
-						content : textStatus + ' : ' + XMLHttpRequest.status,
-						autoClose : 'ok|1000',
-						type : 'green',
-						buttons : {
-							ok : {
-								text : '确认',
-								btnClass : 'btn-primary',
-							},
-						}
-					});
+	$.ajax({
+		type : 'POST',
+		async : false,
+		url : '/userInfo.hms',
+		dataType : 'json',
+		data : {
+			type : 'query_user_info',
+			userName : $.cookie('username')
+		},
+		success : function(response) {
+			$('#mainWindow').html('');
+			$('#mainWindow')
+					.append(
+							'<form class="form-horizontal form-show-userinfo">'
+									+ '<div class="form-group">'
+									+ '	<label class="col-sm-4 control-label">头像</label>'
+									+ '	<div class="col-sm-8">'
+									+ '<img src="'
+									+ response.userHeadUrl
+									+ '" alt=""'
+									+ 'class="img-circle img-user-head">'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="form-group">'
+									+ '<label class="col-sm-4 control-label">用户名（用作登录）</label>'
+									+ '<div class="col-sm-8">'
+									+ '<p class="form-control-static form-show-p">'
+									+ response.userName
+									+ '</p>'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="form-group">'
+									+ '<label class="col-sm-4 control-label">用户昵称（用作显示）</label>'
+									+ '<div class="col-sm-8">'
+									+ '<p class="form-control-static form-show-p">'
+									+ response.userNickName
+									+ '</p>'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="form-group">'
+									+ '<label class="col-sm-4 control-label">邮箱</label>'
+									+ '<div class="col-sm-8">'
+									+ '<p class="form-control-static form-show-p">'
+									+ response.userEmail
+									+ '</p>'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="form-group">'
+									+ '<label class="col-sm-4 control-label">手机</label>'
+									+ '<div class="col-sm-8">'
+									+ '<p class="form-control-static form-show-p">'
+									+ response.userPhone
+									+ '</p>'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="form-group">'
+									+ '<label class="col-sm-4 control-label">年龄</label>'
+									+ '<div class="col-sm-8">'
+									+ '<p class="form-control-static form-show-p">'
+									+ response.userAge
+									+ '</p>'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="form-group">'
+									+ '<label class="col-sm-4 control-label">地址</label>'
+									+ '<div class="col-sm-8">'
+									+ '<p class="form-control-static form-show-p">'
+									+ response.userAddress
+									+ '</p>'
+									+ '</div>' + '</div>' + '</form>');
+		},
+		error : function(XMLHttpRequest, textStatus) {
+			$.confirm({
+				title : '用户信息加载出错',
+				content : textStatus + ' : ' + XMLHttpRequest.status,
+				autoClose : 'ok|1000',
+				type : 'green',
+				buttons : {
+					ok : {
+						text : '确认',
+						btnClass : 'btn-primary',
+					},
 				}
 			});
+		}
+	});
 }
 
 /**

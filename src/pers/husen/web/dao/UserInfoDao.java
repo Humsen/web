@@ -76,6 +76,8 @@ public interface UserInfoDao {
 	/**
 	 * 根据页面大小和页码查询一页的用户
 	 * @param uVo
+	 * @param pageSize
+	 * @param pageNo
 	 * @return
 	 */
 	public ArrayList<UserInfoVo> queryUserPerPage(UserInfoVo uVo, int pageSize, int pageNo);

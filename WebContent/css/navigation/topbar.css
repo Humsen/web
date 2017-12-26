@@ -38,6 +38,13 @@
 	min-width: initial;
 }
 
+.login-status-hide{
+	display : none;
+}
+
+.right-blank-space{
+	margin-right: 5px;
+}
 /* .btn-search {
 	margin-left: 5px;
 } */

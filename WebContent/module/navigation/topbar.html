@@ -32,7 +32,8 @@
 	<!-- 站内搜索功能 -->
 	<div class="navbar-form navbar-left search-bar" role="search">
 		<div class="form-group">
-			<input id="search_keyWords" type="text" class="form-control" placeholder="输入搜索关键字">
+			<input id="search_keyWords" type="text" class="form-control"
+				placeholder="输入搜索关键字">
 		</div>
 		<div id="choose_search_type" class="btn-group">
 			<button id="search_blog" type="button" class="btn btn-default">搜索博客</button>
@@ -49,16 +50,21 @@
 	</div>
 	<!-- 登录注册 -->
 	<div class="login-register">
-		<a id="loginBtn" class="btn btn-warning btn-xs" href="#" role="button"
-			data-toggle="modal" data-target="#login" href=""> <span
-			class="glyphicon glyphicon-user"></span> 登录
-		</a> <a id="registerBtn" class="btn btn-info btn-xs" href="#"
-			role="button" data-toggle="modal" data-target="#register" href="">
-			<span class="glyphicon glyphicon-log-in"></span> 注册
-		</a> <a id="persCenterBtn" class="btn btn-success btn-xs" href="#"
+		<a id="loginBtn" class="btn btn-warning btn-xs login-status-hide right-blank-space"
+			href="#" role="button" data-toggle="modal" data-target="#login"
+			href=""> <span class="glyphicon glyphicon-user"></span> 登录
+		</a>
+		<a id="registerBtn"
+			class="btn btn-info btn-xs login-status-hide" href="#" role="button"
+			data-toggle="modal" data-target="#register" href=""> <span
+			class="glyphicon glyphicon-log-in"></span> 注册
+		</a> <a id="persCenterBtn"
+			class="btn btn-success btn-xs login-status-hide right-blank-space" href="#"
 			role="button" data-toggle="modal" data-target="#" href=""> <span
 			class="glyphicon glyphicon-header"></span> 个人中心
-		</a> <a id="quitLoginBtn" class="btn btn-primary btn-xs	" href="#"
+		</a>
+		<a id="quitLoginBtn"
+			class="btn btn-primary btn-xs	login-status-hide" href="#"
 			role="button" data-toggle="modal" data-target="#" href=""> <span
 			class="glyphicon glyphicon-log-out"></span> 退出
 		</a>

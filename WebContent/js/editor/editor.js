@@ -44,6 +44,7 @@ $(document).ready(function() {
  * @returns
  */
 function initInputBox() {
+	var username = $.cookie('username');
 	var url;
 	var jsonData;
 
@@ -68,22 +69,24 @@ function initInputBox() {
 				// 填充编辑界面
 				if ($.getUrlParam('blogId')) {
 					$('#txt_title').val(response.blogTitle);
-					$('#txt_author').val(response.blogAuthor);
 					$('#txt_summary').val(response.blogSummary);
 					$('#txt_editorMdContent').val(response.blogMdContent);
 					$('#txt_articleLabel').val(response.blogLabel);
 					$('input:radio[name="article"]:eq(0)').prop('checked',true);
 					$('#txt_curCategory').text(response.categoryName);
 					$('#txt_curCtegy').val(response.blogCategory);
+					
+					username = response.blogAuthor;
 				} else {
 					$('#txt_title').val(response.codeTitle);
-					$('#txt_author').val(response.codeAuthor);
 					$('#txt_summary').val(response.codeSummary);
 					$('#txt_editorMdContent').val(response.codeMdContent);
 					$('#txt_articleLabel').val(response.codeLabel);
 					$('input:radio[name="article"]:eq(1)').prop('checked',true);
 					$('#txt_curCategory').text(response.categoryName);
 					$('#txt_curCtegy').val(response.codeCategory);
+					
+					response.blogAuthor = response.codeAuthor;
 				}
 			},
 			error : function(XMLHttpRequest, textStatus) {
@@ -102,6 +105,35 @@ function initInputBox() {
 			}
 		});
 	}
+	
+	/** 填充作者信息 **/
+	$.ajax({
+		type : 'POST',
+		async : false,
+		url : '/userInfo.hms',
+		dataType : 'json',
+		data : {
+			type : 'query_user_info',
+			userName : username
+		},
+		success : function(response) {
+			$('#txt_author').val(response.userNickName);
+		},
+		error : function(XMLHttpRequest, textStatus) {
+			$.confirm({
+				title : '查询出错',
+				content : textStatus + ' : ' + XMLHttpRequest.status,
+				autoClose : 'ok|2000',
+				type : 'red',
+				buttons : {
+					ok : {
+						text : '确认',
+						btnClass : 'btn-primary',
+					},
+				}
+			});
+		}
+	});
 }
 
 /**

@@ -37,8 +37,7 @@
 			<!-- 作者  -->
 			<label for="txt_author" class="col-sm-1 control-label">作者</label>
 			<div class="col-sm-1">
-				<input type="text" class="form-control" id="txt_author"
-					placeholder="作者">
+				<input type="text" class="form-control" id="txt_author" disabled>
 			</div>
 			<!-- 文章类型  -->
 			<div class="col-sm-2 article-type">
@@ -56,9 +55,8 @@
 			</div>
 			<!-- 文章类别  -->
 			<div class="col-sm-2">
-				<button type="button"
-					class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="true">
+				<button type="button" class="btn btn-default dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<span id="txt_curCategory">所有文章 </span>&emsp;<span class="caret"></span>
 				</button>
 				<input id="txt_curCtegy" type="hidden" value="">

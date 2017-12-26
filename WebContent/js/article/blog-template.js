@@ -115,7 +115,7 @@ function loadDetail(data) {
 			+ ' <span class="fh5co-post-date">浏览' + data.blogRead + '次</span>'
 			+ ' <span class="fh5co-post-date label-lowercase">关键字：' + keywordsProcess(data.blogLabel) + '</span>';
 
-	if (isSuperAdmin()) {
+	if (isSuperAdminOrSelf(data.blogAuthor)) {
 		blogBody += '<a href="/module/upload/editor_article.jsp?blogId='
 				+ data.blogId
 				+ '" target="_blank" role="button" class="btn btn-default btn-sm">编辑</a> '
@@ -133,11 +133,15 @@ function loadDetail(data) {
  * 
  * @returns
  */
-function isSuperAdmin() {
+function isSuperAdminOrSelf(author) {
 	if ($.cookie('username') == 'super_admin') {
 		return true;
 	}
 
+	if ($.cookie('username') == author) {
+		return true;
+	}
+	
 	return false;
 }
 
