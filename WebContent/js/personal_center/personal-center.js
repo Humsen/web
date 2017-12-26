@@ -69,6 +69,8 @@ $(function() {
 	$('#modifypassword').click(modifyPassword);
 	$('#btn_modifyEmail').click(modifyEmail);
 	$('#btn_uploadFile').click(uploadFile);
+	$('#btn_showUsers').click(showUsers);
+	
 	// $('#privatemessage').click();
 	// $('#aboutweb').click();
 });
@@ -92,12 +94,12 @@ function loadAdminManageMenu() {
 								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
 								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
 								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i> 编辑新版特性</a></li>'
-								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
+								+ '<li><a href="#" id="btn_showUsers"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
 								+ '</ul>' + '</li>');
 	} else {
 		$('#menunav')
 				.append(
-						'<!-- 站长才有 -->'
+						'<!-- 用户个人管理 -->'
 								+ '<li><a href="#webManagement" class="nav-header collapsed"'
 								+ 'data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i> 新文章 & 新文件<span'
 								+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
@@ -106,7 +108,6 @@ function loadAdminManageMenu() {
 								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
 								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
 								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
-								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
 								+ '</ul>' + '</li>');
 	}
 }
@@ -330,6 +331,23 @@ function uploadFile() {
 
 	$.ajax({
 		url : 'upload_file.html', // 这里是静态页的地址
+		async : false,
+		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		success : function(data) {
+			$('#mainWindow').html(data);
+		}
+	});
+}
+
+/**
+ * 显示所有用户点击事件
+ * @returns
+ */
+function showUsers(){
+	$('#mainWindow').html('');
+
+	$.ajax({
+		url : 'show_users.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {

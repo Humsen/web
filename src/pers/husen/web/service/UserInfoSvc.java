@@ -1,5 +1,7 @@
 package pers.husen.web.service;
 
+import java.util.ArrayList;
+
 import pers.husen.web.bean.vo.UserInfoVo;
 import pers.husen.web.dao.UserInfoDao;
 import pers.husen.web.dao.impl.UserInfoDaoImpl;
@@ -47,5 +49,15 @@ public class UserInfoSvc implements UserInfoDao{
 	@Override
 	public int updateUserEmailByName(UserInfoVo uVo) {
 		return uImpl.updateUserEmailByName(uVo);
+	}
+
+	@Override
+	public int queryUserTotalCount(UserInfoVo uVo) {
+		return uImpl.queryUserTotalCount(uVo);
+	}
+
+	@Override
+	public ArrayList<UserInfoVo> queryUserPerPage(UserInfoVo uVo, int pageSize, int pageNo) {
+		return uImpl.queryUserPerPage(uVo, pageSize, pageNo);
 	}
 }

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.show-users-table {
+	margin: 50px auto;
+}
+
+.user-id-width {
+	min-width: 50px;
+}

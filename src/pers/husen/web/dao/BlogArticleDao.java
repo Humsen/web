@@ -28,7 +28,7 @@ public interface BlogArticleDao {
 	public int queryBlogTotalCount(BlogArticleVo bVo);
 	
 	/**
-	 * 按照页面大小和页码查询博
+	 * 按照页面大小和页码查询博客
 	 * @param bVo
 	 * @param pageSize
 	 * @param pageNo
