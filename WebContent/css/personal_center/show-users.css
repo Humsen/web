@@ -7,3 +7,11 @@
 .user-id-width {
 	min-width: 50px;
 }
+
+.user-nick-name-width{
+	min-width: 60px;
+}
+
+.user-common-width{
+	min-width: 30px;
+}

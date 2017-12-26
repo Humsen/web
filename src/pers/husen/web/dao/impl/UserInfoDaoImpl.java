@@ -162,7 +162,8 @@ public class UserInfoDaoImpl implements UserInfoDao{
 				+ UserInfoMapping.USER_AGE + ","
 				+ UserInfoMapping.USER_SEX + ", "
 				+ UserInfoMapping.USER_ADDRESS + ", "
-				+ UserInfoMapping.USRE_HEAD_URL
+				+ UserInfoMapping.USRE_HEAD_URL + ", "
+				+ UserInfoMapping.USER_PASSWORD
 				+ " FROM "
 				+ UserInfoMapping.DB_NAME;
 		
