@@ -16,13 +16,12 @@
 }
 
 .access-today {
-	margin-top: 4px;
-	margin-left: 35px;
+	margin: 4px 20px auto 35px;
 }
 
 .online-current {
 	margin-top: 4px;
-	margin-left: 70px;
+	margin-left: 20px;
 }
 
 .topbar-btn-login {
@@ -50,9 +49,17 @@
 }
 
 .choose-theme {
-	margin : 10px;
+	margin: 10px;
 }
 
 .web-pc-blank {
 	margin-left: 20px;
+}
+
+.access-statistics {
+	float: left;
+}
+
+.login-status-show {
+	margin-top: 4px;
 }
