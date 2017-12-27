@@ -17,14 +17,8 @@
 	margin: 16px 20px 0 0;
 }
 
-.colmun-nav {
-}
-
 .nav-others {
 	margin: 16px 0 0 0;
-}
-
-.search-bar {
 }
 
 .search-target {
@@ -41,5 +35,5 @@
 
 .nav-bar-width {
 	width: 100%;
-	min-width:1300px;
+	min-width:1345px;
 }
