@@ -1,5 +1,7 @@
 package pers.husen.web.dao;
 
+import java.util.ArrayList;
+
 import pers.husen.web.bean.vo.UserInfoVo;
 
 
@@ -12,13 +14,7 @@ import pers.husen.web.bean.vo.UserInfoVo;
  */
 
 public interface UserInfoDao {
-	/**
-	 * 根据用户名查询密码
-	 * @param userName
-	 * @return
-	 */
-	public String queryPasswordByUserName(String userName);
-	
+	/*  增     */
 	/**
 	 * 插入新注册的用户信息
 	 * @param userInfoVo
@@ -26,13 +22,7 @@ public interface UserInfoDao {
 	 */
 	public int insertUserInfo(UserInfoVo userInfoVo);
 	
-	/**
-	 * 根据用户名查询用户信息
-	 * @param userName
-	 * @return
-	 */
-	public UserInfoVo queryUserInfoByName(String userName);
-	
+	/*  改     */
 	/**
 	 * 根据id更新用户信息
 	 * @param uVo
@@ -60,4 +50,35 @@ public interface UserInfoDao {
 	 * @return
 	 */
 	public int updateUserEmailByName(UserInfoVo uVo);
+	
+	/*  查     */
+	/**
+	 * 根据用户名查询密码
+	 * @param userName
+	 * @return
+	 */
+	public String queryPasswordByUserName(String userName);
+	
+	/**
+	 * 根据用户名查询用户信息
+	 * @param userName
+	 * @return
+	 */
+	public UserInfoVo queryUserInfoByName(String userName);
+	
+	/**
+	 * 根据条件查询总的有效用户数量
+	 * @param uVo
+	 * @return
+	 */
+	public int 	queryUserTotalCount(UserInfoVo uVo);
+	
+	/**
+	 * 根据页面大小和页码查询一页的用户
+	 * @param uVo
+	 * @param pageSize
+	 * @param pageNo
+	 * @return
+	 */
+	public ArrayList<UserInfoVo> queryUserPerPage(UserInfoVo uVo, int pageSize, int pageNo);
 }

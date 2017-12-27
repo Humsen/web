@@ -29,7 +29,9 @@ public class AccessAtatisticsSvt extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccessAtatisticsPo aPo = new AccessAtatisticsPo();
+    	response.setContentType("text/html; charset=UTF-8");
+    	
+    	AccessAtatisticsPo aPo = new AccessAtatisticsPo();
 		aPo.setAccessToday((int) this.getServletContext().getAttribute("visitToday"));
 		aPo.setAccessTotal((int) this.getServletContext().getAttribute("visitTotal"));
 		aPo.setOnlineCurrent((int) this.getServletContext().getAttribute("onlineCount"));

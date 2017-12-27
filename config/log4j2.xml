@@ -3,7 +3,7 @@
 	<Properties>
 		<!-- 云端部署 这里的logs为项目根目录下的logs文件夹 -->
 		<!-- web:rootDir指向web应用根目录，需使用log4j-web.jar -->
-        <Property name="log_path">F:\workspace\workspace pers\web/logs</Property>
+        <Property name="log_path">G:\workspace\workspace pers\web/logs</Property>
         <!-- 本地开发使用绝对路径定义日志 -->
         <!-- <Property name="log_path">${web:rootDir}\logs</Property> -->
         

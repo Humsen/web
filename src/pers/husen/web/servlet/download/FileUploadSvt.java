@@ -1,7 +1,6 @@
 package pers.husen.web.servlet.download;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -33,7 +32,7 @@ public class FileUploadSvt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FileUploadHandler fileUploadHandler = new FileUploadHandler();
 		String fileName = fileUploadHandler.fileUploadHandler(request);
-		int insertResult = 0;
+		//int insertResult = 0;
 		
 		//不为null则上传成功
 		if(fileName != null) {
@@ -44,11 +43,12 @@ public class FileUploadSvt extends HttpServlet {
 			fVo.setFileDownloadCount(0);
 			
 			FileDownloadSvc fSvc = new FileDownloadSvc();
-			insertResult = fSvc.insertFileDownload(fVo);
+			fSvc.insertFileDownload(fVo);
 		}
 		
-		PrintWriter out = response.getWriter();
-		out.println(insertResult);
+		response.sendRedirect("/personal_center/mycenter.jsp");
+		/*PrintWriter out = response.getWriter();
+		out.println(insertResult);*/
 	}
 
     @Override

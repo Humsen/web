@@ -47,7 +47,7 @@ public class TypeTransformUtils {
 				// 转换为驼峰形式
 				fieldName = underline2Camel(fieldName);
 				// 获取字段类型
-				Class<?> type = classType.getDeclaredField(fieldName).getType();
+				Class<?> type = getDeclaredField(classType, fieldName);
 				// 拼接set函数名称
 				String firstChar = fieldName.substring(0, 1);
 				String pascalName = fieldName.replaceFirst(firstChar, firstChar.toUpperCase());
@@ -101,7 +101,7 @@ public class TypeTransformUtils {
 				// 转换为驼峰形式
 				fieldName = underline2Camel(fieldName);
 				// 获取字段类型
-				Class<?> type = classType.getDeclaredField(fieldName).getType();
+				Class<?> type = getDeclaredField(classType, fieldName);
 				// 拼接set函数名称
 				String firstChar = fieldName.substring(0, 1);
 				String pascalName = fieldName.replaceFirst(firstChar, firstChar.toUpperCase());
@@ -148,5 +148,29 @@ public class TypeTransformUtils {
 		}
 
 		return builder.toString();
+	}
+
+	/**
+	 * 根据字段名称获取当前类及其父类中的变量
+	 * @param <T>
+	 * @param object
+	 * @param methodName
+	 * @param parameterTypes
+	 * @return
+	 */
+	public static <T> Class<?> getDeclaredField(Class<T> currClass, String methodName) {
+		Class<?> fieldClass = null;
+
+		for (Class<?> clazz = currClass; clazz != Object.class; clazz = clazz.getSuperclass()) {
+			try {
+				fieldClass = clazz.getDeclaredField(methodName).getType();
+				return fieldClass;
+			} catch (Exception e) {
+				// 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
+				// 如果这里的异常打印或者往外抛，则就不会执行clazz = clazz.getSuperclass(),最后就不会进入到父类中了
+			}
+		}
+
+		return null;
 	}
 }

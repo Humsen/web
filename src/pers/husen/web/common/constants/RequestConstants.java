@@ -9,10 +9,18 @@ package pers.husen.web.common.constants;
  */
 public class RequestConstants {
 	/******************************************************************************
+	 * 前端请求参数名称
+	 ******************************************************************************/
+	public static final String PARAM_TYPE = "type";
+	public static final String PARAM_KEYWORDS = "keywords";
+	public static final String PARAM_CATEGORY = "category";
+	
+	
+	/******************************************************************************
 	 * 前端请求类型常量, 先用类型, 如果类型不足以表达含义, 再加个模式
 	 ******************************************************************************/
 	
-	/* 没有组合,只用类型就能解决的放上面. 一旦组合就下面 */
+	/* 没有组合,只用类型就能解决的放上面. 一旦组合就放下面 */
 	
 	/** 请求类型：json格式数据 -> 博客、代码等  */
 	public static final String REQUEST_TYPE_JSON = "json_return";
@@ -60,6 +68,8 @@ public class RequestConstants {
 	public static final String MODE_ONE_PAGE = "_one_page";
 	/** 请求模式：总数量  */
 	public static final String MODE_TOTAL_NUM = "_total_num";
+	/** 请求模式：目录 */
+	public static final String MODE_CATEGORY = "_category";
 	
 	/** 请求模式：博客 */
 	public static final String MODE_BLOG = "_blog";
@@ -69,4 +79,8 @@ public class RequestConstants {
 	public static final String MODE_MESSAGE = "_message";
 	/** 请求模式：文件 */
 	public static final String MODE_FILE = "_file";
+	/** 请求模式：上一篇 -> 有效文章等 **/
+	public static final String MODE_PREVIOUS = "_previous";
+	/** 请求模式：下一篇 -> 有效文章等 **/
+	public static final String MODE_NEXT = "_next";
 }

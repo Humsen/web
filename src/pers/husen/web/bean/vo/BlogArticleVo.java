@@ -1,6 +1,5 @@
 package pers.husen.web.bean.vo;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +7,7 @@ import java.util.Date;
  *
  * 2017年9月17日
  */
-public class BlogArticleVo implements Serializable{
+public class BlogArticleVo extends ArticleCategoryVo{
 	private static final long serialVersionUID = 1L;
 	
 	private int blogId;
@@ -21,7 +20,21 @@ public class BlogArticleVo implements Serializable{
 	private String blogMdContent;
 	private String blogLabel;
 	private int blogDelete;
+	private int blogCategory;
+	private String userNickName;
 	
+	/**
+	 * @return the userNickName
+	 */
+	public String getUserNickName() {
+		return userNickName;
+	}
+	/**
+	 * @param userNickName the userNickName to set
+	 */
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
 	/**
 	 * @return the blogDelete
 	 */
@@ -137,6 +150,18 @@ public class BlogArticleVo implements Serializable{
 		this.blogSummary = blogSummary;
 	}
 	/**
+	 * @return the blogCategory
+	 */
+	public int getBlogCategory() {
+		return blogCategory;
+	}
+	/**
+	 * @param blogCategory the blogCategory to set
+	 */
+	public void setBlogCategory(int blogCategory) {
+		this.blogCategory = blogCategory;
+	}
+	/**
 	 * @return the blogRead
 	 */
 	public int getBlogRead() {
@@ -147,12 +172,5 @@ public class BlogArticleVo implements Serializable{
 	 */
 	public void setBlogRead(int blogRead) {
 		this.blogRead = blogRead;
-	}
-	@Override
-	public String toString() {
-		return "BlogArticleVo [blogId=" + blogId + ", blogTitle=" + blogTitle + ", blogAuthor=" + blogAuthor
-				+ ", blogDate=" + blogDate + ", blogSummary=" + blogSummary + ", blogHtmlContent=" + blogHtmlContent
-				+ ", blogRead=" + blogRead + ", blogMdContent=" + blogMdContent + ", blogLabel=" + blogLabel
-				+ ", blogDelete=" + blogDelete + "]";
 	}
 }

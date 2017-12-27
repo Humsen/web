@@ -1,6 +1,5 @@
 package pers.husen.web.bean.vo;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +7,7 @@ import java.util.Date;
  *
  * 2017年9月28日
  */
-public class CodeLibraryVo implements Serializable{
+public class CodeLibraryVo extends ArticleCategoryVo{
 	private static final long serialVersionUID = 1L;
 	
 	private int codeId;
@@ -20,13 +19,22 @@ public class CodeLibraryVo implements Serializable{
 	private String codeHtmlContent;
 	private String codeMdContent;
 	private String codeLabel;
+	private int codeDelete;
+	private int codeCategory;
+	private String userNickName;
 	
-	@Override
-	public String toString() {
-		return "CodeLibraryVo [codeId=" + codeId + ", codeTitle=" + codeTitle + ", codeAuthor=" + codeAuthor
-				+ ", codeDate=" + codeDate + ", codeRead=" + codeRead + ", codeSummary=" + codeSummary
-				+ ", codeHtmlContent=" + codeHtmlContent + ", codeMdContent=" + codeMdContent + ", codeLabel="
-				+ codeLabel + "]";
+	
+	/**
+	 * @return the userNickName
+	 */
+	public String getUserNickName() {
+		return userNickName;
+	}
+	/**
+	 * @param userNickName the userNickName to set
+	 */
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
 	}
 	/**
 	 * @return the codeLabel
@@ -135,5 +143,29 @@ public class CodeLibraryVo implements Serializable{
 	 */
 	public void setCodeMdContent(String codeMdContent) {
 		this.codeMdContent = codeMdContent;
+	}
+	/**
+	 * @return the codeDelete
+	 */
+	public int getCodeDelete() {
+		return codeDelete;
+	}
+	/**
+	 * @param codeDelete the codeDelete to set
+	 */
+	public void setCodeDelete(int codeDelete) {
+		this.codeDelete = codeDelete;
+	}
+	/**
+	 * @return the codeCategory
+	 */
+	public int getCodeCategory() {
+		return codeCategory;
+	}
+	/**
+	 * @param codeCategory the codeCategory to set
+	 */
+	public void setCodeCategory(int codeCategory) {
+		this.codeCategory = codeCategory;
 	}
 }

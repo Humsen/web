@@ -143,4 +143,32 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		
 		return DbManipulationUtils.updateRecordByParam(sql, paramList);
 	}
+
+	@Override
+	public int queryUserTotalCount(UserInfoVo uVo) {
+		String sql = "SELECT count(*) as count FROM " + UserInfoMapping.DB_NAME;
+				
+		return DbQueryUtils.queryIntByParam(sql, new ArrayList<Object>());
+	}
+
+	@Override
+	public ArrayList<UserInfoVo> queryUserPerPage(UserInfoVo uVo,int pageSize, int pageNo) {
+		String sql = "SELECT "
+				+ UserInfoMapping.USER_ID + ", "
+				+ UserInfoMapping.USER_NAME + ", "
+				+ UserInfoMapping.USER_NICK_NAME + ", "
+				+ UserInfoMapping.USER_EMAIL + ", "
+				+ UserInfoMapping.USER_PHONE + ","
+				+ UserInfoMapping.USER_AGE + ","
+				+ UserInfoMapping.USER_SEX + ", "
+				+ UserInfoMapping.USER_ADDRESS + ", "
+				+ UserInfoMapping.USRE_HEAD_URL + ", "
+				+ UserInfoMapping.USER_PASSWORD
+				+ " FROM "
+				+ UserInfoMapping.DB_NAME;
+		
+		sql += " ORDER BY user_id LIMIT " + pageSize + " OFFSET " + pageNo;
+		
+		return DbQueryUtils.queryBeanListByParam(sql, new ArrayList<Object>(), UserInfoVo.class);
+	}
 }
