@@ -85,13 +85,13 @@ function fillVersionEditor(versionArticle){
 }
 
 /**
- * 绑定加载上一个版本事件
+ * 绑定加载前一个版本点击事件
  * 
  * @returns
  */
 function prevVersionClick() {
-	//如果版本超过最新，直接返回
-	if(curr_version_id+1 > latest_version_id){
+	//如果版本小于等于0，直接返回
+	if(curr_version_id-1 <= 0){
 		return;
 	}
 	
@@ -100,7 +100,7 @@ function prevVersionClick() {
 		url : '/latestRlseFetr.hms',
 		dataType : 'json',
 		data : {
-			releaseId : curr_version_id+1,
+			releaseId : curr_version_id-1,
 		},
 		success : function(response) {
 			fillVersionEditor(response);
@@ -123,13 +123,13 @@ function prevVersionClick() {
 }
 
 /**
- * 绑定加载下一个版本事件
+ * 绑定加载后一个版本点击事件
  * 
  * @returns
  */
 function nextVersionClick() {
-	//如果版本小于等于0，直接返回
-	if(curr_version_id-1 <= 0){
+	//如果版本超过最新，直接返回
+	if(curr_version_id+1 > latest_version_id){
 		return;
 	}
 	
@@ -138,7 +138,7 @@ function nextVersionClick() {
 		url : '/latestRlseFetr.hms',
 		dataType : 'json',
 		data : {
-			releaseId : curr_version_id-1,
+			releaseId : curr_version_id+1,
 		},
 		success : function(response) {
 			fillVersionEditor(response);
