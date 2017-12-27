@@ -6,13 +6,23 @@
  * 2017年9月28日
  */
 
+/** 加载插件 * */
+$.ajax({
+	url : '/plugins/plugins.html', // 这里是静态页的地址
+	async : false,
+	type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+	success : function(data) {
+		$($('head')[0]).find('script:first').after(data);
+	}
+});
+
 var article_id = -1;// 文章id,新文章默认为-1,编辑文章为相应的id
 var article_type = -1; //文章类型，默认-1，博客=blog，代码=code
 
 $(document).ready(function() {
 	// 判断是否超级管理员，否则不能访问
 	/*if ($.cookie('username') != 'super_admin') {
-		window.location.replace('/module/error/error.jsp');
+		window.location.replace('/module/error/error.html');
 		return;
 	}*/
 	

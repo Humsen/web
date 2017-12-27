@@ -86,13 +86,11 @@ function showLoginStatus() {
  * @returns
  */
 function persCenterBtnClick() {
-	// window.open('/personal_center/mycenter.jsp');
-
 	// 如果没有登录，跳转到错误页面
 	if (!$.cookie('username')) {
-		window.open('/module/error/error.jsp');
+		window.open('/module/error/error.html');
 	} else {
-		window.open('/personal_center/mycenter.jsp');
+		window.open('/usercenter.hms');
 	}
 }
 

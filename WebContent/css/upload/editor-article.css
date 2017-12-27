@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
-/**************  新版编辑文章   ***************/
 .editor-form-div {
-	margin-top: 20px;
+	margin: 20px 15px;
 }
 
 .article-type {

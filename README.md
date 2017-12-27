@@ -270,7 +270,7 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
         │          editor-article.css
         │          
         ├─error
-        │      error.jsp
+        │      error.html
         │      
         ├─images
         │  │  favicon.ico

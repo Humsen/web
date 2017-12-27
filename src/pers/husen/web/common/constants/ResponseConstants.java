@@ -30,4 +30,10 @@ public class ResponseConstants {
 	public static final String DOWNLOAD_MODULE_TEMPLATE_PATH = ProjectDeployConfig.WEB_DEPLOY_PATH + "/topic/download/download.html";
 	/** 返回博客模块的模板地址 **/
 	public static final String MESSAGE_MODULE_TEMPLATE_PATH = ProjectDeployConfig.WEB_DEPLOY_PATH + "/topic/message/message.html";
+	
+	/** 返回个人中心的模板地址 **/
+	public static final String USER_CENTER_TEMPLATE_PATH = ProjectDeployConfig.WEB_DEPLOY_PATH + "/personal_center/usercenter.html";
+	
+	/** 返回编辑文章的模板地址 **/
+	public static final String EDITOR_ARTICLE_TEMPLATE_PATH = ProjectDeployConfig.WEB_DEPLOY_PATH + "/module/upload/editor.html";
 }

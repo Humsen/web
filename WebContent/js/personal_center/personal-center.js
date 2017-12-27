@@ -33,7 +33,7 @@ $(function() {
 	// 如果没有登录
 	/*
 	 * if(!$.cookie('username')){
-	 * window.location.replace('/module/error/error.jsp'); }
+	 * window.location.replace('/module/error/error.html'); }
 	 */
 
 	// 调整顶部导航的宽度
@@ -70,9 +70,6 @@ $(function() {
 	$('#btn_modifyEmail').click(modifyEmail);
 	$('#btn_uploadFile').click(uploadFile);
 	$('#btn_showUsers').click(showUsers);
-	
-	// $('#privatemessage').click();
-	// $('#aboutweb').click();
 });
 
 /**
@@ -90,8 +87,8 @@ function loadAdminManageMenu() {
 								+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
 								+ '</a>'
 								+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
-								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
-								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
+								+ '<li><a href="/editor/article.hms" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
+								+ '<li><a href="/editor/article.hms" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
 								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
 								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i> 编辑新版特性</a></li>'
 								+ '<li><a href="#" id="btn_showUsers"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
@@ -105,8 +102,8 @@ function loadAdminManageMenu() {
 								+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
 								+ '</a>'
 								+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
-								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
-								+ '<li><a href="/module/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
+								+ '<li><a href="/editor/article.hms" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
+								+ '<li><a href="/editor/article.hms" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
 								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
 								+ '</ul>' + '</li>');
 	}
@@ -125,7 +122,7 @@ function modifyPassword() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'modify_pwd.html', // 这里是静态页的地址
+		url : '/personal_center/modify_pwd.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
@@ -271,7 +268,7 @@ function editUserInfo() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'modify_userinfo.html', // 这里是静态页的地址
+		url : '/personal_center/modify_userinfo.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
@@ -289,7 +286,7 @@ function editVerFeature() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'editor_version.html', // 这里是静态页的地址
+		url : '/personal_center/editor_version.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
@@ -311,7 +308,7 @@ function modifyEmail() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'modify_email.html', // 这里是静态页的地址
+		url : '/personal_center/modify_email.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
@@ -327,11 +324,11 @@ function modifyEmail() {
  */
 function uploadFile() {
 	$('#mainWindow').html('');
-
+	
 	$.ajax({
-		url : 'upload_file.html', // 这里是静态页的地址
+		url : '/personal_center/upload_file.html',
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET',
 		success : function(data) {
 			$('#mainWindow').html(data);
 		}
@@ -346,7 +343,7 @@ function showUsers(){
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'show_users.html', // 这里是静态页的地址
+		url : '/personal_center/show_users.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {

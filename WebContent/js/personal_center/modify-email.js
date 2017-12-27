@@ -72,7 +72,7 @@ function nextStepClick(){
 				$('#mainWindow').html('');
 				
 				$.ajax( {
-				    url: 'modify_email1.html', //这里是静态页的地址
+				    url: '/personal_center/modify_email1.html', //这里是静态页的地址
 				    async : false,
 				    type: 'GET', //静态页用get方法，否则服务器会抛出405错误
 				    success: function(data){
