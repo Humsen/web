@@ -1,13 +1,17 @@
 @charset "UTF-8";
 
 .footer-div {
-	margin-top: 120px;
+	margin-top: 20px;
 }
 
 .husen-name {
 	font-family: FZShuTi, LiSu, STCaiyun;
 }
 
+.web-pc-nav{
+	text-align: center;
+	margin-top: 30px;
+}
 /* #fh5co-main-menu a {
 	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif !important;
 	font-size: 20px !important;

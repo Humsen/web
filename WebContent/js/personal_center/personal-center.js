@@ -23,7 +23,7 @@ $(function() {
 	// 添加返回首页按钮
 	$('.choose-theme')
 			.append(
-					'<a class="btn btn-warning btn-sm return-index" href="/" role="button">返回首页</a>');
+					'<a class="btn btn-warning btn-xs return-index-blank" href="/" role="button">返回首页</a>');
 
 	// 加载网站管理
 	loadAdminManageMenu();

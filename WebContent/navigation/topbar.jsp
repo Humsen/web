@@ -30,6 +30,13 @@
 		</a>
 	</div>
 </nav>
-<!-- 选择网站主题  -->
 
-<div class="choose-theme"><button type="button" class="btn btn-success btn-xs">下一个主题&ensp;<span class="glyphicon glyphicon-forward"></span></button></div>
+<!-- 选择网站主题  -->
+<div class="choose-theme">
+	<button type="button" class="btn btn-success btn-xs">
+		下一个主题&ensp;<span class="glyphicon glyphicon-forward"></span>
+	</button>
+	<a class="btn btn-default btn-xs web-pc-blank" href="https://www.hemingsheng.cn/"
+		role="button"><span class="glyphicon glyphicon-blackboard"></span>
+		电脑版</a>
+</div>

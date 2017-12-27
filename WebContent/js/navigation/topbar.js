@@ -10,7 +10,7 @@ $(document).ready(function(){
 	loadAccessStatistics();
 	
 	//绑定切换主题事件
-	$('.choose-theme').click(nextThemeClick);
+	$('.choose-theme').children('button').click(nextThemeClick);
 });
 
 /**

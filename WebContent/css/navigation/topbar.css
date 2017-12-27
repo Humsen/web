@@ -50,8 +50,9 @@
 }
 
 .choose-theme {
-	/* float: left; */
-	/* position: absolute;
-	top: 5px;
-	right: 15%; */
+	margin : 10px;
+}
+
+.web-pc-blank {
+	margin-left: 20px;
 }
