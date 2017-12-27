@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/** 新版 */
 .topbar-nav {
 	margin: 10px 0 0 20px;
 	line-height: 0.8;
@@ -15,36 +14,32 @@
 }
 
 .login-register {
-	position: fixed;
-	margin: 16px 20px 0 82%;
+	margin: 16px 20px 0 0;
 }
 
 .colmun-nav {
-	position: fixed;
-	margin-left: 28%;
 }
 
 .nav-others {
-	position: fixed;
-	margin: 16px 0 0 93%;
+	margin: 16px 0 0 0;
 }
 
 .search-bar {
-	position: fixed;
-	margin: 10px 20px 0 58%;
 }
 
 .search-target {
 	min-width: initial;
 }
 
-.login-status-hide{
-	display : none;
+.login-status-hide {
+	display: none;
 }
 
-.right-blank-space{
+.right-blank-space {
 	margin-right: 5px;
 }
-/* .btn-search {
-	margin-left: 5px;
-} */
+
+.nav-bar-width {
+	width: 100%;
+	min-width:1300px;
+}

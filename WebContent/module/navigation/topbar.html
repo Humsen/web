@@ -7,7 +7,7 @@
 <script src="/js/navigation/topbar.js"></script>
 
 <!-- 导航区  -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default nav-bar-width">
 	<!-- logo -->
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/"> <span id="trademark"
@@ -16,7 +16,8 @@
 	</div>
 	<!-- 访问统计  -->
 	<div class="access-statistics">
-		<label id="txt_accessToday"></label> <label id="txt_accessTotal"></label>
+		<label id="txt_accessToday"></label> 
+		<label id="txt_accessTotal"></label>
 		<label id="txt_onlineCurrent"></label>
 	</div>
 	<div class="colmun-nav">
@@ -50,23 +51,20 @@
 	</div>
 	<!-- 登录注册 -->
 	<div class="login-register">
-		<a id="loginBtn" class="btn btn-warning btn-xs login-status-hide right-blank-space"
+		<a id="loginBtn"
+			class="btn btn-warning btn-xs login-status-hide right-blank-space"
 			href="#" role="button" data-toggle="modal" data-target="#login"
 			href=""> <span class="glyphicon glyphicon-user"></span> 登录
-		</a>
-		<a id="registerBtn"
-			class="btn btn-info btn-xs login-status-hide" href="#" role="button"
-			data-toggle="modal" data-target="#register" href=""> <span
-			class="glyphicon glyphicon-log-in"></span> 注册
+		</a> <a id="registerBtn" class="btn btn-info btn-xs login-status-hide"
+			href="#" role="button" data-toggle="modal" data-target="#register"
+			href=""> <span class="glyphicon glyphicon-log-in"></span> 注册
 		</a> <a id="persCenterBtn"
-			class="btn btn-success btn-xs login-status-hide right-blank-space" href="#"
-			role="button" data-toggle="modal" data-target="#" href=""> <span
-			class="glyphicon glyphicon-header"></span> 个人中心
-		</a>
-		<a id="quitLoginBtn"
-			class="btn btn-primary btn-xs	login-status-hide" href="#"
-			role="button" data-toggle="modal" data-target="#" href=""> <span
-			class="glyphicon glyphicon-log-out"></span> 退出
+			class="btn btn-success btn-xs login-status-hide right-blank-space"
+			href="#" role="button" data-toggle="modal" data-target="#" href="">
+			<span class="glyphicon glyphicon-header"></span> 个人中心
+		</a> <a id="quitLoginBtn" class="btn btn-primary btn-xs	login-status-hide"
+			href="#" role="button" data-toggle="modal" data-target="#" href="">
+			<span class="glyphicon glyphicon-log-out"></span> 退出
 		</a>
 	</div>
 	<!-- 其他 -->
