@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 import pers.husen.web.bean.vo.UserInfoVo;
 import pers.husen.web.common.constants.RequestConstants;
+import pers.husen.web.common.helper.Md5EncryptHelper;
 import pers.husen.web.service.UserInfoSvc;
 
 /**
@@ -41,6 +42,8 @@ public class UserInfoSvt extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String operationType = request.getParameter("type");
+		//密码加盐再加密
+		password = Md5EncryptHelper.getMD5Code(password+"["+userName+"]");
 
 		//如果操作类型为null，直接返回
 		if(operationType == null) {
@@ -98,7 +101,6 @@ public class UserInfoSvt extends HttpServlet {
 		/** 如果为验证密码,登录或者修改密码验证 */
 		if (operationType.indexOf(RequestConstants.REQUEST_TYPE_AUTH) != -1) {
 			String queryPwd = uSvc.queryPasswordByUserName(userName);
-
 			if (password.equals(queryPwd)) {
 				// 如果为登录，设置cookie
 				if (operationType.indexOf(RequestConstants.MODE_LOGIN) != -1) {

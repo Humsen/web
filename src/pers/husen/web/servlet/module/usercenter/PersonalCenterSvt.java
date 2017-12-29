@@ -25,6 +25,7 @@ public class PersonalCenterSvt extends HttpServlet {
         super();
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -32,6 +33,7 @@ public class PersonalCenterSvt extends HttpServlet {
 		ReadH5Helper.writeHtmlByName(ResponseConstants.USER_CENTER_TEMPLATE_PATH, response);
 	}
 
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

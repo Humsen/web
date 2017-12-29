@@ -106,7 +106,7 @@ function quitLoginClick() {
 		expires : -1
 	});
 	// 判断是否在后台
-	if (window.location.href.indexOf('personal_center') > 0) {
+	if (window.location.href.indexOf('usercenter') > 0) {
 		showLoginStatus();
 	} else {
 		// 刷新页面
@@ -144,16 +144,16 @@ function submitLoginForm() {
 	// 进行表单验证
 	var $loginValidate = $('#loginForm').data('bootstrapValidator');
 	$loginValidate.validate();
-
+	
 	if ($loginValidate.isValid()) {
 		$.ajax({
 			url : '/userInfo.hms',
 			async : false,// 同步，会阻塞操作
-			type : 'POST',// PUT DELETE POST
+			type : 'POST',
 			data : {
 				type : 'auth_login',
 				userName : $('#txt_userNameLogin').val(),
-				password : $('#txt_userPwdLogin').val()
+				password : $.md5($('#txt_userPwdLogin').val())
 			},
 			success : function(result) {
 				if (result == 1) {
@@ -396,7 +396,7 @@ function sendRegisterInfo() {
 	$.ajax({
 		url : '/userInfo.hms',
 		async : false,// 同步，会阻塞操作
-		type : 'POST',// PUT DELETE POST
+		type : 'POST',
 		data : registerInfo2Json(),
 		success : function(result) {
 			if (result == 1) {
@@ -456,7 +456,7 @@ function registerInfo2Json() {
 
 	newUserInfo.type = 'create_user_info';
 	newUserInfo.userName = $('#txt_userNameRegister').val();
-	newUserInfo.password = $('#txt_userPwdRegister').val()
+	newUserInfo.password = $.md5($('#txt_userPwdRegister').val());
 	newUserInfo.email = $('#txt_userEmailRegister').val();
 
 	return newUserInfo;
@@ -592,8 +592,8 @@ function retrievePassword() {
 							$
 									.ajax({
 										url : '/userInfo/code.hms',
-										async : false,// 同步，会阻塞操作
-										type : 'POST',// PUT DELETE POST
+										async : false,
+										type : 'POST',
 										data : {
 											type : 'auth_code_retrive_pwd',
 											randomCode : $('#txt_validateCode1')

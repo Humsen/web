@@ -78,7 +78,7 @@ $(function() {
  * @returns
  */
 function loadAdminManageMenu() {
-	if ($.cookie('username') == 'super_admin') {
+	if ($.cookie('username') == 'husen') {
 		$('#menunav')
 				.append(
 						'<!-- 站长才有 -->'

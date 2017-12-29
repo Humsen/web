@@ -134,7 +134,7 @@ function loadDetail(data) {
  * @returns
  */
 function isSuperAdminOrSelf(author) {
-	if ($.cookie('username') == 'super_admin') {
+	if ($.cookie('username') == 'husen') {
 		return true;
 	}
 
