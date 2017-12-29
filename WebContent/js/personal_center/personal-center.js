@@ -51,8 +51,7 @@ $(function() {
  * @returns
  */
 function loadAdminManageMenu() {
-	if ($.cookie('username') == 'super_admin') {
-		// window.location.replace('/error/error.jsp');
+	if ($.cookie('username') == 'husen') {
 		$('#menunav')
 				.append(
 						'<!-- 站长才有 -->'

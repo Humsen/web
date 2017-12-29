@@ -31,6 +31,7 @@
 <!-- validator -->
 <script src="/plugins/validator/js/bootstrapValidator.min.js"></script>
 <script src="/js/login/formvalidator.js"></script>
+<script src="/js/customize-jquery.md5.js"></script>
 <!-- JQuery cookie -->
 <script src="/plugins/jquery/js/jquery.cookie.js"></script>
 <!-- 个人中心js -->

@@ -81,8 +81,6 @@ function showLoginStatus() {
  * @returns
  */
 function persCenterBtnClick() {
-	// window.open('/personal_center/mycenter.jsp');
-
 	// 如果没有登录，跳转到错误页面
 	if (!$.cookie('username')) {
 		window.open('/error/error.jsp');
@@ -141,16 +139,16 @@ function submitLoginForm() {
 	// 进行表单验证
 	var $loginValidate = $('#loginForm').data('bootstrapValidator');
 	$loginValidate.validate();
-
+	
 	if ($loginValidate.isValid()) {
 		$.ajax({
 			url : '/userInfo.hms',
-			async : false,// 同步，会阻塞操作
-			type : 'POST',// PUT DELETE POST
+			async : false,
+			type : 'POST',
 			data : {
 				type : 'auth_login',
 				userName : $('#txt_userNameLogin').val(),
-				password : $('#txt_userPwdLogin').val()
+				password : $.md5($('#txt_userPwdLogin').val())
 			},
 			success : function(result) {
 				if (result == 1) {
@@ -257,8 +255,8 @@ function submitRegisterForm() {
 							// 注册发送验证码
 							$.ajax({
 								url : '/userInfo/code.hms',
-								async : true,// 同步，会阻塞操作
-								type : 'POST',// PUT DELETE POST
+								async : true,
+								type : 'POST',
 								data : {
 									type : 'send_code_register',
 									email : email,
@@ -392,8 +390,8 @@ function sendRegisterInfo() {
 	// 发送ajax请求
 	$.ajax({
 		url : '/userInfo.hms',
-		async : false,// 同步，会阻塞操作
-		type : 'POST',// PUT DELETE POST
+		async : false,
+		type : 'POST',
 		data : registerInfo2Json(),
 		success : function(result) {
 			if (result == 1) {
@@ -453,7 +451,7 @@ function registerInfo2Json() {
 
 	newUserInfo.type = 'create_user_info';
 	newUserInfo.userName = $('#txt_userNameRegister').val();
-	newUserInfo.password = $('#txt_userPwdRegister').val()
+	newUserInfo.password = $.md5($('#txt_userPwdRegister').val());
 	newUserInfo.email = $('#txt_userEmailRegister').val();
 
 	return newUserInfo;
@@ -589,8 +587,8 @@ function retrievePassword() {
 							$
 									.ajax({
 										url : '/userInfo/code.hms',
-										async : false,// 同步，会阻塞操作
-										type : 'POST',// PUT DELETE POST
+										async : false,
+										type : 'POST',
 										data : {
 											type : 'auth_code_retrive_pwd',
 											randomCode : $('#txt_validateCode1')

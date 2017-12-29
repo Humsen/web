@@ -43,12 +43,12 @@ function submitModifyPwdForm() {
 
 	$.ajax({
 		url : '/userInfo.hms',
-		async : false,// 同步，会阻塞操作
-		type : 'POST',// PUT DELETE POST
+		async : false,
+		type : 'POST',
 		data : {
 			type : 'modify_pwd',
 			userName : $.cookie('username'),
-			password : $('#newPassword').val()
+			password : $.md5($('#newPassword').val())
 		},
 		success : function(response) {
 			if(response == 1){
@@ -125,12 +125,12 @@ function confirmOldPwd() {
 
 	$.ajax({
 		url : '/userInfo.hms',
-		async : false,// 同步，会阻塞操作
-		type : 'POST',// PUT DELETE POST
+		async : false,
+		type : 'POST',
 		data : {
 			type : 'auth_pwd',
 			userName : $.cookie('username'),
-			password : $('#oldPassword').val()
+			password : $.md5($('#oldPassword').val())
 		},
 		success : function(response) {
 			if (response == 1) {

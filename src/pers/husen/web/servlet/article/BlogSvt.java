@@ -72,7 +72,7 @@ public class BlogSvt extends HttpServlet {
 		Cookie[] cookies = request.getCookies();
 		if (null != cookies && cookies.length != 0) {
 			for (Cookie cookie : cookies) {
-				if ("username".equals(cookie.getName()) && "super_admin".equals(cookie.getValue())) {
+				if ("username".equals(cookie.getName()) && "husen".equals(cookie.getValue())) {
 					isSuperAdmin = true;
 				}
 			}
