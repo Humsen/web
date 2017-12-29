@@ -22,9 +22,9 @@ $(function(){
 		
 		//顶部导航栏
 		$('#accessToday').css({'margin-left': '0'});
-		$('#onlineCurrent').css({'margin-left': '80px'});
-		$('#loginBtn').css({'margin-left': '8px'});
-		$('#persCenterBtn').css({'margin-left': '8px'});
+		//$('#onlineCurrent').css({'margin-left': '80px'});
+		//$('#loginBtn').css({'margin-left': '8px'});
+		//$('#persCenterBtn').css({'margin-left': '8px'});
 		
 		//博客和代码左边距
 		$('#fh5co-main').css({'margin-left': '0px'});

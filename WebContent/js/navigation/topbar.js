@@ -26,7 +26,7 @@ function loadAccessStatistics(){
 			var response = JSON.parse(response);
 			
 			$('#accessToday').html('今日访问量：' + response.accessToday);
-			$('#accessTotal').html('总访问量：' + response.accessTotal);
+			$('#accessTotal').html(', 总访问量：' + response.accessTotal);
 			$('#onlineCurrent').html('当前在线人数：' + response.onlineCurrent);
 		},
 		error : function(XMLHttpRequest, textStatus){

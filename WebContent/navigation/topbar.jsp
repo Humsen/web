@@ -20,9 +20,7 @@
 			<label id="accessTotal"></label>
 			<!-- 当前在线 -->
 			<label id="onlineCurrent" class="online-current"></label>
-		</div>
-
-		<div class="login-status-show">
+			<!-- 登录状态显示  -->
 			<a id="loginBtn" class="btn btn-warning btn-sm topbar-btn-login"
 				href="#" role="button" data-toggle="modal" data-target="#login"
 				href=""> <span class="glyphicon glyphicon-user"></span>登录

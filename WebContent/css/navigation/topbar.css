@@ -16,7 +16,7 @@
 }
 
 .access-today {
-	margin: 4px 20px auto 35px;
+	margin-left: 70px !important;
 }
 
 .online-current {
@@ -28,7 +28,7 @@
 	padding: 2px 2px !important;
 	font-size: 13px;
 	border: 1px solid #f0ad4e;
-	margin-left: 15%;
+	margin-left: 50px;
 	display: none;
 }
 
@@ -36,7 +36,7 @@
 	padding: 2px 2px !important;
 	font-size: 13px;
 	border: 1px solid #5bc0de;
-	margin-left: 15%;
+	margin-left: 50px;
 	display: none;
 }
 
@@ -58,8 +58,4 @@
 
 .access-statistics {
 	float: left;
-}
-
-.login-status-show {
-	margin-top: 4px;
 }
