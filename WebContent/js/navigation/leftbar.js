@@ -79,13 +79,23 @@ function getCategory3Num(type){
 		success : function(response) {
 			var $category = $('#txt_articleCategory').children(".list-unstyled");
 			
-			for(x in response){
-				$category.append('<li>'
-						+'<a href="/module/' + type + '.hms?category=' + response[x].categoryId + '">'
-						+ response[x].categoryName
-						+'&emsp;<span class="badge">'
-						+ response[x].categoryNum
-						+ '</span></a></li>');
+			for(var x in response){
+				if(x == 0){
+					$category.append('<li>'
+							+'<a href="/module/' + type + '.hms">'
+							+ response[x].categoryName
+							+'&emsp;<span class="badge">'
+							+ response[x].categoryNum
+							+ '</span></a></li>');
+				}
+				else{
+					$category.append('<li>'
+							+'<a href="/module/' + type + '.hms?category=' + response[x].categoryId + '">'
+							+ response[x].categoryName
+							+'&emsp;<span class="badge">'
+							+ response[x].categoryNum
+							+ '</span></a></li>');
+				}
 			}
 		},
 		error : function(XMLHttpRequest, textStatus) {

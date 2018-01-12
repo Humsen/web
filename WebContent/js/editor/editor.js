@@ -327,7 +327,7 @@ function articleDetail() {
 	
 	if (type == 'blog') {
 		newArticle.blogTitle = $('#txt_title').val();
-		newArticle.blogAuthor = $('#txt_author').val() == '' ? '何明胜' : $('#txt_author').val();
+		newArticle.blogAuthor = $.cookie('username') == '' ? 'husen' : $.cookie('username');
 		newArticle.blogSummary = $('#txt_summary').val() == '' ? '无摘要' : $('#txt_summary').val();
 		newArticle.blogRead = 0;
 		newArticle.blogDate = $.nowDateHMS();
@@ -338,7 +338,7 @@ function articleDetail() {
 		
 	} else if (type == 'code') {
 		newArticle.codeTitle = $('#txt_title').val();
-		newArticle.codeAuthor = $('#txt_author').val() == '' ? '何明胜' : $('#txt_author').val();
+		newArticle.codeAuthor = $.cookie('username') == '' ? 'husen' : $.cookie('username');
 		newArticle.codeSummary = $('#txt_summary').val() == '' ? '无摘要' : $('#txt_summary').val();
 		newArticle.codeRead = 0;
 		newArticle.codeDate = $.nowDateHMS();
