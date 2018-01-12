@@ -55,14 +55,15 @@ public class BlogSvt extends HttpServlet {
 		response.setContentType("text/html");  
 		String resultHtml = ReadH5Helper.modifyHtmlKeywords(ResponseConstants.BLOG_TEMPLATE_PATH, bVo.getBlogLabel());
 		out.println(resultHtml);
-		//ReadH5Helper.writeHtmlByName(ResponseConstants.BLOG_TEMPLATE_PATH, response);
+		//增加访问次数
+		bSvc.updateBlogReadById(blogId);
 		
 		/*HttpSession session = request.getSession();
 		//判断是否已经访问过该页面，修改浏览次数 
 		Object counter = session.getAttribute("blog_" + blogId);
 		if (counter == null) {
 			session.setAttribute("blog_" + blogId, new Integer(1));
-			bSvc.updateBlogReadById(blogId);
+			
 		} else {
 			int count = ((Integer) counter).intValue();
 			count++;

@@ -54,6 +54,8 @@ public class CodeSvt extends HttpServlet {
 		response.setContentType("text/html");  
 		String resultHtml = ReadH5Helper.modifyHtmlKeywords(ResponseConstants.CODE_TEMPLATE_PATH, cVo.getCodeLabel());
 		out.println(resultHtml);
+		//增加访问次数
+		cSvc.updateCodeReadById(codeId);
 	}
 
 	 @Override
