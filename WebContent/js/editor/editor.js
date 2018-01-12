@@ -6,6 +6,16 @@
  * 2017年9月28日
  */
 
+/** 加载插件 */
+$.ajax({
+	url : '/plugins/plugins.html', 
+	async : false,
+	type : 'GET', 
+	success : function(data) {
+		$($('head')[0]).find('script:first').after(data);
+	}
+});
+
 var article_id = -1;// 文章id,新文章默认为-1,编辑文章为相应的id
 var article_type = -1; //文章类型，默认-1，博客=blog，代码=code
 

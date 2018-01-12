@@ -85,7 +85,7 @@ function persCenterBtnClick() {
 	if (!$.cookie('username')) {
 		window.open('/error/error.jsp');
 	} else {
-		window.open('/personal_center/mycenter.jsp');
+		window.open('/usercenter.hms');
 	}
 }
 
