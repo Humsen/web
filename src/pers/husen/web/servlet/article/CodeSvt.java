@@ -5,17 +5,15 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 import pers.husen.web.bean.vo.CodeLibraryVo;
 import pers.husen.web.common.constants.RequestConstants;
-import pers.husen.web.common.template.html.CodeTemplate;
-import pers.husen.web.common.template.html.GenericTemplate;
+import pers.husen.web.common.constants.ResponseConstants;
+import pers.husen.web.common.helper.ReadH5Helper;
 import pers.husen.web.service.CodeLibrarySvc;
 
 /**
@@ -52,35 +50,12 @@ public class CodeSvt extends HttpServlet {
 			return;
 		}
 
-		HttpSession session = request.getSession();
-		// 判断是否已经访问过该页面
-		Object counter = session.getAttribute("code_" + codeId);
-		if (counter == null) {
-			session.setAttribute("code_" + codeId, new Integer(1));
-			cSvc.updateCodeReadById(codeId);
-		} else {
-			int count = ((Integer) counter).intValue();
-			count++;
-			session.setAttribute("code_" + codeId, new Integer(count));
-		}
-
-		// 判断是否是管理员登录
-		boolean isSuperAdmin = false;
-
-		Cookie[] cookies = request.getCookies();
-		if (null != cookies && cookies.length != 0) {
-			for (Cookie cookie : cookies) {
-				if ("username".equals(cookie.getName()) && "husen".equals(cookie.getValue())) {
-					isSuperAdmin = true;
-				}
-			}
-		}
-
-		String htmlReturn = GenericTemplate.htmlHeader("代码库", cVo.getCodeSummary(), cVo.getCodeLabel()) + GenericTemplate.jsAndCssPlugins()
-				+ CodeTemplate.customizeHeader() + GenericTemplate.headBody() 
-				+ CodeTemplate.detailCodeBody(cVo, isSuperAdmin) + GenericTemplate.bodyHtml();
-
-		out.println(htmlReturn);
+		/** 默认返回整篇文章 */
+		response.setContentType("text/html");  
+		String resultHtml = ReadH5Helper.modifyHtmlKeywords(ResponseConstants.CODE_TEMPLATE_PATH, cVo.getCodeLabel());
+		out.println(resultHtml);
+		//增加访问次数
+		cSvc.updateCodeReadById(codeId);
 	}
 
 	 @Override

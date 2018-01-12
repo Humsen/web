@@ -58,7 +58,7 @@ function loadSimpleBlog(blogData){
 		+ '<div class="blog-entry">'
 		+ '<div class="desc">'
 		+ '<h3 class="article-title"><a href="/blog.hms?blogId=' + blogData.blogId +'">' + blogData.blogTitle + '</a></h3>'
-		+ '<span class="article-author">'+ '作者:'+ blogData.blogAuthor +'&nbsp;'
+		+ '<span class="article-author">'+ '作者:'+ blogData.userNickName +'&nbsp;'
 		+  new Date(blogData.blogDate.time).format('yyyy-MM-dd hh:mm:ss') + '&nbsp;'
 		+ '<i class="icon-comment"></i>浏览' + blogData.blogRead + '次</span>'
 		+ '<p><b>摘要：</b>' + blogData.blogSummary + '</p>'

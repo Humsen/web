@@ -34,6 +34,7 @@ public class FileDownloadSvt extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		
 		// 如果是请求下载文件
 		String filename = request.getParameter("filename");

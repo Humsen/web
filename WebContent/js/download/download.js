@@ -6,6 +6,48 @@
  * 2017年9月29日
  */
 
+/** 加载插件 * */
+$.ajax({
+	url : '/plugins/plugins.html',
+	async : false,
+	type : 'GET', 
+	success : function(data) {
+		$($('head')[0]).find('script:first').after(data);
+	}
+});
+
+$(function() {
+	/** 顶部导航栏 **/
+	$.ajax({
+		url : '/module/navigation/topbar.html', 
+		async : false,
+		type : 'GET', 
+		success : function(data) {
+			$('#menuBarNo').before(data);
+		}
+	});
+
+	/** 登录控制 **/
+	$.ajax({
+		url : '/module/login/login.html', 
+		async : false,
+		type : 'GET', 
+		success : function(data) {
+			$('#menuBarNo').before(data);
+		}
+	});
+	
+	/** 右侧导航栏 **/
+	$.ajax({
+		url : '/module/navigation/rightbar.html', 
+		async : false,
+		type : 'GET', 
+		success : function(data) {
+			$('#fh5co-main').after(data);
+		}
+	});
+});
+
 var file_total_num = 0;
 
 $(function(){

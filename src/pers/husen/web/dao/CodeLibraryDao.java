@@ -11,20 +11,20 @@ import pers.husen.web.bean.vo.CodeLibraryVo;
  */
 public interface CodeLibraryDao {
 	/**
-	 * 查询代码库数量
-	 * 
+	 * 根据条件查询代码库数量
+	 * @param cVo
 	 * @return
 	 */
-	public int queryCodeTotalCount();
+	public int queryCodeTotalCount(CodeLibraryVo cVo);
 	
 	/**
-	 * 查询某一页的代码库
-	 * 
+	 * 根据条件查询某一页的代码库
+	 * @param cVo
 	 * @param pageSize
 	 * @param pageNo
 	 * @return
 	 */
-	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(int pageSize, int pageNo);
+	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(CodeLibraryVo cVo, int pageSize, int pageNo);
 	
 	/**
 	 * 根据Id查询单独一处代码
@@ -61,4 +61,18 @@ public interface CodeLibraryDao {
 	 * @return
 	 */
 	public int logicDeleteCodeById(int blogId);
+	
+	/**
+	 * 根据id查找上一篇有效代码
+	 * @param codeId
+	 * @return
+	 */
+	public CodeLibraryVo queryPreviousCode(int codeId);
+	
+	/**
+	 * 根据id查找下一篇有效代码
+	 * @param codeId
+	 * @return
+	 */
+	public CodeLibraryVo queryNextCode(int codeId);
 }

@@ -6,6 +6,48 @@
  * 2017年9月18日
  */
 
+/** 加载插件 * */
+$.ajax({
+	url : '/plugins/plugins.html', // 这里是静态页的地址
+	async : false,
+	type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+	success : function(data) {
+		$($('head')[0]).find('script:first').after(data);
+	}
+});
+
+$(function() {
+	/** 顶部导航栏 **/
+	$.ajax({
+		url : '/module/navigation/topbar.html', 
+		async : false,
+		type : 'GET', 
+		success : function(data) {
+			$('#menuBarNo').before(data);
+		}
+	});
+
+	/** 登录控制 **/
+	$.ajax({
+		url : '/module/login/login.html', 
+		async : false,
+		type : 'GET', 
+		success : function(data) {
+			$('#menuBarNo').before(data);
+		}
+	});
+	
+	/** 右侧导航栏 **/
+	$.ajax({
+		url : '/module/navigation/rightbar.html',
+		async : false,
+		type : 'GET', 
+		success : function(data) {
+			$('#fh5co-main').after(data);
+		}
+	});
+});
+
 //博客总数
 var blog_total_num = 0;
 var blog_page_size = 5;

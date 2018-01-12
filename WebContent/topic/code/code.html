@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html class="no-js">
+<html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>代码库</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +12,8 @@
 <!-- 网站图标 -->
 <link rel="shortcut icon" href="/images/favicon.ico">
 
-<%@include file="/plugins/plugins.jsp"%>
+<!-- jQuery -->
+<script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
 
 <!-- editor.md -->
 <link rel="stylesheet"
@@ -34,17 +33,19 @@
 
 </head>
 <body>
+	<input id="menuBarNo" type="hidden" value="2" />
+	
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <input
 			id="menuBarNo" type="hidden" value="2" />
-		<%@include file="/login/login.jsp"%>
-
+		<!-- 左侧导航  -->
+		<!-- 中间内容  -->
 		<div id="fh5co-main">
-			<%@include file="/navigation/topbar.jsp"%>
 			<div id="list_code" class="fh5co-post">
 				<!-- js脚本动态添加内容 -->
 			</div>
 		</div>
+		<!-- 右侧导航  -->
 	</div>
 </body>
 </html>

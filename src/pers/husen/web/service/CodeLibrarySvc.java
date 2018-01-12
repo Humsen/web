@@ -15,8 +15,8 @@ public class CodeLibrarySvc implements CodeLibraryDao{
 	private CodeLibraryDaoImpl cImpl = new CodeLibraryDaoImpl();
 	
 	@Override
-	public int queryCodeTotalCount() {
-		return cImpl.queryCodeTotalCount();
+	public int queryCodeTotalCount(CodeLibraryVo cVo) {
+		return cImpl.queryCodeTotalCount(cVo);
 	}
 	
 	@Override
@@ -45,7 +45,17 @@ public class CodeLibrarySvc implements CodeLibraryDao{
 	}
 
 	@Override
-	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(int pageSize, int pageNo) {
-		return cImpl.queryCodeLibraryPerPage(pageSize, pageNo);
+	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(CodeLibraryVo cVo, int pageSize, int pageNo) {
+		return cImpl.queryCodeLibraryPerPage(cVo, pageSize, pageNo);
+	}
+
+	@Override
+	public CodeLibraryVo queryPreviousCode(int codeId) {
+		return cImpl.queryPreviousCode(codeId);
+	}
+
+	@Override
+	public CodeLibraryVo queryNextCode(int codeId) {
+		return cImpl.queryNextCode(codeId);
 	}
 }

@@ -15,30 +15,6 @@ import pers.husen.web.common.constants.CommonConstants;
  */
 public class BlogTemplate {
 	/**
-	 * 单独的js和css
-	 * @return
-	 */
-	public static String customizeHeader() {
-		String cHeader = "<!-- 单独的js和css --> 	"
-				+ " <!-- editor.md -->\r\n" + 
-				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.preview.min.css\" />\r\n" + 
-				"	<link rel=\"stylesheet\" href=\"/plugins/editormd/css/editormd.min.css\" />\r\n" + 
-				"	\r\n" + 
-				"	<!-- editor.md -->\r\n" + 
-				"	<script src=\"/plugins/editormd/lib/marked.min.js\"></script>\r\n" + 
-				"	<script src=\"/plugins/editormd/lib/prettify.min.js\"></script>\r\n" + 
-				"	<script src=\"/plugins/editormd/js/editormd.min.js\"></script>\r\n" + 
-				"	\r\n" + 
-				"	<!-- 自定义CSS -->\r\n" + 
-				"	<link rel=\"stylesheet\" href=\"/css/article/article.css\">\r\n"+
-				"	<!-- 自定义脚本 -->\r\n" + 
-				"	<script src=\"/js/article/article-markdown.js\"></script>" +
-				"	<script src=\"/js/article/blog-details.js\"></script>";
-		
-		return cHeader;
-	}
-	
-	/**
 	 * 查看博客的html body
 	 * @return
 	 */
@@ -65,17 +41,7 @@ public class BlogTemplate {
 			}
 		}
 		
-		String body = "<div id=\"fh5co-page\">\r\n" + 
-				"	<a href=\"#\" class=\"js-fh5co-nav-toggle fh5co-nav-toggle\"><i></i></a>\r\n" + 
-				"	<input\r\n id=\"menuBarNo\" type=\"hidden\" value=\"1\" />\r\n" + 
-					GenericTemplate.loginAndRegister()+
-				"	\r\n" + 
-				"	<div id=\"fh5co-main\">\r\n" + 
-					GenericTemplate.topFixedBar() +
-				"		<div id=\"list_blog\" class=\"fh5co-post\"> \r\n" + 
-				"			<!-- js脚本动态添加内容 -->" +
-				"			\r\n" +
-				"			<div class=\"fh5co-entry\" id=\"content\">" +
+		String body = 
 				"				<div>" +
 				"					<h2 class=\"text-align-center\"><input id=\"hiden_blogId\" type=\"hidden\" value="+ bVo.getBlogId() + " />"+
 				"						<a href=#>" + bVo.getBlogTitle() + "</a>"+

@@ -21,7 +21,7 @@ public class ProjectDeployConfig {
 	/** 工程部署路径,如 本地为 web\WebContent\, 服务器为/web  **/
 	public static File WEB_DEPLOY_PATH;
 	
-	/** 工程根目录路径 如 /web **/
+	/** 工程根目录路径 ,web的同级目录 **/
 	public static String WEB_ROOT_PATH;
 	
 	/** 日志配置文件路径  */
@@ -45,16 +45,6 @@ public class ProjectDeployConfig {
 	 * @param deployPath
 	 */
 	public static void setGlobalVariable(String deployPath) {
-		WEB_DEPLOY_PATH = new File(deployPath);
-		WEB_ROOT_PATH = WEB_DEPLOY_PATH.getParent();
-		
-		LOG4J2_CONFIG_PATH = WEB_ROOT_PATH + CommonConstants.LOG4J2_CONFIG_FILE_RELATIVE_PATH;
-		DB_CONNECT_INFO_FILE_PATH = WEB_ROOT_PATH + CommonConstants.DB_CONNECT_INFO_FILE_RELATIVE_PATH;
-		
-		LOG4J2_OUT_PATH = WEB_ROOT_PATH + CommonConstants.LOG_OUT_FILE_RELATIVE_PATH;
-		DOWNLOAD_PATH = WEB_ROOT_PATH + CommonConstants.DOWNLOAD_FILE_RELATIVE_PATH;
-		IMAGE_PATH = WEB_ROOT_PATH + CommonConstants.IMAGE_UPLOAD_FILE_PATH;
-		
 		/**
 		 * 根据os.name判断当前是本地开发还是远程部署 
 		 * 在centos为 Linux,
@@ -71,5 +61,20 @@ public class ProjectDeployConfig {
 			Logger logger = LogManager.getLogger(WebInitConfigListener.class);
 			logger.fatal("识别 user.dir -> " + currOsName + " 出错,使用log4j2默认配置");
 		}
+		
+		if(IS_REMOTE_DEPLOY) {
+			WEB_DEPLOY_PATH = new File(deployPath);
+		}else {
+			WEB_DEPLOY_PATH = new File("G:/workspace/workspace pers/web/WebContent/");
+		}
+		
+		WEB_ROOT_PATH = WEB_DEPLOY_PATH.getParent();
+		
+		LOG4J2_CONFIG_PATH = WEB_ROOT_PATH + CommonConstants.LOG4J2_CONFIG_FILE_RELATIVE_PATH;
+		DB_CONNECT_INFO_FILE_PATH = WEB_ROOT_PATH + CommonConstants.DB_CONNECT_INFO_FILE_RELATIVE_PATH;
+		
+		LOG4J2_OUT_PATH = WEB_ROOT_PATH + CommonConstants.LOG_OUT_FILE_RELATIVE_PATH;
+		DOWNLOAD_PATH = WEB_ROOT_PATH + CommonConstants.DOWNLOAD_FILE_RELATIVE_PATH;
+		IMAGE_PATH = WEB_ROOT_PATH + CommonConstants.IMAGE_UPLOAD_FILE_PATH;
 	}
 }

@@ -34,16 +34,17 @@ public class UserInfoSvt extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
+		
 		PrintWriter out = response.getWriter();
 		UserInfoSvc uSvc = new UserInfoSvc();
 
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String operationType = request.getParameter("type");
-
-		//密码md5加盐再次加密
+		//密码加盐再加密
 		password = Md5EncryptHelper.getMD5Code(password+"["+userName+"]");
-		
+
 		//如果操作类型为null，直接返回
 		if(operationType == null) {
 			out.println(-1);
@@ -100,7 +101,6 @@ public class UserInfoSvt extends HttpServlet {
 		/** 如果为验证密码,登录或者修改密码验证 */
 		if (operationType.indexOf(RequestConstants.REQUEST_TYPE_AUTH) != -1) {
 			String queryPwd = uSvc.queryPasswordByUserName(userName);
-
 			if (password.equals(queryPwd)) {
 				// 如果为登录，设置cookie
 				if (operationType.indexOf(RequestConstants.MODE_LOGIN) != -1) {

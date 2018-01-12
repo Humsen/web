@@ -8,7 +8,9 @@ import pers.husen.web.common.constants.DbConstans;
 import pers.husen.web.dao.BlogArticleDao;
 import pers.husen.web.dbutil.DbQueryUtils;
 import pers.husen.web.dbutil.DbManipulationUtils;
+import pers.husen.web.dbutil.mappingdb.ArticleCategoryMapping;
 import pers.husen.web.dbutil.mappingdb.BlogDetailsMapping;
+import pers.husen.web.dbutil.mappingdb.UserInfoMapping;
 
 /**
  * 博客文章接口实现
@@ -29,24 +31,46 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 	}
 	
 	@Override
-	public int queryBlogTotalCount() {
+	public int queryBlogTotalCount(BlogArticleVo bVo) {
 		String sql = "SELECT count(*) as count FROM blog_details WHERE blog_delete = ?";
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		
+		if(bVo.getBlogTitle() != null && !bVo.getBlogTitle().trim().isEmpty()) {
+			sql += " AND " + BlogDetailsMapping.BLOG_TITLE + " ~* ?";
+			paramList.add(bVo.getBlogTitle());
+		}
+		if(bVo.getBlogCategory() != -1) {
+			sql += " AND " + BlogDetailsMapping.BLOG_CATEGOTY + " = ?";
+			paramList.add(bVo.getBlogCategory());
+		}
 		
 		return DbQueryUtils.queryIntByParam(sql, paramList);
 	}
 
 	@Override
-	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(int pageSize, int pageNo) {
+	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(BlogArticleVo bVo, int pageSize, int pageNo) {
 		String sql = "SELECT blog_id, blog_title, blog_date, blog_author, blog_summary, blog_read, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", " 
-				+ BlogDetailsMapping.BLOG_MD_CONTENT
-				+ " FROM blog_details WHERE blog_delete = ?"
-				+ " ORDER BY blog_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
+				+ UserInfoMapping.USER_NICK_NAME
+				+ " FROM blog_details, "
+				+ UserInfoMapping.DB_NAME
+				+ " WHERE blog_delete = ? AND "
+				+ BlogDetailsMapping.BLOG_AUTHOR + " = " + UserInfoMapping.USER_NAME;
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		
+		if(bVo.getBlogTitle() != null && !bVo.getBlogTitle().trim().isEmpty()) {
+			sql += " AND " + BlogDetailsMapping.BLOG_TITLE + " ~* ?";
+			paramList.add(bVo.getBlogTitle());
+		}
+		if(bVo.getBlogCategory() != -1) {
+			sql += " AND " + BlogDetailsMapping.BLOG_CATEGOTY + " = ?";
+			paramList.add(bVo.getBlogCategory());
+		}
+		
+		sql += " ORDER BY blog_date DESC LIMIT " + pageSize + " OFFSET " + (pageNo-1)*pageSize;
 		
 		return DbQueryUtils.queryBeanListByParam(sql, paramList, BlogArticleVo.class);
 	}
@@ -57,8 +81,15 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_LABEL + ", "
-				+ "blog_summary, blog_read, blog_author FROM blog_details"
-				+ " WHERE blog_id = ? AND blog_delete = ?";
+				+ BlogDetailsMapping.BLOG_CATEGOTY + ", "
+				+ ArticleCategoryMapping.CATEGORY_NAME + ", "
+				+ "blog_summary, blog_read, blog_author FROM blog_details, "
+				+ ArticleCategoryMapping.DB_NAME
+				+ " WHERE "
+				+ BlogDetailsMapping.BLOG_CATEGOTY + " = " + ArticleCategoryMapping.CATEGORY_ID
+				+ " AND blog_id = ? AND blog_delete = ? ";
+		
+		sql = "SELECT A.*, B.user_nick_name FROM (" + sql + ") as A, User_info as B WHERE A.blog_author = B.user_name";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(blogId);
@@ -74,8 +105,9 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ "blog_summary, blog_author, blog_read, "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + ", "
 				+ BlogDetailsMapping.BLOG_LABEL + ", "
+				+ BlogDetailsMapping.BLOG_CATEGOTY + ", "
 				+ BlogDetailsMapping.BLOG_DELETE
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		Object obj = null;
@@ -87,6 +119,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add((obj = bVo.getBlogRead()) != null ? obj : 0);
 		paramList.add((obj = bVo.getBlogMdContent()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogLabel()) != null ? obj : "");
+		paramList.add((obj = bVo.getBlogCategory()) != null ? obj : "");
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
@@ -110,7 +143,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_SUMMARY + "=?, "
 				+ BlogDetailsMapping.BLOG_HTML_CONTENT + "=?, "
 				+ BlogDetailsMapping.BLOG_MD_CONTENT + "=?, "
-				+ BlogDetailsMapping.BLOG_LABEL + "=? "
+				+ BlogDetailsMapping.BLOG_LABEL + "=?, "
+				+ BlogDetailsMapping.BLOG_CATEGOTY + "=? "
 				+ "WHERE "
 				+ BlogDetailsMapping.BLOG_ID + "=?";
 		
@@ -122,7 +156,8 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add(bVo.getBlogHtmlContent());
 		paramList.add(bVo.getBlogMdContent());
 		paramList.add(bVo.getBlogLabel());
-
+		paramList.add(bVo.getBlogCategory());
+		
 		paramList.add(bVo.getBlogId());
 		
 		return DbManipulationUtils.updateRecordByParam(sql, paramList);
@@ -135,5 +170,27 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 		paramList.add(blogId);
 		
 		return DbManipulationUtils.deleteRecordByParamLogic(sql, paramList);
+	}
+
+	@Override
+	public BlogArticleVo queryPreviousBlog(int blogId) {
+		String sql = "SELECT * FROM blog_details WHERE blog_delete = ? AND blog_id < ? ORDER BY blog_id DESC LIMIT 1";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		paramList.add(blogId);
+		
+		return DbQueryUtils.queryBeanByParam(sql, paramList, BlogArticleVo.class);
+	}
+
+	@Override
+	public BlogArticleVo queryNextBlog(int blogId) {
+		String sql = "SELECT * FROM blog_details WHERE blog_delete = ? AND blog_id > ? ORDER BY blog_id LIMIT 1";
+		
+		ArrayList<Object> paramList = new ArrayList<Object>();
+		paramList.add(DbConstans.FIELD_VALID_FLAG);
+		paramList.add(blogId);
+		
+		return DbQueryUtils.queryBeanByParam(sql, paramList, BlogArticleVo.class);
 	}
 }

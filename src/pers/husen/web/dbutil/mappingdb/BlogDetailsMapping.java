@@ -23,4 +23,5 @@ public class BlogDetailsMapping {
 	public static final String BLOG_MD_CONTENT = "blog_md_content";
 	public static final String BLOG_LABEL = "blog_label";
 	public static final String BLOG_DELETE = "blog_delete";
+	public static final String BLOG_CATEGOTY = "blog_category";
 }

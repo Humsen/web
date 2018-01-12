@@ -32,6 +32,7 @@ public class FileUploadSvt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FileUploadHandler fileUploadHandler = new FileUploadHandler();
 		String fileName = fileUploadHandler.fileUploadHandler(request);
+		//int insertResult = 0;
 		
 		//不为null则上传成功
 		if(fileName != null) {
@@ -46,6 +47,8 @@ public class FileUploadSvt extends HttpServlet {
 		}
 		
 		response.sendRedirect("/personal_center/mycenter.jsp");
+		/*PrintWriter out = response.getWriter();
+		out.println(insertResult);*/
 	}
 
     @Override

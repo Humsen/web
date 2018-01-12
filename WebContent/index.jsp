@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -17,7 +17,8 @@
 <!-- 网站图标 -->
 <link rel="shortcut icon" href="/images/favicon.ico">
 
-<%@include file="/plugins/plugins.jsp"%>
+<!-- jQuery -->
+<script src="/plugins/jquery/js/jquery-3.2.1.min.js"></script>
 
 <!-- 新版特性css -->
 <link rel="stylesheet" href="/css/index/version-feature.css">
@@ -26,6 +27,8 @@
 <!-- 最新更新文章简介 -->
 <link rel="stylesheet" href="/css/index/index.css">
 
+<!-- js文件  -->
+<script src="/js/index/index.js"></script>
 <!-- 加载新版本特性 -->
 <script type="text/javascript" src="/js/index/version-feature.js"></script>
 <!-- 加载最新3篇博客 -->
@@ -38,10 +41,8 @@
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <input
 			id="menuBarNo" type="hidden" value="0" />
-		<%@include file="/login/login.jsp"%>
 
 		<div id="fh5co-main">
-			<%@include file="/navigation/topbar.jsp"%>
 
 			<!-- 加载新版特性 -->
 			<div class="fh5co-narrow-content version-div">
@@ -67,7 +68,7 @@
 				src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script>
 			<div id="lwlhitokoto">
 				<script>
-					lwlhitokoto()
+					lwlhitokoto();
 				</script>
 			</div>
 		</div>

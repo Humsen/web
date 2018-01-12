@@ -5,17 +5,15 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 import pers.husen.web.bean.vo.BlogArticleVo;
 import pers.husen.web.common.constants.RequestConstants;
-import pers.husen.web.common.template.html.BlogTemplate;
-import pers.husen.web.common.template.html.GenericTemplate;
+import pers.husen.web.common.constants.ResponseConstants;
+import pers.husen.web.common.helper.ReadH5Helper;
 import pers.husen.web.service.BlogArticleSvc;
 
 /**
@@ -44,7 +42,7 @@ public class BlogSvt extends HttpServlet {
 
 		int blogId = Integer.parseInt(request.getParameter("blogId"));
 		BlogArticleVo bVo = bSvc.queryPerBlogById(blogId);
-
+		
 		/** 判断是否是返回博客json数据 */
 		String returnType = request.getParameter("type");
 		if (returnType != null && RequestConstants.REQUEST_TYPE_JSON.equals(returnType)) {
@@ -54,12 +52,18 @@ public class BlogSvt extends HttpServlet {
 		}
 		
 		/** 默认返回整篇文章 */
-		HttpSession session = request.getSession();
+		response.setContentType("text/html");  
+		String resultHtml = ReadH5Helper.modifyHtmlKeywords(ResponseConstants.BLOG_TEMPLATE_PATH, bVo.getBlogLabel());
+		out.println(resultHtml);
+		//增加访问次数
+		bSvc.updateBlogReadById(blogId);
+		
+		/*HttpSession session = request.getSession();
 		//判断是否已经访问过该页面，修改浏览次数 
 		Object counter = session.getAttribute("blog_" + blogId);
 		if (counter == null) {
 			session.setAttribute("blog_" + blogId, new Integer(1));
-			bSvc.updateBlogReadById(blogId);
+			
 		} else {
 			int count = ((Integer) counter).intValue();
 			count++;
@@ -82,7 +86,7 @@ public class BlogSvt extends HttpServlet {
 				+ GenericTemplate.jsAndCssPlugins() + BlogTemplate.customizeHeader() + GenericTemplate.headBody()
 				+ BlogTemplate.detailBlogBody(bVo, isSuperAdmin) + GenericTemplate.bodyHtml();
 
-		out.println(htmlReturn);
+		out.println(htmlReturn);*/
 	}
 
 	@Override

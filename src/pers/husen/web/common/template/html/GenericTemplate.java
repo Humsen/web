@@ -11,32 +11,6 @@ import pers.husen.web.common.constants.CommonConstants;
  */
 public class GenericTemplate {
 	/**
-	 * 通用的html head
-	 * @param title
-	 * @return
-	 */
-	public static String htmlHeader(String title, String description, String keyWords) {
-		//空格变为英文逗号
-		if(keyWords != null && keyWords != "" && keyWords.indexOf(CommonConstants.ENGLISH_COMMA) == -1) {
-			keyWords = keyWords.replaceAll("\\s", ",");
-		}
-		
-		String header = "<html class=\"no-js\"> \r\n" + 
-				"	<head>\r\n" + 
-				"	<meta charset=\"utf-8\">\r\n" + 
-				"	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + 
-				"	<title> " + title + "</title>\r\n" + 
-				"	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-				"	<meta name=\"description\" content=\"" + description + "\"/>\r\n" + 
-				"	<meta name=\"keywords\" content=\"" + keyWords + "\" />\r\n" + 
-				"	<meta name=\"author\" content=\"何明胜,一格\">\r\n\r\n" + 
-				"	<!-- 网站图标 -->\r\n" + 
-				"	<link rel=\"shortcut icon\" href=\"/images/favicon.ico\">";
-		
-		return header;
-	}
-	
-	/**
 	 * 通用的js和css plugins.jsp的内容
 	 * @return
 	 */
@@ -91,14 +65,6 @@ public class GenericTemplate {
 				"<script src=\"/js/customize-sdk.js\"></script>"; 
 		
 		return plugins;
-	}
-	
-	/**
-	 * 返回head末尾和body开始
-	 * @return
-	 */
-	public static String headBody() {
-		return "</head>\r\n" + "<body>";
 	}
 	
 	/**
@@ -279,13 +245,5 @@ public class GenericTemplate {
 				"</div>";
 		
 		return rightBar;
-	}
-	
-	/**
-	 * 返回html结尾
-	 * @return
-	 */
-	public static String bodyHtml() {
-		return "</body>\r\n" + "</html>";
 	}
 }
