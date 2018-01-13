@@ -6,6 +6,28 @@
  * 2017年10月17日
  */
 
+$(function() {
+	/** 顶部导航栏 **/
+	$.ajax({
+		url : '/module/navigation/topbar.html', // 这里是静态页的地址
+		async : false,
+		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		success : function(data) {
+			$(document.body).prepend(data);
+		}
+	});
+
+	/** 登录控制 **/
+	$.ajax({
+		url : '/module/login/login.html', // 这里是静态页的地址
+		async : false,
+		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		success : function(data) {
+			$(document.body).prepend(data);
+		}
+	});	
+});
+
 /** 初始化 */
 $(function() {
 	// 调整顶部导航的宽度
@@ -94,9 +116,9 @@ function modifyPassword() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'modify_pwd.html', // 这里是静态页的地址
+		url : '/personal_center/modify_pwd.html',
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET',
 		success : function(data) {
 			$('#mainWindow').html(data);
 		}
@@ -241,9 +263,9 @@ function editUserInfo() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'modify_userinfo.html', // 这里是静态页的地址
+		url : '/personal_center/modify_userinfo.html',
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET',
 		success : function(data) {
 			$('#mainWindow').html(data);
 		}
@@ -259,7 +281,7 @@ function editVerFeature() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'editor_version.html', // 这里是静态页的地址
+		url : '/personal_center/editor_version.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
@@ -281,7 +303,7 @@ function modifyEmail() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'modify_email.html', // 这里是静态页的地址
+		url : '/personal_center/modify_email.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
@@ -299,7 +321,7 @@ function uploadFile() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : 'upload_file.html', // 这里是静态页的地址
+		url : '/personal_center/upload_file.html', // 这里是静态页的地址
 		async : false,
 		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
 		success : function(data) {
