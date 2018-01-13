@@ -65,7 +65,7 @@ function loadSimpleCode(codeData){
 			+ '<div class="blog-entry">'
 			+ '<div class="desc">'
 			+ '<h3 class="article-title"><a href="/code.hms?codeId=' + codeData.codeId + '">' + codeData.codeTitle + '</a></h3>'
-			+ '<span class="article-author">'+ '作者:'+ codeData.codeAuthor +'&nbsp;'
+			+ '<span class="article-author">'+ '作者:'+ codeData.userNickName +'&nbsp;'
 			+  new Date(codeData.codeDate.time).format('yyyy-MM-dd hh:mm:ss') + '&nbsp;'
 			+ '<i class="icon-comment"></i>浏览' + codeData.codeRead + '次</span>'
 			+ '<p><b>摘要：</b>' + codeData.codeSummary + '</p>'

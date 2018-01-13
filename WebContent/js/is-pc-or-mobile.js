@@ -5,14 +5,10 @@
  * 
  * 2017年9月27日
  */
-
 $(function(){
 	var mobile_flag = $.isMobile(); // false为PC端，true为手机端
 	
 	if(mobile_flag){
-		//右边导航栏隐藏
-		$('#rightBar').hide();
-		
 		//调整中间内容布局
 		$('#fh5co-main').css({'width': '100%', 'float': 'right'});
 		$('#trademark').css({'margin-left': '48px','margin-top': '16px'});
@@ -22,9 +18,6 @@ $(function(){
 		
 		//顶部导航栏
 		$('#accessToday').css({'margin-left': '0'});
-		//$('#onlineCurrent').css({'margin-left': '80px'});
-		//$('#loginBtn').css({'margin-left': '8px'});
-		//$('#persCenterBtn').css({'margin-left': '8px'});
 		
 		//博客和代码左边距
 		$('#fh5co-main').css({'margin-left': '0px'});
@@ -32,6 +25,9 @@ $(function(){
 		
 		//留言是动态加载的，需等待一会儿
 		setTimeout(function(){
+			//右边导航栏隐藏
+			$('#rightBar').hide();
+			
 			if($('#message_box').length>0){
 				//留言框
 				$('#message_box').find('textarea').css('width','42%');

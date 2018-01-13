@@ -41,8 +41,6 @@ $(function() {
 	$('#modifypassword').click(modifyPassword);
 	$('#btn_modifyEmail').click(modifyEmail);
 	$('#btn_uploadFile').click(uploadFile);
-	// $('#privatemessage').click();
-	// $('#aboutweb').click();
 });
 
 /**
@@ -60,8 +58,8 @@ function loadAdminManageMenu() {
 								+ ' class="pull-right glyphicon glyphicon-chevron-down"></span>'
 								+ '</a>'
 								+ '<ul id="webManagement" class="nav nav-list collapse secondmenu">'
-								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
-								+ '<li><a href="/upload/editor_article.jsp" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
+								+ '<li><a href="/editor/article.hms" target="_blank"><i class="glyphicon glyphicon-user"></i> 写新博客</a></li>'
+								+ '<li><a href="/editor/article.hms" target="_blank"><i class="glyphicon glyphicon-th-list"></i> 写新代码库</a></li>'
 								+ '<li><a href="#" id="btn_uploadFile"><i class="glyphicon glyphicon-asterisk"></i> 上传新文件</a></li>'
 								+ '<li><a href="#" id="editorVerFeature"><i class="glyphicon glyphicon-edit"></i> 编辑新版特性</a></li>'
 								+ '<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 查看所有用户</a></li>'
