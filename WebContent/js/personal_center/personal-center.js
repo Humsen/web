@@ -321,9 +321,9 @@ function uploadFile() {
 	$('#mainWindow').html('');
 
 	$.ajax({
-		url : '/personal_center/upload_file.html', // 这里是静态页的地址
+		url : '/personal_center/upload_file.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET',
 		success : function(data) {
 			$('#mainWindow').html(data);
 		}

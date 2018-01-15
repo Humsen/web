@@ -7,10 +7,7 @@
 
 .version-input {
 	/* resize: none; */
-}
-
-.return-index-blank {
-	margin-left: 20px;
+	
 }
 
 .form-show-userinfo {
@@ -22,6 +19,16 @@
 	height: 80px;
 }
 
-.form-show-p{
+.form-show-p {
 	width: 30%;
+}
+
+.return-index-blank {
+	float: left;
+	margin-left: 20px;
+}
+
+.left-bar{
+	clear:both;
+	margin-top: 40px;
 }

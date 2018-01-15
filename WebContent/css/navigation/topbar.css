@@ -16,7 +16,7 @@
 }
 
 .access-today {
-	margin-left: 70px !important;
+	margin-left: 5% !important;
 }
 
 .online-current {
@@ -28,7 +28,7 @@
 	padding: 2px 2px !important;
 	font-size: 13px;
 	border: 1px solid #f0ad4e;
-	margin-left: 50px;
+	margin-left: 2%;
 	display: none;
 }
 
@@ -36,7 +36,7 @@
 	padding: 2px 2px !important;
 	font-size: 13px;
 	border: 1px solid #5bc0de;
-	margin-left: 50px;
+	margin-left: 2%;
 	display: none;
 }
 
@@ -49,13 +49,23 @@
 }
 
 .choose-theme {
-	margin: 10px 200px;
+	margin: 10px;
 }
 
 .web-pc-blank {
+	float: left;
 	margin-left: 20px;
 }
 
 .header-nav {
-	margin: 0;
+	float: left;
+	margin-left: 6%;
+}
+
+.choose-theme button {
+	float: left;
+}
+
+.top-bar-div{
+	margin: 18px 0px 5px 10px;
 }
