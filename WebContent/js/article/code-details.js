@@ -54,7 +54,7 @@ function deleteRemoteCodeLogic() {
 	}, function(response) {
 		if (response == 1) {
 			// 删除成功，跳转到博客目录界面
-			window.location = "/module/code_library.jsp";
+			window.location = "/module/code.hms";
 		}
 	}, 'json');
 }

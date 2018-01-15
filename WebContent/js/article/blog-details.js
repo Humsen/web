@@ -54,7 +54,7 @@ function deleteRemoteBlogLogic() {
 	}, function(response) {
 		if (response == 1) {
 			// 删除成功，跳转到博客目录界面
-			window.location = "/module/blog.jsp";
+			window.location = "/module/blog.hms";
 		}
 	}, 'json');
 }

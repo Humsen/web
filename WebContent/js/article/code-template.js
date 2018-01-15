@@ -6,9 +6,9 @@
 
 /** 加载插件 * */
 $.ajax({
-	url : '/plugins/plugins.html', // 这里是静态页的地址
+	url : '/plugins/plugins.html', 
 	async : false,
-	type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+	type : 'GET', 
 	success : function(data) {
 		$($('head')[0]).find('script:first').after(data);
 	}
@@ -17,9 +17,9 @@ $.ajax({
 $(function() {
 	/** 顶部导航栏 * */
 	$.ajax({
-		url : '/module/navigation/topbar.html', // 这里是静态页的地址
+		url : '/module/navigation/topbar.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#menuBarNo').before(data);
 		}
@@ -27,9 +27,9 @@ $(function() {
 
 	/** 登录控制 * */
 	$.ajax({
-		url : '/module/login/login.html', // 这里是静态页的地址
+		url : '/module/login/login.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#menuBarNo').before(data);
 		}
@@ -37,9 +37,9 @@ $(function() {
 
 	/** 左侧导航栏 * */
 	$.ajax({
-		url : '/module/navigation/leftbar.html', // 这里是静态页的地址
+		url : '/module/navigation/leftbar.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#fh5co-main').before(data);
 		}
@@ -47,9 +47,9 @@ $(function() {
 
 	/** 右侧导航栏 * */
 	$.ajax({
-		url : '/module/navigation/rightbar.html', // 这里是静态页的地址
+		url : '/module/navigation/rightbar.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#fh5co-main').after(data);
 		}
@@ -104,7 +104,7 @@ function getJsonData() {
 function loadDetail(data) {
 	var codeBody = 
 			'<div>'
-			+ '<h2 class="text-align-center"><input id="hiden_blogId" type="hidden" value="'
+			+ '<h2 class="text-align-center"><input id="hiden_codeId" type="hidden" value="'
 			+ 	data.codeId + '" />' 
 			+ 	'<a href=#>' + data.codeTitle + '</a>'
 			+ '</h2>'
@@ -114,10 +114,10 @@ function loadDetail(data) {
 			+ ' <span class="fh5co-post-date">关键字：' + keywordsProcess(data.codeLabel) + '</span>';
 
 	if (isSuperAdminOrSelf(data.codeAuthor)) {
-		codeBody += '<a href="/module/upload/editor_article.jsp?codeId='
+		codeBody += '<a href="/editor/article.hms?codeId='
 				+ data.codeId
 				+ '" target="_blank" role="button" class="btn btn-default btn-sm">编辑</a> '
-				+ '<a id="btn_deleteBlog" href="javascript:void(0)" role="button" class="btn btn-danger btn-sm">删除</a>';
+				+ '<a id="btn_deleteCode" href="javascript:void(0)" role="button" class="btn btn-danger btn-sm">删除</a>';
 	}
 
 	codeBody += '<p>' + data.codeHtmlContent + "</p>" + '</div>';

@@ -8,30 +8,30 @@
 
 /** 加载插件 * */
 $.ajax({
-	url : '/plugins/plugins.html', // 这里是静态页的地址
+	url : '/plugins/plugins.html', 
 	async : false,
-	type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+	type : 'GET', 
 	success : function(data) {
 		$($('head')[0]).find('script:first').after(data);
 	}
 });
 
 $(function() {
-	/** 顶部导航栏 * */
+	/** 顶部导航栏 */
 	$.ajax({
-		url : '/module/navigation/topbar.html', // 这里是静态页的地址
+		url : '/module/navigation/topbar.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#menuBarNo').before(data);
 		}
 	});
 
-	/** 登录控制 * */
+	/** 登录控制 */
 	$.ajax({
-		url : '/module/login/login.html', // 这里是静态页的地址
+		url : '/module/login/login.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#menuBarNo').before(data);
 		}
@@ -39,9 +39,9 @@ $(function() {
 
 	/** 左侧导航栏 * */
 	$.ajax({
-		url : '/module/navigation/leftbar.html', // 这里是静态页的地址
+		url : '/module/navigation/leftbar.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#fh5co-main').before(data);
 		}
@@ -49,9 +49,9 @@ $(function() {
 
 	/** 右侧导航栏 * */
 	$.ajax({
-		url : '/module/navigation/rightbar.html', // 这里是静态页的地址
+		url : '/module/navigation/rightbar.html', 
 		async : false,
-		type : 'GET', // 静态页用get方法，否则服务器会抛出405错误
+		type : 'GET', 
 		success : function(data) {
 			$('#fh5co-main').after(data);
 		}
@@ -116,7 +116,7 @@ function loadDetail(data) {
 			+ ' <span class="fh5co-post-date">关键字：' + keywordsProcess(data.blogLabel) + '</span>';
 
 	if (isSuperAdminOrSelf(data.blogAuthor)) {
-		blogBody += '<a href="/module/upload/editor_article.jsp?blogId='
+		blogBody += '<a href="/editor/article.hms?blogId='
 				+ data.blogId
 				+ '" target="_blank" role="button" class="btn btn-default btn-sm">编辑</a> '
 				+ '<a id="btn_deleteBlog" href="javascript:void(0)" role="button" class="btn btn-danger btn-sm">删除</a>';
