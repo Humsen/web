@@ -65,7 +65,7 @@ public class ProjectDeployConfig {
 		if(IS_REMOTE_DEPLOY) {
 			WEB_DEPLOY_PATH = new File(deployPath);
 		}else {
-			WEB_DEPLOY_PATH = new File("G:/workspace/workspace pers/web/WebContent/");
+			WEB_DEPLOY_PATH = new File("F:/workspace/workspace pers/web/WebContent/");
 		}
 		
 		WEB_ROOT_PATH = WEB_DEPLOY_PATH.getParent();

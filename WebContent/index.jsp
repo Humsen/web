@@ -38,9 +38,9 @@
 
 </head>
 <body>
+	<input id="menuBarNo" type="hidden" value="0" />
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> <input
-			id="menuBarNo" type="hidden" value="0" />
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> 
 
 		<div id="fh5co-main">
 
