@@ -99,11 +99,11 @@ function chooseSearchType() {
 function searchByKeyWords(searchType) {
 	if (searchType == 'blog') {
 		$(window).attr('location',
-				'/topic/blog/?keywords=' + $('#search_keyWords').val());
+				'/module/blog.hms?keywords=' + $('#search_keyWords').val());
 	}
 	if (searchType == 'code') {
 		$(window).attr('location',
-				'/topic/code/?keywords=' + $('#search_keyWords').val());
+				'/module/code.hms?keywords=' + $('#search_keyWords').val());
 	}
 }
 
