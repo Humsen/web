@@ -1,0 +1,7 @@
+/build/
+
+/src/rebel.xml
+/logs/
+
+## self
+#/.gitignore
