@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE XML>
-<!-- 本配置文件的目标是将不同级别的日志输出到不同文件 --><!-- 最大2MB一个文件， 文件数据达到最大值时，旧数据会被压缩并放进指定文件夹 --><!-- status : 这个用于设置log4j2自身内部的信息输出,可以不设置 --><!-- 当设置成trace时,会看到log4j2内部各种详细输出 monitorInterval --><!-- monitorInterval="60"表示每60秒配置文件会动态加载一次。在程序运行过程中，如果修改配置文件，程序会随之改变。 --><Configuration monitorInterval="60" status="WARN">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- 本配置文件的目标是将不同级别的日志输出到不同文件 --><!-- 最大2MB一个文件， 文件数据达到最大值时，旧数据会被压缩并放进指定文件夹 --><!-- status : 这个用于设置log4j2自身内部的信息输出,可以不设置 --><!-- 当设置成trace时,会看到log4j2内部各种详细输出 monitorInterval --><!-- monitorInterval="60"表示每60秒配置文件会动态加载一次。在程序运行过程中，如果修改配置文件，程序会随之改变。 --><Configuration monitorInterval="60" status="WARN">
 	<!-- 定义通用的属性 -->
 	<Properties>
 		<!-- 云端部署 这里的logs为项目根目录下的logs文件夹 -->
