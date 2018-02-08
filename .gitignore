@@ -1,5 +1,6 @@
 /build/
 
+rebel.xml
 /src/rebel.xml
 /logs/
 /.settings/
