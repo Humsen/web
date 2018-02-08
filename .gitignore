@@ -4,6 +4,8 @@
 /logs/
 /.settings/
 /config/db_connect_info.properties
+/.classpath
 
 ## self
 #/.gitignore
+/bin/
