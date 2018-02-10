@@ -17,8 +17,12 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 
 ## 快速配置方法：
 
-    1、下载项目
-    2、按照docs文件夹里面的数据库配置步骤，导入脚本，需提前安装PostgreSQL数据库和创建一个数据库
-    3、将项目导入Eclipse/IDEA，修改web-pc和web-mobile 下的config/db_connect_info.properties文件里的数据库配置
-    4、放在tomcat等容器下运行。并将config文件夹放在web目录的同级目录（和web项目在同一个文件夹下）
-    5、访问 localhost:8080即可（默认配置已去掉项目名称）
+    1. 下载项目
+    
+    2. 按照docs文件夹里面的数据库配置步骤，导入脚本，需提前安装PostgreSQL数据库和创建一个数据库
+    
+    3. 将项目导入Eclipse/IDEA，修改web-pc和web-mobile 下的config/db_connect_info.properties文件里的数据库配置
+    
+    4. 放在tomcat等容器下运行。并将config文件夹放在web目录的同级目录（和web项目在同一个文件夹下）
+    
+    5. 访问 localhost:8080即可（默认配置已去掉项目名称）
