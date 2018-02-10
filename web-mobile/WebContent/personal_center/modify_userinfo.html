@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/css/personal_center/modify-userinfo.css">
+<!-- 修改用户信息脚本  -->
+<script src="/js/personal_center/modify-userinfo.js"></script>
+
+<form id="modifyForm" class="form-horizontal modify-userinfo-form">
+	<div class="form-group">
+		<label class="col-sm-4 control-label">头像</label>
+		<div id="imgdiv" class="col-sm-2">
+			<img id="imgshow" src="" alt=""
+				class="img-circle head-img-size" >
+		</div>
+		<input id="upimg" class="col-sm-4 up-img-hidden" type="file" accept="image/*" />
+		<button class="btn btn-default col-sm-4 btn-chang-head-img" id="changepic">更换头像</button>
+	</div>
+	<div class="form-group">
+		<label for="username" class="col-sm-4 control-label">用户名（用作登录）</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="username" name="userName"
+				placeholder="用户名">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="txt_userNickName" class="col-sm-4 control-label">用户昵称（用作显示）</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="txt_userNickName" name="userNickName"
+				placeholder="用户名">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email" class="col-sm-4 control-label">邮箱</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" id="txt_userEmail" name="userEmail"
+				placeholder="邮箱" disabled>
+		</div>
+		<div class="col-sm-2">
+			<button id="btn_goModifyEmail" class="btn btn-default">修改邮箱</button>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="phone" class="col-sm-4 control-label">手机</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="phone" name="userPhone"
+				placeholder="手机">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="age" class="col-sm-4 control-label">年龄</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="age" name="userAge"
+			 	placeholder="年龄">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="address" class="col-sm-4 control-label">地址</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="address" name="userAddress"
+				placeholder="地址">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-10 col-sm-2">
+			<a id="submitModify" class="btn btn-default" href="#" role="button">提交</a>
+		</div>
+	</div>
+	<input type="hidden" name="userId" id="userid">
+	<input type="hidden" name="userHeadUrl" id="headurl"/>
+</form>

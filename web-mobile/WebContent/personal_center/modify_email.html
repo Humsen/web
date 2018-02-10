@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/css/personal_center/modify-email.css">
+<!-- 修改用户密码脚本  -->
+<script src="/js/personal_center/modify-email.js"></script>
+
+<form id="form_modifyEmail" class="form-horizontal modify-email-form">
+	<div class="form-group">
+		<label class="col-sm-3 control-label" for="txt_modifyEmail">旧邮箱</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control form-div-input" id="txt_modifyEmail"
+				name="email" placeholder="请输入原邮箱">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="txt_validateCode2"
+			class="col-sm-3 control-label">验证码</label>
+		<div class="col-sm-4" >
+			<input type="text" class="form-control" id="txt_validateCode2"
+				name="validateCode" placeholder="请输入验证码">
+		</div>
+		<button id="btn_sendValidateCode" type="button" class="btn btn-default">获取验证码</button>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-2">
+			<a id="btn_modifyEmailAuth" class="btn btn-default" href="#"
+				role="button">下一步</a>
+		</div>
+	</div>
+</form>

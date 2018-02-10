@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/css/personal_center/modify-pwd.css">
+<!-- 修改用户密码脚本  -->
+<script src="/js/personal_center/modify-pwd.js"></script>
+
+<form id="modifyPwdForm" class="form-horizontal modify-pwd-form">
+	<div class="form-group">
+		<label for="oldPassword" class="col-sm-2 control-label">旧密码</label>
+		<div class="col-sm-8">
+			<input type="password" class="form-control" id="oldPassword"
+				name="oldPassword" placeholder="请输入旧密码" aria-describedby="helpBlock">
+		</div>
+		 <span id="helpBlock" class="help-block old-pwd-wrong-info">旧密码输入错误</span>
+	</div>
+	<div class="form-group">
+		<label for="newPassword" class="col-sm-2 control-label">新密码</label>
+		<div class="col-sm-8">
+			<input type="password" class="form-control" id="newPassword"
+				name="newPassword" placeholder="请输入新密码">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="confirmPwd" class="col-sm-2 control-label">确认新密码</label>
+		<div class="col-sm-8">
+			<input type="password" class="form-control" id="confirmPwd"
+				name="confirmPwd" placeholder="请确认新密码">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+			<a id="submitModifyPwd" class="btn btn-default" href="#"
+				role="button">提交</a>
+		</div>
+	</div>
+</form>

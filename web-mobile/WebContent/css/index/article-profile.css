@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.article-box-div {
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+	width: 100%;
+}
+
+.read-more {
+	margin-left: 50%;
+}
+
+.article-author {
+	font-size: 12px;
+}
+
+.read-more-article {
+	float: left;
+	margin: 20px 0 0 20px;
+}
+
+.article-bar {
+	float: left;
+}
+
+.article-title {
+	/* 单词自动换行  */
+	word-wrap: break-word;
+}

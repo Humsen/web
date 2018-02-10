@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.modify-pwd-form {
+	margin-top: 50px;
+}
+
+.old-pwd-wrong-info{
+	display: none;
+}
