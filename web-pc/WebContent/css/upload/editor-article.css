@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.editor-form-div {
+	margin: 20px 15px;
+}
+
+.article-type {
+	width: initial;
+}
+
+.category-width {
+	width: 220px;
+}
+
+.category-input {
+	margin-left: 8px;
+}

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.form-group-div-label {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.form-div-label {
+	text-align: left !important;
+	padding-left: 0;
+	width: 20%
+}
+
+.form-div-input {
+	padding-right: 0 !important;
+}
+
+.form-group-div-input{
+	padding-left: 0
+}
