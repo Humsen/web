@@ -1,7 +1,13 @@
+# project file
 /build/
-/.settings/
-/src/rebel.xml
+/bin/
+
+# logs file
 /logs/
+
+# jrebel
+/rebel.xml
+/src/rebel.xml
 
 ## self
 #/.gitignore
