@@ -1,0 +1,12 @@
+# project file
+/build/
+/bin/
+
+# logs file
+/logs/
+
+# jrebel
+/src/rebel.xml
+
+## self
+#/.gitignore
