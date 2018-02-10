@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.index-hr {
+	margin: 0;
+}
+
+#lwlhitokoto {
+	border-left: 5px solid #0073d8;
+	border-right: 5px solid #0073d8;
+	background-color: #3288d31a;
+	padding: 5px;
+	text-align: center;
+	color: #0073d8;
+	margin: 0 0 18px 0;
+}
+
+.carousel-height{
+	height: 400px;
+}
+
+.carousel-margin{
+	margin-top: 20px;
+}

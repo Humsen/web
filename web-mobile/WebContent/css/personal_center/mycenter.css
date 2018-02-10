@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.secondmenu a {
+	/* text-align: center; */
+	margin-left: 20px;
+}
+
+.version-input {
+	/* resize: none; */
+	
+}
+
+.form-show-userinfo {
+	margin-top: 50px;
+}
+
+.img-user-head {
+	width: 80px;
+	height: 80px;
+}
+
+.form-show-p {
+	width: 30%;
+}
+
+.return-index-blank {
+	float: left;
+	margin-left: 20px;
+}
+
+.left-bar{
+	clear:both;
+	margin-top: 40px;
+}

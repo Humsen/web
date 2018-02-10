@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+.fh5co-loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	/* background: url(/images/loader.gif) center no-repeat #fff; */
+}
+
+.gototop {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 999;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.fh5co-post .fh5co-entry {
+	float: left;
+	width: 100%;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.padding {
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 8px;
+}
+
+.fh5co-post-date {
+	color: #833a3a;
+	margin-bottom: 20px;
+	font-weight: 100;
+	letter-spacing: .05em;
+	margin-right: 8px;
+}
+
+h1, h2, h3, h4, h5, h6, figure {
+	color: #000;
+	font-family: "Work Sans", Arial, sans-serif;
+	font-weight: 400;
+	margin: 0 0 30px 0;
+	margin-bottom: 30px;
+}
+
+p {
+	margin: 0 0 10px;
+	margin-bottom: 10px;
+}
+
+img {
+	vertical-align: middle;
+}
+
+/* 底部版权说明 */
+#footer {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.choose-page-size {
+	vertical-align: initial;
+}
+
+.article-title {
+	word-wrap: break-word;
+	margin-top: 10px;
+}
+
+.text-align-center {
+	text-align: center !important;
+}

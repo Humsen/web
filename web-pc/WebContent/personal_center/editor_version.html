@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="/css/personal_center/editor_version.css">
+<!-- 编辑版本特性脚本  -->
+<script src="/js/personal_center/editor_version.js"></script>
+
+<form id="form_editorVersion"
+	class="form-horizontal form-editor-version">
+	<div class="form-group">
+		<label class="col-sm-3 control-label">当前最新版本</label>
+		<div class="col-sm-3">
+			<input id="txt_latestV" type="text" class="form-control" disabled="disabled">
+		</div>
+		<button id="btn_clearCurr"
+			class="btn btn-default col-sm-offset-1 col-sm-3">清空编辑区</button>
+	</div>
+	<!-- 版本号 -->
+	<div class="form-group">
+		<label class="col-sm-3 control-label">当前编辑版本</label>
+		<div class="col-sm-3">
+			<input id="txt_newV" type="text" class="form-control" placeholder="版本号">
+		</div>
+		<button id="btn_prevV"
+			class="btn btn-default col-sm-offset-1 col-sm-2">前一个版本</button>
+		<button id="btn_nextV"
+			class="btn btn-default col-sm-offset-1 col-sm-2">后一个版本</button>
+	</div>
+	<!-- 版本特性  -->
+	<br />
+	<div class="form-group">
+		<label class="col-sm-3 control-label">特性1：</label>
+		<div class="col-sm-9">
+			<textarea class="form-control version-input" placeholder="版本特性"
+				rows="1"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label">特性2：</label>
+		<div class="col-sm-9">
+			<textarea class="form-control version-input" placeholder="版本特性"
+				rows="1"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label">特性3：</label>
+		<div class="col-sm-9">
+			<textarea class="form-control version-input" placeholder="版本特性"
+				rows="1"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label">特性4：</label>
+		<div class="col-sm-9">
+			<textarea class="form-control version-input" placeholder="版本特性"
+				rows="1"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label">特性5：</label>
+		<div class="col-sm-9">
+			<textarea class="form-control version-input" placeholder="版本特性"
+				rows="1"></textarea>
+		</div>
+	</div>
+	<!-- 提交  -->
+	<div class="form-group">
+		<div class="col-sm-offset-10 col-sm-2">
+			<a id="btn_subEditVsion" class="btn btn-default" href="#"
+				role="button">提交</a>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#bar_left {
+	float: left;
+	width: 15%;
+	margin-left: 1%;
+}
+
+.latest-version {
+	font-size: smaller;
+	float: right;
+}
+
+.category-hide {
+	display: none;
+}
+
+.category-show {
+	margin-left: 20px;
+}

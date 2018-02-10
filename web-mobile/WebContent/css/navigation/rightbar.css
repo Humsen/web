@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#rightBar {
+	float: right;
+	width: 18%;
+	margin-right: 2%;
+	position: fixed;
+	margin-left: 80%;
+}
+
+.sidebar-module {
+	padding: 15px;
+	background-color: #f5f5f5;
+	border-radius: 4px;
+	margin: 0 -15px 15px;
+	font-size: 14px;
+}
+
+.list-unstyled {
+	padding-left: 0;
+	list-style: none;
+}
+
+.sidebar-module h4 {
+	font-family: NSimSun;
+}

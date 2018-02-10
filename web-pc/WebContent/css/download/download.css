@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.download-div {
+	padding: 0em 1em !important;
+}
+
+.text-align-center {
+	text-align: center !important;
+}
+
+.h3-letter-space {
+	letter-spacing: 0.05em !important;
+}
+
+#list_file div.col-md-6 {
+	padding: 0;
+}

@@ -1,0 +1,16 @@
+# project file
+/build/
+/bin/
+
+# logs file
+/logs/
+
+# jrebel
+/rebel.xml
+/src/rebel.xml
+
+# db
+/config/mysql_connect_info.properties
+
+## self
+#/.gitignore
