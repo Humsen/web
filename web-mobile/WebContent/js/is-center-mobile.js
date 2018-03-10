@@ -22,7 +22,6 @@ $(function() {
 		});
 		
 		setTimeout(function() {
-			alert(1)
 			//导航栏加上边距
 			$('#topBar').children('div').addClass('top-bar-div');
 		}, 300);

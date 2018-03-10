@@ -1,6 +1,7 @@
 # project file
 /build/
 /bin/
+.settings
 
 # logs file
 /logs/
