@@ -1,5 +1,5 @@
 # web项目         -- 此分支开箱即用，详见下面配置步骤  
-## -- 此分支使用postgresql数据库,后续会推出mysql开箱即用版
+## -- 此分支使用postgresql数据库,后续会推出mysql分支的开箱即用版，[点击跳转至mysql分支](https://github.com/CrazyHusen/web/tree/web-mysql) 
 
 ### 个人网站项目，实现的功能如下：
 - 博客、代码库、文件下载、留言、联系站长、友情链接、新版特性
