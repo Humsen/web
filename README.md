@@ -8,7 +8,7 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 ## -- 此分支为PC版
 ## [点击跳转至mysql分支](https://github.com/CrazyHusen/web/tree/web-mysql) 
 
-## [点击跳转至postgresql分支开箱即用版](https://github.com/CrazyHusen/web/tree/web-mysql) 
+## [点击跳转至postgresql分支开箱即用版](https://github.com/CrazyHusen/web/tree/web-psql) 
 
 ------------
 
