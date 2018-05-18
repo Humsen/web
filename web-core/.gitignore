@@ -1,10 +1,5 @@
 # project file
 /bin/
-/build/
-.settings
-.project
-.classpath
 
-META-INF/
 # jrebel
 /src/rebel.xml

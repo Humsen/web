@@ -2,8 +2,6 @@
 /build/
 /bin/
 .settings
-.project
-.classpath
 
 # logs file
 /logs/
