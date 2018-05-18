@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+body {
+	font-weight: 300;
+	line-height: 1.6;
+	/* font-family: "Times New Roman", Times, serif; */
+	font-family: "Georgia", Tahoma, Sans-Serif;
+	min-width: 1345px;
+}
+
+#fh5co-page {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}

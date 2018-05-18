@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+.cmt-text {
+	font-size: 14px;
+}
+
+.meessage-input {
+	background-image: none;
+	margin: 10px 0px 10px 5px;
+	height: 100px;
+	width: 100%;
+	resize: none;
+}
+
+.comment-input {
+	background: transparent;
+	background-image: none;
+	margin: 10px 0px -10px 50px;
+	height: 60px;
+	width: 500px;
+	resize: none;
+	-moz-appearance: none;
+	box-shadow: none;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	font-weight: 300;
+	border-radius: 7px;
+}
+
+.u-button {
+	margin: 0px 0px 0px 10px;
+}
+
+.f-clear {
+	position: relative;
+}
+
+.f-float-right {
+	float: right;
+	margin-bottom: 20px;
+}
+
+.user-head {
+	float: left;
+}
+
+.user-float-left {
+	float: left;
+	margin-left: 20px;
+}
+
+.parent-content {
+	display: inline-block;
+	width: 100%;
+	margin-left: 60px;
+	margin-bottom: 10px;
+}
+
+li {
+	list-style: none;
+}
+
+.f-show {
+	position: absolute;
+	top: 0px;
+	right: 30px;
+}
+
+.btn-submit-commit {
+	margin-top: 5px !important;
+	margin-left: 600px !important;
+}
+
+.cmt-form {
+	width: 805px;
+}
+
+.commit-hr {
+	border: 1px dotted #036;
+	height: 1px;
+	width: 100%;
+}
+
+.commit-hr1 {
+	margin-right: 80px;
+}
+
+.message-head-img {
+	width: 40px;
+	height: 40px;
+}
+
+.mobile-reply {
+	margin: 10px 0px 10px -35px;
+	width: 30%;
+}
+
+.reply-div-mobile {
+	margin: -70px 0px 0px 200px;
+}
+
+.reply-div-pc {
+	margin: -50px 0px 0px 550px;
+}
+
+.cancel-reply {
+	display: block;
+	margin: 1px 0px 0px 18px;
+}

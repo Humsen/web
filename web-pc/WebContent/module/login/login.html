@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="/css/login/login.css">
+
+<!-- 注册窗口 -->
+<div id="register" class="modal fade" tabindex="-1"
+	data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button class="close" data-dismiss="modal">
+					<span>&times;</span>
+				</button>
+			</div>
+			<div class="modal-title">
+				<h1 class="text-center login-title">注册</h1>
+			</div>
+			<div class="modal-body">
+				<div id="registerForm" class="form-group">
+					<div class="form-group">
+						<label for="">用户名</label> <input name="username"
+							id="txt_userNameRegister" class="form-control" type="text"
+							placeholder="5-15位字母或数字">
+					</div>
+					<div class="form-group">
+						<label for="">密码</label> <input name="password"
+							id="txt_userPwdRegister" class="form-control" type="password"
+							placeholder="至少6位字母或数字">
+					</div>
+					<div class="form-group">
+						<label for="">再次输入密码</label> <input name="confirmPassword"
+							class="form-control" type="password" placeholder="至少6位字母或数字">
+					</div>
+					<div class="form-group">
+						<label for="">邮箱</label> <input id="txt_userEmailRegister"
+							name="email" class="form-control" type="text"
+							placeholder="例如:123@123.com">
+					</div>
+					<div class="text-right">
+						<button id="btn_submitRegister" class="btn btn-primary">提交</button>
+						<button id="btnCancel" class="btn btn-danger" data-dismiss="modal">取消</button>
+					</div>
+					<a href="" data-toggle="modal" data-dismiss="modal"
+						data-target="#login">已有账号？点我登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 登录窗口 -->
+<div id="login" class="modal fade" data-backdrop="static"
+	data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button class="close" data-dismiss="modal">
+					<span>&times;</span>
+				</button>
+			</div>
+			<div class="modal-title">
+				<h1 class="text-center login-title">登录</h1>
+			</div>
+			<div class="modal-body">
+				<div id="loginForm" class="form-group">
+					<div class="form-group">
+						<label for="">用户名</label> <input name="username"
+							id="txt_userNameLogin" class="form-control" type="text"
+							placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="">密码</label> <input id="txt_userPwdLogin"
+							name="password" class="form-control" type="password"
+							placeholder="">
+					</div>
+					<div class="text-right">
+						<input id="btnLogin" type="button" class="btn btn-primary"
+							value="登录"> <input id="btnLoginCancel" type="button"
+							class="btn btn-danger" data-dismiss="modal" value="取消">
+					</div>
+					<a href="" data-toggle="modal" data-dismiss="modal"
+						data-target="#register">注册账号</a> <a id="btn_forgetPwd" href=""
+						class="forget-pwd" data-dismiss="modal">忘记密码？</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 底部版权信息 -->
+<nav class="navbar-fixed-bottom navbar-bottom">
+	<span class="glyphicon glyphicon-copyright-mark"></span>2018&nbsp;何明胜&nbsp;版权所有&nbsp;<a
+		href="http://www.miibeian.gov.cn" target="_blank">渝ICP备16013250号</a>
+</nav>
