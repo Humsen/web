@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#bar_right {
+	float: left;
+	width: 18%;
+}
+
+.sidebar-module {
+	padding: 15px;
+	background-color: #f5f5f5;
+	border-radius: 4px;
+	margin: 0 -15px 15px;
+	font-size: 14px;
+}
+
+.list-unstyled {
+	padding-left: 0;
+	list-style: none;
+}
+
+.sidebar-module h4 {
+	font-family: NSimSun;
+}

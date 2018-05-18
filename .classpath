@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libs/file/commons-fileupload-1.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/file/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="libs/javamail/javax.mail.jar"/>
+	<classpathentry kind="lib" path="libs/json/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="libs/json/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="libs/json/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="libs/json/commons-logging.jar"/>
+	<classpathentry kind="lib" path="libs/json/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/json/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="libs/jsoup/jsoup-1.11.2.jar"/>
+	<classpathentry kind="lib" path="libs/log4j/log4j-api-2.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/log4j/log4j-core-2.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/psql/postgresql-42.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/servlet/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

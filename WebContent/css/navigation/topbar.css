@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.topbar-nav {
+	margin: 10px 0 0 20px;
+	line-height: 0.8;
+}
+
+.navbar.navbar-default div {
+	float: left;
+}
+
+.access-statistics {
+	margin: 15px 15px 0 0;
+}
+
+.login-register {
+	margin: 16px 20px 0 0;
+}
+
+.nav-others {
+	margin: 16px 0 0 0;
+}
+
+.search-target {
+	min-width: initial;
+}
+
+.right-blank-space {
+	margin-right: 5px;
+}
+
+.nav-bar-width {
+	width: 100%;
+	min-width:1345px;
+}

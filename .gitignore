@@ -1,0 +1,11 @@
+/build/
+
+rebel.xml
+/src/rebel.xml
+/logs/
+/.settings/
+/config/db_connect_info.properties
+
+## self
+#/.gitignore
+/bin/

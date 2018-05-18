@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>web</display-name>
+  <description>默认欢迎列表</description>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <description>设置session的有效时间(分钟)</description>
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+  <description>初始化路径的配置和log4j配置</description>
+  <listener>
+    <listener-class>pers.husen.web.config.listener.WebInitConfigListener</listener-class>
+  </listener>
+  <description>监听session,实现在线人数统计</description>
+  <listener>
+    <listener-class>pers.husen.web.config.listener.OnlineCountListener</listener-class>
+  </listener>
+  <description>全局过滤器</description>
+  <filter>
+    <filter-name>WebFilter</filter-name>
+    <filter-class>pers.husen.web.config.filter.WebFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>WebFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>

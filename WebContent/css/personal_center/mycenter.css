@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.secondmenu a {
+	/* text-align: center; */
+	margin-left: 20px;
+}
+
+.version-input {
+	/* resize: none; */
+}
+
+.return-index {
+	margin-left: 50%;
+}
+
+.form-show-userinfo {
+	margin-top: 50px;
+}
+
+.img-user-head {
+	width: 80px;
+	height: 80px;
+}
+
+.form-show-p {
+	width: 30%;
+}
+
+.back-left-menu {
+	margin-top: 60px;
+}
