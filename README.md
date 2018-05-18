@@ -1,14 +1,8 @@
-# web
+# web 此分支为非响应式布局分支，相对稳定，不再维护
 
 个人网站项目，前台包括博客、代码库、文件下载、留言、登录注册等功能，后台包括上传文件、博客、代码，编辑、删除文章，查看、修改个人资料及邮箱、头像等功能。
 
 PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
-
-
-## -- 此分支为PC版
-## [点击跳转至mysql分支](https://github.com/CrazyHusen/web/tree/web-mysql) 
-
-## [点击跳转至postgresql分支开箱即用版](https://github.com/CrazyHusen/web/tree/web-psql) 
 
 ------------
 
