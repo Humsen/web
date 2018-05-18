@@ -6,6 +6,10 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 
 ------------
 
+## [点击跳转至postgresql分支开箱即用版](https://github.com/CrazyHusen/web/tree/web-psql) 
+
+------------
+
 ## 主要文件结构如下
 
 - `docs` -> 说明文档
