@@ -10,6 +10,8 @@
 
 .h3-letter-space {
 	letter-spacing: 0.05em !important;
+	padding: 15px 0 5px 0 !important;
+	height: 45px;
 }
 
 #list_file div.col-md-6 {
