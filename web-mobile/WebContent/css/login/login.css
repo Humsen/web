@@ -6,9 +6,15 @@
 
 .navbar-bottom {
 	text-align: center;
-    background-color: whitesmoke;
+	background-color: whitesmoke;
 }
 
-.login-title{
+.login-title {
 	margin: 0;
+}
+
+.qq-fixed-bottom {
+	bottom: 20px;
+	margin-bottom: 0;
+	border-width: 1px 0 0;
 }
