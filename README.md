@@ -5,7 +5,8 @@
 PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 
 最近新建了个QQ群，用于大家学习交流，也会分享一些资料什么的。QQ群号：805668552。
-<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=41068b9adb14521cab1ebfea385e3e4aabf466115ba5278ca4d41a605506c096"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="点击加入：Java全栈开发学习交流" title="Java全栈开发学习交流"></a>
+
+[点击加入：Java全栈开发学习交流](//shang.qq.com/wpa/qunwpa?idkey=41068b9adb14521cab1ebfea385e3e4aabf466115ba5278ca4d41a605506c096)
 
 ------------
 
