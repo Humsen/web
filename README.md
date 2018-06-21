@@ -23,5 +23,16 @@ PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 
 ------------
 
-其余
-    文档后续更新...
+## 快速配置方法：
+
+- 1、下载项目源码或者打包好的war包
+
+- 2、按照docs文件夹里面的数据库配置步骤，导入脚本，需提前安装MySQL数据库和创建一个数据库(自定义名称，如web)
+    - 按照`docs/数据库部署文件夹`里面的步骤依次运行脚本即可
+    
+- 3、将项目导入Eclipse/IDEA，修改web-pc和web-mobile 下的config/mysql_connect_info.properties文件里的数据库配置
+    - 如果是下载的zip压缩包，则不用导入，直接解压，得到`config`文件夹和war包，并修改db_connect_info.properties数据库配置
+
+- 4、放在tomcat等容器下运行。并将config文件夹放在web目录的同级目录（和web项目在同一个文件夹下）
+
+- 5、访问 localhost:8080即可（默认配置已去掉项目名称）
