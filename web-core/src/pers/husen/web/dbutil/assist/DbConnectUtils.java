@@ -69,7 +69,7 @@ public class DbConnectUtils {
 			inputStream.close();
 			
 			Class.forName(driveClass);
-			connection = DriverManager.getConnection(url+dbName+"?useUnicode=true&characterEncoding=utf-8&useSSL=true", username, password);
+			connection = DriverManager.getConnection(url+dbName+"?useUnicode=true&characterEncoding=utf-8&useSSL=false", username, password);
 			//logger.info("成功获取数据库连接, url->" + (url+dbName) + ", username->" + username + ", password->" + password);
 		}catch (ClassNotFoundException e) {
 			logger.error(e);

@@ -91,7 +91,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ BlogDetailsMapping.BLOG_CATEGOTY + " = " + ArticleCategoryMapping.CATEGORY_ID
 				+ " AND blog_id = ? AND blog_delete = ? ";
 		
-		sql = "SELECT A.*, B.user_nick_name FROM (" + sql + ") as A, User_info as B WHERE A.blog_author = B.user_name";
+		sql = "SELECT A.*, B.user_nick_name FROM (" + sql + ") as A, user_info as B WHERE A.blog_author = B.user_name";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(blogId);
