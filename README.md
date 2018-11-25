@@ -4,6 +4,8 @@
 
 PC端网址：www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
 
+web端下载缓慢，可以到我的个人网站下载：https://www.hemingsheng.cn/module/download.hms ，记得翻到第二页。
+
 最近新建了个QQ群，用于大家学习交流，也会分享一些资料什么的。QQ群号：805668552。
 
 [点击加入：Java全栈开发学习交流](//shang.qq.com/wpa/qunwpa?idkey=41068b9adb14521cab1ebfea385e3e4aabf466115ba5278ca4d41a605506c096)
