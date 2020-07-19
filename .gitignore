@@ -1,0 +1,11 @@
+# project file
+/bin/
+
+# jrebel
+/src/rebel.xml
+
+#idea
+.idea/
+web-pc.iml
+web-mobile.iml
+web-core.iml
