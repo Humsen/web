@@ -11,12 +11,14 @@ public class CommonConstants {
 	/******************************************************************************
 	 * 路径常量
 	 ******************************************************************************/
-	
+
 	/** 配置文件相对于工程根目录的路径 */
 	public static final String CONFIG_FILE_RELATIVE_PATH = "/config";
 
 	/** 数据库连接信息文件相对工程根目录的路径 **/
 	public static final String DB_CONNECT_INFO_FILE_RELATIVE_PATH = CONFIG_FILE_RELATIVE_PATH + "/mysql_connect_info.properties";
+
+	public static final String COMMON_CONFIG_FILE_RELATIVE_PATH = CONFIG_FILE_RELATIVE_PATH + "/config.properties";
 
 	/** log4j2配置文件相对于工程根目录的路径  **/
 	public static final String LOG4J2_CONFIG_FILE_RELATIVE_PATH = CONFIG_FILE_RELATIVE_PATH + "/log4j2.xml";

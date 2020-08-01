@@ -1,6 +1,9 @@
 package pers.husen.web.common.helper;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 
@@ -14,12 +17,15 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.sun.mail.util.MailSSLSocketFactory;
 
+import pers.husen.web.common.constants.CommonConstants;
 import pers.husen.web.common.constants.ResponseConstants;
+import pers.husen.web.config.ProjectDeployConfig;
 
 /**
  * 发送邮件
@@ -36,7 +42,7 @@ public class SendEmailHelper {
 		sendEmail.sendEmail2Admin("何明胜", "123@qwe.com", "", "这网站不错");
 	}
 
-	public int sendEmail2RetrivePwd(String email, int randomCode) {
+	public int sendEmail2RetrievePwd(String email, int randomCode) {
 		String subject = "【何明胜的个人网站】找回密码邮箱验证";
 		String mode = "您正在使用找回密码功能。";
 
@@ -57,7 +63,7 @@ public class SendEmailHelper {
 	 * @param randomCode
 	 * @return
 	 */
-	public int sendEmail2ModufyEmailAuth(String email, int randomCode) {
+	public int sendEmail2ModifyEmailAuth(String email, int randomCode) {
 		String subject = "【何明胜的个人网站】用户修改邮箱验证原邮箱";
 		String mode = "您正在使用修改邮箱功能。第一步，验证码您的原邮箱。";
 
@@ -71,7 +77,7 @@ public class SendEmailHelper {
 	 * @param randomCode
 	 * @return
 	 */
-	public int sendEmail2ModufyEmailBind(String email, int randomCode) {
+	public int sendEmail2ModifyEmailBind(String email, int randomCode) {
 		String subject = "【何明胜的个人网站】用户修改邮箱绑定新邮箱";
 		String mode = "您正在使用修改邮箱功能。第二步，绑定您的新邮箱。";
 
@@ -80,21 +86,18 @@ public class SendEmailHelper {
 
 	/**
 	 * 发送验证码通用函数
-	 * 
-	 * @param email
-	 * @param randomCode
-	 * @param subject
-	 * @param mode
-	 * @return
 	 */
 	public int sendEmail2User(String email, int randomCode, String subject, String mode) {
 		try {
-			Session session = setupSession();
+            Properties properties = loadEmailInfo();
+            String fromUser = properties.getProperty("email.from.user", StringUtils.EMPTY);
+            String fromPassword = properties.getProperty("email.from.password", StringUtils.EMPTY);
+            Session session = setupSession(fromUser, fromPassword);
 
 			// 创建默认的 MimeMessage 对象
 			MimeMessage message = new MimeMessage(session);
 			// Set From: 头部头字段
-			message.setFrom(new InternetAddress("yige_robot@foxmail.com", "一格网站机器人", "UTF-8"));
+			message.setFrom(new InternetAddress(fromUser, "一格网站机器人", StandardCharsets.UTF_8.name()));
 			// 收件人电子邮箱 可用数组设置多个
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
@@ -127,29 +130,28 @@ public class SendEmailHelper {
 
 	/**
 	 * 发邮件给站长
-	 * 
-	 * @param name
-	 * @param email
-	 * @param phone
-	 * @param content
-	 * @return
 	 */
 	public int sendEmail2Admin(String name, String email, String phone, String content) {
 		try {
-			Session session = setupSession();
+            Properties properties = loadEmailInfo();
+            String fromUser = properties.getProperty("email.from.user", StringUtils.EMPTY);
+            String fromPassword = properties.getProperty("email.from.password", StringUtils.EMPTY);
+            Session session = setupSession(fromUser, fromPassword);
 
 			// 创建默认的 MimeMessage 对象
 			MimeMessage message = new MimeMessage(session);
 			// Set From: 头部头字段
-			message.setFrom(new InternetAddress("yige_robot@foxmail.com", "一格机器人", "UTF-8"));
+			message.setFrom(new InternetAddress(fromUser, "一格机器人", StandardCharsets.UTF_8.name()));
 			// 收件人电子邮箱 可用数组设置多个
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("husen@hemingsheng.cn"));
+            String toUser = properties.getProperty("email.to.user", StringUtils.EMPTY);
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(toUser));
 
 			// 设置标题
 			message.setSubject("个人网站联系站长邮件");
 
 			// 设置邮件内容 普通文本
-			content = "我亲爱的站长：<br/>&emsp;&emsp;你好! 我是您的网站的一格机器人。<br/>&emsp;&emsp;现在有人通过您的网站\"联系站长\"功能给您发邮件，详情如下：" + "<br/>" + "<br/>&emsp;&emsp;姓名：" + name + "<br/>&emsp;&emsp;手机：" + phone
+			content = "我亲爱的站长：<br/>&emsp;&emsp;你好! 我是您的网站的一格机器人。<br/>&emsp;&emsp;现在有人通过您的网站\"联系站长\"功能给您发邮件，详情如下："
+                    + "<br/>" + "<br/>&emsp;&emsp;姓名：" + name + "<br/>&emsp;&emsp;手机：" + phone
 					+ "<br/>&emsp;&emsp;邮箱：" + email + "<br/>&emsp;&emsp;邮件内容：<br/>&emsp;&emsp;&emsp;&emsp;" + content;
 			message.setContent(content, "text/html;charset=UTF-8");
 
@@ -173,11 +175,8 @@ public class SendEmailHelper {
 
 	/**
 	 * 获取邮箱机器人登录邮箱session
-	 * 
-	 * @return
-	 * @throws GeneralSecurityException
 	 */
-	public Session setupSession() throws GeneralSecurityException {
+	public Session setupSession(String fromEmail, String password) throws GeneralSecurityException {
 		// 建立属性对象
 		Properties properties = new Properties();
 		// 开启SSL
@@ -194,13 +193,25 @@ public class SendEmailHelper {
 		properties.setProperty("mail.smtp.port", "465");
 
 		// 根据认证获取默认session对象
-		Session session = Session.getDefaultInstance(properties, new Authenticator() {
-			@Override
-			public PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("yige_robot@foxmail.com", "ejmfrxvtxkzygjhj");
-			}
-		});
 
-		return session;
+        return Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            public PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        });
 	}
+
+    private Properties loadEmailInfo() {
+        Properties properties = new Properties();
+        try {
+            FileInputStream inputStream = null;
+            inputStream = new FileInputStream(ProjectDeployConfig.WEB_ROOT_PATH + CommonConstants.COMMON_CONFIG_FILE_RELATIVE_PATH);
+            properties.load(inputStream);
+        } catch (IOException e) {
+            logger.error(e);
+        }
+
+        return properties;
+    }
 }

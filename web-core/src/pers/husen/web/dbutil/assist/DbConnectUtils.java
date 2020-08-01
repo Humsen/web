@@ -71,13 +71,7 @@ public class DbConnectUtils {
 			Class.forName(driveClass);
 			connection = DriverManager.getConnection(url+dbName+"?useUnicode=true&characterEncoding=utf-8&useSSL=false", username, password);
 			//logger.info("成功获取数据库连接, url->" + (url+dbName) + ", username->" + username + ", password->" + password);
-		}catch (ClassNotFoundException e) {
-			logger.error(e);
-		}catch (SQLException e) {
-			logger.error(e);
-		} catch (FileNotFoundException e) {
-			logger.error(e);
-		} catch (IOException e) {
+		} catch (ClassNotFoundException | SQLException | IOException e) {
 			logger.error(e);
 		}
 		return connection;

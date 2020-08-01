@@ -56,7 +56,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 
 			// 如果是找回密码发送验证码
 			if (operationType.indexOf(RequestConstants.MODE_RETRIVE_PWD) != -1) {
-				result = sendEmail.sendEmail2RetrivePwd(email, randomCode);
+				result = sendEmail.sendEmail2RetrievePwd(email, randomCode);
 				request.getSession().setAttribute("random_code_retrive", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置找回密码验证码至session属性");
 				out.println(result);
@@ -76,7 +76,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 
 			// 如果是修改邮箱验证原邮箱,发送验证码
 			if (operationType.indexOf(RequestConstants.MODE_OLD_EMAIL) != -1) {
-				result = sendEmail.sendEmail2ModufyEmailAuth(email, randomCode);
+				result = sendEmail.sendEmail2ModifyEmailAuth(email, randomCode);
 				request.getSession().setAttribute("random_code_modify_email_auth", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置修改邮箱验证旧邮箱验证码至session属性");
 				System.out.println(result);
@@ -87,7 +87,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 
 			// 如果是修改邮箱绑定新邮箱,发送验证码
 			if (operationType.indexOf(RequestConstants.MODE_BIND_EMAIL) != -1) {
-				result = sendEmail.sendEmail2ModufyEmailBind(email, randomCode);
+				result = sendEmail.sendEmail2ModifyEmailBind(email, randomCode);
 				request.getSession().setAttribute("random_code_modify_email_bind", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置修改邮箱验证新邮箱验证码至session属性");
 				out.println(result);
