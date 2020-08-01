@@ -42,3 +42,5 @@ web端下载缓慢，可以到我的个人网站下载：https://www.hemingsheng
 - 6、放在tomcat等容器下运行。并将config文件夹放在web目录的同级目录（和web项目在同一个文件夹下）
 
 - 7、访问 localhost:8080即可（默认配置已去掉项目名称）
+
+- 8、使用体验账户登录，用户名：husen，密码：admin123
