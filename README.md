@@ -35,6 +35,10 @@ web端下载缓慢，可以到我的个人网站下载：https://www.hemingsheng
 - 3、将项目导入Eclipse/IDEA，修改web-pc和web-mobile 下的config/mysql_connect_info.properties文件里的数据库配置
     - 如果是下载的zip压缩包，则不用导入，直接解压，得到`config`文件夹和war包，并修改db_connect_info.properties数据库配置
 
-- 4、放在tomcat等容器下运行。并将config文件夹放在web目录的同级目录（和web项目在同一个文件夹下）
+- 4、web-core打成jar包，Idea可参考https://blog.csdn.net/xuemengrui12/article/details/74984731。然后放到pc和mobile的WebContent\WEB-INF\lib目录下
 
-- 5、访问 localhost:8080即可（默认配置已去掉项目名称）
+- 5、打包web-pc/web-mobile成war包，Idea可参考https://blog.csdn.net/github_38336924/article/details/82422888?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param
+
+- 6、放在tomcat等容器下运行。并将config文件夹放在web目录的同级目录（和web项目在同一个文件夹下）
+
+- 7、访问 localhost:8080即可（默认配置已去掉项目名称）
