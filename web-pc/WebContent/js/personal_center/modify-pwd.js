@@ -41,6 +41,11 @@ function submitModifyPwdForm() {
 		return;
 	}
 
+	// 暂时关闭修改密码
+
+	alert("开放参观，暂时关闭修改密码。")
+	return;
+
 	$.ajax({
 		url : '/userInfo.hms',
 		async : false,// 同步，会阻塞操作
