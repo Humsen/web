@@ -42,8 +42,8 @@ public class DateFormatHelper {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String dateString = formatter.format(currentTime);
 		ParsePosition pos = new ParsePosition(0);
-		Date currentTime2 = formatter.parse(dateString, pos);
-		return currentTime2;
+
+		return formatter.parse(dateString, pos);
 	}
 
 	/**
@@ -55,14 +55,13 @@ public class DateFormatHelper {
 		Calendar calendar = Calendar.getInstance();
 
 		calendar.setTime(new Date());
-		Long zeroSeconds = calendar.getTime().getTime();
+		long zeroSeconds = calendar.getTime().getTime();
 
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
-		Long todaySeconds = zeroSeconds - calendar.getTime().getTime();
 
-		return todaySeconds;
+		return zeroSeconds - calendar.getTime().getTime();
 	}
 
 	/**

@@ -44,7 +44,7 @@ public class CodeSvt extends HttpServlet {
 		
 		//判断是否是返回代码json数据
 		String returnType = request.getParameter("type");
-		if(returnType != null && RequestConstants.REQUEST_TYPE_JSON.equals(returnType)) {
+		if(RequestConstants.REQUEST_TYPE_JSON.equals(returnType)) {
 			out.println(JSONObject.fromObject(cVo));
 			
 			return;

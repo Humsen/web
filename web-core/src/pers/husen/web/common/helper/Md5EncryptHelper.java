@@ -37,9 +37,9 @@ public class  Md5EncryptHelper {
      * @return
      */
     private static String byteToString(byte[] bByte) {
-        StringBuffer sBuffer = new StringBuffer();
-        for (int i = 0; i < bByte.length; i++) {
-            sBuffer.append(byteToArrayString(bByte[i]));
+        StringBuilder sBuffer = new StringBuilder();
+        for (byte b : bByte) {
+            sBuffer.append(byteToArrayString(b));
         }
         return sBuffer.toString();
     }

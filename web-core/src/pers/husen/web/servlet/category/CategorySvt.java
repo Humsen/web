@@ -77,8 +77,6 @@ public class CategorySvt extends HttpServlet {
 			String json = JSONArray.fromObject(aVos).toString();
 
 			out.println(json);
-
-			return;
 		}
 	}
 

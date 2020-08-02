@@ -51,7 +51,7 @@ public class FileDownloadDaoImpl implements FileDownloadDao {
 		paramList.add((obj = fVo.getFileName()) != null ? obj : new Date());
 		paramList.add((obj = fVo.getFileUrl()) != null ? obj : "");
 		paramList.add((obj = fVo.getFileUploadDate()) != null ? obj : "");
-		paramList.add((obj = fVo.getFileDownloadCount()) != null ? obj : "");
+		paramList.add(fVo.getFileDownloadCount());
 
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
 	}

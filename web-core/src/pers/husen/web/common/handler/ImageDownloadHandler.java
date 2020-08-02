@@ -49,7 +49,7 @@ public class ImageDownloadHandler {
         //创建输出流
         OutputStream out = response.getOutputStream();
         //创建缓冲区
-        byte buffer[] = new byte[1024];
+        byte[] buffer = new byte[1024];
         int len = 0;
         //循环将输入流中的内容读取到缓冲区当中
         while((len=in.read(buffer))>0){

@@ -1,6 +1,8 @@
 package pers.husen.web.config.filter;
 
-import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pers.husen.web.common.helper.StackTrace2Str;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -8,11 +10,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import pers.husen.web.common.helper.StackTrace2Str;
 
 /**
  * 错误捕获
@@ -29,29 +26,7 @@ public class WebFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		/*HttpServletRequest svtRequest = (HttpServletRequest) request;
-		HttpServletResponse svtResponse = (HttpServletResponse) response;
-		StringBuffer resquestUrl = svtRequest.getRequestURL();
-		
-		String regStr = ".*www.hemingsheng.cn/$";
-		String userAgent = svtRequest.getHeader("User-Agent");
-		Boolean isMobile = JudgeIsMobile.isMobile(userAgent);
-		// 如果是手机访问,且是访问hemingsheng.cn 转发到m.hemingsheng.cn
-		if (Pattern.matches(regStr, resquestUrl) && isMobile) {
-			
-			svtResponse.sendRedirect("https://m.hemingsheng.cn");
-			return;
-		}
-		//如果是手机访问www分享的链接，则替换成m
-		String webPc = "www";
-		if(isMobile && resquestUrl.indexOf(webPc) != -1) {
-			String newResquestUrl = resquestUrl.toString().replace("www", "m");
-			svtResponse.sendRedirect(newResquestUrl + "?" + svtRequest.getQueryString());
-			return;
-		}*/
-		
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
 		//异常捕获，继续后面的请求
 		try {
 			chain.doFilter(request, response);

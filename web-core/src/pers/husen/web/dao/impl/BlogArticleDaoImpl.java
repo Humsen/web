@@ -33,7 +33,7 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 	@Override
 	public int queryBlogTotalCount(BlogArticleVo bVo) {
 		String sql = "SELECT count(*) as count FROM blog_details WHERE blog_delete = ?";
-		ArrayList<Object> paramList = new ArrayList<Object>();
+		ArrayList<Object> paramList = new ArrayList<>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		if(bVo.getBlogTitle() != null && !bVo.getBlogTitle().trim().isEmpty()) {
@@ -112,16 +112,16 @@ public class BlogArticleDaoImpl implements BlogArticleDao{
 				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
-		Object obj = null;
+		Object obj;
 		paramList.add((obj = bVo.getBlogTitle()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogDate()) != null ? obj : new Date());
 		paramList.add((obj = bVo.getBlogHtmlContent()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogSummary()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogAuthor()) != null ? obj : "");
-		paramList.add((obj = bVo.getBlogRead()) != null ? obj : 0);
+		paramList.add(bVo.getBlogRead());
 		paramList.add((obj = bVo.getBlogMdContent()) != null ? obj : "");
 		paramList.add((obj = bVo.getBlogLabel()) != null ? obj : "");
-		paramList.add((obj = bVo.getBlogCategory()) != null ? obj : "");
+		paramList.add(bVo.getBlogCategory());
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);

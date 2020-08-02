@@ -47,7 +47,7 @@ public class BlogQuerySvt extends HttpServlet {
 
 		BlogArticleVo bVo = new BlogArticleVo();
 		bVo.setBlogTitle(requestKeywords);
-		if (category != null && category.trim() != "") {
+		if (category != null && !category.trim().equals("")) {
 			bVo.setBlogCategory(Integer.parseInt(category));
 		} else {
 			bVo.setBlogCategory(-1);
@@ -111,8 +111,6 @@ public class BlogQuerySvt extends HttpServlet {
 			}
 			
 			out.println(nextBlog);
-			
-			return;
 		}
 	}
 

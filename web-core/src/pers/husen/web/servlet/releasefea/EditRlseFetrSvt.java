@@ -58,8 +58,6 @@ public class EditRlseFetrSvt extends HttpServlet {
 			}
 			
 			out.println(result);
-			
-			return;
 		}
 	}
 

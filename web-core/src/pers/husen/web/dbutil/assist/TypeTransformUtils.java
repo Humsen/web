@@ -27,13 +27,12 @@ public class TypeTransformUtils {
 	 * @throws InvocationTargetException
 	 * @throws SQLException
 	 * @throws InstantiationException
-	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 * @throws NoSuchMethodException
 	 */
 	public static <T> ArrayList<T> resultSet2BeanList(ResultSet rs, Class<T> classType)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException,
-			InstantiationException, NoSuchFieldException, SecurityException, NoSuchMethodException {
+			InstantiationException, SecurityException, NoSuchMethodException {
 		ArrayList<T> arrayList = new ArrayList<T>();
 		// 获取列的数量、类型和属性
 		ResultSetMetaData metaData = rs.getMetaData();
@@ -73,18 +72,6 @@ public class TypeTransformUtils {
 
 	/**
 	 * ResultSET -> bean
-	 * 
-	 * @param rs
-	 * @param classType
-	 * @return
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws InvocationTargetException
-	 * @throws SQLException
-	 * @throws InstantiationException
-	 * @throws NoSuchFieldException
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
 	 */
 	public static <T> T resultSet2Bean(ResultSet rs, Class<T> classType)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException,
@@ -153,9 +140,7 @@ public class TypeTransformUtils {
 	/**
 	 * 根据字段名称获取当前类及其父类中的变量
 	 * @param <T>
-	 * @param object
 	 * @param methodName
-	 * @param parameterTypes
 	 * @return
 	 */
 	public static <T> Class<?> getDeclaredField(Class<T> currClass, String methodName) {

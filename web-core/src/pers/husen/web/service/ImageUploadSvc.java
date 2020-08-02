@@ -10,10 +10,10 @@ import pers.husen.web.dao.impl.ImageUploadDaoImpl;
  * 2017年10月20日
  */
 public class ImageUploadSvc implements ImageUploadDao{
-	private ImageUploadDaoImpl iImpl = new ImageUploadDaoImpl();
+	private static final ImageUploadDaoImpl imageUploadDaoImpl = new ImageUploadDaoImpl();
 	
 	@Override
 	public int insertImageUpload(ImageUploadVo iVo) {
-		return iImpl.insertImageUpload(iVo);
+		return imageUploadDaoImpl.insertImageUpload(iVo);
 	}
 }

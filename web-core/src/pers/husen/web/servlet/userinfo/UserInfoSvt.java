@@ -99,11 +99,11 @@ public class UserInfoSvt extends HttpServlet {
 			return;
 		}
 		/** 如果为验证密码,登录或者修改密码验证 */
-		if (operationType.indexOf(RequestConstants.REQUEST_TYPE_AUTH) != -1) {
+		if (operationType.contains(RequestConstants.REQUEST_TYPE_AUTH)) {
 			String queryPwd = uSvc.queryPasswordByUserName(userName);
 			if (password.equals(queryPwd)) {
 				// 如果为登录，设置cookie
-				if (operationType.indexOf(RequestConstants.MODE_LOGIN) != -1) {
+				if (operationType.contains(RequestConstants.MODE_LOGIN)) {
 					Cookie cookie = new Cookie("username", userName);
 					cookie.setPath("/");
 					// cookie.setMaxAge(60*60); 不设置，关闭浏览器即失效
@@ -114,7 +114,7 @@ public class UserInfoSvt extends HttpServlet {
 					return;
 				}
 				// 如果是修改密码验证
-				if (operationType.indexOf(RequestConstants.MODE_PASSWORD) != -1) {
+				if (operationType.contains(RequestConstants.MODE_PASSWORD)) {
 					out.println(1);
 
 					return;
@@ -123,8 +123,6 @@ public class UserInfoSvt extends HttpServlet {
 			} else {
 				out.println(0);
 			}
-
-			return;
 		}
 	}
 

@@ -1,3 +1,4 @@
+
 package pers.husen.web.service;
 
 import pers.husen.web.dao.VisitTotalDao;
@@ -9,20 +10,20 @@ import pers.husen.web.dao.impl.VisitTotalDaoImpl;
  * 2017年9月30日
  */
 public class VisitTotalSvc implements VisitTotalDao{
-	private VisitTotalDaoImpl vImpl = new VisitTotalDaoImpl();
+	private static final VisitTotalDaoImpl visitTotalDaoImpl = new VisitTotalDaoImpl();
 	
 	@Override
 	public int queryVisitTotal() {
-		return vImpl.queryVisitTotal();
+		return visitTotalDaoImpl.queryVisitTotal();
 	}
 	
 	@Override
 	public int queryVisitToday() {
-		return vImpl.queryVisitToday();
+		return visitTotalDaoImpl.queryVisitToday();
 	}
 	
 	@Override
 	public int updateVisitCount() {
-		return vImpl.updateVisitCount();
+		return visitTotalDaoImpl.updateVisitCount();
 	}
 }

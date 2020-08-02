@@ -62,7 +62,7 @@ public class ImageUploadHandler {
 					logger.info("普通表单：" + name + "=" + value);
 				} else {// 如果fileitem中封装的是上传文件
 					String filename = Long.toString(DateFormatHelper.secondsTodayTotal());
-					if (filename == null || filename.trim().equals("")) {
+					if (filename.trim().equals("")) {
 						continue;
 					}
 					
@@ -86,7 +86,7 @@ public class ImageUploadHandler {
 					// 创建一个文件输出流
 					FileOutputStream out = new FileOutputStream(saveFile + "/" + filename + fileBackName);
 					// 创建一个缓冲区
-					byte buffer[] = new byte[1024];
+					byte[] buffer = new byte[1024];
 					// 判断输入流中的数据是否已经读完的标识
 					int len = 0;
 					// 循环将输入流读入到缓冲区当中，(len=in.read(buffer))>0就表示in里面还有数据

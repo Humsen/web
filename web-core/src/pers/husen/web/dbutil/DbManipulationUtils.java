@@ -1,16 +1,14 @@
 package pers.husen.web.dbutil;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pers.husen.web.dbutil.assist.DbConnectUtils;
+import pers.husen.web.dbutil.assist.SetPsParamUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import pers.husen.web.common.helper.StackTrace2Str;
-import pers.husen.web.dbutil.assist.DbConnectUtils;
-import pers.husen.web.dbutil.assist.SetPsParamUtils;
 
 /**
  * 数据库操纵工具类 DML
@@ -24,9 +22,6 @@ public class DbManipulationUtils {
 	
 	/**
 	 * 插入新纪录
-	 * @param sql
-	 * @param paramList
-	 * @return
 	 */
 	public static int insertNewRecord(String sql, ArrayList<Object> paramList) {
 		return dbManipulation(sql, paramList);
@@ -34,9 +29,6 @@ public class DbManipulationUtils {
 	
 	/**
 	 * 执行更新
-	 * @param sql
-	 * @param paramList
-	 * @return
 	 */
 	public static int updateRecordByParam(String sql, ArrayList<Object> paramList) {
 		return dbManipulation(sql, paramList);
@@ -44,9 +36,6 @@ public class DbManipulationUtils {
 	
 	/**
 	 * 逻辑删除
-	 * @param sql
-	 * @param paramList
-	 * @return
 	 */
 	public static int deleteRecordByParamLogic (String sql, ArrayList<Object> paramList) {
 		return dbManipulation(sql, paramList);
@@ -54,19 +43,13 @@ public class DbManipulationUtils {
 	
 	/**
 	 * 物理删除
-	 * @param sql
-	 * @param paramList
-	 * @return
 	 */
-	public static int delteleRecordByParamPhysical (String sql, ArrayList<Object> paramList) {
+	public static int deleteRecordByParamPhysical(String sql, ArrayList<Object> paramList) {
 		return dbManipulation(sql, paramList);
 	}
 	
 	/**
 	 * 数据库更新通用
-	 * @param sql
-	 * @param paramList
-	 * @return
 	 */
 	public static int dbManipulation(String sql, ArrayList<Object> paramList) {
 		Connection conn = DbConnectUtils.getConnection();
@@ -85,7 +68,7 @@ public class DbManipulationUtils {
 			result = ps.executeUpdate();
 			}
 		}catch (Exception e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
+			logger.error(e);
 		}finally {
 			ResultSet rs = null;
 			DbConnectUtils.closeResouce(rs, ps, conn);

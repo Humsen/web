@@ -69,8 +69,6 @@ public class MessageSvt extends HttpServlet {
 			jsObject.put("messageId", messageId);
 			
 			out.println(jsObject);
-			
-			return;
 		}
 	}
 

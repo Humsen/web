@@ -70,8 +70,6 @@ public class BlogUploadSvt extends HttpServlet {
 		if (RequestConstants.REQUEST_TYPE_CREATE.equals(uploadType)) {
 			int resultInsert = bSvc.insertBlogArticle(bVo);
 			out.println(resultInsert);
-
-			return;
 		}
 	}
 

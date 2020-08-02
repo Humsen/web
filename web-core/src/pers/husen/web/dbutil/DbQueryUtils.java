@@ -61,12 +61,6 @@ public class DbQueryUtils {
 
 	/**
 	 * 根据条件查询bean
-	 * 
-	 * @param <T>
-	 * 
-	 * @param sql
-	 * @param paramList
-	 * @return
 	 */
 	public static <T> T queryBeanByParam(String sql, ArrayList<Object> paramList, Class<T> classType) {
 		Connection conn = DbConnectUtils.getConnection();

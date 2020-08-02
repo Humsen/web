@@ -40,11 +40,9 @@ public class ReleaseFeatureDaoImpl implements ReleaseFeatureDao{
 				+ " FROM release_feature"
 				+ " WHERE release_id = (SELECT max(release_id) FROM release_feature)";
 		
-		ArrayList<Object> paramList = new ArrayList<Object>();
-		
-		ReleaseFeatureVo result = DbQueryUtils.queryBeanByParam(sql, paramList, ReleaseFeatureVo.class);
-		
-		return result; 
+		ArrayList<Object> paramList = new ArrayList<>();
+
+		return DbQueryUtils.queryBeanByParam(sql, paramList, ReleaseFeatureVo.class);
 	}
 
 	@Override
@@ -56,10 +54,8 @@ public class ReleaseFeatureDaoImpl implements ReleaseFeatureDao{
 		
 		ArrayList<Object> paramList = new ArrayList<Object>();
 		paramList.add(releaseId);
-		
-		ReleaseFeatureVo result = DbQueryUtils.queryBeanByParam(sql, paramList, ReleaseFeatureVo.class);
-		
-		return result; 
+
+		return DbQueryUtils.queryBeanByParam(sql, paramList, ReleaseFeatureVo.class);
 	}
 
 	@Override

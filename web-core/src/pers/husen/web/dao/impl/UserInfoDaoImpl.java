@@ -56,7 +56,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 				+ UserInfoMapping.USER_AGE + ","
 				+ UserInfoMapping.USER_SEX + ", "
 				+ UserInfoMapping.USER_ADDRESS + ", "
-				+ UserInfoMapping.USRE_HEAD_URL
+				+ UserInfoMapping.USER_HEAD_URL
 				+ " FROM "
 				+ UserInfoMapping.DB_NAME
 				+ " WHERE user_name = ?";
@@ -75,7 +75,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 				+ UserInfoMapping.USER_AGE + "=?, "
 				+ UserInfoMapping.USER_SEX + "=?, "
 				+ UserInfoMapping.USER_ADDRESS + "=?, "
-				+ UserInfoMapping.USRE_HEAD_URL + "=?, "
+				+ UserInfoMapping.USER_HEAD_URL + "=?, "
 				+ UserInfoMapping.USER_NICK_NAME + "=? "
 				+ "WHERE "
 				+ UserInfoMapping.USER_ID + "=?";
@@ -162,7 +162,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 				+ UserInfoMapping.USER_AGE + ","
 				+ UserInfoMapping.USER_SEX + ", "
 				+ UserInfoMapping.USER_ADDRESS + ", "
-				+ UserInfoMapping.USRE_HEAD_URL + ", "
+				+ UserInfoMapping.USER_HEAD_URL + ", "
 				+ UserInfoMapping.USER_PASSWORD
 				+ " FROM "
 				+ UserInfoMapping.DB_NAME;

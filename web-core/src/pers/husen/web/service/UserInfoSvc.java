@@ -14,50 +14,50 @@ import pers.husen.web.dao.impl.UserInfoDaoImpl;
  */
 
 public class UserInfoSvc implements UserInfoDao{
-	private UserInfoDaoImpl uImpl = new UserInfoDaoImpl();
+	private static final UserInfoDaoImpl userInfoDaoImpl = new UserInfoDaoImpl();
 	
 	@Override
 	public String queryPasswordByUserName(String userName) {
-		return uImpl.queryPasswordByUserName(userName);
+		return userInfoDaoImpl.queryPasswordByUserName(userName);
 	}
 	
 	@Override
 	public int insertUserInfo(UserInfoVo uVo) {
-		return uImpl.insertUserInfo(uVo);
+		return userInfoDaoImpl.insertUserInfo(uVo);
 	}
 	
 	@Override
 	public UserInfoVo queryUserInfoByName(String userName) {
-		return uImpl.queryUserInfoByName(userName);
+		return userInfoDaoImpl.queryUserInfoByName(userName);
 	}
 	
 	@Override
 	public int updateUserInfoById(UserInfoVo uVo) {
-		return uImpl.updateUserInfoById(uVo);
+		return userInfoDaoImpl.updateUserInfoById(uVo);
 	}
 	
 	@Override
 	public int updateUserPwdByName(UserInfoVo uVo) {
-		return uImpl.updateUserPwdByName(uVo);
+		return userInfoDaoImpl.updateUserPwdByName(uVo);
 	}
 	
 	@Override
 	public int updateUserPwdByNameAndEmail(UserInfoVo uVo) {
-		return uImpl.updateUserPwdByNameAndEmail(uVo);
+		return userInfoDaoImpl.updateUserPwdByNameAndEmail(uVo);
 	}
 	
 	@Override
 	public int updateUserEmailByName(UserInfoVo uVo) {
-		return uImpl.updateUserEmailByName(uVo);
+		return userInfoDaoImpl.updateUserEmailByName(uVo);
 	}
 
 	@Override
 	public int queryUserTotalCount(UserInfoVo uVo) {
-		return uImpl.queryUserTotalCount(uVo);
+		return userInfoDaoImpl.queryUserTotalCount(uVo);
 	}
 
 	@Override
 	public ArrayList<UserInfoVo> queryUserPerPage(UserInfoVo uVo, int pageSize, int pageNo) {
-		return uImpl.queryUserPerPage(uVo, pageSize, pageNo);
+		return userInfoDaoImpl.queryUserPerPage(uVo, pageSize, pageNo);
 	}
 }

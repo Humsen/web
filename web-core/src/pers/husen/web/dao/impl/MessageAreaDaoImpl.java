@@ -30,9 +30,9 @@ public class MessageAreaDaoImpl implements MessageAreaDao {
 				+"VALUES (?, ?, ?, ?, ?, ?)";
 			
 		ArrayList<Object> paramList = new ArrayList<Object>();
-		Object obj = null;
-		paramList.add((obj = mVo.getMessageParent()) != null ? obj : "");
-		paramList.add((obj = mVo.getMessageBelong()) != null ? obj : new Date());
+		Object obj;
+		paramList.add(mVo.getMessageParent());
+		paramList.add(mVo.getMessageBelong());
 		paramList.add((obj = mVo.getMessageContent()) != null ? obj : "");
 		paramList.add((obj = mVo.getMessageDate()) != null ? obj : "");
 		paramList.add((obj = mVo.getMessageEmail()) != null ? obj : "");

@@ -40,12 +40,12 @@ public class DbConnectUtils {
 	public static Connection getConnection() {
 		Connection connection = null;
 		try {
-			String url = null;
+			String url;
 			//正式数据库和测试数据不一样
-			String dbName = null;
-			String username = null;
-			String password = null;
-			String driveClass = null;
+			String dbName;
+			String username;
+			String password;
+			String driveClass;
 			
 			//读取数据库连接文件
 			Properties properties = new Properties();
@@ -80,9 +80,6 @@ public class DbConnectUtils {
 	
 	/**
 	 * 关闭连接
-	 * @param rs
-	 * @param st
-	 * @param conn
 	 */
 	public static void closeResouce(ResultSet rs, PreparedStatement ps, Connection conn) {
 		try {
@@ -96,7 +93,7 @@ public class DbConnectUtils {
 				conn.close();
 			}
 		}catch (SQLException e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
+			logger.error(e);
 		}
 	}
 }

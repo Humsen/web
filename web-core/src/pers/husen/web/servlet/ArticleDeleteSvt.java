@@ -54,8 +54,6 @@ public class ArticleDeleteSvt extends HttpServlet {
 			int result = cSvc.logicDeleteCodeById(codeId);
 			
 			out.println(result);
-			
-			return;
 		}
 	}
 

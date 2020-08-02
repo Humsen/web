@@ -12,59 +12,59 @@ import pers.husen.web.dao.impl.BlogArticleDaoImpl;
  * 2017年9月17日
  */
 public class BlogArticleSvc implements BlogArticleDao{
-	private BlogArticleDaoImpl bImpl = new BlogArticleDaoImpl();
+	private static final BlogArticleDaoImpl blogArticleDaoImpl = new BlogArticleDaoImpl();
 	
 	public ArrayList<BlogArticleVo> queryBlogArticles(){
-		return bImpl.queryAllBlogArticles();
+		return blogArticleDaoImpl.queryAllBlogArticles();
 	}
 	
 	@Override
 	public int queryBlogTotalCount(BlogArticleVo bVo) {
-		return bImpl.queryBlogTotalCount(bVo);
+		return blogArticleDaoImpl.queryBlogTotalCount(bVo);
 	}
 	
 	@Override
 	public ArrayList<BlogArticleVo> queryBlogArticlePerPage(BlogArticleVo bVo, int pageSize, int pageNo){
-		return bImpl.queryBlogArticlePerPage(bVo, pageSize, pageNo);
+		return blogArticleDaoImpl.queryBlogArticlePerPage(bVo, pageSize, pageNo);
 	}
 	
 	@Override
 	public BlogArticleVo queryPerBlogById(int blogId) {
-		return bImpl.queryPerBlogById(blogId);
+		return blogArticleDaoImpl.queryPerBlogById(blogId);
 	}
 	
 	@Override
 	public int insertBlogArticle(BlogArticleVo bVo) {
-		return bImpl.insertBlogArticle(bVo);
+		return blogArticleDaoImpl.insertBlogArticle(bVo);
 	}
 	
 	@Override
 	public int updateBlogReadById(int blogId) {
-		return bImpl.updateBlogReadById(blogId);
+		return blogArticleDaoImpl.updateBlogReadById(blogId);
 	}
 	
 	@Override
 	public int updateBlogById(BlogArticleVo bVo) {
-		return bImpl.updateBlogById(bVo);
+		return blogArticleDaoImpl.updateBlogById(bVo);
 	}
 	
 	@Override
 	public int logicDeleteBlogById(int blogId) {
-		return bImpl.logicDeleteBlogById(blogId);
+		return blogArticleDaoImpl.logicDeleteBlogById(blogId);
 	}
 
 	@Override
 	public ArrayList<BlogArticleVo> queryAllBlogArticles() {
-		return bImpl.queryAllBlogArticles();
+		return blogArticleDaoImpl.queryAllBlogArticles();
 	}
 
 	@Override
 	public BlogArticleVo queryPreviousBlog(int blogId) {
-		return bImpl.queryPreviousBlog(blogId);
+		return blogArticleDaoImpl.queryPreviousBlog(blogId);
 	}
 
 	@Override
 	public BlogArticleVo queryNextBlog(int blogId) {
-		return bImpl.queryNextBlog(blogId);
+		return blogArticleDaoImpl.queryNextBlog(blogId);
 	}
 }

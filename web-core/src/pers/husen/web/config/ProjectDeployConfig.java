@@ -1,12 +1,11 @@
 package pers.husen.web.config;
 
-import java.io.File;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import pers.husen.web.common.constants.CommonConstants;
 import pers.husen.web.config.listener.WebInitConfigListener;
+
+import java.io.File;
 
 /**
  * @author 何明胜
@@ -53,20 +52,15 @@ public class ProjectDeployConfig {
 		 */
 		String currOsName = System.getProperty("os.name");
 		
-		if (currOsName.indexOf(CommonConstants.OS_LINUX) != -1) {
+		if (currOsName.contains(CommonConstants.OS_LINUX)) {
 			IS_REMOTE_DEPLOY = true;
-		} else if (currOsName.indexOf(CommonConstants.OS_WINDOWS) != -1) {
+		} else if (currOsName.contains(CommonConstants.OS_WINDOWS)) {
 			IS_REMOTE_DEPLOY = false;
 		} else {
 			Logger logger = LogManager.getLogger(WebInitConfigListener.class);
 			logger.fatal("识别 user.dir -> " + currOsName + " 出错,使用log4j2默认配置");
 		}
-		
-		/*if(IS_REMOTE_DEPLOY) {
-			WEB_DEPLOY_PATH = new File(deployPath);
-		}else {
-			WEB_DEPLOY_PATH = new File("F:/workspace/workspace pers/web/WebContent/");
-		}*/
+
 		WEB_DEPLOY_PATH = new File(deployPath);
 		WEB_ROOT_PATH = WEB_DEPLOY_PATH.getParent();
 		

@@ -12,15 +12,15 @@ import pers.husen.web.dao.impl.MessageAreaDaoImpl;
  * 2017年9月25日
  */
 public class MessageAreaSvc implements MessageAreaDao{
-	private MessageAreaDaoImpl mImpl = new MessageAreaDaoImpl();
+	private static final MessageAreaDaoImpl messageAreaDaoImpl = new MessageAreaDaoImpl();
 	
 	@Override
 	public ArrayList<MessageAreaVo> queryAllMessageArea(int messageId) {
-		return mImpl.queryAllMessageArea(messageId);
+		return messageAreaDaoImpl.queryAllMessageArea(messageId);
 	}
 	
 	@Override
 	public int insertMessageNew(MessageAreaVo mVo) {
-		return mImpl.insertMessageNew(mVo);
+		return messageAreaDaoImpl.insertMessageNew(mVo);
 	}
 }

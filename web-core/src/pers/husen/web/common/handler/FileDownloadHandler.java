@@ -45,11 +45,11 @@ public class FileDownloadHandler {
 		// 判断是否已经访问过该页面
 		Object counter = session.getAttribute("file_" + fileName);
 		if (counter == null) {
-			session.setAttribute("file_" + fileName, new Integer(1));
+			session.setAttribute("file_" + fileName, 1);
 		} else {
-			int count = ((Integer) counter).intValue();
+			int count = (Integer) counter;
 			count++;
-			session.setAttribute("file_" + fileName, new Integer(count));
+			session.setAttribute("file_" + fileName, count);
 		}
 		//更新下载次数
 		fSvc.updateFileDownCountByUrl(fileName);
@@ -64,7 +64,7 @@ public class FileDownloadHandler {
         //创建输出流
         OutputStream out = response.getOutputStream();
         //创建缓冲区
-        byte buffer[] = new byte[1024];
+        byte[] buffer = new byte[1024];
         int len = 0;
         //循环将输入流中的内容读取到缓冲区当中
         while((len=in.read(buffer))>0){

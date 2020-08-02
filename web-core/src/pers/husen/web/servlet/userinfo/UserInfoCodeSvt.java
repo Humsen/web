@@ -47,7 +47,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 		}
 		
 		/** 如果为请求发送验证码  */
-		if (operationType.indexOf(RequestConstants.REQUEST_TYPE_SEND_CODE) != -1) {
+		if (operationType.contains(RequestConstants.REQUEST_TYPE_SEND_CODE)) {
 			String email = request.getParameter("email");
 			int randomCode = RandomCodeHelper.producedRandomCode(6);
 			SendEmailHelper sendEmail = new SendEmailHelper();
@@ -55,7 +55,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 			int result = 0;
 
 			// 如果是找回密码发送验证码
-			if (operationType.indexOf(RequestConstants.MODE_RETRIVE_PWD) != -1) {
+			if (operationType.contains(RequestConstants.MODE_RETRIVE_PWD)) {
 				result = sendEmail.sendEmail2RetrievePwd(email, randomCode);
 				request.getSession().setAttribute("random_code_retrive", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置找回密码验证码至session属性");
@@ -65,7 +65,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 			}
 
 			// 如果是注册发送验证码
-			if (operationType.indexOf(RequestConstants.MODE_REGISTER) != -1) {
+			if (operationType.contains(RequestConstants.MODE_REGISTER)) {
 				result = sendEmail.sendEmail2Register(email, randomCode);
 				request.getSession().setAttribute("random_code_register", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置注册用户验证码至session属性");
@@ -75,7 +75,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 			}
 
 			// 如果是修改邮箱验证原邮箱,发送验证码
-			if (operationType.indexOf(RequestConstants.MODE_OLD_EMAIL) != -1) {
+			if (operationType.contains(RequestConstants.MODE_OLD_EMAIL)) {
 				result = sendEmail.sendEmail2ModifyEmailAuth(email, randomCode);
 				request.getSession().setAttribute("random_code_modify_email_auth", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置修改邮箱验证旧邮箱验证码至session属性");
@@ -86,7 +86,7 @@ public class UserInfoCodeSvt extends HttpServlet {
 			}
 
 			// 如果是修改邮箱绑定新邮箱,发送验证码
-			if (operationType.indexOf(RequestConstants.MODE_BIND_EMAIL) != -1) {
+			if (operationType.contains(RequestConstants.MODE_BIND_EMAIL)) {
 				result = sendEmail.sendEmail2ModifyEmailBind(email, randomCode);
 				request.getSession().setAttribute("random_code_modify_email_bind", randomCode);
 				logger.info("验证码暂存：[" + randomCode + "],成功设置修改邮箱验证新邮箱验证码至session属性");
@@ -97,16 +97,16 @@ public class UserInfoCodeSvt extends HttpServlet {
 		}
 
 		/** 如果为校验验证码  */
-		if (operationType.indexOf(RequestConstants.REQUEST_TYPE_AUTH_CODE) != -1) {
+		if (operationType.contains(RequestConstants.REQUEST_TYPE_AUTH_CODE)) {
 			String randomCodeFromUser = request.getParameter("randomCode");
 			Object randomCodeFromSession = 0;
 			String type = request.getParameter("type");
 
 			// 如果是找回密码校验
-			if (operationType.indexOf(RequestConstants.MODE_RETRIVE_PWD) != -1) {
+			if (operationType.contains(RequestConstants.MODE_RETRIVE_PWD)) {
 				randomCodeFromSession = request.getSession().getAttribute("random_code_retrive");
 
-				if (randomCodeFromUser != null && String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
+				if (String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
 					logger.info("验证码：" + randomCodeFromUser + " 校验成功，校验类型：" + type);
 
 					String userName = request.getParameter("userName");
@@ -131,10 +131,10 @@ public class UserInfoCodeSvt extends HttpServlet {
 			}
 
 			// 如果是用户注册校验
-			if (operationType.indexOf(RequestConstants.MODE_REGISTER) != -1) {
+			if (operationType.contains(RequestConstants.MODE_REGISTER)) {
 				randomCodeFromSession = request.getSession().getAttribute("random_code_register");
 
-				if (randomCodeFromUser != null && String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
+				if (String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
 					logger.info("验证码：" + randomCodeFromUser + " 校验成功，校验类型：" + type);
 					out.println(1);
 				} else {
@@ -146,10 +146,10 @@ public class UserInfoCodeSvt extends HttpServlet {
 			}
 
 			// 如果是修改邮箱认证旧邮箱
-			if (operationType.indexOf(RequestConstants.MODE_OLD_EMAIL) != -1) {
+			if (operationType.contains(RequestConstants.MODE_OLD_EMAIL)) {
 				randomCodeFromSession = request.getSession().getAttribute("random_code_modify_email_auth");
 
-				if (randomCodeFromUser != null && String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
+				if (String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
 					logger.info("验证码：" + randomCodeFromUser + " 校验成功，校验类型：" + type);
 					out.println(1);
 				} else {
@@ -162,10 +162,10 @@ public class UserInfoCodeSvt extends HttpServlet {
 			}
 
 			// 如果是修改邮箱绑定新邮箱
-			if (operationType.indexOf(RequestConstants.MODE_BIND_EMAIL) != -1) {
+			if (operationType.contains(RequestConstants.MODE_BIND_EMAIL)) {
 				randomCodeFromSession = request.getSession().getAttribute("random_code_modify_email_bind");
 
-				if (randomCodeFromUser != null && String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
+				if (String.valueOf(randomCodeFromSession).equals(randomCodeFromUser)) {
 					logger.info("验证码：" + randomCodeFromUser + " 校验成功，校验类型：" + type);
 
 					String userName = request.getParameter("username");
@@ -184,8 +184,6 @@ public class UserInfoCodeSvt extends HttpServlet {
 							+ randomCodeFromSession);
 					out.println(0);
 				}
-
-				return;
 			}
 		}
 	}

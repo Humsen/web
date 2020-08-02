@@ -14,24 +14,24 @@ import pers.husen.web.dao.impl.ArticleCategoryDaoImpl;
  * @created 2017年12月12日 上午10:38:46
  */
 public class ArticleCategorySvc implements ArticleCategoryDao {
-	private ArticleCategoryDaoImpl aImpl = new ArticleCategoryDaoImpl();
+	private static final ArticleCategoryDaoImpl articleCategoryDaoImpl = new ArticleCategoryDaoImpl();
 	
 	@Override
 	public int insertCategory(ArticleCategoryVo aVo) {
-		return aImpl.insertCategory(aVo);
+		return articleCategoryDaoImpl.insertCategory(aVo);
 	}
 	@Override
 	public int queryMaxId() {
-		return aImpl.queryMaxId();
+		return articleCategoryDaoImpl.queryMaxId();
 	}
 
 	@Override
 	public ArrayList<ArticleCategoryVo> queryCategory3Num(String classification) {
-		return aImpl.queryCategory3Num(classification);
+		return articleCategoryDaoImpl.queryCategory3Num(classification);
 	}
 
 	@Override
 	public ArrayList<ArticleCategoryVo> queryAllCategory() {
-		return aImpl.queryAllCategory();
+		return articleCategoryDaoImpl.queryAllCategory();
 	}
 }

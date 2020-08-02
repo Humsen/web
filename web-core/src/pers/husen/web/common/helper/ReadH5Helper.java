@@ -37,18 +37,16 @@ public class ReadH5Helper {
 	 */
 	public static String readHtmlByName(String htmlQualifiedName) {
 		BufferedReader br = null;
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(htmlQualifiedName)));
-			String temp = null;
+			String temp;
 			while ((temp = br.readLine()) != null) {
 				sb.append(temp);
 				sb.append("\n");
 			}
-		} catch (FileNotFoundException e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
 		} catch (IOException e) {
-			logger.error(StackTrace2Str.exceptionStackTrace2Str(e));
+			logger.error(e);
 		}
 		return sb.toString();
 	}
@@ -88,7 +86,7 @@ public class ReadH5Helper {
 	 */
 	public static String modifyHtmlKeywords(String htmlQualifiedName, String keywords) {
 		// 空格变为英文逗号
-		if (keywords != null && keywords != "" && keywords.indexOf(CommonConstants.ENGLISH_COMMA) == -1) {
+		if (keywords != null && !keywords.equals("") && keywords.indexOf(CommonConstants.ENGLISH_COMMA) == -1) {
 			keywords = keywords.replaceAll("\\s", ",");
 		}
 

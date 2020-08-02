@@ -67,8 +67,6 @@ public class FileDownloadSvt extends HttpServlet {
 			
 			String json =JSONArray.fromObject(fVos).toString();
 			out.println(json);
-			
-			return;
 		}
 	}
 

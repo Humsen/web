@@ -47,12 +47,10 @@ public class LatestRlseFetrSvt extends HttpServlet {
 			return;
 		}
 		/** 如果是请求其他版本 */
-		if(releaseId != null && Integer.parseInt(releaseId) != 0) {
+		if(Integer.parseInt(releaseId) != 0) {
 			rVo = rSvc.queryReleaseById(Integer.parseInt(releaseId));
 			String json = JSONObject.fromObject(rVo).toString();
 			out.println(json);
-			
-			return;
 		}
 	}
 

@@ -12,50 +12,50 @@ import pers.husen.web.dao.impl.CodeLibraryDaoImpl;
  * 2017年9月28日
  */
 public class CodeLibrarySvc implements CodeLibraryDao{
-	private CodeLibraryDaoImpl cImpl = new CodeLibraryDaoImpl();
+	private static final CodeLibraryDaoImpl codeLibraryDaoImpl = new CodeLibraryDaoImpl();
 	
 	@Override
 	public int queryCodeTotalCount(CodeLibraryVo cVo) {
-		return cImpl.queryCodeTotalCount(cVo);
+		return codeLibraryDaoImpl.queryCodeTotalCount(cVo);
 	}
 	
 	@Override
 	public CodeLibraryVo queryPerCodeById(int codeId) {
-		return cImpl.queryPerCodeById(codeId);
+		return codeLibraryDaoImpl.queryPerCodeById(codeId);
 	}
 	
 	@Override
 	public int insertCodeLibrary(CodeLibraryVo cVo) {
-		return cImpl.insertCodeLibrary(cVo);
+		return codeLibraryDaoImpl.insertCodeLibrary(cVo);
 	}
 	
 	@Override
 	public int updateCodeReadById(int codeId) {
-		return cImpl.updateCodeReadById(codeId);
+		return codeLibraryDaoImpl.updateCodeReadById(codeId);
 	}
 	
 	@Override
 	public int updateCodeById(CodeLibraryVo cVo) {
-		return cImpl.updateCodeById(cVo);
+		return codeLibraryDaoImpl.updateCodeById(cVo);
 	}
 	
 	@Override
 	public int logicDeleteCodeById(int codeId) {
-		return cImpl.logicDeleteCodeById(codeId);
+		return codeLibraryDaoImpl.logicDeleteCodeById(codeId);
 	}
 
 	@Override
 	public ArrayList<CodeLibraryVo> queryCodeLibraryPerPage(CodeLibraryVo cVo, int pageSize, int pageNo) {
-		return cImpl.queryCodeLibraryPerPage(cVo, pageSize, pageNo);
+		return codeLibraryDaoImpl.queryCodeLibraryPerPage(cVo, pageSize, pageNo);
 	}
 
 	@Override
 	public CodeLibraryVo queryPreviousCode(int codeId) {
-		return cImpl.queryPreviousCode(codeId);
+		return codeLibraryDaoImpl.queryPreviousCode(codeId);
 	}
 
 	@Override
 	public CodeLibraryVo queryNextCode(int codeId) {
-		return cImpl.queryNextCode(codeId);
+		return codeLibraryDaoImpl.queryNextCode(codeId);
 	}
 }

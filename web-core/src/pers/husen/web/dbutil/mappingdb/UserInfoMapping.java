@@ -22,5 +22,5 @@ public class UserInfoMapping {
 	public static final String USER_AGE = "user_age";
 	public static final String USER_SEX = "user_sex";
 	public static final String USER_ADDRESS = "user_address";
-	public static final String USRE_HEAD_URL = "user_head_url";
+	public static final String USER_HEAD_URL = "user_head_url";
 }

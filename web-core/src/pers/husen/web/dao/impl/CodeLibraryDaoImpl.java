@@ -98,17 +98,17 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ CodeLibraryMapping.CODE_DELETE
 				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		ArrayList<Object> paramList = new ArrayList<Object>();
+		ArrayList<Object> paramList = new ArrayList<>();
 		Object obj = null;
 		paramList.add((obj = cVo.getCodeTitle()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeDate()) != null ? obj : new Date());
 		paramList.add((obj = cVo.getCodeSummary()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeAuthor()) != null ? obj : "");
-		paramList.add((obj = cVo.getCodeRead()) != null ? obj : 0);
+		paramList.add(cVo.getCodeRead());
 		paramList.add((obj = cVo.getCodeHtmlContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeMdContent()) != null ? obj : "");
 		paramList.add((obj = cVo.getCodeLabel()) != null ? obj : "");
-		paramList.add((obj = cVo.getCodeCategory()) != null ? obj : "");
+		paramList.add(cVo.getCodeCategory());
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		
 		return DbManipulationUtils.insertNewRecord(sql, paramList);
@@ -117,7 +117,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	@Override
 	public int updateCodeReadById(int codeId) {
 		String sql = "UPDATE code_library SET code_read = ((SELECT selTmp.code_read FROM (select tmp.* from code_library tmp) AS selTmp where code_id = ?) + 1) WHERE code_id = ?";
-		ArrayList<Object> paramList = new ArrayList<Object>();
+		ArrayList<Object> paramList = new ArrayList<>();
 		paramList.add(codeId);
 		paramList.add(codeId);
 		
@@ -137,7 +137,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 				+ "WHERE "
 				+ CodeLibraryMapping.CODE_ID + "=?";
 		
-		ArrayList<Object> paramList = new ArrayList<Object>();
+		ArrayList<Object> paramList = new ArrayList<>();
 		
 		paramList.add(cVo.getCodeTitle());
 		paramList.add(cVo.getCodeAuthor());
@@ -165,7 +165,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	public CodeLibraryVo queryPreviousCode(int codeId) {
 		String sql = "SELECT * FROM code_library WHERE code_delete = ? AND code_id < ? ORDER BY code_id DESC LIMIT 1";
 		
-		ArrayList<Object> paramList = new ArrayList<Object>();
+		ArrayList<Object> paramList = new ArrayList<>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		paramList.add(codeId);
 		
@@ -176,7 +176,7 @@ public class CodeLibraryDaoImpl implements CodeLibraryDao {
 	public CodeLibraryVo queryNextCode(int codeId) {
 		String sql = "SELECT * FROM code_library WHERE code_delete = ? AND code_id > ? ORDER BY code_id LIMIT 1";
 		
-		ArrayList<Object> paramList = new ArrayList<Object>();
+		ArrayList<Object> paramList = new ArrayList<>();
 		paramList.add(DbConstans.FIELD_VALID_FLAG);
 		paramList.add(codeId);
 		

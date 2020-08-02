@@ -17,18 +17,7 @@ public class ReleaseFeatureMapping {
 	 * release_id
 	 */
 	public static String RELEASE_ID = "release_id";
-	/**
-	 * release_author
-	 */
-	public static String RELEASE_AUTHOR = "release_author";
-	/**
-	 * release_date
-	 */
-	public static String RELEASE_DATE = "release_date";
-	/**
-	 * release_number
-	 */
-	public static String RELEASE_NUMBER = "release_number";
+
 	/**
 	 * release_content
 	 */

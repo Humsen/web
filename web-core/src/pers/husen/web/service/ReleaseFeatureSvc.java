@@ -10,25 +10,25 @@ import pers.husen.web.dao.impl.ReleaseFeatureDaoImpl;
  * 2017年10月17日
  */
 public class ReleaseFeatureSvc implements ReleaseFeatureDao{
-	private ReleaseFeatureDaoImpl rImpl = new ReleaseFeatureDaoImpl();
+	private static final ReleaseFeatureDaoImpl releaseFeatureDaoImpl = new ReleaseFeatureDaoImpl();
 	
 	@Override
 	public int insertReleaseFeature(ReleaseFeatureVo rVo) {
-		return rImpl.insertReleaseFeature(rVo);
+		return releaseFeatureDaoImpl.insertReleaseFeature(rVo);
 	}
 	
 	@Override
 	public ReleaseFeatureVo queryLatestReleaseFeature() {
-		return rImpl.queryLatestReleaseFeature();
+		return releaseFeatureDaoImpl.queryLatestReleaseFeature();
 	}
 
 	@Override
 	public ReleaseFeatureVo queryReleaseById(int releaseId) {
-		return rImpl.queryReleaseById(releaseId);
+		return releaseFeatureDaoImpl.queryReleaseById(releaseId);
 	}
 
 	@Override
 	public int updateReleaseContentById(ReleaseFeatureVo rVo) {
-		return rImpl.updateReleaseContentById(rVo);
+		return releaseFeatureDaoImpl.updateReleaseContentById(rVo);
 	}
 }

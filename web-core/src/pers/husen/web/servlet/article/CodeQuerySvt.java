@@ -47,7 +47,7 @@ public class CodeQuerySvt extends HttpServlet {
 		
 		CodeLibraryVo cVo = new CodeLibraryVo();
 		cVo.setCodeTitle(requestKeywords);
-		if(category != null && category.trim() != "") {
+		if(category != null && !category.trim().equals("")) {
 			cVo.setCodeCategory(Integer.parseInt(category));
 		}else {
 			cVo.setCodeCategory(-1);
@@ -101,8 +101,6 @@ public class CodeQuerySvt extends HttpServlet {
 			}
 			
 			out.println(nextCode);
-			
-			return;
 		}
 	}
 
