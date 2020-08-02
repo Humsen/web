@@ -28,7 +28,7 @@ function menuBarInit(menuBarNo){
 		+'</ul>'
 		+'</nav>'
 		+'<div class="web-pc-nav">'
-		+'<a class="btn btn-default btn-sm" href="https://www.hemingsheng.cn/" role="button"><span class="glyphicon glyphicon-blackboard"></span> 电脑版</a>'
+		+'<a class="btn btn-default btn-sm" href="https://demo.hemingsheng.cn/" role="button"><span class="glyphicon glyphicon-blackboard"></span> 电脑版</a>'
 		+'</div>'
 		+'<div class="fh5co-footer footer-div">'
 		+'<p>'
