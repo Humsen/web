@@ -34,7 +34,7 @@ function menuBarInit(menuBarNo){
 		+'<p>'
 		+'<small><span>渝ICP备16013250号 </span>' 
 		+'<span>&copy;'
-		+'2017 All Rights Reserved </span></small>'
+		+'2017-2020 </span><span>All Rights Reserved</span></small>'
 		+'</p>'
 		+'</div>'
 		+'</aside>';
