@@ -13,8 +13,6 @@
 - 查看网站所有用户(站长功能)
 - 网站实时在线用户显示、历史访问人数统计
 
-PC端网址：https://www.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
-
 ------------
 
 ## 主要文件结构如下
