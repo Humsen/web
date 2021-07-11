@@ -2,10 +2,6 @@
 
 个人网站项目，前台包括博客、代码库、文件下载、留言、登录注册等功能，后台包括上传文件、博客、代码，编辑、删除文章，查看、修改个人资料及邮箱、头像等功能。
 
-PC端网址：demo.hemingsheng.cn ，移动端网址：https://m.hemingsheng.cn
-
-web端下载缓慢，可以到我的个人网站下载：https://www.hemingsheng.cn/module/download.hms ，记得翻到第二页。
-
 交流答疑QQ群：951623031。
 
 [点击加入：Java全栈开发学习交流](//shang.qq.com/wpa/qunwpa?idkey=41068b9adb14521cab1ebfea385e3e4aabf466115ba5278ca4d41a605506c096)
